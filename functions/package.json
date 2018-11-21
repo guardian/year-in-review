@@ -1,0 +1,49 @@
+{
+  "name": "year-in-review",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "npm run build && firebase serve --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "yarn jest"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "actions-on-google": "^2.5.0",
+    "firebase-admin": "~6.0.0",
+    "firebase-functions": "^2.0.3",
+    "fluent-ssml": "^0.2.7"
+  },
+  "devDependencies": {
+    "@types/actions-on-google": "^1.10.2",
+    "@types/jest": "^23.3.9",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.2",
+    "ts-jest": "^23.10.4",
+    "tslint": "~5.8.0",
+    "tslint-config-prettier": "^1.16.0",
+    "typescript": "^3.1.6"
+  },
+  "private": true,
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/__tests__/*.+(ts|tsx|js)"
+    ]
+  }
+}
