@@ -31,6 +31,10 @@ app.intent('Welcome Intent - yes', conv => {
   conv.close(startYearInReviewFulfillment());
 });
 
+app.intent('Quit App', conv => {
+  conv.close(leaveYearInReviewFulfillment());
+});
+
 exports.yearInReviewFulfillment = functions
   .region('europe-west1')
   .https.onRequest(app);

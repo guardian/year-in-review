@@ -5,7 +5,7 @@ const askAgainAudioLink =
   'https://actions.google.com/sounds/v1/alarms/dinner_bell_triangle.ogg';
 
 const startYearInReviewAudioLink =
-  'https://actions.google.com/sounds/v1/weather/afternoon_storm_long.ogg';
+  'https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg';
 
 const leaveYearInReviewAudioLink =
   'https://actions.google.com/sounds/v1/alarms/mechanical_clock_ring.ogg';
