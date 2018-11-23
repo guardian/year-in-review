@@ -2,6 +2,13 @@
   "defaultSeverity": "error",
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "jsRules": {},
-  "rules": {},
+  "rules": {
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "any"
+      }
+    ]
+  },
   "rulesDirectory": []
 }
