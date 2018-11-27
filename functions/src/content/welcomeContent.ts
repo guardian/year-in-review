@@ -9,9 +9,13 @@ const startYearInReviewAudioLink =
 const doNotPlayAudioLink =
   'https://s3.amazonaws.com/audiolab-audio/doNotPlay.mp3';
 
+const helpAtStartAudioLink =
+  'https://s3.amazonaws.com/audiolab-audio/startHelp.mp3';
+
 export {
   welcomeAudioLink,
   askAgainAudioLink,
   startYearInReviewAudioLink,
   doNotPlayAudioLink,
+  helpAtStartAudioLink,
 };

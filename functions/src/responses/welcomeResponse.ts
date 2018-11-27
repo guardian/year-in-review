@@ -1,6 +1,7 @@
 import {
   askAgainAudioLink,
   doNotPlayAudioLink,
+  helpAtStartAudioLink,
   startYearInReviewAudioLink,
   welcomeAudioLink,
 } from '../content/welcomeContent';
@@ -30,9 +31,16 @@ const doNotPlayResponse = renderXml(
     .render()
 );
 
+const helpAtStartResponse = renderXml(
+  ssml()
+    .audio(helpAtStartAudioLink)
+    .render()
+);
+
 export {
   welcomeResponse,
   askAgainResponse,
   startYearInReviewResponse,
   doNotPlayResponse,
+  helpAtStartResponse,
 };

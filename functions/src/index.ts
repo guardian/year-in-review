@@ -8,6 +8,7 @@ import {
 import {
   askAgainFulfillment,
   doNotPlayFulfillment,
+  helpAtStartFulfillment,
   startYearInReviewFulfillment,
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
@@ -41,6 +42,10 @@ const invalidResponse = (
     conv.ask(askAgainFulfillment(conv.data));
   }
 };
+
+app.intent('Welcome Intent - help', conv => {
+  conv.ask(helpAtStartFulfillment());
+});
 
 app.intent('Quit App', conv => {
   conv.close(doNotPlayFulfillment());

@@ -1,6 +1,7 @@
 import {
   askAgainResponse,
   doNotPlayResponse,
+  helpAtStartResponse,
   startYearInReviewResponse,
   welcomeResponse,
 } from '../responses/welcomeResponse';
@@ -28,9 +29,14 @@ const doNotPlayFulfillment = () => {
   return doNotPlayResponse;
 };
 
+const helpAtStartFulfillment = () => {
+  return helpAtStartResponse;
+};
+
 export {
   welcomeFulfillment,
   askAgainFulfillment,
   startYearInReviewFulfillment,
   doNotPlayFulfillment,
+  helpAtStartFulfillment,
 };
