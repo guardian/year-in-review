@@ -1,0 +1,104 @@
+{
+  "id": "6ad175b7-d635-404e-bb16-111ad295e149",
+  "parentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "rootParentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "name": "Welcome Intent - help",
+  "auto": true,
+  "contexts": [
+    "WelcomeIntent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "WelcomeIntent.WelcomeIntent-custom",
+      "affectedContexts": [
+        {
+          "name": "WelcomeIntent-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543325594,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "8c8f44c6-2b9b-4ee9-90dc-998a546d6ad4",
+      "data": [
+        {
+          "text": "help me"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543317634,
+      "isAuto": false
+    },
+    {
+      "id": "b9ae7c42-2cd6-4c10-ab77-5cc21678a2b0",
+      "data": [
+        {
+          "text": "what"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543317634,
+      "isAuto": false
+    },
+    {
+      "id": "b9543165-dd5c-486e-96c4-910ebd1879ec",
+      "data": [
+        {
+          "text": "I don't understand"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543317634,
+      "isAuto": false
+    },
+    {
+      "id": "e9d31c90-92ea-4dfe-9642-01b4c1079401",
+      "data": [
+        {
+          "text": "I need help"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543317634,
+      "isAuto": false
+    },
+    {
+      "id": "0ae875cb-9d1b-41ef-81e1-eebd1aa7d78a",
+      "data": [
+        {
+          "text": "help"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543317634,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

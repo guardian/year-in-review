@@ -1,0 +1,37 @@
+{
+  "id": "a0121ccd-49ba-451f-96e6-a65d5c1880ea",
+  "parentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "rootParentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "name": "Welcome Intent - fallback",
+  "auto": false,
+  "contexts": [
+    "WelcomeIntent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "WelcomeIntent.WelcomeIntent-fallback",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543249431,
+  "fallbackIntent": true,
+  "events": [],
+  "userSays": [],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

@@ -3,12 +3,8 @@
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
-    "ordered-imports": [
-      true,
-      {
-        "import-sources-order": "any"
-      }
-    ]
+    "ordered-imports": false,
+    "interface-name": false
   },
   "rulesDirectory": []
 }

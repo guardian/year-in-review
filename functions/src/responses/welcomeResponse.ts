@@ -1,6 +1,7 @@
 import {
   askAgainAudioLink,
-  leaveYearInReviewAudioLink,
+  doNotPlayAudioLink,
+  helpAtStartAudioLink,
   startYearInReviewAudioLink,
   welcomeAudioLink,
 } from '../content/welcomeContent';
@@ -24,9 +25,15 @@ const startYearInReviewResponse = renderXml(
     .render()
 );
 
-const leaveYearInReviewResponse = renderXml(
+const doNotPlayResponse = renderXml(
   ssml()
-    .audio(leaveYearInReviewAudioLink)
+    .audio(doNotPlayAudioLink)
+    .render()
+);
+
+const helpAtStartResponse = renderXml(
+  ssml()
+    .audio(helpAtStartAudioLink)
     .render()
 );
 
@@ -34,5 +41,6 @@ export {
   welcomeResponse,
   askAgainResponse,
   startYearInReviewResponse,
-  leaveYearInReviewResponse,
+  doNotPlayResponse,
+  helpAtStartResponse,
 };
