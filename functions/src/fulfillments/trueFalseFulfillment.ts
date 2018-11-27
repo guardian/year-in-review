@@ -14,7 +14,7 @@ import { getRound } from '../content/categoriesContent';
 
 const trueFalseFulfullment = (answer: string, data: UserData) => {
   const category: Category = data.currentCategory || Category.SPORT;
-  const questionNumber: number = data.currentQuestion || 0;
+  const questionNumber: number = data.currentQuestion || 1;
   const round: QuizRound = getRound(category);
   const question: OptionQuestion = round.getQuestion(questionNumber);
   const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);

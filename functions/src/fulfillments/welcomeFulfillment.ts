@@ -22,7 +22,7 @@ const setReprompt = (data: UserData) => {
 };
 
 const startYearInReviewFulfillment = (data: UserData) => {
-  data.currentQuestion = 0;
+  data.currentQuestion = 1;
   data.currentCategory = Category.SPORT;
   return sportsOpeningResponse;
 };

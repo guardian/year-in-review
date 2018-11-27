@@ -14,7 +14,7 @@ class SportsRound implements QuizRound {
   }
 
   public getQuestion(questionNumber: number): OptionQuestion {
-    if (questionNumber >= this.questions.length) {
+    if (questionNumber > this.questions.length) {
       return new Unknown('out of bounds');
     } else {
       // Indexing starting from 0
