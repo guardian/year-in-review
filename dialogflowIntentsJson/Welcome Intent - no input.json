@@ -1,11 +1,16 @@
 {
-  "id": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
-  "name": "Welcome Intent",
+  "id": "c5938fcc-ea2d-4378-8294-ced60e16d3d0",
+  "parentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "rootParentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "name": "Welcome Intent - no input",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "WelcomeIntent-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
+      "action": "WelcomeIntent.WelcomeIntent-custom",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
@@ -19,20 +24,13 @@
     }
   ],
   "priority": 500000,
-  "cortanaCommand": {
-    "navigateOrService": "NAVIGATE",
-    "target": ""
-  },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1542819175,
+  "lastUpdate": 1543250014,
   "fallbackIntent": false,
   "events": [
     {
-      "name": "WELCOME"
-    },
-    {
-      "name": "GOOGLE_ASSISTANT_WELCOME"
+      "name": "actions_intent_NO_INPUT"
     }
   ],
   "userSays": [],

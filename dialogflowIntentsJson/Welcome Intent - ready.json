@@ -1,0 +1,62 @@
+{
+  "id": "2433006c-3cb9-455d-a22c-94ca0bffe52c",
+  "parentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "rootParentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "name": "Welcome Intent - ready",
+  "auto": true,
+  "contexts": [
+    "WelcomeIntent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "WelcomeIntent.WelcomeIntent-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543319794,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "41331c33-2d39-4431-adad-24bf47a6322a",
+      "data": [
+        {
+          "text": "I'm ready"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543249336,
+      "isAuto": false
+    },
+    {
+      "id": "3b9043bc-4eb5-4bec-8778-c396199ac256",
+      "data": [
+        {
+          "text": "ready"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543249336,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}
