@@ -1,12 +1,12 @@
+import { Category, UserData } from '../models/models';
 import {
   askAgainResponse,
   doNotPlayResponse,
   helpAtStartResponse,
-  startYearInReviewResponse,
   welcomeResponse,
 } from '../responses/welcomeResponse';
 
-import { UserData } from '../models/models';
+import { sportsOpeningResponse } from '../responses/sportsRoundResponse';
 
 const welcomeFulfillment = () => {
   return welcomeResponse;
@@ -21,8 +21,10 @@ const setReprompt = (data: UserData) => {
   return (data.startRepromptIssued = true);
 };
 
-const startYearInReviewFulfillment = () => {
-  return startYearInReviewResponse;
+const startYearInReviewFulfillment = (data: UserData) => {
+  data.currentQuestion = 0;
+  data.currentCategory = Category.SPORT;
+  return sportsOpeningResponse;
 };
 
 const doNotPlayFulfillment = () => {
