@@ -2,37 +2,34 @@ import * as functions from 'firebase-functions';
 
 import {
   askAgainFulfillment,
-  leaveYearInReviewFulfillment,
+  doNotPlayFulfillment,
   startYearInReviewFulfillment,
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
 
+import { UserData } from './models/models';
 import { dialogflow } from 'actions-on-google';
 
-const app = dialogflow({ debug: true });
+const app = dialogflow<UserData, {}>({ debug: true });
 
 app.intent('Welcome Intent', conv => {
   conv.ask(welcomeFulfillment());
 });
 
-app.intent('Welcome Intent - no', conv => {
-  conv.ask(askAgainFulfillment());
-});
-
-app.intent('Welcome Intent - no - yes', conv => {
-  conv.ask(startYearInReviewFulfillment());
-});
-
-app.intent('Welcome Intent - no - no', conv => {
-  conv.close(leaveYearInReviewFulfillment());
-});
-
-app.intent('Welcome Intent - yes', conv => {
+app.intent('Welcome Intent - ready', conv => {
   conv.close(startYearInReviewFulfillment());
 });
 
+app.intent('Welcome Intent - fallback', conv => {
+  if (conv.data.startRepromptIssued === true) {
+    conv.close(doNotPlayFulfillment());
+  } else {
+    conv.ask(askAgainFulfillment(conv.data));
+  }
+});
+
 app.intent('Quit App', conv => {
-  conv.close(leaveYearInReviewFulfillment());
+  conv.close(doNotPlayFulfillment());
 });
 
 exports.yearInReviewFulfillment = functions

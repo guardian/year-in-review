@@ -1,6 +1,6 @@
 import {
   askAgainAudioLink,
-  leaveYearInReviewAudioLink,
+  doNotPlayAudioLink,
   startYearInReviewAudioLink,
   welcomeAudioLink,
 } from '../content/welcomeContent';
@@ -24,9 +24,9 @@ const startYearInReviewResponse = renderXml(
     .render()
 );
 
-const leaveYearInReviewResponse = renderXml(
+const doNotPlayResponse = renderXml(
   ssml()
-    .audio(leaveYearInReviewAudioLink)
+    .audio(doNotPlayAudioLink)
     .render()
 );
 
@@ -34,5 +34,5 @@ export {
   welcomeResponse,
   askAgainResponse,
   startYearInReviewResponse,
-  leaveYearInReviewResponse,
+  doNotPlayResponse,
 };
