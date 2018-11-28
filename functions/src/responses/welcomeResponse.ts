@@ -1,39 +1,39 @@
 import {
-  askAgainAudioLink,
-  doNotPlayAudioLink,
-  helpAtStartAudioLink,
-  startYearInReviewAudioLink,
-  welcomeAudioLink,
+  askAgainAudio,
+  doNotPlayAudio,
+  helpAtStartAudio,
+  startYearInReviewAudio,
+  welcomeAudio,
 } from '../content/welcomeContent';
 import { renderXml, ssml } from 'fluent-ssml';
 
 const welcomeResponse = renderXml(
   ssml()
-    .audio(welcomeAudioLink)
+    .audio(welcomeAudio)
     .render()
 );
 
 const askAgainResponse = renderXml(
   ssml()
-    .audio(askAgainAudioLink)
+    .audio(askAgainAudio)
     .render()
 );
 
 const startYearInReviewResponse = renderXml(
   ssml()
-    .audio(startYearInReviewAudioLink)
+    .audio(startYearInReviewAudio)
     .render()
 );
 
 const doNotPlayResponse = renderXml(
   ssml()
-    .audio(doNotPlayAudioLink)
+    .audio(doNotPlayAudio)
     .render()
 );
 
 const helpAtStartResponse = renderXml(
   ssml()
-    .audio(helpAtStartAudioLink)
+    .audio(helpAtStartAudio)
     .render()
 );
 

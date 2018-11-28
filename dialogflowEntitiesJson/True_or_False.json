@@ -1,0 +1,21 @@
+{
+  "id": "f6658437-996b-4c0c-aeb4-45cec1750b98",
+  "name": "True_or_False",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "true",
+      "synonyms": [
+        "true"
+      ]
+    },
+    {
+      "value": "false",
+      "synonyms": [
+        "false"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

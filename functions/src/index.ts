@@ -14,6 +14,7 @@ import {
 } from './fulfillments/welcomeFulfillment';
 
 import { UserData } from './models/models';
+import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
 const app = dialogflow<UserData, {}>({ debug: true });
 
@@ -22,7 +23,7 @@ app.intent('Welcome Intent', conv => {
 });
 
 app.intent('Welcome Intent - ready', conv => {
-  conv.close(startYearInReviewFulfillment());
+  conv.ask(startYearInReviewFulfillment(conv.data));
 });
 
 app.intent('Welcome Intent - fallback', conv => {
@@ -45,6 +46,10 @@ const invalidResponse = (
 
 app.intent('Welcome Intent - help', conv => {
   conv.ask(helpAtStartFulfillment());
+});
+
+app.intent<{ answer: string }>('True False Question', (conv, { answer }) => {
+  conv.ask(trueFalseFulfullment(answer, conv.data));
 });
 
 app.intent('Quit App', conv => {
