@@ -1,4 +1,3 @@
-import { Category, UserData } from '../models/models';
 import {
   askAgainResponse,
   doNotPlayResponse,
@@ -6,6 +5,8 @@ import {
   welcomeResponse,
 } from '../responses/welcomeResponse';
 
+import { Category } from '../models/categories';
+import { UserData } from '../models/models';
 import { sportsOpeningResponse } from '../responses/sportsRoundResponse';
 
 const welcomeFulfillment = () => {

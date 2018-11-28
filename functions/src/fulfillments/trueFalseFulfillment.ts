@@ -1,13 +1,13 @@
 import {
-  Category,
   OptionQuestion,
   Question,
   QuestionType,
   QuizRound,
   Unknown,
-  UserData,
-} from '../models/models';
+} from '../models/questions';
 
+import { Category } from '../models/categories';
+import { UserData } from '../models/models';
 import { buildQuestionSSMLAudioResponse } from '../responses/sportsRoundResponse';
 import { errorResponse } from '../responses/errorResponse';
 import { getRound } from '../content/categoriesContent';

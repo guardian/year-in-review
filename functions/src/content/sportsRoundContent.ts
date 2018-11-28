@@ -4,7 +4,7 @@ import {
   QuestionType,
   QuizRound,
   Unknown,
-} from '../models/models';
+} from '../models/questions';
 
 class SportsRound implements QuizRound {
   private questions: Question[];

@@ -1,5 +1,6 @@
-import { Categories, Category, QuizRound } from '../models/models';
+import { Categories, Category } from '../models/categories';
 
+import { QuizRound } from '../models/questions';
 import { sportsRound } from './sportsRoundContent';
 
 const categoriesContent: Categories = {

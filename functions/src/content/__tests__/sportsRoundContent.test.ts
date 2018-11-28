@@ -1,4 +1,4 @@
-import { Question, QuestionType } from '../../models/models';
+import { Question, QuestionType } from '../../models/questions';
 import { SportsRound, sportsRound } from '../sportsRoundContent';
 
 describe('Sports Round', () => {

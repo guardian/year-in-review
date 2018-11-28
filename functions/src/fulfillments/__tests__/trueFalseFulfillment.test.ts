@@ -1,10 +1,11 @@
-import { Question, QuestionType, Unknown, UserData } from '../../models/models';
+import { Question, QuestionType, Unknown } from '../../models/questions';
 import {
   buildResponse,
   incrementQuestionNumber,
   isCorrectAnswer,
 } from '../trueFalseFulfillment';
 
+import { UserData } from '../../models/models';
 import { buildQuestionSSMLAudioResponse } from '../../responses/sportsRoundResponse';
 
 describe('Check question number can be incremented', () => {
