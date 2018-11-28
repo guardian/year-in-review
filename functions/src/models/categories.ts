@@ -1,11 +1,15 @@
 import { QuizRound } from './questions';
 
-interface Categories {
+interface Rounds {
   [index: string]: QuizRound;
 }
 
-enum Category {
+enum Topic {
   SPORT = 'sport',
+  NEWS = 'news',
+  SCIENCE = 'science',
+  TECH = 'tech',
+  POLITICS = 'politics',
 }
 
-export { Category, Categories };
+export { Topic, Rounds };

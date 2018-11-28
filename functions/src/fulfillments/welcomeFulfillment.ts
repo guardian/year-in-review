@@ -5,7 +5,7 @@ import {
   welcomeResponse,
 } from '../responses/welcomeResponse';
 
-import { Category } from '../models/categories';
+import { Topic } from '../models/categories';
 import { UserData } from '../models/models';
 import { sportsOpeningResponse } from '../responses/sportsRoundResponse';
 
@@ -24,7 +24,7 @@ const setReprompt = (data: UserData) => {
 
 const startYearInReviewFulfillment = (data: UserData) => {
   data.currentQuestion = 1;
-  data.currentCategory = Category.SPORT;
+  data.currentTopic = Topic.SPORT;
   return sportsOpeningResponse;
 };
 

@@ -1,8 +1,8 @@
-import { Category } from './categories';
+import { Topic } from './categories';
 
 interface UserData {
   startRepromptIssued: boolean;
-  currentCategory?: Category;
+  currentTopic?: Topic;
   currentQuestion?: number;
 }
 

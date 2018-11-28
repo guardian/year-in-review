@@ -6,16 +6,16 @@ import {
   Unknown,
 } from '../models/questions';
 
-import { Category } from '../models/categories';
+import { Topic } from '../models/categories';
 import { UserData } from '../models/models';
 import { buildQuestionSSMLAudioResponse } from '../responses/sportsRoundResponse';
 import { errorResponse } from '../responses/errorResponse';
 import { getRound } from '../content/categoriesContent';
 
 const trueFalseFulfullment = (answer: string, data: UserData) => {
-  const category: Category = data.currentCategory || Category.SPORT;
+  const topic: Topic = data.currentTopic || Topic.SPORT;
   const questionNumber: number = data.currentQuestion || 1;
-  const round: QuizRound = getRound(category);
+  const round: QuizRound = getRound(topic);
   const question: OptionQuestion = round.getQuestion(questionNumber);
   const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);
   incrementQuestionNumber(data);
@@ -23,7 +23,7 @@ const trueFalseFulfullment = (answer: string, data: UserData) => {
 };
 
 const incrementQuestionNumber = (data: UserData): void => {
-  const currentQuestion = data.currentQuestion || 0;
+  const currentQuestion = data.currentQuestion || 1;
   data.currentQuestion = currentQuestion + 1;
 };
 
