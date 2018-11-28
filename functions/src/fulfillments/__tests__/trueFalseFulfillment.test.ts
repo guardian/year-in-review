@@ -1,7 +1,33 @@
-import { Question, QuestionType, Unknown } from '../../models/models';
-import { buildResponse, isCorrectAnswer } from '../trueFalseFulfillment';
+import { Question, QuestionType, Unknown, UserData } from '../../models/models';
+import {
+  buildResponse,
+  incrementQuestionNumber,
+  isCorrectAnswer,
+} from '../trueFalseFulfillment';
 
 import { buildQuestionSSMLAudioResponse } from '../../responses/sportsRoundResponse';
+
+describe('Check question number can be incremented', () => {
+  test('If question number is undefined question number should be 1', () => {
+    const data: UserData = { startRepromptIssued: false };
+    const expectedData: UserData = {
+      startRepromptIssued: false,
+      currentQuestion: 1,
+    };
+    incrementQuestionNumber(data);
+    expect(data).toEqual(expectedData);
+  });
+
+  test('If question number is 1 new question number should be 2', () => {
+    const data: UserData = { startRepromptIssued: false, currentQuestion: 1 };
+    const expectedData: UserData = {
+      startRepromptIssued: false,
+      currentQuestion: 2,
+    };
+    incrementQuestionNumber(data);
+    expect(data).toEqual(expectedData);
+  });
+});
 
 describe('Check if answer to question is correct', () => {
   test('a true-false question should be correct if the answers match', () => {

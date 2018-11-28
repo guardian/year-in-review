@@ -18,7 +18,13 @@ const trueFalseFulfullment = (answer: string, data: UserData) => {
   const round: QuizRound = getRound(category);
   const question: OptionQuestion = round.getQuestion(questionNumber);
   const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);
+  incrementQuestionNumber(data);
   return buildResponse(question, nextQuestion, answer);
+};
+
+const incrementQuestionNumber = (data: UserData): void => {
+  const currentQuestion = data.currentQuestion || 0;
+  data.currentQuestion = currentQuestion + 1;
 };
 
 const buildResponse = (
@@ -71,4 +77,9 @@ const getFeedbackAudio = (question: Question, answer: string): string => {
     : question.incorrectAnswerAudio;
 };
 
-export { trueFalseFulfullment, isCorrectAnswer, buildResponse };
+export {
+  trueFalseFulfullment,
+  isCorrectAnswer,
+  buildResponse,
+  incrementQuestionNumber,
+};
