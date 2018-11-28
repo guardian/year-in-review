@@ -5,6 +5,7 @@ import {
   DialogflowConversation,
   dialogflow,
 } from 'actions-on-google';
+import { ResponseType, UserData } from './models/models';
 import {
   askAgainFulfillment,
   doNotPlayFulfillment,
@@ -13,7 +14,6 @@ import {
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
 
-import { UserData } from './models/models';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
 const app = dialogflow<UserData, {}>({ debug: true });
@@ -23,7 +23,12 @@ app.intent('Welcome Intent', conv => {
 });
 
 app.intent('Welcome Intent - ready', conv => {
-  conv.ask(startYearInReviewFulfillment(conv.data));
+  const response = startYearInReviewFulfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
+  } else {
+    conv.close(response.responseSSML);
+  }
 });
 
 app.intent('Welcome Intent - fallback', conv => {
