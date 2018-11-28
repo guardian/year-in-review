@@ -48,6 +48,14 @@ app.intent('Welcome Intent - help', conv => {
   conv.ask(helpAtStartFulfillment());
 });
 
+app.intent('Welcome Intent - help - fallback', conv => {
+  conv.close(doNotPlayFulfillment());
+});
+
+app.intent('Welcome Intent - help - help', conv => {
+  conv.close(doNotPlayFulfillment());
+});
+
 app.intent<{ answer: string }>('True False Question', (conv, { answer }) => {
   conv.ask(trueFalseFulfullment(answer, conv.data));
 });
