@@ -6,4 +6,11 @@ interface UserData {
   currentQuestion?: number;
 }
 
-export { UserData };
+class Unknown {
+  public error: string;
+  constructor(error: string) {
+    this.error = error;
+  }
+}
+
+export { UserData, Unknown };

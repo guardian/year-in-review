@@ -3,13 +3,14 @@ import {
   Question,
   QuestionType,
   QuizRound,
-  Unknown,
 } from '../models/questions';
+import { Unknown, UserData } from '../models/models';
+import {
+  buildQuestionSSMLAudioResponse,
+  errorResponse,
+} from '../responses/genericResponse';
 
 import { Topic } from '../models/categories';
-import { UserData } from '../models/models';
-import { buildQuestionSSMLAudioResponse } from '../responses/sportsRoundResponse';
-import { errorResponse } from '../responses/errorResponse';
 import { getRound } from '../content/categoriesContent';
 
 const trueFalseFulfullment = (answer: string, data: UserData) => {

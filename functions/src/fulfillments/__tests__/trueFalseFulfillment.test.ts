@@ -1,12 +1,12 @@
-import { Question, QuestionType, Unknown } from '../../models/questions';
+import { Question, QuestionType } from '../../models/questions';
+import { Unknown, UserData } from '../../models/models';
 import {
   buildResponse,
   incrementQuestionNumber,
   isCorrectAnswer,
 } from '../trueFalseFulfillment';
 
-import { UserData } from '../../models/models';
-import { buildQuestionSSMLAudioResponse } from '../../responses/sportsRoundResponse';
+import { buildQuestionSSMLAudioResponse } from '../../responses/genericResponse';
 
 describe('Check question number can be incremented', () => {
   test('If question number is undefined next question number should be 2 as you must currently be asking question 1', () => {

@@ -1,3 +1,5 @@
+import { Unknown } from './models';
+
 class Question {
   public questionAudio: string;
   public answer: string;
@@ -20,13 +22,6 @@ class Question {
   }
 }
 
-class Unknown {
-  public error: string;
-  constructor(error: string) {
-    this.error = error;
-  }
-}
-
 type OptionQuestion = Question | Unknown;
 
 enum QuestionType {
@@ -39,4 +34,4 @@ interface QuizRound {
   getQuestion(questionNumber: number): OptionQuestion;
 }
 
-export { Question, QuizRound, Unknown, OptionQuestion, QuestionType };
+export { Question, QuizRound, OptionQuestion, QuestionType };
