@@ -1,23 +1,17 @@
 {
-  "id": "6ad175b7-d635-404e-bb16-111ad295e149",
-  "parentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "id": "8867a4b0-ec4d-4570-bab4-565651910428",
+  "parentId": "6ad175b7-d635-404e-bb16-111ad295e149",
   "rootParentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
-  "name": "Welcome Intent - help",
+  "name": "Welcome Intent - help - help",
   "auto": true,
   "contexts": [
-    "WelcomeIntent-followup"
+    "WelcomeIntent-help-followup"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "WelcomeIntent.WelcomeIntent-custom",
-      "affectedContexts": [
-        {
-          "name": "WelcomeIntent-help-followup",
-          "parameters": {},
-          "lifespan": 2
-        }
-      ],
+      "action": "WelcomeIntent.WelcomeIntent-custom.WelcomeIntent-help-custom",
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
@@ -32,36 +26,12 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543415777,
+  "lastUpdate": 1543418376,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
     {
-      "id": "8c8f44c6-2b9b-4ee9-90dc-998a546d6ad4",
-      "data": [
-        {
-          "text": "help me"
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543317634,
-      "isAuto": false
-    },
-    {
-      "id": "b9ae7c42-2cd6-4c10-ab77-5cc21678a2b0",
-      "data": [
-        {
-          "text": "what"
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543317634,
-      "isAuto": false
-    },
-    {
-      "id": "b9543165-dd5c-486e-96c4-910ebd1879ec",
+      "id": "86f174b1-e4c2-4758-b747-fe47c0d79fd5",
       "data": [
         {
           "text": "I don't understand"
@@ -69,11 +39,23 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543317634,
+      "updated": 1543418376,
       "isAuto": false
     },
     {
-      "id": "e9d31c90-92ea-4dfe-9642-01b4c1079401",
+      "id": "5a19e4d6-1cdb-4c40-b69e-90e3a0d1a9ff",
+      "data": [
+        {
+          "text": "help me"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543418376,
+      "isAuto": false
+    },
+    {
+      "id": "9bb39e9f-bed3-4e66-bb59-c1c3c6824e0f",
       "data": [
         {
           "text": "I need help"
@@ -81,11 +63,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543317634,
+      "updated": 1543418376,
       "isAuto": false
     },
     {
-      "id": "0ae875cb-9d1b-41ef-81e1-eebd1aa7d78a",
+      "id": "d7a9a3da-3cec-4ef5-9bec-4814e948b02d",
       "data": [
         {
           "text": "help"
@@ -93,7 +75,7 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543317634,
+      "updated": 1543418376,
       "isAuto": false
     }
   ],

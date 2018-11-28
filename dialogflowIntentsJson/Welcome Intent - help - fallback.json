@@ -1,0 +1,37 @@
+{
+  "id": "31e0948e-829b-4f4b-bd20-e151183dbb51",
+  "parentId": "6ad175b7-d635-404e-bb16-111ad295e149",
+  "rootParentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
+  "name": "Welcome Intent - help - fallback",
+  "auto": false,
+  "contexts": [
+    "WelcomeIntent-help-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "WelcomeIntent.WelcomeIntent-custom.WelcomeIntent-help-fallback",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "speech": "It's all over"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543417858,
+  "fallbackIntent": true,
+  "events": [],
+  "userSays": [],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

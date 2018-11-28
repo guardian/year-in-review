@@ -10,7 +10,7 @@
         {
           "name": "WelcomeIntent-followup",
           "parameters": {},
-          "lifespan": 2
+          "lifespan": 3
         }
       ],
       "parameters": [],
@@ -31,7 +31,7 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1542819175,
+  "lastUpdate": 1543417124,
   "fallbackIntent": false,
   "events": [
     {
