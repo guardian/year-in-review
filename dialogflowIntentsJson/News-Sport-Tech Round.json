@@ -1,0 +1,235 @@
+{
+  "id": "7ecb3fc6-15f4-4946-8910-368fc4c82710",
+  "name": "News-Sport-Tech Round",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "e9b6b7e5-903d-413b-8f51-45be3ccd433a",
+          "required": true,
+          "dataType": "@News_Sport_Tech",
+          "name": "topicChoice",
+          "value": "$topicChoice",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543494927,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "86d840d7-5be8-4828-9030-7bcadc3c5f26",
+      "data": [
+        {
+          "text": "tech",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        },
+        {
+          "text": " works for me"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "fd995a61-af86-4318-a089-95504524459f",
+      "data": [
+        {
+          "text": "give me "
+        },
+        {
+          "text": "sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "b2942853-d9b3-4e6c-ba7b-985e8739d855",
+      "data": [
+        {
+          "text": "sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "21d301c7-3bcb-465c-8453-d52a937cbbd1",
+      "data": [
+        {
+          "text": "tech",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "1bcd303e-0138-4f37-8946-b088ccea04f8",
+      "data": [
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "8252c914-0f27-41fc-b2e1-7c38cb2207b9",
+      "data": [
+        {
+          "text": "sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        },
+        {
+          "text": " thanks"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "74617d44-f3d4-4c3e-8ef8-bd491fca5847",
+      "data": [
+        {
+          "text": "I'll take "
+        },
+        {
+          "text": "tech",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "b25531ff-6582-47d8-8f75-2ceaafff9473",
+      "data": [
+        {
+          "text": "got to be "
+        },
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "7b0afd9b-a6bd-43bf-8f79-b95eee47a739",
+      "data": [
+        {
+          "text": "sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        },
+        {
+          "text": " please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "8124b2b1-14b8-4650-8de5-1e063475cf68",
+      "data": [
+        {
+          "text": "give me "
+        },
+        {
+          "text": "tech",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    },
+    {
+      "id": "ce3e6cee-a5d6-4c96-9c66-7a3aab7851e5",
+      "data": [
+        {
+          "text": "I want "
+        },
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport_Tech",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543494927,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

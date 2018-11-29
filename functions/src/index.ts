@@ -14,6 +14,7 @@ import {
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
 
+import { startRound } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
 const app = dialogflow<UserData, {}>({ debug: true });
@@ -60,6 +61,18 @@ app.intent('Welcome Intent - help - fallback', conv => {
 app.intent('Welcome Intent - help - help', conv => {
   conv.close(doNotPlayFulfillment());
 });
+
+app.intent<{ topicChoice: string }>(
+  'News-Sport-Tech Round',
+  (conv, { topicChoice }) => {
+    const response = startRound(topicChoice, conv.data);
+    if (response.responseType === ResponseType.ASK) {
+      conv.ask(response.responseSSML);
+    } else {
+      conv.close(response.responseSSML);
+    }
+  }
+);
 
 app.intent<{ answer: string }>('True False Question', (conv, { answer }) => {
   conv.ask(trueFalseFulfullment(answer, conv.data));

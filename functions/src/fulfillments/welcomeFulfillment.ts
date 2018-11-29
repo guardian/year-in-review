@@ -6,9 +6,9 @@ import {
   welcomeResponse,
 } from '../responses/welcomeResponse';
 
-import { Topic } from '../models/categories';
+// import { Topic } from '../models/categories';
 // import { sportsOpeningResponse } from '../responses/sportsRoundResponse';
-import { getCategoryIntroduction } from './categoryFulfillment';
+import { selectCategory } from './categoryFulfillment';
 
 const welcomeFulfillment = () => {
   return welcomeResponse;
@@ -24,7 +24,7 @@ const setReprompt = (data: UserData) => {
 };
 
 const startYearInReviewFulfillment = (data: UserData): Response => {
-  return getCategoryIntroduction(data);
+  return selectCategory(data);
 };
 
 const doNotPlayFulfillment = () => {
