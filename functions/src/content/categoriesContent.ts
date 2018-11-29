@@ -10,6 +10,10 @@ import { sportsRound } from './sportsRoundContent';
 
 const roundsByTopic: Rounds = {
   sport: sportsRound(),
+  news: sportsRound(),
+  science: sportsRound(),
+  politics: sportsRound(),
+  tech: sportsRound(),
 };
 
 const categoryCollections: CategoryCollection[] = [
