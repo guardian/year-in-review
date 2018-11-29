@@ -1,29 +1,32 @@
+import { Category, OptionCategory } from '../models/categories';
+import { ConversationData, Unknown } from '../models/models';
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
-import { OptionRound, QuizRound } from '../models/rounds';
-import { Unknown, UserData } from '../models/models';
 import {
   buildQuestionSSMLAudioResponse,
-  errorResponse,
+  buildSSMLAudioResponse,
 } from '../responses/genericResponse';
 
-import { Topic } from '../models/categories';
-import { roundCollection } from '../content/categoriesContent';
+import { Topic } from '../models/rounds';
+import { categories } from '../content/categoryContent';
+import { unexpectedErrorAudio } from '../content/errorContent';
 
-const trueFalseFulfullment = (answer: string, data: UserData) => {
+const trueFalseFulfullment = (answer: string, data: ConversationData) => {
   const topic: Topic = data.currentTopic || Topic.SPORT;
   const questionNumber: number = data.currentQuestion || 1;
-  const round: OptionRound = roundCollection.getRound(topic);
-  if (round instanceof QuizRound) {
-    const question: OptionQuestion = round.getQuestion(questionNumber);
-    const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);
+  const category: OptionCategory = categories.getCategory(topic);
+  if (category instanceof Category) {
+    const question: OptionQuestion = category.getQuestion(questionNumber);
+    const nextQuestion: OptionQuestion = category.getQuestion(
+      questionNumber + 1
+    );
     incrementQuestionNumber(data);
     return buildResponse(question, nextQuestion, answer);
   } else {
-    return 'whoops';
+    return buildSSMLAudioResponse(unexpectedErrorAudio);
   }
 };
 
-const incrementQuestionNumber = (data: UserData): void => {
+const incrementQuestionNumber = (data: ConversationData): void => {
   const currentQuestion = data.currentQuestion || 0;
   data.currentQuestion = currentQuestion + 1;
 };
@@ -34,20 +37,20 @@ const buildResponse = (
   answer: string
 ) => {
   if (nextQuestion instanceof Unknown) {
-    return endOfRound(currentQuestion, answer);
+    return endOfCategory(currentQuestion, answer);
   } else {
     if (currentQuestion instanceof Question) {
       const feedbackAudio = getFeedbackAudio(currentQuestion, answer);
       const nextQuestionAudio = nextQuestion.questionAudio;
       return buildQuestionSSMLAudioResponse(feedbackAudio, nextQuestionAudio);
     } else {
-      return errorResponse;
+      return buildSSMLAudioResponse(unexpectedErrorAudio);
     }
   }
 };
 
-const endOfRound = (question: OptionQuestion, answer: string) => {
-  return 'End of Round. Next round not implemented yet';
+const endOfCategory = (question: OptionQuestion, answer: string) => {
+  return 'End of Category. Next category not implemented yet';
 };
 
 const isTrueFalseCorrect = (answer: string, question: Question): boolean => {

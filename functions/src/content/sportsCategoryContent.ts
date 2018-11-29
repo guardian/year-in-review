@@ -1,6 +1,6 @@
 import { Question, QuestionType } from '../models/questions';
 
-import { QuizRound } from '../models/rounds';
+import { Category } from '../models/categories';
 
 const sportsQuestions: Question[] = [
   new Question(
@@ -19,9 +19,6 @@ const sportsQuestions: Question[] = [
   ),
 ];
 
-const sportsOpenerAudio =
-  'https://s3.amazonaws.com/audiolab-audio/sportsOpener.mp3';
+const sportsCategory = () => new Category(sportsQuestions);
 
-const sportsRound = () => new QuizRound(sportsQuestions);
-
-export { sportsOpenerAudio, sportsRound };
+export { sportsCategory };

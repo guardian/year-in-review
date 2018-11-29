@@ -1,46 +1,45 @@
-import { OptionQuestion, Question } from './questions';
-
-import { Topic } from './categories';
 import { Unknown } from './models';
 
-class QuizRound {
-  private questions: Question[];
+class Rounds {
+  private rounds: RoundCollection[];
 
-  constructor(questions: Question[]) {
-    this.questions = questions;
+  constructor(rounds: RoundCollection[]) {
+    this.rounds = rounds;
   }
 
-  public getQuestion(questionNumber: number): OptionQuestion {
-    if (questionNumber > this.questions.length) {
-      return new Unknown('out of bounds');
+  public getRoundCollection(
+    roundCollectionNumber: number
+  ): OptionRoundCollection {
+    if (roundCollectionNumber > this.rounds.length) {
+      return new Unknown('out of bounds for round collection');
     } else {
-      // Indexing starting from 0
-      return this.questions[questionNumber - 1];
+      return this.rounds[roundCollectionNumber - 1];
     }
   }
 }
 
 class RoundCollection {
-  private rounds: Rounds;
+  public introductionAudio: string;
+  private topics: Set<Topic>;
 
-  constructor(rounds: Rounds) {
-    this.rounds = rounds;
+  constructor(introductionAudio: string, topics: Set<Topic>) {
+    this.topics = topics;
+    this.introductionAudio = introductionAudio;
   }
 
-  public getRound(topic: Topic): OptionRound {
-    const round = this.rounds[topic];
-    if (typeof round === 'undefined') {
-      return new Unknown('round not defined for this topic');
-    } else {
-      return round;
-    }
+  public getTopics(): Set<Topic> {
+    return this.topics;
   }
 }
 
-interface Rounds {
-  [key: string]: QuizRound;
+type OptionRoundCollection = RoundCollection | Unknown;
+
+enum Topic {
+  SPORT = 'sport',
+  NEWS = 'news',
+  SCIENCE = 'science',
+  TECH = 'tech',
+  POLITICS = 'politics',
 }
 
-type OptionRound = QuizRound | Unknown;
-
-export { QuizRound, RoundCollection, Rounds, OptionRound };
+export { Topic, Rounds, RoundCollection, OptionRoundCollection };

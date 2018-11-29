@@ -1,45 +1,46 @@
+import { OptionQuestion, Question } from './questions';
+
+import { Topic } from './rounds';
 import { Unknown } from './models';
 
-class Categories {
-  private categories: CategoryCollection[];
+class Category {
+  private questions: Question[];
 
-  constructor(categories: CategoryCollection[]) {
-    this.categories = categories;
+  constructor(questions: Question[]) {
+    this.questions = questions;
   }
 
-  public getCategoryCollection(
-    categoryCollectionNumber: number
-  ): OptionCategoryCollection {
-    if (categoryCollectionNumber > this.categories.length) {
-      return new Unknown('out of bounds for category collection');
+  public getQuestion(questionNumber: number): OptionQuestion {
+    if (questionNumber > this.questions.length) {
+      return new Unknown('out of bounds');
     } else {
-      return this.categories[categoryCollectionNumber - 1];
+      // Indexing starting from 0
+      return this.questions[questionNumber - 1];
     }
   }
 }
 
-class CategoryCollection {
-  public introductionAudio: string;
-  private topics: Set<Topic>;
+class Categories {
+  private categoryCollection: CategoryCollection;
 
-  constructor(topics: Set<Topic>, introductionAudio: string) {
-    this.topics = topics;
-    this.introductionAudio = introductionAudio;
+  constructor(categoryCollection: CategoryCollection) {
+    this.categoryCollection = categoryCollection;
   }
 
-  public getTopics(): Set<Topic> {
-    return this.topics;
+  public getCategory(topic: Topic): OptionCategory {
+    const category = this.categoryCollection[topic];
+    if (typeof category === 'undefined') {
+      return new Unknown('category not defined for this topic');
+    } else {
+      return category;
+    }
   }
 }
 
-type OptionCategoryCollection = CategoryCollection | Unknown;
-
-enum Topic {
-  SPORT = 'sport',
-  NEWS = 'news',
-  SCIENCE = 'science',
-  TECH = 'tech',
-  POLITICS = 'politics',
+interface CategoryCollection {
+  [key: string]: Category;
 }
 
-export { Topic, Categories, CategoryCollection, OptionCategoryCollection };
+type OptionCategory = Category | Unknown;
+
+export { Category, Categories, CategoryCollection, OptionCategory };

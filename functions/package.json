@@ -8,7 +8,8 @@
     "start": "yarn run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test": "yarn jest"
+    "test": "yarn jest",
+    "valid": "yarn run lint && yarn run build && yarn run test"
   },
   "main": "lib/index.js",
   "dependencies": {

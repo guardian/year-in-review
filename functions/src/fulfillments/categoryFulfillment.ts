@@ -1,22 +1,23 @@
-import { CategoryCollection, Topic } from '../models/categories';
+import { ConversationData, Response, ResponseType } from '../models/models';
 import { OptionQuestion, Question } from '../models/questions';
-import { Response, ResponseType, UserData } from '../models/models';
-import {
-  buildSSMLAudioResponse,
-  errorResponse,
-} from '../responses/genericResponse';
-import { categories, roundCollection } from '../content/categoriesContent';
 
-import { QuizRound } from '../models/rounds';
+import { Category } from '../models/categories';
+import { Topic } from '../models/rounds';
+import { buildSSMLAudioResponse } from '../responses/genericResponse';
+import { categories } from '../content/categoryContent';
 import { incrementQuestionNumber } from './trueFalseFulfillment';
+import { unexpectedErrorAudio } from '../content/errorContent';
 
-const startRound = (topicChoice: string, data: UserData): Response => {
+const startCategory = (
+  topicChoice: string,
+  data: ConversationData
+): Response => {
   const topic: Topic = topicChoice as Topic;
-  const round = roundCollection.getRound(topic);
-  if (round instanceof QuizRound) {
+  const category = categories.getCategory(topic);
+  if (category instanceof Category) {
     setTopic(data, topic);
     incrementQuestionNumber(data);
-    const maybeQuestion: OptionQuestion = round.getQuestion(1);
+    const maybeQuestion: OptionQuestion = category.getQuestion(1);
 
     if (maybeQuestion instanceof Question) {
       return new Response(
@@ -24,38 +25,21 @@ const startRound = (topicChoice: string, data: UserData): Response => {
         buildSSMLAudioResponse(maybeQuestion.questionAudio)
       );
     } else {
-      return new Response(ResponseType.CLOSE, errorResponse);
+      return new Response(
+        ResponseType.CLOSE,
+        buildSSMLAudioResponse(unexpectedErrorAudio)
+      );
     }
   } else {
-    return new Response(ResponseType.CLOSE, errorResponse);
+    return new Response(
+      ResponseType.CLOSE,
+      buildSSMLAudioResponse(unexpectedErrorAudio)
+    );
   }
 };
 
-const setTopic = (data: UserData, topic: Topic): void => {
+const setTopic = (data: ConversationData, topic: Topic): void => {
   data.currentTopic = topic;
 };
 
-const incrementCategoryNumber = (data: UserData) => {
-  const currentCategory = data.currentCategory || 0;
-  data.currentCategory = currentCategory + 1;
-};
-
-const selectCategory = (data: UserData): Response => {
-  const categoryNumber = data.currentCategory || 1;
-  const category = categories.getCategoryCollection(categoryNumber);
-  incrementCategoryNumber(data);
-  if (category instanceof CategoryCollection) {
-    return new Response(
-      ResponseType.ASK,
-      buildSSMLAudioResponse(category.introductionAudio)
-    );
-  } else {
-    return new Response(ResponseType.CLOSE, gameOver());
-  }
-};
-
-const gameOver = () => {
-  return 'Game over!';
-};
-
-export { selectCategory, startRound };
+export { startCategory };

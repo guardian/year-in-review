@@ -1,44 +1,51 @@
-import { Response, UserData } from '../models/models';
+import { ConversationData, Response, ResponseType } from '../models/models';
 import {
-  askAgainResponse,
-  doNotPlayResponse,
-  helpAtStartResponse,
-  welcomeResponse,
-} from '../responses/welcomeResponse';
+  askAgainAudio,
+  doNotPlayAudio,
+  helpAtStartAudio,
+  welcomeAudio,
+} from '../content/welcomeContent';
 
-// import { Topic } from '../models/categories';
-// import { sportsOpeningResponse } from '../responses/sportsRoundResponse';
-import { selectCategory } from './categoryFulfillment';
+import { buildSSMLAudioResponse } from '../responses/genericResponse';
+import { selectRound } from './roundFulfillment';
 
 const welcomeFulfillment = () => {
-  return welcomeResponse;
+  return buildSSMLAudioResponse(welcomeAudio);
 };
 
-const askAgainFulfillment = (data: UserData) => {
+const askAgainFulfillment = (data: ConversationData) => {
   setReprompt(data);
-  return askAgainResponse;
+  return buildSSMLAudioResponse(askAgainAudio);
 };
 
-const setReprompt = (data: UserData) => {
+const setReprompt = (data: ConversationData) => {
   return (data.startRepromptIssued = true);
 };
 
-const startYearInReviewFulfillment = (data: UserData): Response => {
-  return selectCategory(data);
+const startYearInReviewFulfillment = (data: ConversationData): Response => {
+  return selectRound(data);
 };
 
 const doNotPlayFulfillment = () => {
-  return doNotPlayResponse;
+  return buildSSMLAudioResponse(doNotPlayAudio);
 };
 
 const helpAtStartFulfillment = () => {
-  return helpAtStartResponse;
+  return buildSSMLAudioResponse(helpAtStartAudio);
+};
+
+const invalidResponseFulfillment = (data: ConversationData): Response => {
+  if (data.startRepromptIssued === true) {
+    return new Response(ResponseType.CLOSE, doNotPlayFulfillment());
+  } else {
+    return new Response(ResponseType.ASK, askAgainFulfillment(data));
+  }
 };
 
 export {
   welcomeFulfillment,
-  askAgainFulfillment,
   startYearInReviewFulfillment,
   doNotPlayFulfillment,
   helpAtStartFulfillment,
+  invalidResponseFulfillment,
 };

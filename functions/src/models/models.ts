@@ -1,10 +1,10 @@
-import { Topic } from './categories';
+import { Topic } from './rounds';
 
-interface UserData {
+interface ConversationData {
   startRepromptIssued: boolean;
   currentTopic?: Topic;
   currentQuestion?: number;
-  currentCategory?: number;
+  currentRound?: number;
 }
 
 class Unknown {
@@ -28,4 +28,4 @@ class Response {
   }
 }
 
-export { UserData, Unknown, Response, ResponseType };
+export { ConversationData, Unknown, Response, ResponseType };

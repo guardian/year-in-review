@@ -1,5 +1,5 @@
+import { ConversationData, Unknown } from '../../models/models';
 import { Question, QuestionType } from '../../models/questions';
-import { Unknown, UserData } from '../../models/models';
 import {
   buildResponse,
   incrementQuestionNumber,
@@ -7,11 +7,12 @@ import {
 } from '../trueFalseFulfillment';
 
 import { buildQuestionSSMLAudioResponse } from '../../responses/genericResponse';
+import { unexpectedErrorAudio } from '../../content/errorContent';
 
 describe('Check question number can be incremented', () => {
   test('If question number is undefined next question number should be 1 as you must currently be asking question 1', () => {
-    const data: UserData = { startRepromptIssued: false };
-    const expectedData: UserData = {
+    const data: ConversationData = { startRepromptIssued: false };
+    const expectedData: ConversationData = {
       startRepromptIssued: false,
       currentQuestion: 1,
     };
@@ -20,8 +21,11 @@ describe('Check question number can be incremented', () => {
   });
 
   test('If question number is 1 new question number should be 2', () => {
-    const data: UserData = { startRepromptIssued: false, currentQuestion: 1 };
-    const expectedData: UserData = {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentQuestion: 1,
+    };
+    const expectedData: ConversationData = {
       startRepromptIssued: false,
       currentQuestion: 2,
     };
@@ -49,14 +53,14 @@ describe('Build a response', () => {
     const currentQuestion = new Unknown('error');
     const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
     const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toEqual('Something went horribly wrong');
+    expect(response).toContain(unexpectedErrorAudio);
   });
 
   test('If there is no current question and no next question return an error', () => {
     const currentQuestion = new Unknown('error');
     const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
     const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toEqual('Something went horribly wrong');
+    expect(response).toContain(unexpectedErrorAudio);
   });
 
   test('If there is a current question and no next question end round', () => {
@@ -69,7 +73,9 @@ describe('Build a response', () => {
     );
     const nextQuestion = new Unknown('error');
     const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toEqual('End of Round. Next round not implemented yet');
+    expect(response).toEqual(
+      'End of Category. Next category not implemented yet'
+    );
   });
 
   test('If there is a current question and no next question end round', () => {
