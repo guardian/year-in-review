@@ -9,7 +9,7 @@ import { incrementQuestionNumber } from './trueFalseFulfillment';
 import { unexpectedErrorAudio } from '../content/errorContent';
 
 const startCategory = (
-  topicChoice: string,
+  topicChoice: string | Topic,
   data: ConversationData
 ): Response => {
   const topic: Topic = topicChoice as Topic;
