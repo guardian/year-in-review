@@ -1,7 +1,5 @@
 import { renderXml, ssml } from 'fluent-ssml';
 
-const errorResponse = 'Something went horribly wrong';
-
 const buildSSMLAudioResponse = (audio: string) => {
   return renderXml(
     ssml()
@@ -22,8 +20,4 @@ const buildQuestionSSMLAudioResponse = (
   );
 };
 
-export {
-  errorResponse,
-  buildSSMLAudioResponse,
-  buildQuestionSSMLAudioResponse,
-};
+export { buildSSMLAudioResponse, buildQuestionSSMLAudioResponse };

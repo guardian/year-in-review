@@ -3,11 +3,12 @@ import { OptionRound, QuizRound } from '../models/rounds';
 import { Unknown, UserData } from '../models/models';
 import {
   buildQuestionSSMLAudioResponse,
-  errorResponse,
+  buildSSMLAudioResponse,
 } from '../responses/genericResponse';
 
 import { Topic } from '../models/categories';
 import { roundCollection } from '../content/categoriesContent';
+import { unexpectedErrorAudio } from '../content/errorContent';
 
 const trueFalseFulfullment = (answer: string, data: UserData) => {
   const topic: Topic = data.currentTopic || Topic.SPORT;
@@ -19,7 +20,7 @@ const trueFalseFulfullment = (answer: string, data: UserData) => {
     incrementQuestionNumber(data);
     return buildResponse(question, nextQuestion, answer);
   } else {
-    return 'whoops';
+    return buildSSMLAudioResponse(unexpectedErrorAudio);
   }
 };
 
@@ -41,7 +42,7 @@ const buildResponse = (
       const nextQuestionAudio = nextQuestion.questionAudio;
       return buildQuestionSSMLAudioResponse(feedbackAudio, nextQuestionAudio);
     } else {
-      return errorResponse;
+      return buildSSMLAudioResponse(unexpectedErrorAudio);
     }
   }
 };

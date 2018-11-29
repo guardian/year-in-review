@@ -1,14 +1,12 @@
 import { CategoryCollection, Topic } from '../models/categories';
 import { OptionQuestion, Question } from '../models/questions';
 import { Response, ResponseType, UserData } from '../models/models';
-import {
-  buildSSMLAudioResponse,
-  errorResponse,
-} from '../responses/genericResponse';
 import { categories, roundCollection } from '../content/categoriesContent';
 
 import { QuizRound } from '../models/rounds';
+import { buildSSMLAudioResponse } from '../responses/genericResponse';
 import { incrementQuestionNumber } from './trueFalseFulfillment';
+import { unexpectedErrorAudio } from '../content/errorContent';
 
 const startRound = (topicChoice: string, data: UserData): Response => {
   const topic: Topic = topicChoice as Topic;
@@ -24,10 +22,16 @@ const startRound = (topicChoice: string, data: UserData): Response => {
         buildSSMLAudioResponse(maybeQuestion.questionAudio)
       );
     } else {
-      return new Response(ResponseType.CLOSE, errorResponse);
+      return new Response(
+        ResponseType.CLOSE,
+        buildSSMLAudioResponse(unexpectedErrorAudio)
+      );
     }
   } else {
-    return new Response(ResponseType.CLOSE, errorResponse);
+    return new Response(
+      ResponseType.CLOSE,
+      buildSSMLAudioResponse(unexpectedErrorAudio)
+    );
   }
 };
 

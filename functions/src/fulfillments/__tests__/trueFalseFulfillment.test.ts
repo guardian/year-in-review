@@ -7,6 +7,7 @@ import {
 } from '../trueFalseFulfillment';
 
 import { buildQuestionSSMLAudioResponse } from '../../responses/genericResponse';
+import { unexpectedErrorAudio } from '../../content/errorContent';
 
 describe('Check question number can be incremented', () => {
   test('If question number is undefined next question number should be 1 as you must currently be asking question 1', () => {
@@ -49,14 +50,14 @@ describe('Build a response', () => {
     const currentQuestion = new Unknown('error');
     const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
     const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toEqual('Something went horribly wrong');
+    expect(response).toContain(unexpectedErrorAudio);
   });
 
   test('If there is no current question and no next question return an error', () => {
     const currentQuestion = new Unknown('error');
     const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
     const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toEqual('Something went horribly wrong');
+    expect(response).toContain(unexpectedErrorAudio);
   });
 
   test('If there is a current question and no next question end round', () => {
