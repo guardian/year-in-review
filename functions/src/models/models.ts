@@ -1,6 +1,6 @@
 import { Topic } from './categories';
 
-interface UserData {
+interface ConversationData {
   startRepromptIssued: boolean;
   currentTopic?: Topic;
   currentQuestion?: number;
@@ -28,4 +28,4 @@ class Response {
   }
 }
 
-export { UserData, Unknown, Response, ResponseType };
+export { ConversationData, Unknown, Response, ResponseType };

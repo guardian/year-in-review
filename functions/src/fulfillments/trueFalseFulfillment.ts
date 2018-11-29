@@ -1,6 +1,6 @@
+import { ConversationData, Unknown } from '../models/models';
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
 import { OptionRound, Round } from '../models/rounds';
-import { Unknown, UserData } from '../models/models';
 import {
   buildQuestionSSMLAudioResponse,
   buildSSMLAudioResponse,
@@ -10,7 +10,7 @@ import { Topic } from '../models/categories';
 import { roundCollection } from '../content/categoriesContent';
 import { unexpectedErrorAudio } from '../content/errorContent';
 
-const trueFalseFulfullment = (answer: string, data: UserData) => {
+const trueFalseFulfullment = (answer: string, data: ConversationData) => {
   const topic: Topic = data.currentTopic || Topic.SPORT;
   const questionNumber: number = data.currentQuestion || 1;
   const round: OptionRound = roundCollection.getRound(topic);
@@ -24,7 +24,7 @@ const trueFalseFulfullment = (answer: string, data: UserData) => {
   }
 };
 
-const incrementQuestionNumber = (data: UserData): void => {
+const incrementQuestionNumber = (data: ConversationData): void => {
   const currentQuestion = data.currentQuestion || 0;
   data.currentQuestion = currentQuestion + 1;
 };

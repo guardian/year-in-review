@@ -1,4 +1,4 @@
-import { Response, ResponseType, UserData } from '../models/models';
+import { ConversationData, Response, ResponseType } from '../models/models';
 import {
   askAgainAudio,
   doNotPlayAudio,
@@ -13,16 +13,16 @@ const welcomeFulfillment = () => {
   return buildSSMLAudioResponse(welcomeAudio);
 };
 
-const askAgainFulfillment = (data: UserData) => {
+const askAgainFulfillment = (data: ConversationData) => {
   setReprompt(data);
   return buildSSMLAudioResponse(askAgainAudio);
 };
 
-const setReprompt = (data: UserData) => {
+const setReprompt = (data: ConversationData) => {
   return (data.startRepromptIssued = true);
 };
 
-const startYearInReviewFulfillment = (data: UserData): Response => {
+const startYearInReviewFulfillment = (data: ConversationData): Response => {
   return selectCategory(data);
 };
 
@@ -34,7 +34,7 @@ const helpAtStartFulfillment = () => {
   return buildSSMLAudioResponse(helpAtStartAudio);
 };
 
-const invalidResponseFulfillment = (data: UserData): Response => {
+const invalidResponseFulfillment = (data: ConversationData): Response => {
   if (data.startRepromptIssued === true) {
     return new Response(ResponseType.CLOSE, doNotPlayFulfillment());
   } else {

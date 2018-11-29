@@ -1,5 +1,5 @@
+import { ConversationData, Unknown } from '../../models/models';
 import { Question, QuestionType } from '../../models/questions';
-import { Unknown, UserData } from '../../models/models';
 import {
   buildResponse,
   incrementQuestionNumber,
@@ -11,8 +11,8 @@ import { unexpectedErrorAudio } from '../../content/errorContent';
 
 describe('Check question number can be incremented', () => {
   test('If question number is undefined next question number should be 1 as you must currently be asking question 1', () => {
-    const data: UserData = { startRepromptIssued: false };
-    const expectedData: UserData = {
+    const data: ConversationData = { startRepromptIssued: false };
+    const expectedData: ConversationData = {
       startRepromptIssued: false,
       currentQuestion: 1,
     };
@@ -21,8 +21,11 @@ describe('Check question number can be incremented', () => {
   });
 
   test('If question number is 1 new question number should be 2', () => {
-    const data: UserData = { startRepromptIssued: false, currentQuestion: 1 };
-    const expectedData: UserData = {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentQuestion: 1,
+    };
+    const expectedData: ConversationData = {
       startRepromptIssued: false,
       currentQuestion: 2,
     };

@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 
-import { ResponseType, UserData } from './models/models';
+import { ConversationData, ResponseType } from './models/models';
 import {
   doNotPlayFulfillment,
   helpAtStartFulfillment,
@@ -13,7 +13,7 @@ import { dialogflow } from 'actions-on-google';
 import { startRound } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
-const app = dialogflow<UserData, {}>({ debug: true });
+const app = dialogflow<ConversationData, {}>({ debug: true });
 
 app.intent('Welcome Intent', conv => {
   conv.ask(welcomeFulfillment());

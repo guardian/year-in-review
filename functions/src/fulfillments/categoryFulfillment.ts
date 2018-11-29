@@ -1,6 +1,6 @@
 import { CategoryCollection, Topic } from '../models/categories';
+import { ConversationData, Response, ResponseType } from '../models/models';
 import { OptionQuestion, Question } from '../models/questions';
-import { Response, ResponseType, UserData } from '../models/models';
 import { categories, roundCollection } from '../content/categoriesContent';
 
 import { Round } from '../models/rounds';
@@ -8,7 +8,7 @@ import { buildSSMLAudioResponse } from '../responses/genericResponse';
 import { incrementQuestionNumber } from './trueFalseFulfillment';
 import { unexpectedErrorAudio } from '../content/errorContent';
 
-const startRound = (topicChoice: string, data: UserData): Response => {
+const startRound = (topicChoice: string, data: ConversationData): Response => {
   const topic: Topic = topicChoice as Topic;
   const round = roundCollection.getRound(topic);
   if (round instanceof Round) {
@@ -35,16 +35,16 @@ const startRound = (topicChoice: string, data: UserData): Response => {
   }
 };
 
-const setTopic = (data: UserData, topic: Topic): void => {
+const setTopic = (data: ConversationData, topic: Topic): void => {
   data.currentTopic = topic;
 };
 
-const incrementCategoryNumber = (data: UserData) => {
+const incrementCategoryNumber = (data: ConversationData) => {
   const currentCategory = data.currentCategory || 0;
   data.currentCategory = currentCategory + 1;
 };
 
-const selectCategory = (data: UserData): Response => {
+const selectCategory = (data: ConversationData): Response => {
   const categoryNumber = data.currentCategory || 1;
   const category = categories.getCategoryCollection(categoryNumber);
   incrementCategoryNumber(data);
