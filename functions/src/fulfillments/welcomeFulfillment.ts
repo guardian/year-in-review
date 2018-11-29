@@ -1,4 +1,4 @@
-import { Category, UserData } from '../models/models';
+import { Response, UserData } from '../models/models';
 import {
   askAgainResponse,
   doNotPlayResponse,
@@ -6,7 +6,9 @@ import {
   welcomeResponse,
 } from '../responses/welcomeResponse';
 
-import { sportsOpeningResponse } from '../responses/sportsRoundResponse';
+// import { Topic } from '../models/categories';
+// import { sportsOpeningResponse } from '../responses/sportsRoundResponse';
+import { selectCategory } from './categoryFulfillment';
 
 const welcomeFulfillment = () => {
   return welcomeResponse;
@@ -21,10 +23,8 @@ const setReprompt = (data: UserData) => {
   return (data.startRepromptIssued = true);
 };
 
-const startYearInReviewFulfillment = (data: UserData) => {
-  data.currentQuestion = 1;
-  data.currentCategory = Category.SPORT;
-  return sportsOpeningResponse;
+const startYearInReviewFulfillment = (data: UserData): Response => {
+  return selectCategory(data);
 };
 
 const doNotPlayFulfillment = () => {

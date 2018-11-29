@@ -1,25 +1,26 @@
+import { OptionQuestion, Question, QuestionType } from '../models/questions';
+import { OptionRound, QuizRound } from '../models/rounds';
+import { Unknown, UserData } from '../models/models';
 import {
-  Category,
-  OptionQuestion,
-  Question,
-  QuestionType,
-  QuizRound,
-  Unknown,
-  UserData,
-} from '../models/models';
+  buildQuestionSSMLAudioResponse,
+  errorResponse,
+} from '../responses/genericResponse';
 
-import { buildQuestionSSMLAudioResponse } from '../responses/sportsRoundResponse';
-import { errorResponse } from '../responses/errorResponse';
-import { getRound } from '../content/categoriesContent';
+import { Topic } from '../models/categories';
+import { roundCollection } from '../content/categoriesContent';
 
 const trueFalseFulfullment = (answer: string, data: UserData) => {
-  const category: Category = data.currentCategory || Category.SPORT;
+  const topic: Topic = data.currentTopic || Topic.SPORT;
   const questionNumber: number = data.currentQuestion || 1;
-  const round: QuizRound = getRound(category);
-  const question: OptionQuestion = round.getQuestion(questionNumber);
-  const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);
-  incrementQuestionNumber(data);
-  return buildResponse(question, nextQuestion, answer);
+  const round: OptionRound = roundCollection.getRound(topic);
+  if (round instanceof QuizRound) {
+    const question: OptionQuestion = round.getQuestion(questionNumber);
+    const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);
+    incrementQuestionNumber(data);
+    return buildResponse(question, nextQuestion, answer);
+  } else {
+    return 'whoops';
+  }
 };
 
 const incrementQuestionNumber = (data: UserData): void => {

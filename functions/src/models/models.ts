@@ -1,29 +1,10 @@
+import { Topic } from './categories';
+
 interface UserData {
   startRepromptIssued: boolean;
-  currentCategory?: Category;
+  currentTopic?: Topic;
   currentQuestion?: number;
-}
-
-class Question {
-  public questionAudio: string;
-  public answer: string;
-  public correctAnswerAudio: string;
-  public incorrectAnswerAudio: string;
-  public questionType: QuestionType;
-
-  constructor(
-    questionAudio: string,
-    answer: string,
-    correctAnswerAudio: string,
-    incorrectAnswerAudio: string,
-    questionType: QuestionType
-  ) {
-    this.questionAudio = questionAudio;
-    this.answer = answer;
-    this.correctAnswerAudio = correctAnswerAudio;
-    this.incorrectAnswerAudio = incorrectAnswerAudio;
-    this.questionType = questionType;
-  }
+  currentCategory?: number;
 }
 
 class Unknown {
@@ -33,33 +14,18 @@ class Unknown {
   }
 }
 
-type OptionQuestion = Question | Unknown;
-
-interface Categories {
-  [index: string]: QuizRound;
+enum ResponseType {
+  ASK,
+  CLOSE,
 }
 
-enum Category {
-  SPORT = 'sport',
+class Response {
+  public responseType: ResponseType;
+  public responseSSML: string;
+  constructor(responseType: ResponseType, responseSSML: string) {
+    this.responseType = responseType;
+    this.responseSSML = responseSSML;
+  }
 }
 
-enum QuestionType {
-  TRUEFALSE,
-  MULTIPLECHOICE,
-  FILLINTHEBLANK,
-}
-
-interface QuizRound {
-  getQuestion(questionNumber: number): OptionQuestion;
-}
-
-export {
-  UserData,
-  Question,
-  Category,
-  Categories,
-  QuizRound,
-  Unknown,
-  OptionQuestion,
-  QuestionType,
-};
+export { UserData, Unknown, Response, ResponseType };

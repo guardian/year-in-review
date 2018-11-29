@@ -8,16 +8,4 @@ const sportsOpeningResponse = renderXml(
     .render()
 );
 
-const buildQuestionSSMLAudioResponse = (
-  feedbackAudio: string,
-  nextQuestionAudio: string
-) => {
-  return renderXml(
-    ssml()
-      .audio(feedbackAudio)
-      .audio(nextQuestionAudio)
-      .render()
-  );
-};
-
-export { sportsOpeningResponse, buildQuestionSSMLAudioResponse };
+export { sportsOpeningResponse };
