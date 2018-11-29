@@ -1,19 +1,15 @@
 import * as functions from 'firebase-functions';
 
-import {
-  Contexts,
-  DialogflowConversation,
-  dialogflow,
-} from 'actions-on-google';
 import { ResponseType, UserData } from './models/models';
 import {
-  askAgainFulfillment,
   doNotPlayFulfillment,
   helpAtStartFulfillment,
+  invalidResponseFulfillment,
   startYearInReviewFulfillment,
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
 
+import { dialogflow } from 'actions-on-google';
 import { startRound } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
@@ -33,22 +29,22 @@ app.intent('Welcome Intent - ready', conv => {
 });
 
 app.intent('Welcome Intent - fallback', conv => {
-  invalidResponse(conv);
+  const response = invalidResponseFulfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
+  } else {
+    conv.close(response.responseSSML);
+  }
 });
 
 app.intent('Welcome Intent - no input', conv => {
-  invalidResponse(conv);
-});
-
-const invalidResponse = (
-  conv: DialogflowConversation<UserData, {}, Contexts>
-) => {
-  if (conv.data.startRepromptIssued === true) {
-    conv.close(doNotPlayFulfillment());
+  const response = invalidResponseFulfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
   } else {
-    conv.ask(askAgainFulfillment(conv.data));
+    conv.close(response.responseSSML);
   }
-};
+});
 
 app.intent('Welcome Intent - help', conv => {
   conv.ask(helpAtStartFulfillment());

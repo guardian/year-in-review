@@ -1,22 +1,21 @@
-import { Response, UserData } from '../models/models';
+import { Response, ResponseType, UserData } from '../models/models';
 import {
-  askAgainResponse,
-  doNotPlayResponse,
-  helpAtStartResponse,
-  welcomeResponse,
-} from '../responses/welcomeResponse';
+  askAgainAudio,
+  doNotPlayAudio,
+  helpAtStartAudio,
+  welcomeAudio,
+} from '../content/welcomeContent';
 
-// import { Topic } from '../models/categories';
-// import { sportsOpeningResponse } from '../responses/sportsRoundResponse';
+import { buildSSMLAudioResponse } from '../responses/genericResponse';
 import { selectCategory } from './categoryFulfillment';
 
 const welcomeFulfillment = () => {
-  return welcomeResponse;
+  return buildSSMLAudioResponse(welcomeAudio);
 };
 
 const askAgainFulfillment = (data: UserData) => {
   setReprompt(data);
-  return askAgainResponse;
+  return buildSSMLAudioResponse(askAgainAudio);
 };
 
 const setReprompt = (data: UserData) => {
@@ -28,17 +27,25 @@ const startYearInReviewFulfillment = (data: UserData): Response => {
 };
 
 const doNotPlayFulfillment = () => {
-  return doNotPlayResponse;
+  return buildSSMLAudioResponse(doNotPlayAudio);
 };
 
 const helpAtStartFulfillment = () => {
-  return helpAtStartResponse;
+  return buildSSMLAudioResponse(helpAtStartAudio);
+};
+
+const invalidResponseFulfillment = (data: UserData): Response => {
+  if (data.startRepromptIssued === true) {
+    return new Response(ResponseType.CLOSE, doNotPlayFulfillment());
+  } else {
+    return new Response(ResponseType.ASK, askAgainFulfillment(data));
+  }
 };
 
 export {
   welcomeFulfillment,
-  askAgainFulfillment,
   startYearInReviewFulfillment,
   doNotPlayFulfillment,
   helpAtStartFulfillment,
+  invalidResponseFulfillment,
 };
