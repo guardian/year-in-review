@@ -7,13 +7,13 @@ import {
 } from '../responses/genericResponse';
 
 import { Topic } from '../models/categories';
-import { roundCollection } from '../content/categoriesContent';
+import { rounds } from '../content/roundsContent';
 import { unexpectedErrorAudio } from '../content/errorContent';
 
 const trueFalseFulfullment = (answer: string, data: ConversationData) => {
   const topic: Topic = data.currentTopic || Topic.SPORT;
   const questionNumber: number = data.currentQuestion || 1;
-  const round: OptionRound = roundCollection.getRound(topic);
+  const round: OptionRound = rounds.getRound(topic);
   if (round instanceof Round) {
     const question: OptionQuestion = round.getQuestion(questionNumber);
     const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);

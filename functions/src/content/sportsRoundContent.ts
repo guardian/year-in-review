@@ -19,9 +19,6 @@ const sportsQuestions: Question[] = [
   ),
 ];
 
-const sportsOpenerAudio =
-  'https://s3.amazonaws.com/audiolab-audio/sportsOpener.mp3';
-
 const sportsRound = () => new Round(sportsQuestions);
 
-export { sportsOpenerAudio, sportsRound };
+export { sportsRound };

@@ -19,13 +19,13 @@ describe('Quiz Round', () => {
 
 describe('Round Collection', () => {
   test('return Unknown object if Round not defined for the topic', () => {
-    const roundCollection = new RoundCollection({});
-    expect(roundCollection.getRound(Topic.NEWS)).toBeInstanceOf(Unknown);
+    const rounds = new Rounds({});
+    expect(rounds.getRound(Topic.NEWS)).toBeInstanceOf(Unknown);
   });
 
   test('return Unknown object if Round not defined for the topic', () => {
-    const rounds: Rounds = { news: new Round([]) };
-    const roundCollection = new RoundCollection(rounds);
-    expect(roundCollection.getRound(Topic.NEWS)).toBeInstanceOf(Round);
+    const roundCollection: RoundCollection = { news: new Round([]) };
+    const rounds: Rounds = new Rounds(roundCollection);
+    expect(rounds.getRound(Topic.NEWS)).toBeInstanceOf(Round);
   });
 });

@@ -1,16 +1,17 @@
 import { CategoryCollection, Topic } from '../models/categories';
 import { ConversationData, Response, ResponseType } from '../models/models';
 import { OptionQuestion, Question } from '../models/questions';
-import { categories, roundCollection } from '../content/categoriesContent';
 
 import { Round } from '../models/rounds';
 import { buildSSMLAudioResponse } from '../responses/genericResponse';
+import { categories } from '../content/categoriesContent';
 import { incrementQuestionNumber } from './trueFalseFulfillment';
+import { rounds } from '../content/roundsContent';
 import { unexpectedErrorAudio } from '../content/errorContent';
 
 const startRound = (topicChoice: string, data: ConversationData): Response => {
   const topic: Topic = topicChoice as Topic;
-  const round = roundCollection.getRound(topic);
+  const round = rounds.getRound(topic);
   if (round instanceof Round) {
     setTopic(data, topic);
     incrementQuestionNumber(data);

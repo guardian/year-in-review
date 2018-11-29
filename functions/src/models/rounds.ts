@@ -20,15 +20,15 @@ class Round {
   }
 }
 
-class RoundCollection {
-  private rounds: Rounds;
+class Rounds {
+  private roundCollection: RoundCollection;
 
-  constructor(rounds: Rounds) {
-    this.rounds = rounds;
+  constructor(roundCollection: RoundCollection) {
+    this.roundCollection = roundCollection;
   }
 
   public getRound(topic: Topic): OptionRound {
-    const round = this.rounds[topic];
+    const round = this.roundCollection[topic];
     if (typeof round === 'undefined') {
       return new Unknown('round not defined for this topic');
     } else {
@@ -37,10 +37,10 @@ class RoundCollection {
   }
 }
 
-interface Rounds {
+interface RoundCollection {
   [key: string]: Round;
 }
 
 type OptionRound = Round | Unknown;
 
-export { Round, RoundCollection, Rounds, OptionRound };
+export { Round, Rounds, RoundCollection, OptionRound };
