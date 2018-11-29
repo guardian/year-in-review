@@ -1,20 +1,17 @@
-import {
-  Categories,
-  CategoryCollection,
-  Rounds,
-  Topic,
-} from '../models/categories';
+import { Categories, CategoryCollection, Topic } from '../models/categories';
+import { RoundCollection, Rounds } from '../models/rounds';
 
-import { QuizRound } from '../models/questions';
 import { sportsRound } from './sportsRoundContent';
 
-const roundsByTopic: Rounds = {
+const rounds: Rounds = {
   sport: sportsRound(),
   news: sportsRound(),
   science: sportsRound(),
   politics: sportsRound(),
   tech: sportsRound(),
 };
+
+const roundCollection: RoundCollection = new RoundCollection(rounds);
 
 const categoryCollections: CategoryCollection[] = [
   new CategoryCollection(
@@ -26,8 +23,4 @@ const categoryCollections: CategoryCollection[] = [
 
 const categories: Categories = new Categories(categoryCollections);
 
-const getRound = (topic: Topic): QuizRound => {
-  return roundsByTopic[topic];
-};
-
-export { getRound, categories };
+export { roundCollection, categories };

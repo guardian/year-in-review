@@ -5,22 +5,27 @@ import {
   buildSSMLAudioResponse,
   errorResponse,
 } from '../responses/genericResponse';
-import { categories, getRound } from '../content/categoriesContent';
+import { categories, roundCollection } from '../content/categoriesContent';
 
+import { QuizRound } from '../models/rounds';
 import { incrementQuestionNumber } from './trueFalseFulfillment';
 
 const startRound = (topicChoice: string, data: UserData): Response => {
   const topic: Topic = topicChoice as Topic;
-  const round = getRound(topic);
-  setTopic(data, topic);
-  incrementQuestionNumber(data);
-  const maybeQuestion: OptionQuestion = round.getQuestion(1);
+  const round = roundCollection.getRound(topic);
+  if (round instanceof QuizRound) {
+    setTopic(data, topic);
+    incrementQuestionNumber(data);
+    const maybeQuestion: OptionQuestion = round.getQuestion(1);
 
-  if (maybeQuestion instanceof Question) {
-    return new Response(
-      ResponseType.ASK,
-      buildSSMLAudioResponse(maybeQuestion.questionAudio)
-    );
+    if (maybeQuestion instanceof Question) {
+      return new Response(
+        ResponseType.ASK,
+        buildSSMLAudioResponse(maybeQuestion.questionAudio)
+      );
+    } else {
+      return new Response(ResponseType.CLOSE, errorResponse);
+    }
   } else {
     return new Response(ResponseType.CLOSE, errorResponse);
   }

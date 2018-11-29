@@ -1,28 +1,6 @@
-import {
-  OptionQuestion,
-  Question,
-  QuestionType,
-  QuizRound,
-} from '../models/questions';
+import { Question, QuestionType } from '../models/questions';
 
-import { Unknown } from '../models/models';
-
-class SportsRound implements QuizRound {
-  private questions: Question[];
-
-  constructor(questions: Question[]) {
-    this.questions = questions;
-  }
-
-  public getQuestion(questionNumber: number): OptionQuestion {
-    if (questionNumber > this.questions.length) {
-      return new Unknown('out of bounds');
-    } else {
-      // Indexing starting from 0
-      return this.questions[questionNumber - 1];
-    }
-  }
-}
+import { QuizRound } from '../models/rounds';
 
 const sportsQuestions: Question[] = [
   new Question(
@@ -44,6 +22,6 @@ const sportsQuestions: Question[] = [
 const sportsOpenerAudio =
   'https://s3.amazonaws.com/audiolab-audio/sportsOpener.mp3';
 
-const sportsRound = () => new SportsRound(sportsQuestions);
+const sportsRound = () => new QuizRound(sportsQuestions);
 
-export { sportsOpenerAudio, sportsRound, SportsRound };
+export { sportsOpenerAudio, sportsRound };

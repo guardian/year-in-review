@@ -30,8 +30,4 @@ enum QuestionType {
   FILLINTHEBLANK,
 }
 
-interface QuizRound {
-  getQuestion(questionNumber: number): OptionQuestion;
-}
-
-export { Question, QuizRound, OptionQuestion, QuestionType };
+export { Question, OptionQuestion, QuestionType };

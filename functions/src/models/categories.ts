@@ -1,9 +1,4 @@
-import { QuizRound } from './questions';
 import { Unknown } from './models';
-
-interface Rounds {
-  [index: string]: QuizRound;
-}
 
 class Categories {
   private categories: CategoryCollection[];
@@ -47,10 +42,4 @@ enum Topic {
   POLITICS = 'politics',
 }
 
-export {
-  Topic,
-  Rounds,
-  Categories,
-  CategoryCollection,
-  OptionCategoryCollection,
-};
+export { Topic, Categories, CategoryCollection, OptionCategoryCollection };

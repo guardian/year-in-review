@@ -1,9 +1,5 @@
-import {
-  OptionQuestion,
-  Question,
-  QuestionType,
-  QuizRound,
-} from '../models/questions';
+import { OptionQuestion, Question, QuestionType } from '../models/questions';
+import { OptionRound, QuizRound } from '../models/rounds';
 import { Unknown, UserData } from '../models/models';
 import {
   buildQuestionSSMLAudioResponse,
@@ -11,16 +7,20 @@ import {
 } from '../responses/genericResponse';
 
 import { Topic } from '../models/categories';
-import { getRound } from '../content/categoriesContent';
+import { roundCollection } from '../content/categoriesContent';
 
 const trueFalseFulfullment = (answer: string, data: UserData) => {
   const topic: Topic = data.currentTopic || Topic.SPORT;
   const questionNumber: number = data.currentQuestion || 1;
-  const round: QuizRound = getRound(topic);
-  const question: OptionQuestion = round.getQuestion(questionNumber);
-  const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);
-  incrementQuestionNumber(data);
-  return buildResponse(question, nextQuestion, answer);
+  const round: OptionRound = roundCollection.getRound(topic);
+  if (round instanceof QuizRound) {
+    const question: OptionQuestion = round.getQuestion(questionNumber);
+    const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);
+    incrementQuestionNumber(data);
+    return buildResponse(question, nextQuestion, answer);
+  } else {
+    return 'whoops';
+  }
 };
 
 const incrementQuestionNumber = (data: UserData): void => {
