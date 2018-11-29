@@ -1,6 +1,7 @@
 import { Question, QuestionType } from '../questions';
+import { Round, RoundCollection, Rounds } from '../rounds';
 
-import { Round } from '../rounds';
+import { Topic } from '../categories';
 import { Unknown } from '../models';
 
 describe('Quiz Round', () => {
@@ -13,5 +14,18 @@ describe('Quiz Round', () => {
     const question = new Question('', '', '', '', QuestionType.TRUEFALSE);
     const round = new Round([question]);
     expect(round.getQuestion(1)).toBeInstanceOf(Question);
+  });
+});
+
+describe('Round Collection', () => {
+  test('return Unknown object if Round not defined for the topic', () => {
+    const roundCollection = new RoundCollection({});
+    expect(roundCollection.getRound(Topic.NEWS)).toBeInstanceOf(Unknown);
+  });
+
+  test('return Unknown object if Round not defined for the topic', () => {
+    const rounds: Rounds = { news: new Round([]) };
+    const roundCollection = new RoundCollection(rounds);
+    expect(roundCollection.getRound(Topic.NEWS)).toBeInstanceOf(Round);
   });
 });
