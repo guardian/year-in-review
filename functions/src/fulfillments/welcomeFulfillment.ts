@@ -7,7 +7,7 @@ import {
 } from '../content/welcomeContent';
 
 import { buildSSMLAudioResponse } from '../responses/genericResponse';
-import { selectRound } from './categoryFulfillment';
+import { selectRound } from './roundFulfillment';
 
 const welcomeFulfillment = () => {
   return buildSSMLAudioResponse(welcomeAudio);
