@@ -1,21 +1,24 @@
-import { CategoryCollection, Topic } from '../models/categories';
 import { ConversationData, Response, ResponseType } from '../models/models';
 import { OptionQuestion, Question } from '../models/questions';
+import { RoundCollection, Topic } from '../models/rounds';
 
-import { Round } from '../models/rounds';
+import { Category } from '../models/categories';
 import { buildSSMLAudioResponse } from '../responses/genericResponse';
-import { categories } from '../content/categoriesContent';
+import { categories } from '../content/categoryContent';
 import { incrementQuestionNumber } from './trueFalseFulfillment';
-import { rounds } from '../content/roundsContent';
+import { rounds } from '../content/roundContent';
 import { unexpectedErrorAudio } from '../content/errorContent';
 
-const startRound = (topicChoice: string, data: ConversationData): Response => {
+const startCategory = (
+  topicChoice: string,
+  data: ConversationData
+): Response => {
   const topic: Topic = topicChoice as Topic;
-  const round = rounds.getRound(topic);
-  if (round instanceof Round) {
+  const category = categories.getCategory(topic);
+  if (category instanceof Category) {
     setTopic(data, topic);
     incrementQuestionNumber(data);
-    const maybeQuestion: OptionQuestion = round.getQuestion(1);
+    const maybeQuestion: OptionQuestion = category.getQuestion(1);
 
     if (maybeQuestion instanceof Question) {
       return new Response(
@@ -40,19 +43,19 @@ const setTopic = (data: ConversationData, topic: Topic): void => {
   data.currentTopic = topic;
 };
 
-const incrementCategoryNumber = (data: ConversationData) => {
-  const currentCategory = data.currentCategory || 0;
-  data.currentCategory = currentCategory + 1;
+const incrementRoundNumber = (data: ConversationData) => {
+  const currentRound = data.currentRound || 0;
+  data.currentRound = currentRound + 1;
 };
 
-const selectCategory = (data: ConversationData): Response => {
-  const categoryNumber = data.currentCategory || 1;
-  const category = categories.getCategoryCollection(categoryNumber);
-  incrementCategoryNumber(data);
-  if (category instanceof CategoryCollection) {
+const selectRound = (data: ConversationData): Response => {
+  const roundNumber = data.currentRound || 1;
+  const round = rounds.getRoundCollection(roundNumber);
+  incrementRoundNumber(data);
+  if (round instanceof RoundCollection) {
     return new Response(
       ResponseType.ASK,
-      buildSSMLAudioResponse(category.introductionAudio)
+      buildSSMLAudioResponse(round.introductionAudio)
     );
   } else {
     return new Response(ResponseType.CLOSE, gameOver());
@@ -63,4 +66,4 @@ const gameOver = () => {
   return 'Game over!';
 };
 
-export { selectCategory, startRound };
+export { selectRound, startCategory };

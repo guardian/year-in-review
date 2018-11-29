@@ -1,6 +1,6 @@
 import { Question, QuestionType } from '../models/questions';
 
-import { Round } from '../models/rounds';
+import { Category } from '../models/categories';
 
 const sportsQuestions: Question[] = [
   new Question(
@@ -19,6 +19,6 @@ const sportsQuestions: Question[] = [
   ),
 ];
 
-const sportsRound = () => new Round(sportsQuestions);
+const sportsCategory = () => new Category(sportsQuestions);
 
-export { sportsRound };
+export { sportsCategory };

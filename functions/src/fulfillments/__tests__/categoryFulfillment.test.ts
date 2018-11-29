@@ -1,9 +1,9 @@
 import { ConversationData, ResponseType } from '../../models/models';
-import { selectCategory, startRound } from '../categoryFulfillment';
+import { selectRound, startCategory } from '../categoryFulfillment';
 
-import { Topic } from '../../models/categories';
+import { Topic } from '../../models/rounds';
 
-describe('Start Round', () => {
+describe('Start Category', () => {
   test('Topic and question number are set correctly if not on ConversationData', () => {
     const topicChoice = 'sport';
     const data: ConversationData = { startRepromptIssued: false };
@@ -12,7 +12,7 @@ describe('Start Round', () => {
       currentTopic: Topic.SPORT,
       currentQuestion: 1,
     };
-    startRound(topicChoice, data);
+    startCategory(topicChoice, data);
     expect(data).toEqual(expectedData);
   });
 
@@ -28,7 +28,7 @@ describe('Start Round', () => {
       currentTopic: Topic.NEWS,
       currentQuestion: 4,
     };
-    startRound(topicChoice, data);
+    startCategory(topicChoice, data);
     expect(data).toEqual(expectedData);
   });
 
@@ -37,7 +37,7 @@ describe('Start Round', () => {
     const data: ConversationData = {
       startRepromptIssued: false,
     };
-    const response = startRound(topicChoice, data);
+    const response = startCategory(topicChoice, data);
     expect(response.responseType).toEqual(ResponseType.CLOSE);
   });
 
@@ -46,34 +46,34 @@ describe('Start Round', () => {
     const data: ConversationData = {
       startRepromptIssued: false,
     };
-    const response = startRound(topicChoice, data);
+    const response = startCategory(topicChoice, data);
     expect(response.responseType).toEqual(ResponseType.ASK);
   });
 });
 
-describe('Select Category', () => {
-  test('If no category set category to 1', () => {
+describe('Select Round', () => {
+  test('If no round set round to 1', () => {
     const data: ConversationData = {
       startRepromptIssued: false,
     };
     const expectedData: ConversationData = {
       startRepromptIssued: false,
-      currentCategory: 1,
+      currentRound: 1,
     };
-    selectCategory(data);
+    selectRound(data);
     expect(data).toEqual(expectedData);
   });
 
-  test('Update category correctly if category exists on ConversationData', () => {
+  test('Update round correctly if round exists on ConversationData', () => {
     const data: ConversationData = {
       startRepromptIssued: false,
-      currentCategory: 3,
+      currentRound: 3,
     };
     const expectedData: ConversationData = {
       startRepromptIssued: false,
-      currentCategory: 4,
+      currentRound: 4,
     };
-    selectCategory(data);
+    selectRound(data);
     expect(data).toEqual(expectedData);
   });
 });

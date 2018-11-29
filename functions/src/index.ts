@@ -10,7 +10,7 @@ import {
 } from './fulfillments/welcomeFulfillment';
 
 import { dialogflow } from 'actions-on-google';
-import { startRound } from './fulfillments/categoryFulfillment';
+import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
 const app = dialogflow<ConversationData, {}>({ debug: true });
@@ -61,7 +61,7 @@ app.intent('Welcome Intent - help - help', conv => {
 app.intent<{ topicChoice: string }>(
   'News-Sport-Tech Round',
   (conv, { topicChoice }) => {
-    const response = startRound(topicChoice, conv.data);
+    const response = startCategory(topicChoice, conv.data);
     if (response.responseType === ResponseType.ASK) {
       conv.ask(response.responseSSML);
     } else {

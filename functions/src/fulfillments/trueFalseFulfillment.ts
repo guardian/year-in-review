@@ -1,22 +1,24 @@
+import { Category, OptionCategory } from '../models/categories';
 import { ConversationData, Unknown } from '../models/models';
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
-import { OptionRound, Round } from '../models/rounds';
 import {
   buildQuestionSSMLAudioResponse,
   buildSSMLAudioResponse,
 } from '../responses/genericResponse';
 
-import { Topic } from '../models/categories';
-import { rounds } from '../content/roundsContent';
+import { Topic } from '../models/rounds';
+import { categories } from '../content/categoryContent';
 import { unexpectedErrorAudio } from '../content/errorContent';
 
 const trueFalseFulfullment = (answer: string, data: ConversationData) => {
   const topic: Topic = data.currentTopic || Topic.SPORT;
   const questionNumber: number = data.currentQuestion || 1;
-  const round: OptionRound = rounds.getRound(topic);
-  if (round instanceof Round) {
-    const question: OptionQuestion = round.getQuestion(questionNumber);
-    const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);
+  const category: OptionCategory = categories.getCategory(topic);
+  if (category instanceof Category) {
+    const question: OptionQuestion = category.getQuestion(questionNumber);
+    const nextQuestion: OptionQuestion = category.getQuestion(
+      questionNumber + 1
+    );
     incrementQuestionNumber(data);
     return buildResponse(question, nextQuestion, answer);
   } else {
@@ -35,7 +37,7 @@ const buildResponse = (
   answer: string
 ) => {
   if (nextQuestion instanceof Unknown) {
-    return endOfRound(currentQuestion, answer);
+    return endOfCategory(currentQuestion, answer);
   } else {
     if (currentQuestion instanceof Question) {
       const feedbackAudio = getFeedbackAudio(currentQuestion, answer);
@@ -47,8 +49,8 @@ const buildResponse = (
   }
 };
 
-const endOfRound = (question: OptionQuestion, answer: string) => {
-  return 'End of Round. Next round not implemented yet';
+const endOfCategory = (question: OptionQuestion, answer: string) => {
+  return 'End of Category. Next category not implemented yet';
 };
 
 const isTrueFalseCorrect = (answer: string, question: Question): boolean => {

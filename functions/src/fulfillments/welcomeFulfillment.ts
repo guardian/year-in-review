@@ -7,7 +7,7 @@ import {
 } from '../content/welcomeContent';
 
 import { buildSSMLAudioResponse } from '../responses/genericResponse';
-import { selectCategory } from './categoryFulfillment';
+import { selectRound } from './categoryFulfillment';
 
 const welcomeFulfillment = () => {
   return buildSSMLAudioResponse(welcomeAudio);
@@ -23,7 +23,7 @@ const setReprompt = (data: ConversationData) => {
 };
 
 const startYearInReviewFulfillment = (data: ConversationData): Response => {
-  return selectCategory(data);
+  return selectRound(data);
 };
 
 const doNotPlayFulfillment = () => {

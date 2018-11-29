@@ -73,7 +73,9 @@ describe('Build a response', () => {
     );
     const nextQuestion = new Unknown('error');
     const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toEqual('End of Round. Next round not implemented yet');
+    expect(response).toEqual(
+      'End of Category. Next category not implemented yet'
+    );
   });
 
   test('If there is a current question and no next question end round', () => {

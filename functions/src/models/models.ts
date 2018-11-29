@@ -1,10 +1,10 @@
-import { Topic } from './categories';
+import { Topic } from './rounds';
 
 interface ConversationData {
   startRepromptIssued: boolean;
   currentTopic?: Topic;
   currentQuestion?: number;
-  currentCategory?: number;
+  currentRound?: number;
 }
 
 class Unknown {
