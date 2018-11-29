@@ -9,11 +9,11 @@ import {
 import { buildQuestionSSMLAudioResponse } from '../../responses/genericResponse';
 
 describe('Check question number can be incremented', () => {
-  test('If question number is undefined next question number should be 2 as you must currently be asking question 1', () => {
+  test('If question number is undefined next question number should be 1 as you must currently be asking question 1', () => {
     const data: UserData = { startRepromptIssued: false };
     const expectedData: UserData = {
       startRepromptIssued: false,
-      currentQuestion: 2,
+      currentQuestion: 1,
     };
     incrementQuestionNumber(data);
     expect(data).toEqual(expectedData);

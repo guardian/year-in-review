@@ -31,7 +31,7 @@ const setTopic = (data: UserData, topic: Topic): void => {
 };
 
 const incrementCategoryNumber = (data: UserData) => {
-  const currentCategory = data.currentCategory || 1;
+  const currentCategory = data.currentCategory || 0;
   data.currentCategory = currentCategory + 1;
 };
 

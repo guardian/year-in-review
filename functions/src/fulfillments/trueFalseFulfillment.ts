@@ -24,7 +24,7 @@ const trueFalseFulfullment = (answer: string, data: UserData) => {
 };
 
 const incrementQuestionNumber = (data: UserData): void => {
-  const currentQuestion = data.currentQuestion || 1;
+  const currentQuestion = data.currentQuestion || 0;
   data.currentQuestion = currentQuestion + 1;
 };
 
