@@ -15,10 +15,10 @@ const roundCollection: RoundCollection = new RoundCollection(rounds);
 
 const categoryCollections: CategoryCollection[] = [
   new CategoryCollection(
-    new Set([Topic.SPORT, Topic.NEWS, Topic.TECH]),
-    'https://s3.amazonaws.com/audiolab-audio/categoryChoiceNewsSportTech.mp3'
+    'https://s3.amazonaws.com/audiolab-audio/categoryChoiceNewsSportTech.mp3',
+    new Set([Topic.SPORT, Topic.NEWS, Topic.TECH])
   ),
-  new CategoryCollection(new Set([Topic.SCIENCE, Topic.POLITICS]), ''),
+  new CategoryCollection('', new Set([Topic.SCIENCE, Topic.POLITICS])),
 ];
 
 const categories: Categories = new Categories(categoryCollections);

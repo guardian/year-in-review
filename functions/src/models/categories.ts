@@ -22,7 +22,7 @@ class CategoryCollection {
   public introductionAudio: string;
   private topics: Set<Topic>;
 
-  constructor(topics: Set<Topic>, introductionAudio: string) {
+  constructor(introductionAudio: string, topics: Set<Topic>) {
     this.topics = topics;
     this.introductionAudio = introductionAudio;
   }
