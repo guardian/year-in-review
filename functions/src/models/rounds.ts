@@ -3,7 +3,7 @@ import { OptionQuestion, Question } from './questions';
 import { Topic } from './categories';
 import { Unknown } from './models';
 
-class QuizRound {
+class Round {
   private questions: Question[];
 
   constructor(questions: Question[]) {
@@ -38,9 +38,9 @@ class RoundCollection {
 }
 
 interface Rounds {
-  [key: string]: QuizRound;
+  [key: string]: Round;
 }
 
-type OptionRound = QuizRound | Unknown;
+type OptionRound = Round | Unknown;
 
-export { QuizRound, RoundCollection, Rounds, OptionRound };
+export { Round, RoundCollection, Rounds, OptionRound };

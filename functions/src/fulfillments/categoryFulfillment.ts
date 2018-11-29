@@ -3,7 +3,7 @@ import { OptionQuestion, Question } from '../models/questions';
 import { Response, ResponseType, UserData } from '../models/models';
 import { categories, roundCollection } from '../content/categoriesContent';
 
-import { QuizRound } from '../models/rounds';
+import { Round } from '../models/rounds';
 import { buildSSMLAudioResponse } from '../responses/genericResponse';
 import { incrementQuestionNumber } from './trueFalseFulfillment';
 import { unexpectedErrorAudio } from '../content/errorContent';
@@ -11,7 +11,7 @@ import { unexpectedErrorAudio } from '../content/errorContent';
 const startRound = (topicChoice: string, data: UserData): Response => {
   const topic: Topic = topicChoice as Topic;
   const round = roundCollection.getRound(topic);
-  if (round instanceof QuizRound) {
+  if (round instanceof Round) {
     setTopic(data, topic);
     incrementQuestionNumber(data);
     const maybeQuestion: OptionQuestion = round.getQuestion(1);

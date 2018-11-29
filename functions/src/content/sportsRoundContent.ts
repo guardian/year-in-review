@@ -1,6 +1,6 @@
 import { Question, QuestionType } from '../models/questions';
 
-import { QuizRound } from '../models/rounds';
+import { Round } from '../models/rounds';
 
 const sportsQuestions: Question[] = [
   new Question(
@@ -22,6 +22,6 @@ const sportsQuestions: Question[] = [
 const sportsOpenerAudio =
   'https://s3.amazonaws.com/audiolab-audio/sportsOpener.mp3';
 
-const sportsRound = () => new QuizRound(sportsQuestions);
+const sportsRound = () => new Round(sportsQuestions);
 
 export { sportsOpenerAudio, sportsRound };

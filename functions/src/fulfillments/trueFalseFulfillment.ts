@@ -1,5 +1,5 @@
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
-import { OptionRound, QuizRound } from '../models/rounds';
+import { OptionRound, Round } from '../models/rounds';
 import { Unknown, UserData } from '../models/models';
 import {
   buildQuestionSSMLAudioResponse,
@@ -14,7 +14,7 @@ const trueFalseFulfullment = (answer: string, data: UserData) => {
   const topic: Topic = data.currentTopic || Topic.SPORT;
   const questionNumber: number = data.currentQuestion || 1;
   const round: OptionRound = roundCollection.getRound(topic);
-  if (round instanceof QuizRound) {
+  if (round instanceof Round) {
     const question: OptionQuestion = round.getQuestion(questionNumber);
     const nextQuestion: OptionQuestion = round.getQuestion(questionNumber + 1);
     incrementQuestionNumber(data);
