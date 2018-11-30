@@ -21,6 +21,11 @@ const roundNoInputFulfillment = (data: ConversationData): Response => {
   return buildSimpleRoundResponse(data, getNoInputAudio);
 };
 
+const roundFallbackFulfillment = (data: ConversationData): Response => {
+  const getFallbackAudio = (round: RoundCollection) => round.fallbackAudio;
+  return buildSimpleRoundResponse(data, getFallbackAudio);
+};
+
 const buildSimpleRoundResponse = (
   data: ConversationData,
   getAudio: (r: RoundCollection) => string
@@ -81,4 +86,5 @@ export {
   roundHelpFulfillment,
   roundRepeatFullfillment,
   roundNoInputFulfillment,
+  roundFallbackFulfillment,
 };

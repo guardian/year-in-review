@@ -9,6 +9,7 @@ import {
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
 import {
+  roundFallbackFulfillment,
   roundHelpFulfillment,
   roundNoInputFulfillment,
   roundRepeatFullfillment,
@@ -99,6 +100,15 @@ app.intent('Round Repeat', conv => {
 
 app.intent('Round No Input', conv => {
   const response = roundNoInputFulfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
+  } else {
+    conv.close(response.responseSSML);
+  }
+});
+
+app.intent('Round Fallback', conv => {
+  const response = roundFallbackFulfillment(conv.data);
   if (response.responseType === ResponseType.ASK) {
     conv.ask(response.responseSSML);
   } else {
