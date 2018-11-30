@@ -2,6 +2,7 @@ import { ConversationData, Response, ResponseType } from '../models/models';
 
 import { RoundCollection } from '../models/rounds';
 import { buildSSMLAudioResponse } from '../responses/genericResponse';
+import { gameOver } from './endOfGameFulfillment';
 import { rounds } from '../content/roundContent';
 import { startCategory } from './categoryFulfillment';
 import { unexpectedErrorAudio } from '../content/errorContent';
@@ -75,10 +76,6 @@ const buildChooseRoundResponse = (
 const incrementRoundNumber = (data: ConversationData) => {
   const currentRound = data.currentRound || 0;
   data.currentRound = currentRound + 1;
-};
-
-const gameOver = () => {
-  return 'Game over!';
 };
 
 export {
