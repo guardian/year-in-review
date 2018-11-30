@@ -8,9 +8,12 @@ import {
   startYearInReviewFulfillment,
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
+import {
+  roundHelpFulfillment,
+  roundRepeatFullfillment,
+} from './fulfillments/roundFulfillment';
 
 import { dialogflow } from 'actions-on-google';
-import { roundHelpFulfillment } from './fulfillments/roundFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
@@ -77,6 +80,15 @@ app.intent<{ topicChoice: string }>(
 
 app.intent('Round Help', conv => {
   const response = roundHelpFulfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
+  } else {
+    conv.close(response.responseSSML);
+  }
+});
+
+app.intent('Round Repeat', conv => {
+  const response = roundRepeatFullfillment(conv.data);
   if (response.responseType === ResponseType.ASK) {
     conv.ask(response.responseSSML);
   } else {

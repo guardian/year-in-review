@@ -22,15 +22,23 @@ const roundHelpFulfillment = (data: ConversationData): Response => {
   }
 };
 
-const selectRound = (data: ConversationData): Response => {
+const roundRepeatFullfillment = (data: ConversationData): Response => {
+  return giveUserRoundOptions(data);
+};
+
+const giveUserRoundOptions = (data: ConversationData): Response => {
   const roundNumber = data.currentRound || 1;
   const round = rounds.getRoundCollection(roundNumber);
-  incrementRoundNumber(data);
   if (round instanceof RoundCollection) {
     return buildResponse(round, data);
   } else {
     return new Response(ResponseType.CLOSE, gameOver());
   }
+};
+
+const selectRound = (data: ConversationData): Response => {
+  incrementRoundNumber(data);
+  return giveUserRoundOptions(data);
 };
 
 const buildResponse = (
@@ -61,4 +69,4 @@ const gameOver = () => {
   return 'Game over!';
 };
 
-export { selectRound, roundHelpFulfillment };
+export { selectRound, roundHelpFulfillment, roundRepeatFullfillment };
