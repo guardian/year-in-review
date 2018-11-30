@@ -9,17 +9,19 @@ import {
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
 
-import { dialogflow } from 'actions-on-google';
+import { ResponseType } from './models/models';
+import { app } from './app';
+import { roundHelpFulfillment } from './fulfillments/roundFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
-
-const app = dialogflow<ConversationData, {}>({ debug: true });
 
 app.intent('Welcome Intent', conv => {
   conv.ask(welcomeFulfillment());
 });
 
 app.intent('Welcome Intent - ready', conv => {
+  // Removing the welcome intent context
+  conv.contexts.set('welcomeintent-followup', 0);
   const response = startYearInReviewFulfillment(conv.data);
   if (response.responseType === ResponseType.ASK) {
     conv.ask(response.responseSSML);
