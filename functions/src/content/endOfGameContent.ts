@@ -1,4 +1,3 @@
-const endOfGameAudio =
-  'https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg';
+const endOfGameAudio = 'https://s3.amazonaws.com/audiolab-audio/end.mp3';
 
 export { endOfGameAudio };

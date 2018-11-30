@@ -13,9 +13,9 @@ const sportsQuestions: Question[] = [
   new Question(
     'https://s3.amazonaws.com/audiolab-audio/sportsQ2.mp3',
     'true',
-    '',
-    '',
-    QuestionType.MULTIPLECHOICE
+    'https://s3.amazonaws.com/audiolab-audio/sportsQ2Correct.mp3',
+    'https://s3.amazonaws.com/audiolab-audio/sportsQ2Incorrect.mp3',
+    QuestionType.TRUEFALSE
   ),
 ];
 
