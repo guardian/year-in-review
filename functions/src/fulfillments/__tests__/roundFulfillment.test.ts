@@ -1,5 +1,5 @@
 import { ConversationData, ResponseType } from '../../models/models';
-import { roundHelpFulfillment, selectRound } from '../roundFulfillment';
+import { chooseRound, roundHelpFulfillment } from '../roundFulfillment';
 
 describe('Select Round', () => {
   test('If no round set round to 1', () => {
@@ -10,7 +10,7 @@ describe('Select Round', () => {
       startRepromptIssued: false,
       currentRound: 1,
     };
-    selectRound(data);
+    chooseRound(data);
     expect(data).toEqual(expectedData);
   });
 
@@ -23,7 +23,7 @@ describe('Select Round', () => {
       startRepromptIssued: false,
       currentRound: 4,
     };
-    selectRound(data);
+    chooseRound(data);
     expect(data).toEqual(expectedData);
   });
 });

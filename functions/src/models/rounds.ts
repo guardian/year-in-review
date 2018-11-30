@@ -23,6 +23,7 @@ class RoundCollection {
     public introductionAudio: string,
     public helpAudio: string,
     public repeatAudio: string,
+    public noInputAudio: string,
     private topics: Set<Topic>
   ) {}
 

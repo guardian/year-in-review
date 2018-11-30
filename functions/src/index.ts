@@ -10,6 +10,7 @@ import {
 } from './fulfillments/welcomeFulfillment';
 import {
   roundHelpFulfillment,
+  roundNoInputFulfillment,
   roundRepeatFullfillment,
 } from './fulfillments/roundFulfillment';
 
@@ -89,6 +90,15 @@ app.intent('Round Help', conv => {
 
 app.intent('Round Repeat', conv => {
   const response = roundRepeatFullfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
+  } else {
+    conv.close(response.responseSSML);
+  }
+});
+
+app.intent('Round No Input', conv => {
+  const response = roundNoInputFulfillment(conv.data);
   if (response.responseType === ResponseType.ASK) {
     conv.ask(response.responseSSML);
   } else {
