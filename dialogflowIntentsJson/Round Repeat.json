@@ -1,0 +1,109 @@
+{
+  "id": "dac8cee2-ce20-43ef-9292-8a1b9a9b6817",
+  "name": "Round Repeat",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543583676,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "7c6c5a74-e8cd-4019-844a-3ad176683170",
+      "data": [
+        {
+          "text": "say that again"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543583676,
+      "isAuto": false
+    },
+    {
+      "id": "a8661a6e-1768-426e-b4c5-f8aafb7e8b0e",
+      "data": [
+        {
+          "text": "repeat please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543583676,
+      "isAuto": false
+    },
+    {
+      "id": "124d8d1b-188e-4f8b-8b61-c8f578bbd8d7",
+      "data": [
+        {
+          "text": "I don't know"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543583676,
+      "isAuto": false
+    },
+    {
+      "id": "afb08be7-3dd4-4011-a48c-0d9f24d33dfa",
+      "data": [
+        {
+          "text": "what"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543583676,
+      "isAuto": false
+    },
+    {
+      "id": "0cfa1be0-1e95-42e6-9682-5255b949885e",
+      "data": [
+        {
+          "text": "can you repeat that"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543583676,
+      "isAuto": false
+    },
+    {
+      "id": "1d8c8e47-beed-40a0-b910-390d7485f96d",
+      "data": [
+        {
+          "text": "repeat"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543583676,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

@@ -9,7 +9,7 @@ describe('Rounds', () => {
   });
 
   test('getRoundCollection returns RoundCollection object when roundCollectionNumber is in bounds', () => {
-    const roundCollection = new RoundCollection('', new Set());
+    const roundCollection = new RoundCollection('', '', '', '', '', new Set());
     const rounds = new Rounds([roundCollection]);
     expect(rounds.getRoundCollection(1)).toBeInstanceOf(RoundCollection);
   });

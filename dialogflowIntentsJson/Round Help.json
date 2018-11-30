@@ -1,0 +1,92 @@
+{
+  "id": "fb2e32f7-a5d8-4dd9-ad77-dfe00c60eb0c",
+  "name": "Round Help",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543581574,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "e83329b5-7bc2-480b-9802-e5d07bdf974f",
+      "data": [
+        {
+          "text": "help please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543581098,
+      "isAuto": false
+    },
+    {
+      "id": "fb8fc888-01c2-4091-83c3-b7fcbdf60246",
+      "data": [
+        {
+          "text": "can I get some help"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543581098,
+      "isAuto": false
+    },
+    {
+      "id": "5c0ebdd7-2453-4b62-8ea1-90f002547b72",
+      "data": [
+        {
+          "text": "help me"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543581098,
+      "isAuto": false
+    },
+    {
+      "id": "001a1e5a-9091-4c19-8b76-e226c3fd220f",
+      "data": [
+        {
+          "text": "I need help"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543581098,
+      "isAuto": false
+    },
+    {
+      "id": "31d3ef83-0202-4c2a-91ab-9a6840cc3a26",
+      "data": [
+        {
+          "text": "help"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543581098,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

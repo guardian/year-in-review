@@ -8,18 +8,28 @@ import {
   startYearInReviewFulfillment,
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
+import {
+  roundFallbackFulfillment,
+  roundHelpFulfillment,
+  roundNoInputFulfillment,
+  roundRepeatFullfillment,
+} from './fulfillments/roundFulfillment';
 
 import { dialogflow } from 'actions-on-google';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
-const app = dialogflow<ConversationData, {}>({ debug: true });
+const app = dialogflow<ConversationData, {}>({
+  debug: true,
+});
 
 app.intent('Welcome Intent', conv => {
   conv.ask(welcomeFulfillment());
 });
 
 app.intent('Welcome Intent - ready', conv => {
+  // Removing the welcome intent context
+  conv.contexts.set('welcomeintent-followup', 0);
   const response = startYearInReviewFulfillment(conv.data);
   if (response.responseType === ResponseType.ASK) {
     conv.ask(response.responseSSML);
@@ -69,6 +79,42 @@ app.intent<{ topicChoice: string }>(
     }
   }
 );
+
+app.intent('Round Help', conv => {
+  const response = roundHelpFulfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
+  } else {
+    conv.close(response.responseSSML);
+  }
+});
+
+app.intent('Round Repeat', conv => {
+  const response = roundRepeatFullfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
+  } else {
+    conv.close(response.responseSSML);
+  }
+});
+
+app.intent('Round No Input', conv => {
+  const response = roundNoInputFulfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
+  } else {
+    conv.close(response.responseSSML);
+  }
+});
+
+app.intent('Round Fallback', conv => {
+  const response = roundFallbackFulfillment(conv.data);
+  if (response.responseType === ResponseType.ASK) {
+    conv.ask(response.responseSSML);
+  } else {
+    conv.close(response.responseSSML);
+  }
+});
 
 app.intent<{ answer: string }>('True False Question', (conv, { answer }) => {
   conv.ask(trueFalseFulfullment(answer, conv.data));

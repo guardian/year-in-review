@@ -7,14 +7,13 @@ import {
 } from '../content/welcomeContent';
 
 import { buildSSMLAudioResponse } from '../responses/genericResponse';
-import { selectRound } from './roundFulfillment';
+import { chooseRound } from './roundFulfillment';
 
 const welcomeFulfillment = () => {
   return buildSSMLAudioResponse(welcomeAudio);
 };
 
 const askAgainFulfillment = (data: ConversationData) => {
-  setReprompt(data);
   return buildSSMLAudioResponse(askAgainAudio);
 };
 
@@ -23,7 +22,7 @@ const setReprompt = (data: ConversationData) => {
 };
 
 const startYearInReviewFulfillment = (data: ConversationData): Response => {
-  return selectRound(data);
+  return chooseRound(data);
 };
 
 const doNotPlayFulfillment = () => {
@@ -38,6 +37,7 @@ const invalidResponseFulfillment = (data: ConversationData): Response => {
   if (data.startRepromptIssued === true) {
     return new Response(ResponseType.CLOSE, doNotPlayFulfillment());
   } else {
+    setReprompt(data);
     return new Response(ResponseType.ASK, askAgainFulfillment(data));
   }
 };

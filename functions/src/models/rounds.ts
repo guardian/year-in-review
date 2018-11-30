@@ -19,13 +19,14 @@ class Rounds {
 }
 
 class RoundCollection {
-  public introductionAudio: string;
-  private topics: Set<Topic>;
-
-  constructor(introductionAudio: string, topics: Set<Topic>) {
-    this.topics = topics;
-    this.introductionAudio = introductionAudio;
-  }
+  constructor(
+    public introductionAudio: string,
+    public helpAudio: string,
+    public repeatAudio: string,
+    public noInputAudio: string,
+    public fallbackAudio: string,
+    private topics: Set<Topic>
+  ) {}
 
   public getTopics(): Set<Topic> {
     return this.topics;
