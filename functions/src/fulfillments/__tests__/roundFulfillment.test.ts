@@ -1,5 +1,5 @@
-import { ConversationData } from '../../models/models';
-import { selectRound } from '../roundFulfillment';
+import { ConversationData, ResponseType } from '../../models/models';
+import { roundHelpFulfillment, selectRound } from '../roundFulfillment';
 
 describe('Select Round', () => {
   test('If no round set round to 1', () => {
@@ -25,5 +25,14 @@ describe('Select Round', () => {
     };
     selectRound(data);
     expect(data).toEqual(expectedData);
+  });
+});
+
+describe('Help with round selection', () => {
+  test('round help audio is not an empty string', () => {
+    const data = { startRepromptIssued: true };
+    const response = roundHelpFulfillment(data);
+    expect(response.responseType).toEqual(ResponseType.ASK);
+    expect(response.responseSSML).not.toEqual('');
   });
 });
