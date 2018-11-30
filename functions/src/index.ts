@@ -9,11 +9,14 @@ import {
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
 
-import { ResponseType } from './models/models';
-import { app } from './app';
+import { dialogflow } from 'actions-on-google';
 import { roundHelpFulfillment } from './fulfillments/roundFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
+
+const app = dialogflow<ConversationData, {}>({
+  debug: true,
+});
 
 app.intent('Welcome Intent', conv => {
   conv.ask(welcomeFulfillment());
