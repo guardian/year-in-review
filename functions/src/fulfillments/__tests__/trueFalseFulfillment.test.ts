@@ -1,4 +1,4 @@
-import { ConversationData, Unknown } from '../../models/models';
+import { ConversationData, ResponseType, Unknown } from '../../models/models';
 import { Question, QuestionType } from '../../models/questions';
 import {
   buildResponse,
@@ -6,7 +6,7 @@ import {
   isCorrectAnswer,
 } from '../trueFalseFulfillment';
 
-import { buildQuestionSSMLAudioResponse } from '../../responses/genericResponse';
+import { convertSSMLContainerToString } from '../../responses/genericResponse';
 import { unexpectedErrorAudio } from '../../content/errorContent';
 
 describe('Check question number can be incremented', () => {
@@ -35,15 +35,27 @@ describe('Check question number can be incremented', () => {
 });
 
 describe('Check if answer to question is correct', () => {
-  test('a true-false question should be correct if the answers match', () => {
+  test('a true-false question should be correct if the answers match and the answer is true', () => {
     const question = new Question('', 'true', '', '', QuestionType.TRUEFALSE);
     const answer = isCorrectAnswer('true', question);
     expect(answer).toEqual(true);
   });
 
-  test('a true-false question should be incorrect if the answers match', () => {
+  test('a true-false question should be correct if the answers match and the answer is false', () => {
+    const question = new Question('', 'false', '', '', QuestionType.TRUEFALSE);
+    const answer = isCorrectAnswer('false', question);
+    expect(answer).toEqual(true);
+  });
+
+  test('a true-false question should be incorrect if the answers do not match and the answer is false', () => {
     const question = new Question('', 'false', '', '', QuestionType.TRUEFALSE);
     const answer = isCorrectAnswer('true', question);
+    expect(answer).toEqual(false);
+  });
+
+  test('a true-false question should be incorrect if the answers do not match and the answer is true', () => {
+    const question = new Question('', 'true', '', '', QuestionType.TRUEFALSE);
+    const answer = isCorrectAnswer('false', question);
     expect(answer).toEqual(false);
   });
 });
@@ -53,41 +65,19 @@ describe('Build a response', () => {
     const currentQuestion = new Unknown('error');
     const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
     const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toContain(unexpectedErrorAudio);
+    expect(response.responseType).toEqual(ResponseType.CLOSE);
+    expect(convertSSMLContainerToString(response.responseSSML)).toContain(
+      unexpectedErrorAudio
+    );
   });
 
   test('If there is no current question and no next question return an error', () => {
     const currentQuestion = new Unknown('error');
-    const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
-    const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toContain(unexpectedErrorAudio);
-  });
-
-  test('If there is a current question and no next question end round', () => {
-    const currentQuestion = new Question(
-      '',
-      '',
-      '',
-      '',
-      QuestionType.TRUEFALSE
-    );
     const nextQuestion = new Unknown('error');
     const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toEqual(
+    expect(response.responseType).toEqual(ResponseType.CLOSE);
+    expect(convertSSMLContainerToString(response.responseSSML)).toContain(
       'End of Category. Next category not implemented yet'
     );
-  });
-
-  test('If there is a current question and no next question end round', () => {
-    const currentQuestion = new Question(
-      '',
-      '',
-      '',
-      '',
-      QuestionType.TRUEFALSE
-    );
-    const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
-    buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(buildQuestionSSMLAudioResponse).toHaveBeenCalled;
   });
 });

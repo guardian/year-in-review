@@ -1,3 +1,4 @@
+import { Container } from 'fluent-ssml';
 import { Topic } from './rounds';
 
 interface ConversationData {
@@ -21,8 +22,8 @@ enum ResponseType {
 
 class Response {
   public responseType: ResponseType;
-  public responseSSML: string;
-  constructor(responseType: ResponseType, responseSSML: string) {
+  public responseSSML: Container;
+  constructor(responseType: ResponseType, responseSSML: Container) {
     this.responseType = responseType;
     this.responseSSML = responseSSML;
   }

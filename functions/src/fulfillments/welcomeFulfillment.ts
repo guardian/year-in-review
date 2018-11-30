@@ -21,16 +21,16 @@ const setReprompt = (data: ConversationData) => {
   return (data.startRepromptIssued = true);
 };
 
-const startYearInReviewFulfillment = (data: ConversationData): Response => {
-  return chooseRound(data);
-};
-
 const doNotPlayFulfillment = () => {
   return buildSSMLAudioResponse(doNotPlayAudio);
 };
 
 const helpAtStartFulfillment = () => {
   return buildSSMLAudioResponse(helpAtStartAudio);
+};
+
+const startYearInReviewFulfillment = (data: ConversationData): Response => {
+  return chooseRound(data);
 };
 
 const invalidResponseFulfillment = (data: ConversationData): Response => {

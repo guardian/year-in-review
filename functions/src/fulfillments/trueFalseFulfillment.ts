@@ -1,5 +1,10 @@
 import { Category, OptionCategory } from '../models/categories';
-import { ConversationData, Unknown } from '../models/models';
+import {
+  ConversationData,
+  Response,
+  ResponseType,
+  Unknown,
+} from '../models/models';
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
 import {
   buildQuestionSSMLAudioResponse,
@@ -10,7 +15,10 @@ import { Topic } from '../models/rounds';
 import { categories } from '../content/categoryContent';
 import { unexpectedErrorAudio } from '../content/errorContent';
 
-const trueFalseFulfullment = (answer: string, data: ConversationData) => {
+const trueFalseFulfullment = (
+  answer: string,
+  data: ConversationData
+): Response => {
   const topic: Topic = data.currentTopic || Topic.SPORT;
   const questionNumber: number = data.currentQuestion || 1;
   const category: OptionCategory = categories.getCategory(topic);
@@ -22,7 +30,10 @@ const trueFalseFulfullment = (answer: string, data: ConversationData) => {
     incrementQuestionNumber(data);
     return buildResponse(question, nextQuestion, answer);
   } else {
-    return buildSSMLAudioResponse(unexpectedErrorAudio);
+    return new Response(
+      ResponseType.CLOSE,
+      buildSSMLAudioResponse(unexpectedErrorAudio)
+    );
   }
 };
 
@@ -35,22 +46,33 @@ const buildResponse = (
   currentQuestion: OptionQuestion,
   nextQuestion: OptionQuestion,
   answer: string
-) => {
+): Response => {
   if (nextQuestion instanceof Unknown) {
-    return endOfCategory(currentQuestion, answer);
+    return new Response(
+      ResponseType.CLOSE,
+      endOfCategory(currentQuestion, answer)
+    );
   } else {
     if (currentQuestion instanceof Question) {
       const feedbackAudio = getFeedbackAudio(currentQuestion, answer);
       const nextQuestionAudio = nextQuestion.questionAudio;
-      return buildQuestionSSMLAudioResponse(feedbackAudio, nextQuestionAudio);
+      return new Response(
+        ResponseType.ASK,
+        buildQuestionSSMLAudioResponse(feedbackAudio, nextQuestionAudio)
+      );
     } else {
-      return buildSSMLAudioResponse(unexpectedErrorAudio);
+      return new Response(
+        ResponseType.CLOSE,
+        buildSSMLAudioResponse(unexpectedErrorAudio)
+      );
     }
   }
 };
 
 const endOfCategory = (question: OptionQuestion, answer: string) => {
-  return 'End of Category. Next category not implemented yet';
+  return buildSSMLAudioResponse(
+    'End of Category. Next category not implemented yet'
+  );
 };
 
 const isTrueFalseCorrect = (answer: string, question: Question): boolean => {
