@@ -14,7 +14,6 @@ const welcomeFulfillment = () => {
 };
 
 const askAgainFulfillment = (data: ConversationData) => {
-  setReprompt(data);
   return buildSSMLAudioResponse(askAgainAudio);
 };
 
@@ -38,6 +37,7 @@ const invalidResponseFulfillment = (data: ConversationData): Response => {
   if (data.startRepromptIssued === true) {
     return new Response(ResponseType.CLOSE, doNotPlayFulfillment());
   } else {
+    setReprompt(data);
     return new Response(ResponseType.ASK, askAgainFulfillment(data));
   }
 };
