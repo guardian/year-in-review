@@ -13,6 +13,12 @@ const buildQuestionSSMLAudioResponse = (
     .audio(nextQuestionAudio);
 };
 
+const combineSSML = (part1: Container, part2: Container): Container => {
+  return ssml()
+    .append(part1)
+    .append(part2);
+};
+
 const convertSSMLContainerToString = (ssmlContainer: Container): string => {
   return renderXml(ssmlContainer.render());
 };
@@ -21,4 +27,5 @@ export {
   buildSSMLAudioResponse,
   buildQuestionSSMLAudioResponse,
   convertSSMLContainerToString,
+  combineSSML,
 };

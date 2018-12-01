@@ -43,4 +43,6 @@ enum Topic {
   POLITICS = 'politics',
 }
 
-export { Topic, Rounds, RoundCollection, OptionRoundCollection };
+type OptionTopic = Topic | Unknown;
+
+export { Topic, Rounds, RoundCollection, OptionRoundCollection, OptionTopic };
