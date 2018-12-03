@@ -9,10 +9,7 @@ interface ConversationData {
 }
 
 class Unknown {
-  public error: string;
-  constructor(error: string) {
-    this.error = error;
-  }
+  constructor(public error: string) {}
 }
 
 enum ResponseType {
@@ -21,12 +18,10 @@ enum ResponseType {
 }
 
 class Response {
-  public responseType: ResponseType;
-  public responseSSML: Container;
-  constructor(responseType: ResponseType, responseSSML: Container) {
-    this.responseType = responseType;
-    this.responseSSML = responseSSML;
-  }
+  constructor(
+    public responseType: ResponseType,
+    public responseSSML: Container
+  ) {}
 }
 
 export { ConversationData, Unknown, Response, ResponseType };

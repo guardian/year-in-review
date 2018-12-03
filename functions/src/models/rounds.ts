@@ -1,11 +1,7 @@
 import { Unknown } from './models';
 
 class Rounds {
-  private rounds: RoundCollection[];
-
-  constructor(rounds: RoundCollection[]) {
-    this.rounds = rounds;
-  }
+  constructor(private rounds: RoundCollection[]) {}
 
   public getRoundCollection(
     roundCollectionNumber: number
