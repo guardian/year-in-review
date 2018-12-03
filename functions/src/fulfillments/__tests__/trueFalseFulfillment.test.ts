@@ -1,4 +1,8 @@
-import { ConversationData, ResponseType, Unknown } from '../../models/models';
+import {
+  ConversationData,
+  ResponseType,
+  Unknown,
+} from '../../models/conversation';
 import { Question, QuestionType } from '../../models/questions';
 import {
   askNextQuestion,

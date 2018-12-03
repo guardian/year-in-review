@@ -1,4 +1,4 @@
-import { Response, ResponseType } from '../models/models';
+import { Response, ResponseType } from '../models/conversation';
 
 import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 import { unexpectedErrorAudio } from '../content/errorContent';

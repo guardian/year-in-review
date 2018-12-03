@@ -1,6 +1,6 @@
 import { RoundCollection, Rounds } from '../rounds';
 
-import { Unknown } from '../models';
+import { Unknown } from '../conversation';
 
 describe('Rounds', () => {
   test('getRoundCollection returns Unknown object when roundCollectionNumber is out of bounds', () => {

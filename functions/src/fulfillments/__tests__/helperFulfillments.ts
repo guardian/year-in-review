@@ -15,7 +15,7 @@ import {
   roundRepeatFullfillment,
 } from '../roundFulfillment';
 
-import { ConversationData } from '../../models/models';
+import { ConversationData } from '../../models/conversation';
 import { Topic } from '../../models/rounds';
 
 describe('Content specific help', () => {

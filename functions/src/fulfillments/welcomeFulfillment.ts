@@ -1,4 +1,8 @@
-import { ConversationData, Response, ResponseType } from '../models/models';
+import {
+  ConversationData,
+  Response,
+  ResponseType,
+} from '../models/conversation';
 import {
   askAgainAudio,
   doNotPlayAudio,

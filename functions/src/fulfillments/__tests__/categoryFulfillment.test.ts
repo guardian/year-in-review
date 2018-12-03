@@ -1,4 +1,4 @@
-import { ConversationData, ResponseType } from '../../models/models';
+import { ConversationData, ResponseType } from '../../models/conversation';
 
 import { Topic } from '../../models/rounds';
 import { startCategory } from '../categoryFulfillment';

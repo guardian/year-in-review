@@ -1,5 +1,9 @@
 import { Contexts, DialogflowConversation } from 'actions-on-google';
-import { ConversationData, Response, ResponseType } from '../models/models';
+import {
+  ConversationData,
+  Response,
+  ResponseType,
+} from '../models/conversation';
 
 import { convertSSMLContainerToString } from './ssmlResponses';
 

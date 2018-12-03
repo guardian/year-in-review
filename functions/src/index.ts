@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 
-import { ConversationData, ResponseType } from './models/models';
+import { ConversationData, ResponseType } from './models/conversation';
 import {
   doNotPlayFulfillment,
   helpAtStartFulfillment,

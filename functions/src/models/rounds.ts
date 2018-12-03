@@ -1,4 +1,4 @@
-import { Unknown } from './models';
+import { Unknown } from './conversation';
 
 class Rounds {
   constructor(private rounds: RoundCollection[]) {}

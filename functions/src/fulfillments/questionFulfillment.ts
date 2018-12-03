@@ -4,7 +4,7 @@ import {
   Response,
   ResponseType,
   Unknown,
-} from '../models/models';
+} from '../models/conversation';
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
 import {
   fillInTheBlankHelp,
