@@ -3,48 +3,33 @@ import {
   Response,
   ResponseType,
 } from '../models/conversation';
+import {
+  chooseRoundResponse,
+  roundHelperResponse,
+} from '../responses/roundResponses';
 
 import { RoundCollection } from '../models/rounds';
-import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 import { gameOver } from './endOfGameFulfillment';
 import { rounds } from '../content/roundContent';
-import { startCategory } from './categoryFulfillment';
-import { unexpectedErrorAudio } from '../content/errorContent';
 
 const roundHelpFulfillment = (data: ConversationData): Response => {
   const getHelpAudio = (round: RoundCollection) => round.helpAudio;
-  return buildSimpleRoundResponse(data, getHelpAudio);
+  return roundHelperResponse(data, getHelpAudio);
 };
 
 const roundRepeatFullfillment = (data: ConversationData): Response => {
   const getRepeatAudio = (round: RoundCollection) => round.repeatAudio;
-  return buildSimpleRoundResponse(data, getRepeatAudio);
+  return roundHelperResponse(data, getRepeatAudio);
 };
 
 const roundNoInputFulfillment = (data: ConversationData): Response => {
   const getNoInputAudio = (round: RoundCollection) => round.noInputAudio;
-  return buildSimpleRoundResponse(data, getNoInputAudio);
+  return roundHelperResponse(data, getNoInputAudio);
 };
 
 const roundFallbackFulfillment = (data: ConversationData): Response => {
   const getFallbackAudio = (round: RoundCollection) => round.fallbackAudio;
-  return buildSimpleRoundResponse(data, getFallbackAudio);
-};
-
-const buildSimpleRoundResponse = (
-  data: ConversationData,
-  getAudio: (r: RoundCollection) => string
-): Response => {
-  const roundNumber = data.currentRound || 1;
-  const round = rounds.getRoundCollection(roundNumber);
-  if (round instanceof RoundCollection) {
-    return new Response(
-      ResponseType.ASK,
-      buildSSMLAudioResponse(getAudio(round))
-    );
-  } else {
-    return new Response(ResponseType.CLOSE, gameOver());
-  }
+  return roundHelperResponse(data, getFallbackAudio);
 };
 
 const chooseRound = (data: ConversationData): Response => {
@@ -52,28 +37,9 @@ const chooseRound = (data: ConversationData): Response => {
   const roundNumber = data.currentRound || 1;
   const round = rounds.getRoundCollection(roundNumber);
   if (round instanceof RoundCollection) {
-    return buildChooseRoundResponse(round, data);
+    return chooseRoundResponse(round, data);
   } else {
     return new Response(ResponseType.CLOSE, gameOver());
-  }
-};
-
-const buildChooseRoundResponse = (
-  round: RoundCollection,
-  data: ConversationData
-): Response => {
-  if (round.getTopics().size === 1) {
-    let response: Response = new Response(
-      ResponseType.CLOSE,
-      buildSSMLAudioResponse(unexpectedErrorAudio)
-    );
-    round.getTopics().forEach(topic => (response = startCategory(topic, data)));
-    return response;
-  } else {
-    return new Response(
-      ResponseType.ASK,
-      buildSSMLAudioResponse(round.introductionAudio)
-    );
   }
 };
 
