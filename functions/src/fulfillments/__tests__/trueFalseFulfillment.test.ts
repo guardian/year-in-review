@@ -1,22 +1,30 @@
-import { ConversationData, Unknown } from '../../models/models';
+import { Categories, Category } from '../../models/categories';
+import { ConversationData, ResponseType, Unknown } from '../../models/models';
 import { Question, QuestionType } from '../../models/questions';
 import {
+  askNextQuestion,
   buildResponse,
-  incrementQuestionNumber,
+  endOfCategory,
+  getResponse,
   isCorrectAnswer,
+  trueFalseFulfullment,
 } from '../trueFalseFulfillment';
 
-import { buildQuestionSSMLAudioResponse } from '../../responses/genericResponse';
-import { unexpectedErrorAudio } from '../../content/errorContent';
+import { Topic } from '../../models/rounds';
+import { unexpectedErrorResponse } from '../../utils/logger';
 
-describe('Check question number can be incremented', () => {
+describe('trueFalseFulfillment', () => {
   test('If question number is undefined next question number should be 1 as you must currently be asking question 1', () => {
-    const data: ConversationData = { startRepromptIssued: false };
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
     const expectedData: ConversationData = {
       startRepromptIssued: false,
       currentQuestion: 1,
+      currentTopic: Topic.NEWS,
     };
-    incrementQuestionNumber(data);
+    trueFalseFulfullment('', data);
     expect(data).toEqual(expectedData);
   });
 
@@ -24,46 +32,99 @@ describe('Check question number can be incremented', () => {
     const data: ConversationData = {
       startRepromptIssued: false,
       currentQuestion: 1,
+      currentTopic: Topic.NEWS,
     };
     const expectedData: ConversationData = {
       startRepromptIssued: false,
       currentQuestion: 2,
+      currentTopic: Topic.NEWS,
     };
-    incrementQuestionNumber(data);
+    trueFalseFulfullment('', data);
     expect(data).toEqual(expectedData);
+  });
+
+  test('If there is no topic return an error response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentQuestion: 1,
+    };
+    const response = trueFalseFulfullment('', data);
+    expect(response.responseType).toEqual(ResponseType.CLOSE);
+    expect(unexpectedErrorResponse).toBeCalled;
+  });
+
+  test('If there is a topic call getResponse', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentQuestion: 1,
+      currentTopic: Topic.NEWS,
+    };
+    trueFalseFulfullment('', data);
+    expect(getResponse).toBeCalled;
   });
 });
 
 describe('Check if answer to question is correct', () => {
-  test('a true-false question should be correct if the answers match', () => {
+  test('a true-false question should be correct if the answers match and the answer is true', () => {
     const question = new Question('', 'true', '', '', QuestionType.TRUEFALSE);
     const answer = isCorrectAnswer('true', question);
     expect(answer).toEqual(true);
   });
 
-  test('a true-false question should be incorrect if the answers match', () => {
+  test('a true-false question should be correct if the answers match and the answer is false', () => {
+    const question = new Question('', 'false', '', '', QuestionType.TRUEFALSE);
+    const answer = isCorrectAnswer('false', question);
+    expect(answer).toEqual(true);
+  });
+
+  test('a true-false question should be incorrect if the answers do not match and the answer is false', () => {
     const question = new Question('', 'false', '', '', QuestionType.TRUEFALSE);
     const answer = isCorrectAnswer('true', question);
+    expect(answer).toEqual(false);
+  });
+
+  test('a true-false question should be incorrect if the answers do not match and the answer is true', () => {
+    const question = new Question('', 'true', '', '', QuestionType.TRUEFALSE);
+    const answer = isCorrectAnswer('false', question);
     expect(answer).toEqual(false);
   });
 });
 
 describe('Build a response', () => {
-  test('If there is no current question but a next question return an error', () => {
+  test('If there is no current question but a next question return an error response', () => {
+    const data = { startRepromptIssued: true };
     const currentQuestion = new Unknown('error');
     const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
-    const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toContain(unexpectedErrorAudio);
+    const response = buildResponse(data, currentQuestion, nextQuestion, 'true');
+    expect(response.responseType).toEqual(ResponseType.CLOSE);
+    expect(unexpectedErrorResponse).toBeCalled;
   });
 
   test('If there is no current question and no next question return an error', () => {
+    const data = { startRepromptIssued: true };
     const currentQuestion = new Unknown('error');
-    const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
-    const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toContain(unexpectedErrorAudio);
+    const nextQuestion = new Unknown('error');
+    const response = buildResponse(data, currentQuestion, nextQuestion, 'true');
+    expect(response.responseType).toEqual(ResponseType.CLOSE);
+    expect(unexpectedErrorResponse).toBeCalled;
   });
 
-  test('If there is a current question and no next question end round', () => {
+  test('If there is a current question and a next question askNextQuestion', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new Question(
+      '',
+      '',
+      '',
+      '',
+      QuestionType.TRUEFALSE
+    );
+    const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
+    buildResponse(data, currentQuestion, nextQuestion, 'true');
+    expect(askNextQuestion).toBeCalled;
+  });
+
+  test('If there is a current question and no next question call endOfCategory', () => {
+    const data = { startRepromptIssued: true };
     const currentQuestion = new Question(
       '',
       '',
@@ -72,22 +133,7 @@ describe('Build a response', () => {
       QuestionType.TRUEFALSE
     );
     const nextQuestion = new Unknown('error');
-    const response = buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(response).toEqual(
-      'End of Category. Next category not implemented yet'
-    );
-  });
-
-  test('If there is a current question and no next question end round', () => {
-    const currentQuestion = new Question(
-      '',
-      '',
-      '',
-      '',
-      QuestionType.TRUEFALSE
-    );
-    const nextQuestion = new Question('', '', '', '', QuestionType.TRUEFALSE);
-    buildResponse(currentQuestion, nextQuestion, 'true');
-    expect(buildQuestionSSMLAudioResponse).toHaveBeenCalled;
+    buildResponse(data, currentQuestion, nextQuestion, 'true');
+    expect(endOfCategory).toBeCalled;
   });
 });

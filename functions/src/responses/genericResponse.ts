@@ -1,23 +1,31 @@
-import { renderXml, ssml } from 'fluent-ssml';
+import { Container, renderXml, ssml } from 'fluent-ssml';
 
-const buildSSMLAudioResponse = (audio: string) => {
-  return renderXml(
-    ssml()
-      .audio(audio)
-      .render()
-  );
+const buildSSMLAudioResponse = (audio: string): Container => {
+  return ssml().audio(audio);
 };
 
 const buildQuestionSSMLAudioResponse = (
   feedbackAudio: string,
   nextQuestionAudio: string
-) => {
-  return renderXml(
-    ssml()
-      .audio(feedbackAudio)
-      .audio(nextQuestionAudio)
-      .render()
-  );
+): Container => {
+  return ssml()
+    .audio(feedbackAudio)
+    .audio(nextQuestionAudio);
 };
 
-export { buildSSMLAudioResponse, buildQuestionSSMLAudioResponse };
+const combineSSML = (part1: Container, part2: Container): Container => {
+  return ssml()
+    .append(part1)
+    .append(part2);
+};
+
+const convertSSMLContainerToString = (ssmlContainer: Container): string => {
+  return renderXml(ssmlContainer.render());
+};
+
+export {
+  buildSSMLAudioResponse,
+  buildQuestionSSMLAudioResponse,
+  convertSSMLContainerToString,
+  combineSSML,
+};

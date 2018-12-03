@@ -26,7 +26,7 @@ describe('Start Category', () => {
     const expectedData: ConversationData = {
       startRepromptIssued: false,
       currentTopic: Topic.NEWS,
-      currentQuestion: 4,
+      currentQuestion: 1,
     };
     startCategory(topicChoice, data);
     expect(data).toEqual(expectedData);

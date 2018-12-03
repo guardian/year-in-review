@@ -1,6 +1,11 @@
 import * as functions from 'firebase-functions';
 
-import { ConversationData, ResponseType } from './models/models';
+import {
+  Contexts,
+  DialogflowConversation,
+  dialogflow,
+} from 'actions-on-google';
+import { ConversationData, Response, ResponseType } from './models/models';
 import {
   doNotPlayFulfillment,
   helpAtStartFulfillment,
@@ -15,7 +20,7 @@ import {
   roundRepeatFullfillment,
 } from './fulfillments/roundFulfillment';
 
-import { dialogflow } from 'actions-on-google';
+import { convertSSMLContainerToString } from './responses/genericResponse';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
@@ -24,105 +29,98 @@ const app = dialogflow<ConversationData, {}>({
 });
 
 app.intent('Welcome Intent', conv => {
-  conv.ask(welcomeFulfillment());
+  const response = convertSSMLContainerToString(welcomeFulfillment());
+  conv.ask(response);
 });
 
 app.intent('Welcome Intent - ready', conv => {
   // Removing the welcome intent context
   conv.contexts.set('welcomeintent-followup', 0);
-  const response = startYearInReviewFulfillment(conv.data);
-  if (response.responseType === ResponseType.ASK) {
-    conv.ask(response.responseSSML);
-  } else {
-    conv.close(response.responseSSML);
-  }
+  respond(startYearInReviewFulfillment, conv);
 });
 
 app.intent('Welcome Intent - fallback', conv => {
-  const response = invalidResponseFulfillment(conv.data);
-  if (response.responseType === ResponseType.ASK) {
-    conv.ask(response.responseSSML);
-  } else {
-    conv.close(response.responseSSML);
-  }
+  respond(invalidResponseFulfillment, conv);
 });
 
 app.intent('Welcome Intent - no input', conv => {
-  const response = invalidResponseFulfillment(conv.data);
-  if (response.responseType === ResponseType.ASK) {
-    conv.ask(response.responseSSML);
-  } else {
-    conv.close(response.responseSSML);
-  }
+  respond(invalidResponseFulfillment, conv);
 });
 
 app.intent('Welcome Intent - help', conv => {
-  conv.ask(helpAtStartFulfillment());
+  const response = convertSSMLContainerToString(helpAtStartFulfillment());
+  conv.ask(response);
 });
 
 app.intent('Welcome Intent - help - fallback', conv => {
-  conv.close(doNotPlayFulfillment());
+  const response = convertSSMLContainerToString(doNotPlayFulfillment());
+  conv.ask(response);
 });
 
 app.intent('Welcome Intent - help - help', conv => {
-  conv.close(doNotPlayFulfillment());
+  const response = convertSSMLContainerToString(doNotPlayFulfillment());
+  conv.ask(response);
 });
 
 app.intent<{ topicChoice: string }>(
   'News-Sport-Tech Round',
   (conv, { topicChoice }) => {
-    const response = startCategory(topicChoice, conv.data);
-    if (response.responseType === ResponseType.ASK) {
-      conv.ask(response.responseSSML);
+    const fulfillment = startCategory(topicChoice, conv.data);
+    const response = convertSSMLContainerToString(fulfillment.responseSSML);
+    if (fulfillment.responseType === ResponseType.ASK) {
+      conv.ask(response);
     } else {
-      conv.close(response.responseSSML);
+      conv.close(response);
     }
   }
 );
 
 app.intent('Round Help', conv => {
-  const response = roundHelpFulfillment(conv.data);
-  if (response.responseType === ResponseType.ASK) {
-    conv.ask(response.responseSSML);
-  } else {
-    conv.close(response.responseSSML);
-  }
+  respond(roundHelpFulfillment, conv);
 });
 
 app.intent('Round Repeat', conv => {
-  const response = roundRepeatFullfillment(conv.data);
-  if (response.responseType === ResponseType.ASK) {
-    conv.ask(response.responseSSML);
-  } else {
-    conv.close(response.responseSSML);
-  }
+  respond(roundRepeatFullfillment, conv);
 });
 
 app.intent('Round No Input', conv => {
-  const response = roundNoInputFulfillment(conv.data);
-  if (response.responseType === ResponseType.ASK) {
-    conv.ask(response.responseSSML);
-  } else {
-    conv.close(response.responseSSML);
-  }
+  respond(roundNoInputFulfillment, conv);
 });
 
 app.intent('Round Fallback', conv => {
-  const response = roundFallbackFulfillment(conv.data);
-  if (response.responseType === ResponseType.ASK) {
-    conv.ask(response.responseSSML);
-  } else {
-    conv.close(response.responseSSML);
-  }
+  respond(roundFallbackFulfillment, conv);
 });
 
-app.intent<{ answer: string }>('True False Question', (conv, { answer }) => {
-  conv.ask(trueFalseFulfullment(answer, conv.data));
-});
+app.intent<{ answer: string }>(
+  'News-Sport-Tech Round - trueFalse',
+  (conv, { answer }) => {
+    const fulfillment = trueFalseFulfullment(answer, conv.data);
+    const response = convertSSMLContainerToString(fulfillment.responseSSML);
+    if (fulfillment.responseType === ResponseType.ASK) {
+      conv.ask(response);
+    } else {
+      conv.close(response);
+    }
+  }
+);
 
 app.intent('Quit App', conv => {
-  conv.close(doNotPlayFulfillment());
+  const response = convertSSMLContainerToString(doNotPlayFulfillment());
+  conv.close(response);
 });
+
+const respond = (
+  f: (data: ConversationData) => Response,
+  conv: DialogflowConversation<ConversationData, {}, Contexts>
+) => {
+  const fulfillment = f(conv.data);
+  const response = convertSSMLContainerToString(fulfillment.responseSSML);
+  if (fulfillment.responseType === ResponseType.ASK) {
+    conv.ask(response);
+  } else {
+    conv.close(response);
+  }
+};
 
 exports.yearInReviewFulfillment = functions
   .region('europe-west1')

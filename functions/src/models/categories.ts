@@ -4,11 +4,7 @@ import { Topic } from './rounds';
 import { Unknown } from './models';
 
 class Category {
-  private questions: Question[];
-
-  constructor(questions: Question[]) {
-    this.questions = questions;
-  }
+  constructor(private questions: Question[]) {}
 
   public getQuestion(questionNumber: number): OptionQuestion {
     if (questionNumber > this.questions.length) {
@@ -21,11 +17,7 @@ class Category {
 }
 
 class Categories {
-  private categoryCollection: CategoryCollection;
-
-  constructor(categoryCollection: CategoryCollection) {
-    this.categoryCollection = categoryCollection;
-  }
+  constructor(private categoryCollection: CategoryCollection) {}
 
   public getCategory(topic: Topic): OptionCategory {
     const category = this.categoryCollection[topic];

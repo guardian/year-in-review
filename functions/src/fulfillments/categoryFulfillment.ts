@@ -5,8 +5,7 @@ import { Category } from '../models/categories';
 import { Topic } from '../models/rounds';
 import { buildSSMLAudioResponse } from '../responses/genericResponse';
 import { categories } from '../content/categoryContent';
-import { incrementQuestionNumber } from './trueFalseFulfillment';
-import { unexpectedErrorAudio } from '../content/errorContent';
+import { unexpectedErrorResponse } from '../utils/logger';
 
 const startCategory = (
   topicChoice: string | Topic,
@@ -16,7 +15,7 @@ const startCategory = (
   const category = categories.getCategory(topic);
   if (category instanceof Category) {
     setTopic(data, topic);
-    incrementQuestionNumber(data);
+    setQuestionNumber(data);
     const maybeQuestion: OptionQuestion = category.getQuestion(1);
 
     if (maybeQuestion instanceof Question) {
@@ -25,21 +24,21 @@ const startCategory = (
         buildSSMLAudioResponse(maybeQuestion.questionAudio)
       );
     } else {
-      return new Response(
-        ResponseType.CLOSE,
-        buildSSMLAudioResponse(unexpectedErrorAudio)
+      return unexpectedErrorResponse(
+        `No first question found for category ${category}`
       );
     }
   } else {
-    return new Response(
-      ResponseType.CLOSE,
-      buildSSMLAudioResponse(unexpectedErrorAudio)
-    );
+    return unexpectedErrorResponse(`No category found for topic ${topic}`);
   }
 };
 
 const setTopic = (data: ConversationData, topic: Topic): void => {
   data.currentTopic = topic;
+};
+
+const setQuestionNumber = (data: ConversationData): void => {
+  data.currentQuestion = 1;
 };
 
 export { startCategory };
