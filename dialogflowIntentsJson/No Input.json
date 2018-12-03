@@ -1,25 +1,37 @@
 {
-  "id": "c934c727-211f-423c-ab09-cabb8f100bdd",
-  "name": "Round Fallback",
+  "id": "28211814-7ad8-4284-8f80-1fac20b5e137",
+  "name": "No Input",
   "auto": true,
   "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.unknown",
       "affectedContexts": [],
       "parameters": [],
-      "messages": [],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
       "defaultResponsePlatforms": {},
       "speech": []
     }
   ],
   "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543590263,
-  "fallbackIntent": true,
-  "events": [],
+  "lastUpdate": 1543855158,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "actions_intent_NO_INPUT"
+    }
+  ],
   "userSays": [],
   "followUpIntents": [],
   "liveAgentHandoff": false,

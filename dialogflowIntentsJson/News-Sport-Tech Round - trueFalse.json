@@ -1,15 +1,20 @@
 {
-  "id": "5f49fbec-f18c-4963-bea8-e6e5d864ab76",
-  "name": "True False Question",
+  "id": "2ec71661-23da-4781-80fe-86d3025950ba",
+  "parentId": "7ecb3fc6-15f4-4946-8910-368fc4c82710",
+  "rootParentId": "7ecb3fc6-15f4-4946-8910-368fc4c82710",
+  "name": "News-Sport-Tech Round - trueFalse",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "News-Sport-TechRound-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
+      "action": "News-Sport-TechRound.News-Sport-TechRound-custom",
       "affectedContexts": [],
       "parameters": [
         {
-          "id": "86c8e48f-7143-40a1-892b-c7c88c4992be",
+          "id": "649b43f3-493f-4861-9e9f-851993e1dbbd",
           "required": true,
           "dataType": "@True_or_False",
           "name": "answer",
@@ -28,18 +33,68 @@
     }
   ],
   "priority": 500000,
-  "cortanaCommand": {
-    "navigateOrService": "NAVIGATE",
-    "target": ""
-  },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543328658,
+  "lastUpdate": 1543597627,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
     {
-      "id": "7aea3402-2c26-44da-ba22-5aceb54f7ccd",
+      "id": "5136d8c2-f6f1-44ea-8a6d-fd5e6568ff99",
+      "data": [
+        {
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        },
+        {
+          "text": " I think"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "c4c1b9d4-5cdf-4450-ad1e-54bc3acf223f",
+      "data": [
+        {
+          "text": "ummm "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "7b475e07-c24f-4c40-b471-d22c6445efc3",
+      "data": [
+        {
+          "text": "got to be "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "ebab4bf7-76be-4781-92ad-c3b3ab622b8a",
       "data": [
         {
           "text": "I'm going with "
@@ -53,15 +108,12 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543328658,
+      "updated": 1543597627,
       "isAuto": false
     },
     {
-      "id": "efc22666-3793-41fb-9323-dd0b1f4e5846",
+      "id": "d27b00e4-d6ab-421b-9868-3b4114281cdc",
       "data": [
-        {
-          "text": "definitely "
-        },
         {
           "text": "true",
           "alias": "answer",
@@ -71,14 +123,29 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543328658,
+      "updated": 1543597627,
       "isAuto": false
     },
     {
-      "id": "bd0237cb-05fe-4af4-a879-2828333745d8",
+      "id": "0adc6219-c303-4b73-af86-4442d37a6cfe",
       "data": [
         {
-          "text": "that's got to be "
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "9fba1388-5c56-4cb8-89b4-d46e89cbdfe9",
+      "data": [
+        {
+          "text": "that must be "
         },
         {
           "text": "false",
@@ -89,11 +156,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543328658,
+      "updated": 1543597627,
       "isAuto": false
     },
     {
-      "id": "42e25744-7b18-4a03-a750-e92780cf08ce",
+      "id": "8695aa67-5a78-427e-92af-5f5c625daefc",
       "data": [
         {
           "text": "I think it's "
@@ -107,91 +174,7 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543328658,
-      "isAuto": false
-    },
-    {
-      "id": "50c39349-f593-483d-b59e-b0646179014f",
-      "data": [
-        {
-          "text": "that's "
-        },
-        {
-          "text": "true",
-          "alias": "answer",
-          "meta": "@True_or_False",
-          "userDefined": false
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543328658,
-      "isAuto": false
-    },
-    {
-      "id": "2d46fed5-c1e0-42ec-8ed2-cb6726cdff19",
-      "data": [
-        {
-          "text": "it's "
-        },
-        {
-          "text": "false",
-          "alias": "answer",
-          "meta": "@True_or_False",
-          "userDefined": false
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543328658,
-      "isAuto": false
-    },
-    {
-      "id": "7a0cf1cb-245c-4ca9-9553-222cf241e1be",
-      "data": [
-        {
-          "text": "that's "
-        },
-        {
-          "text": "false",
-          "alias": "answer",
-          "meta": "@True_or_False",
-          "userDefined": false
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543328658,
-      "isAuto": false
-    },
-    {
-      "id": "935c8044-3be1-4bdc-98cc-2e80add26f93",
-      "data": [
-        {
-          "text": "false",
-          "alias": "answer",
-          "meta": "@True_or_False",
-          "userDefined": false
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543328658,
-      "isAuto": false
-    },
-    {
-      "id": "12343e06-f61b-4a4a-9d48-a2712ce11358",
-      "data": [
-        {
-          "text": "true",
-          "alias": "answer",
-          "meta": "@True_or_False",
-          "userDefined": false
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543328658,
+      "updated": 1543597627,
       "isAuto": false
     }
   ],

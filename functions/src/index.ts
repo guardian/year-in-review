@@ -14,11 +14,11 @@ import {
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
 import {
-  roundFallbackFulfillment,
-  roundHelpFulfillment,
-  roundNoInputFulfillment,
-  roundRepeatFullfillment,
-} from './fulfillments/roundFulfillment';
+  fallbackFulfillment,
+  helpFulfillment,
+  noInputFulfillment,
+  repeatFulfillment,
+} from './fulfillments/helperFulfillments';
 
 import { convertSSMLContainerToString } from './responses/genericResponse';
 import { startCategory } from './fulfillments/categoryFulfillment';
@@ -34,8 +34,9 @@ app.intent('Welcome Intent', conv => {
 });
 
 app.intent('Welcome Intent - ready', conv => {
-  // Removing the welcome intent context
+  // Removing the welcome intent contexts
   conv.contexts.set('welcomeintent-followup', 0);
+  conv.contexts.set('welcomeintent-help-followup', 0);
   respond(startYearInReviewFulfillment, conv);
 });
 
@@ -54,12 +55,28 @@ app.intent('Welcome Intent - help', conv => {
 
 app.intent('Welcome Intent - help - fallback', conv => {
   const response = convertSSMLContainerToString(doNotPlayFulfillment());
-  conv.ask(response);
+  conv.close(response);
 });
 
 app.intent('Welcome Intent - help - help', conv => {
   const response = convertSSMLContainerToString(doNotPlayFulfillment());
-  conv.ask(response);
+  conv.close(response);
+});
+
+app.intent('Help', conv => {
+  respond(helpFulfillment, conv);
+});
+
+app.intent('Repeat', conv => {
+  respond(repeatFulfillment, conv);
+});
+
+app.intent('No Input', conv => {
+  respond(noInputFulfillment, conv);
+});
+
+app.intent('Fallback', conv => {
+  respond(fallbackFulfillment, conv);
 });
 
 app.intent<{ topicChoice: string }>(
@@ -74,22 +91,6 @@ app.intent<{ topicChoice: string }>(
     }
   }
 );
-
-app.intent('Round Help', conv => {
-  respond(roundHelpFulfillment, conv);
-});
-
-app.intent('Round Repeat', conv => {
-  respond(roundRepeatFullfillment, conv);
-});
-
-app.intent('Round No Input', conv => {
-  respond(roundNoInputFulfillment, conv);
-});
-
-app.intent('Round Fallback', conv => {
-  respond(roundFallbackFulfillment, conv);
-});
 
 app.intent<{ answer: string }>(
   'News-Sport-Tech Round - trueFalse',
