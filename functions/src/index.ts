@@ -13,6 +13,7 @@ import {
   startYearInReviewFulfillment,
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
+import { noInput, unknownInput } from './content/genericQuestionContent';
 import {
   roundFallbackFulfillment,
   roundHelpFulfillment,
@@ -21,7 +22,7 @@ import {
 } from './fulfillments/roundFulfillment';
 
 import { convertSSMLContainerToString } from './responses/genericResponse';
-import { questionFallbackFulfillment } from './fulfillments/questionFulfillment';
+import { questionRepromptFulfillment } from './fulfillments/questionFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
@@ -105,14 +106,32 @@ app.intent<{ answer: string }>(
   }
 );
 
+app.intent('News-Sport-Tech Round - no input', conv => {
+  repromptRespond(questionRepromptFulfillment, noInput, conv);
+});
+
 app.intent('News-Sport-Tech Round - fallback', conv => {
-  respond(questionFallbackFulfillment, conv);
+  repromptRespond(questionRepromptFulfillment, unknownInput, conv);
 });
 
 app.intent('Quit App', conv => {
   const response = convertSSMLContainerToString(doNotPlayFulfillment());
   conv.close(response);
 });
+
+const repromptRespond = (
+  f: (data: ConversationData, repromptAudio: string) => Response,
+  repromptAudio: string,
+  conv: DialogflowConversation<ConversationData, {}, Contexts>
+) => {
+  const fulfillment = f(conv.data, repromptAudio);
+  const response = convertSSMLContainerToString(fulfillment.responseSSML);
+  if (fulfillment.responseType === ResponseType.ASK) {
+    conv.ask(response);
+  } else {
+    conv.close(response);
+  }
+};
 
 const respond = (
   f: (data: ConversationData) => Response,

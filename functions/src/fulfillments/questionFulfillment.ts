@@ -11,13 +11,15 @@ import { OptionTopic } from '../models/rounds';
 import { buildFeedbackQuestionSSMLAudioResponse } from '../responses/genericResponse';
 import { categories } from '../content/categoryContent';
 import { unexpectedErrorResponse } from '../utils/logger';
-import { unknownInput } from '../content/genericQuestionContent';
 
-const questionFallbackFulfillment = (data: ConversationData): Response => {
+const questionRepromptFulfillment = (
+  data: ConversationData,
+  repromptAudio: string
+) => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof Question) {
     const response = buildFeedbackQuestionSSMLAudioResponse(
-      unknownInput,
+      repromptAudio,
       question.questionAudio
     );
     return new Response(ResponseType.ASK, response);
@@ -51,4 +53,4 @@ const getQuestionBasedOnConversationData = (
   }
 };
 
-export { questionFallbackFulfillment, getQuestionBasedOnConversationData };
+export { questionRepromptFulfillment, getQuestionBasedOnConversationData };
