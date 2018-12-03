@@ -92,13 +92,10 @@ const isCorrectAnswer = (answer: string, question: Question): boolean => {
   switch (question.questionType) {
     case QuestionType.TRUEFALSE:
       return isTrueFalseCorrect(answer, question);
-      break;
     case QuestionType.MULTIPLECHOICE:
       return true;
-      break;
     case QuestionType.FILLINTHEBLANK:
       return true;
-      break;
     default:
       // tslint:disable-next-line:no-console
       console.log('Unexpected question type');
