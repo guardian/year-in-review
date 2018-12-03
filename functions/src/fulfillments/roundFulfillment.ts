@@ -1,7 +1,7 @@
 import { ConversationData, Response, ResponseType } from '../models/models';
 
 import { RoundCollection } from '../models/rounds';
-import { buildSSMLAudioResponse } from '../responses/genericResponse';
+import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 import { gameOver } from './endOfGameFulfillment';
 import { rounds } from '../content/roundContent';
 import { startCategory } from './categoryFulfillment';

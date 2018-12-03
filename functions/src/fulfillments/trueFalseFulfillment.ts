@@ -6,10 +6,10 @@ import {
 } from '../models/models';
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
 import {
-  buildFeedbackQuestionSSMLAudioResponse,
+  buildSSMLAndCombineAudioResponses,
   buildSSMLAudioResponse,
   combineSSML,
-} from '../responses/genericResponse';
+} from '../responses/ssmlResponses';
 
 import { Container } from 'fluent-ssml';
 import { chooseRound } from './roundFulfillment';
@@ -58,7 +58,7 @@ const askNextQuestion = (
   const nextQuestionAudio = nextQuestion.questionAudio;
   return new Response(
     ResponseType.ASK,
-    buildFeedbackQuestionSSMLAudioResponse(feedbackAudio, nextQuestionAudio)
+    buildSSMLAndCombineAudioResponses(feedbackAudio, nextQuestionAudio)
   );
 };
 

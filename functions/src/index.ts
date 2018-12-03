@@ -1,11 +1,6 @@
 import * as functions from 'firebase-functions';
 
-import {
-  Contexts,
-  DialogflowConversation,
-  dialogflow,
-} from 'actions-on-google';
-import { ConversationData, Response, ResponseType } from './models/models';
+import { ConversationData, ResponseType } from './models/models';
 import {
   doNotPlayFulfillment,
   helpAtStartFulfillment,
@@ -20,7 +15,9 @@ import {
   repeatFulfillment,
 } from './fulfillments/helperFulfillments';
 
-import { convertSSMLContainerToString } from './responses/genericResponse';
+import { convertSSMLContainerToString } from './responses/ssmlResponses';
+import { dialogflow } from 'actions-on-google';
+import { respondBasedOnResponseType } from './responses/dialogflowResponses';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
@@ -37,15 +34,15 @@ app.intent('Welcome Intent - ready', conv => {
   // Removing the welcome intent contexts
   conv.contexts.set('welcomeintent-followup', 0);
   conv.contexts.set('welcomeintent-help-followup', 0);
-  respond(startYearInReviewFulfillment, conv);
+  respondBasedOnResponseType(startYearInReviewFulfillment, conv);
 });
 
 app.intent('Welcome Intent - fallback', conv => {
-  respond(invalidResponseFulfillment, conv);
+  respondBasedOnResponseType(invalidResponseFulfillment, conv);
 });
 
 app.intent('Welcome Intent - no input', conv => {
-  respond(invalidResponseFulfillment, conv);
+  respondBasedOnResponseType(invalidResponseFulfillment, conv);
 });
 
 app.intent('Welcome Intent - help', conv => {
@@ -64,19 +61,19 @@ app.intent('Welcome Intent - help - help', conv => {
 });
 
 app.intent('Help', conv => {
-  respond(helpFulfillment, conv);
+  respondBasedOnResponseType(helpFulfillment, conv);
 });
 
 app.intent('Repeat', conv => {
-  respond(repeatFulfillment, conv);
+  respondBasedOnResponseType(repeatFulfillment, conv);
 });
 
 app.intent('No Input', conv => {
-  respond(noInputFulfillment, conv);
+  respondBasedOnResponseType(noInputFulfillment, conv);
 });
 
 app.intent('Fallback', conv => {
-  respond(fallbackFulfillment, conv);
+  respondBasedOnResponseType(fallbackFulfillment, conv);
 });
 
 app.intent<{ topicChoice: string }>(
@@ -109,19 +106,6 @@ app.intent('Quit App', conv => {
   const response = convertSSMLContainerToString(doNotPlayFulfillment());
   conv.close(response);
 });
-
-const respond = (
-  f: (data: ConversationData) => Response,
-  conv: DialogflowConversation<ConversationData, {}, Contexts>
-) => {
-  const fulfillment = f(conv.data);
-  const response = convertSSMLContainerToString(fulfillment.responseSSML);
-  if (fulfillment.responseType === ResponseType.ASK) {
-    conv.ask(response);
-  } else {
-    conv.close(response);
-  }
-};
 
 exports.yearInReviewFulfillment = functions
   .region('europe-west1')

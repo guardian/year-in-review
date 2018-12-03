@@ -1,4 +1,4 @@
-import { buildSSMLAudioResponse } from '../responses/genericResponse';
+import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 import { endOfGameAudio } from '../content/endOfGameContent';
 
 const gameOver = () => {

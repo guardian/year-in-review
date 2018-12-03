@@ -1,6 +1,6 @@
 import { Response, ResponseType } from '../models/models';
 
-import { buildSSMLAudioResponse } from '../responses/genericResponse';
+import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 import { unexpectedErrorAudio } from '../content/errorContent';
 
 const unexpectedErrorResponse = (logMessage: string): Response => {

@@ -13,7 +13,7 @@ import {
 
 import { QuestionType } from '../../models/questions';
 import { Topic } from '../../models/rounds';
-import { buildFeedbackQuestionSSMLAudioResponse } from '../../responses/genericResponse';
+import { buildSSMLAndCombineAudioResponses } from '../../responses/ssmlResponses';
 import { unexpectedErrorResponse } from '../../utils/logger';
 
 describe('questionRepromptFulfillment', () => {
@@ -34,7 +34,7 @@ describe('questionRepromptFulfillment', () => {
     const response = questionRepromptFulfillment(data, '');
     expect(response.responseType).toEqual(ResponseType.ASK);
     // tslint:disable-next-line:no-unused-expression
-    expect(buildFeedbackQuestionSSMLAudioResponse).toBeCalled;
+    expect(buildSSMLAndCombineAudioResponses).toBeCalled;
   });
 });
 
