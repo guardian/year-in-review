@@ -1,0 +1,32 @@
+{
+  "id": "bbb1b305-4d53-4e07-87c8-e7c9f5953329",
+  "parentId": "7ecb3fc6-15f4-4946-8910-368fc4c82710",
+  "rootParentId": "7ecb3fc6-15f4-4946-8910-368fc4c82710",
+  "name": "News-Sport-Tech Round - fallback",
+  "auto": false,
+  "contexts": [
+    "News-Sport-TechRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "News-Sport-TechRound.News-Sport-TechRound-fallback",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543838143,
+  "fallbackIntent": true,
+  "events": [],
+  "userSays": [],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

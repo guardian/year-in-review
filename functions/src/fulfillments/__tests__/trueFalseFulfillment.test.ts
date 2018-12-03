@@ -1,11 +1,9 @@
-import { Categories, Category } from '../../models/categories';
 import { ConversationData, ResponseType, Unknown } from '../../models/models';
 import { Question, QuestionType } from '../../models/questions';
 import {
   askNextQuestion,
   buildResponse,
   endOfCategory,
-  getResponse,
   isCorrectAnswer,
   trueFalseFulfullment,
 } from '../trueFalseFulfillment';
@@ -53,14 +51,14 @@ describe('trueFalseFulfillment', () => {
     expect(unexpectedErrorResponse).toBeCalled;
   });
 
-  test('If there is a topic call getResponse', () => {
+  test('If there is a topic call buildResponse', () => {
     const data: ConversationData = {
       startRepromptIssued: false,
       currentQuestion: 1,
       currentTopic: Topic.NEWS,
     };
     trueFalseFulfullment('', data);
-    expect(getResponse).toBeCalled;
+    expect(buildResponse).toBeCalled;
   });
 });
 

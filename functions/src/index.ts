@@ -21,6 +21,7 @@ import {
 } from './fulfillments/roundFulfillment';
 
 import { convertSSMLContainerToString } from './responses/genericResponse';
+import { questionFallbackFulfillment } from './fulfillments/questionFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
@@ -103,6 +104,10 @@ app.intent<{ answer: string }>(
     }
   }
 );
+
+app.intent('News-Sport-Tech Round - fallback', conv => {
+  respond(questionFallbackFulfillment, conv);
+});
 
 app.intent('Quit App', conv => {
   const response = convertSSMLContainerToString(doNotPlayFulfillment());

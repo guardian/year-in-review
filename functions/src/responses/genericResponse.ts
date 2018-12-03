@@ -4,7 +4,7 @@ const buildSSMLAudioResponse = (audio: string): Container => {
   return ssml().audio(audio);
 };
 
-const buildQuestionSSMLAudioResponse = (
+const buildFeedbackQuestionSSMLAudioResponse = (
   feedbackAudio: string,
   nextQuestionAudio: string
 ): Container => {
@@ -25,7 +25,7 @@ const convertSSMLContainerToString = (ssmlContainer: Container): string => {
 
 export {
   buildSSMLAudioResponse,
-  buildQuestionSSMLAudioResponse,
+  buildFeedbackQuestionSSMLAudioResponse,
   convertSSMLContainerToString,
   combineSSML,
 };

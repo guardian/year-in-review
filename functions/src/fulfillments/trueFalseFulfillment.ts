@@ -1,4 +1,3 @@
-import { Category, OptionCategory } from '../models/categories';
 import {
   ConversationData,
   Response,
@@ -6,57 +5,25 @@ import {
   Unknown,
 } from '../models/models';
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
-import { OptionTopic, Topic } from '../models/rounds';
 import {
-  buildQuestionSSMLAudioResponse,
+  buildFeedbackQuestionSSMLAudioResponse,
   buildSSMLAudioResponse,
   combineSSML,
 } from '../responses/genericResponse';
 
 import { Container } from 'fluent-ssml';
-import { categories } from '../content/categoryContent';
 import { chooseRound } from './roundFulfillment';
+import { getQuestionBasedOnConversationData } from './questionFulfillment';
 import { unexpectedErrorResponse } from '../utils/logger';
 
 const trueFalseFulfullment = (
   answer: string,
   data: ConversationData
 ): Response => {
-  const topic: OptionTopic = getTopic(data);
-  if (topic instanceof Unknown) {
-    return unexpectedErrorResponse('Topic not found on Conversation Data');
-  } else {
-    return getResponse(data, topic, answer);
-  }
-};
+  const question: OptionQuestion = getQuestionBasedOnConversationData(data);
+  const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(data);
 
-const getTopic = (data: ConversationData): OptionTopic => {
-  if (typeof data.currentTopic === 'undefined') {
-    return new Unknown('No topic found');
-  } else {
-    return data.currentTopic;
-  }
-};
-
-const getResponse = (
-  data: ConversationData,
-  topic: Topic,
-  answer: string
-): Response => {
-  const questionNumber: number = data.currentQuestion || 1;
-  const category: OptionCategory = categories.getCategory(topic);
-  if (category instanceof Category) {
-    const question: OptionQuestion = category.getQuestion(questionNumber);
-    const nextQuestion: OptionQuestion = category.getQuestion(
-      questionNumber + 1
-    );
-    incrementQuestionNumber(data);
-    return buildResponse(data, question, nextQuestion, answer);
-  } else {
-    return unexpectedErrorResponse(
-      `No category defined for the topic ${topic}`
-    );
-  }
+  return buildResponse(data, question, nextQuestion, answer);
 };
 
 const incrementQuestionNumber = (data: ConversationData): void => {
@@ -70,6 +37,7 @@ const buildResponse = (
   nextQuestion: OptionQuestion,
   answer: string
 ): Response => {
+  incrementQuestionNumber(data);
   if (currentQuestion instanceof Question && nextQuestion instanceof Question) {
     return askNextQuestion(currentQuestion, nextQuestion, answer);
   }
@@ -77,7 +45,7 @@ const buildResponse = (
     return endOfCategory(data, currentQuestion, answer);
   }
   return unexpectedErrorResponse(
-    `Unable to build response for current question ${currentQuestion}, next question ${nextQuestion}`
+    `Unable to build response for current question ${currentQuestion}, next question ${nextQuestion} using conversation data ${data}.`
   );
 };
 
@@ -90,7 +58,7 @@ const askNextQuestion = (
   const nextQuestionAudio = nextQuestion.questionAudio;
   return new Response(
     ResponseType.ASK,
-    buildQuestionSSMLAudioResponse(feedbackAudio, nextQuestionAudio)
+    buildFeedbackQuestionSSMLAudioResponse(feedbackAudio, nextQuestionAudio)
   );
 };
 
@@ -140,7 +108,6 @@ const isTrueFalseCorrect = (answer: string, question: Question): boolean => {
 export {
   trueFalseFulfullment,
   endOfCategory,
-  getResponse,
   isCorrectAnswer,
   buildResponse,
   askNextQuestion,
