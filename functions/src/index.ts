@@ -36,8 +36,9 @@ app.intent('Welcome Intent', conv => {
 });
 
 app.intent('Welcome Intent - ready', conv => {
-  // Removing the welcome intent context
+  // Removing the welcome intent contexts
   conv.contexts.set('welcomeintent-followup', 0);
+  conv.contexts.set('welcomeintent-help-followup', 0);
   respond(startYearInReviewFulfillment, conv);
 });
 
@@ -56,12 +57,12 @@ app.intent('Welcome Intent - help', conv => {
 
 app.intent('Welcome Intent - help - fallback', conv => {
   const response = convertSSMLContainerToString(doNotPlayFulfillment());
-  conv.ask(response);
+  conv.close(response);
 });
 
 app.intent('Welcome Intent - help - help', conv => {
   const response = convertSSMLContainerToString(doNotPlayFulfillment());
-  conv.ask(response);
+  conv.close(response);
 });
 
 app.intent<{ topicChoice: string }>(
