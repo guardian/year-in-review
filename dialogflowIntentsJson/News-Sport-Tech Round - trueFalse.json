@@ -1,0 +1,185 @@
+{
+  "id": "2ec71661-23da-4781-80fe-86d3025950ba",
+  "parentId": "7ecb3fc6-15f4-4946-8910-368fc4c82710",
+  "rootParentId": "7ecb3fc6-15f4-4946-8910-368fc4c82710",
+  "name": "News-Sport-Tech Round - trueFalse",
+  "auto": true,
+  "contexts": [
+    "News-Sport-TechRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "News-Sport-TechRound.News-Sport-TechRound-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "649b43f3-493f-4861-9e9f-851993e1dbbd",
+          "required": true,
+          "dataType": "@True_or_False",
+          "name": "answer",
+          "value": "$answer",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543597627,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "5136d8c2-f6f1-44ea-8a6d-fd5e6568ff99",
+      "data": [
+        {
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        },
+        {
+          "text": " I think"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "c4c1b9d4-5cdf-4450-ad1e-54bc3acf223f",
+      "data": [
+        {
+          "text": "ummm "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "7b475e07-c24f-4c40-b471-d22c6445efc3",
+      "data": [
+        {
+          "text": "got to be "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "ebab4bf7-76be-4781-92ad-c3b3ab622b8a",
+      "data": [
+        {
+          "text": "I'm going with "
+        },
+        {
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "d27b00e4-d6ab-421b-9868-3b4114281cdc",
+      "data": [
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "0adc6219-c303-4b73-af86-4442d37a6cfe",
+      "data": [
+        {
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "9fba1388-5c56-4cb8-89b4-d46e89cbdfe9",
+      "data": [
+        {
+          "text": "that must be "
+        },
+        {
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    },
+    {
+      "id": "8695aa67-5a78-427e-92af-5f5c625daefc",
+      "data": [
+        {
+          "text": "I think it's "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543597627,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}
