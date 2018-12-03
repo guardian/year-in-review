@@ -21,6 +21,7 @@ const trueFalseFulfullment = (
   data: ConversationData
 ): Response => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
+  incrementQuestionNumber(data);
   const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(data);
 
   return buildResponse(data, question, nextQuestion, answer);
@@ -37,7 +38,6 @@ const buildResponse = (
   nextQuestion: OptionQuestion,
   answer: string
 ): Response => {
-  incrementQuestionNumber(data);
   if (currentQuestion instanceof Question && nextQuestion instanceof Question) {
     return askNextQuestion(currentQuestion, nextQuestion, answer);
   }
