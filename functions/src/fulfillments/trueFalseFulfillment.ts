@@ -3,13 +3,13 @@ import {
   Response,
   ResponseType,
   Unknown,
-} from '../models/models';
+} from '../models/conversation';
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
 import {
-  buildFeedbackQuestionSSMLAudioResponse,
+  buildSSMLAndCombineAudioResponses,
   buildSSMLAudioResponse,
   combineSSML,
-} from '../responses/genericResponse';
+} from '../responses/ssmlResponses';
 
 import { Container } from 'fluent-ssml';
 import { chooseRound } from './roundFulfillment';
@@ -58,7 +58,7 @@ const askNextQuestion = (
   const nextQuestionAudio = nextQuestion.questionAudio;
   return new Response(
     ResponseType.ASK,
-    buildFeedbackQuestionSSMLAudioResponse(feedbackAudio, nextQuestionAudio)
+    buildSSMLAndCombineAudioResponses(feedbackAudio, nextQuestionAudio)
   );
 };
 
@@ -92,13 +92,10 @@ const isCorrectAnswer = (answer: string, question: Question): boolean => {
   switch (question.questionType) {
     case QuestionType.TRUEFALSE:
       return isTrueFalseCorrect(answer, question);
-      break;
     case QuestionType.MULTIPLECHOICE:
       return true;
-      break;
     case QuestionType.FILLINTHEBLANK:
       return true;
-      break;
     default:
       // tslint:disable-next-line:no-console
       console.log('Unexpected question type');

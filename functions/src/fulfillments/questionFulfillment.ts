@@ -4,7 +4,7 @@ import {
   Response,
   ResponseType,
   Unknown,
-} from '../models/models';
+} from '../models/conversation';
 import { OptionQuestion, Question, QuestionType } from '../models/questions';
 import {
   fillInTheBlankHelp,
@@ -13,7 +13,7 @@ import {
 } from '../content/genericQuestionContent';
 
 import { OptionTopic } from '../models/rounds';
-import { buildFeedbackQuestionSSMLAudioResponse } from '../responses/genericResponse';
+import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { unexpectedErrorResponse } from '../utils/logger';
 
@@ -21,7 +21,7 @@ const questionHelpFulfillment = (data: ConversationData) => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof Question) {
     const helpAudio = getQuestionSpecificHelpAudio(question.questionType);
-    const response = buildFeedbackQuestionSSMLAudioResponse(
+    const response = buildSSMLAndCombineAudioResponses(
       helpAudio,
       question.questionAudio
     );
@@ -48,7 +48,7 @@ const questionRepromptFulfillment = (
 ): Response => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof Question) {
-    const response = buildFeedbackQuestionSSMLAudioResponse(
+    const response = buildSSMLAndCombineAudioResponses(
       repromptAudio,
       question.questionAudio
     );

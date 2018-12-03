@@ -1,4 +1,8 @@
-import { ConversationData, Response, ResponseType } from '../models/models';
+import {
+  ConversationData,
+  Response,
+  ResponseType,
+} from '../models/conversation';
 import {
   askAgainAudio,
   doNotPlayAudio,
@@ -6,7 +10,7 @@ import {
   welcomeAudio,
 } from '../content/welcomeContent';
 
-import { buildSSMLAudioResponse } from '../responses/genericResponse';
+import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 import { chooseRound } from './roundFulfillment';
 
 const welcomeFulfillment = () => {

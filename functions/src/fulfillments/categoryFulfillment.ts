@@ -1,9 +1,13 @@
-import { ConversationData, Response, ResponseType } from '../models/models';
+import {
+  ConversationData,
+  Response,
+  ResponseType,
+} from '../models/conversation';
 import { OptionQuestion, Question } from '../models/questions';
 
 import { Category } from '../models/categories';
 import { Topic } from '../models/rounds';
-import { buildSSMLAudioResponse } from '../responses/genericResponse';
+import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { unexpectedErrorResponse } from '../utils/logger';
 

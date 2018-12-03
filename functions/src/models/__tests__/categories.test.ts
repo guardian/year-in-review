@@ -2,7 +2,7 @@ import { Categories, Category, CategoryCollection } from '../categories';
 import { Question, QuestionType } from '../questions';
 
 import { Topic } from '../rounds';
-import { Unknown } from '../models';
+import { Unknown } from '../conversation';
 
 describe('Category', () => {
   test('return an Unknown object if question number is out of range', () => {

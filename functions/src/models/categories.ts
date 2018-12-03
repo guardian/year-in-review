@@ -1,7 +1,7 @@
 import { OptionQuestion, Question } from './questions';
 
 import { Topic } from './rounds';
-import { Unknown } from './models';
+import { Unknown } from './conversation';
 
 class Category {
   constructor(private questions: Question[]) {}
@@ -10,7 +10,6 @@ class Category {
     if (questionNumber > this.questions.length) {
       return new Unknown('out of bounds');
     } else {
-      // Indexing starting from 0
       return this.questions[questionNumber - 1];
     }
   }

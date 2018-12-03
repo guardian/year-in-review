@@ -1,4 +1,4 @@
-import { ConversationData, Response, Unknown } from '../models/models';
+import { ConversationData, Response, Unknown } from '../models/conversation';
 import {
   getTopic,
   questionHelpFulfillment,
