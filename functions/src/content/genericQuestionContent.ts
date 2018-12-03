@@ -13,10 +13,14 @@ const multipleChoiceHelp =
 const fillInTheBlankHelp =
   'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/questionTrueFalseHelp.mp3';
 
+const repeat =
+  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/questionRepeat.mp3';
+
 export {
   unknownInput,
   noInput,
   trueFalseHelp,
   multipleChoiceHelp,
   fillInTheBlankHelp,
+  repeat,
 };

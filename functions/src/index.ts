@@ -13,16 +13,14 @@ import {
   startYearInReviewFulfillment,
   welcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
-import { noInput, unknownInput } from './content/genericQuestionContent';
 import {
-  roundFallbackFulfillment,
-  roundNoInputFulfillment,
-  roundRepeatFullfillment,
-} from './fulfillments/roundFulfillment';
+  fallbackFulfillment,
+  helpFulfillment,
+  noInputFulfillment,
+  repeatFulfillment,
+} from './fulfillments/helperFulfillments';
 
 import { convertSSMLContainerToString } from './responses/genericResponse';
-import { helpFulfillment } from './fulfillments/helpFulfillment';
-import { questionRepromptFulfillment } from './fulfillments/questionFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
@@ -65,6 +63,22 @@ app.intent('Welcome Intent - help - help', conv => {
   conv.close(response);
 });
 
+app.intent('Help', conv => {
+  respond(helpFulfillment, conv);
+});
+
+app.intent('Repeat', conv => {
+  respond(repeatFulfillment, conv);
+});
+
+app.intent('No Input', conv => {
+  respond(noInputFulfillment, conv);
+});
+
+app.intent('Fallback', conv => {
+  respond(fallbackFulfillment, conv);
+});
+
 app.intent<{ topicChoice: string }>(
   'News-Sport-Tech Round',
   (conv, { topicChoice }) => {
@@ -77,22 +91,6 @@ app.intent<{ topicChoice: string }>(
     }
   }
 );
-
-app.intent('Help', conv => {
-  respond(helpFulfillment, conv);
-});
-
-app.intent('Round Repeat', conv => {
-  respond(roundRepeatFullfillment, conv);
-});
-
-app.intent('Round No Input', conv => {
-  respond(roundNoInputFulfillment, conv);
-});
-
-app.intent('Round Fallback', conv => {
-  respond(roundFallbackFulfillment, conv);
-});
 
 app.intent<{ answer: string }>(
   'News-Sport-Tech Round - trueFalse',
@@ -107,32 +105,10 @@ app.intent<{ answer: string }>(
   }
 );
 
-app.intent('News-Sport-Tech Round - no input', conv => {
-  repromptRespond(questionRepromptFulfillment, noInput, conv);
-});
-
-app.intent('News-Sport-Tech Round - fallback', conv => {
-  repromptRespond(questionRepromptFulfillment, unknownInput, conv);
-});
-
 app.intent('Quit App', conv => {
   const response = convertSSMLContainerToString(doNotPlayFulfillment());
   conv.close(response);
 });
-
-const repromptRespond = (
-  f: (data: ConversationData, repromptAudio: string) => Response,
-  repromptAudio: string,
-  conv: DialogflowConversation<ConversationData, {}, Contexts>
-) => {
-  const fulfillment = f(conv.data, repromptAudio);
-  const response = convertSSMLContainerToString(fulfillment.responseSSML);
-  if (fulfillment.responseType === ResponseType.ASK) {
-    conv.ask(response);
-  } else {
-    conv.close(response);
-  }
-};
 
 const respond = (
   f: (data: ConversationData) => Response,

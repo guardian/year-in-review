@@ -1,37 +1,25 @@
 {
-  "id": "28211814-7ad8-4284-8f80-1fac20b5e137",
-  "name": "Round No Input",
+  "id": "c934c727-211f-423c-ab09-cabb8f100bdd",
+  "name": "Fallback",
   "auto": true,
   "contexts": [],
   "responses": [
     {
       "resetContexts": false,
+      "action": "input.unknown",
       "affectedContexts": [],
       "parameters": [],
-      "messages": [
-        {
-          "type": 0,
-          "speech": []
-        }
-      ],
+      "messages": [],
       "defaultResponsePlatforms": {},
       "speech": []
     }
   ],
   "priority": 500000,
-  "cortanaCommand": {
-    "navigateOrService": "NAVIGATE",
-    "target": ""
-  },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543587898,
-  "fallbackIntent": false,
-  "events": [
-    {
-      "name": "actions_intent_NO_INPUT"
-    }
-  ],
+  "lastUpdate": 1543855135,
+  "fallbackIntent": true,
+  "events": [],
   "userSays": [],
   "followUpIntents": [],
   "liveAgentHandoff": false,

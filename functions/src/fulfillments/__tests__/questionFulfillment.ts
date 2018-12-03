@@ -56,15 +56,15 @@ describe('questionHelpFulfillment', () => {
     };
     const response = questionHelpFulfillment(data);
     expect(response.responseType).toEqual(ResponseType.ASK);
+    // tslint:disable-next-line:no-unused-expression
     expect(getQuestionSpecificHelpAudio).toBeCalled;
   });
 
   test('If there is no question available return unexpected Error response and close the conversation', () => {
-    const data: ConversationData = {
-      startRepromptIssued: true,
-    };
+    const data: ConversationData = { startRepromptIssued: true };
     const response = questionHelpFulfillment(data);
     expect(response.responseType).toEqual(ResponseType.CLOSE);
+    // tslint:disable-next-line:no-unused-expression
     expect(unexpectedErrorResponse).toBeCalled;
   });
 });
