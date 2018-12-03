@@ -16,12 +16,12 @@ import {
 import { noInput, unknownInput } from './content/genericQuestionContent';
 import {
   roundFallbackFulfillment,
-  roundHelpFulfillment,
   roundNoInputFulfillment,
   roundRepeatFullfillment,
 } from './fulfillments/roundFulfillment';
 
 import { convertSSMLContainerToString } from './responses/genericResponse';
+import { helpFulfillment } from './fulfillments/helpFulfillment';
 import { questionRepromptFulfillment } from './fulfillments/questionFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
@@ -78,8 +78,8 @@ app.intent<{ topicChoice: string }>(
   }
 );
 
-app.intent('Round Help', conv => {
-  respond(roundHelpFulfillment, conv);
+app.intent('Help', conv => {
+  respond(helpFulfillment, conv);
 });
 
 app.intent('Round Repeat', conv => {

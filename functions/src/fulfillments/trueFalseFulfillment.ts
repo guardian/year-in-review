@@ -67,6 +67,7 @@ const endOfCategory = (
   question: Question,
   answer: string
 ): Response => {
+  removeTopicFromConversationData(data);
   const feedbackAudio: Container = buildSSMLAudioResponse(
     getFeedbackAudio(question, answer)
   );
@@ -75,6 +76,10 @@ const endOfCategory = (
     nextRound.responseType,
     combineSSML(feedbackAudio, nextRound.responseSSML)
   );
+};
+
+const removeTopicFromConversationData = (data: ConversationData): void => {
+  delete data.currentTopic;
 };
 
 const getFeedbackAudio = (question: Question, answer: string): string => {

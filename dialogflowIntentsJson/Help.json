@@ -1,6 +1,6 @@
 {
   "id": "fb2e32f7-a5d8-4dd9-ad77-dfe00c60eb0c",
-  "name": "Round Help",
+  "name": "Help",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -20,7 +20,7 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543581574,
+  "lastUpdate": 1543849750,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
