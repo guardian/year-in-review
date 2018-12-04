@@ -1,0 +1,154 @@
+{
+  "id": "b88efddf-92aa-41d4-91d5-71610b513496",
+  "name": "Arts-Science Round",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "Arts-ScienceRound-followup",
+          "parameters": {},
+          "lifespan": 100
+        }
+      ],
+      "parameters": [
+        {
+          "id": "2cb53781-c0b8-48a5-89a7-c16b968b0d7f",
+          "required": true,
+          "dataType": "@Science_Arts",
+          "name": "topicChoice",
+          "value": "$topicChoice",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543920425,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "eb70bc54-61a3-4926-b5e3-9cb9cdc06a4d",
+      "data": [
+        {
+          "text": "I pick "
+        },
+        {
+          "text": "science",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919327,
+      "isAuto": false
+    },
+    {
+      "id": "fe53e47b-29cf-48a9-8470-3f8daf970da4",
+      "data": [
+        {
+          "text": "ummm "
+        },
+        {
+          "text": "art",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919327,
+      "isAuto": false
+    },
+    {
+      "id": "7e381fb0-40fe-4bda-aba8-6d068c758954",
+      "data": [
+        {
+          "text": "science",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        },
+        {
+          "text": " please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919327,
+      "isAuto": false
+    },
+    {
+      "id": "696a3e16-3e2b-43d2-9c54-6d21617a659a",
+      "data": [
+        {
+          "text": "science",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919327,
+      "isAuto": false
+    },
+    {
+      "id": "3dcf0bde-21ec-420e-8b35-510e931a9d75",
+      "data": [
+        {
+          "text": "Arts",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919327,
+      "isAuto": false
+    },
+    {
+      "id": "7555e4bb-e412-4f19-b1f8-66ce8457829a",
+      "data": [
+        {
+          "text": "I want "
+        },
+        {
+          "text": "art",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919327,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}
