@@ -1,15 +1,15 @@
 import { Categories, CategoryCollection } from '../models/categories';
 
+import { artsCategory } from './artsCategoryContent';
 import { newsCategory } from './newsCategoryContent';
+import { scienceCategory } from './scienceCategoryContent';
 import { sportsCategory } from './sportsCategoryContent';
-import { techCategory } from './techCategoryContent';
 
 const categoryCollection: CategoryCollection = {
   sport: sportsCategory(),
   news: newsCategory(),
-  science: sportsCategory(),
-  politics: sportsCategory(),
-  tech: techCategory(),
+  science: scienceCategory(),
+  arts: artsCategory(),
 };
 
 const categories: Categories = new Categories(categoryCollection);

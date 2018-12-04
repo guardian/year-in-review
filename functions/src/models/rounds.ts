@@ -35,8 +35,7 @@ enum Topic {
   SPORT = 'sport',
   NEWS = 'news',
   SCIENCE = 'science',
-  TECH = 'tech',
-  POLITICS = 'politics',
+  ARTS = 'arts',
 }
 
 type OptionTopic = Topic | Unknown;

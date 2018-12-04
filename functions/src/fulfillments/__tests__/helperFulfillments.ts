@@ -29,7 +29,7 @@ describe('Content specific help', () => {
   test('If there is a topic offer question help', () => {
     const data: ConversationData = {
       startRepromptIssued: true,
-      currentTopic: Topic.TECH,
+      currentTopic: Topic.ARTS,
     };
     helpFulfillment(data);
     // tslint:disable-next-line:no-unused-expression
@@ -48,7 +48,7 @@ describe('Content specific no input', () => {
   test('If there is a topic offer question no input', () => {
     const data: ConversationData = {
       startRepromptIssued: true,
-      currentTopic: Topic.TECH,
+      currentTopic: Topic.ARTS,
     };
     noInputFulfillment(data);
     // tslint:disable-next-line:no-unused-expression
@@ -67,7 +67,7 @@ describe('Content specific unknown input', () => {
   test('If there is a topic offer question unknown input', () => {
     const data: ConversationData = {
       startRepromptIssued: true,
-      currentTopic: Topic.TECH,
+      currentTopic: Topic.SCIENCE,
     };
     fallbackFulfillment(data);
     // tslint:disable-next-line:no-unused-expression
@@ -86,7 +86,7 @@ describe('Content specific repeat', () => {
   test('If there is a topic offer question repeat', () => {
     const data: ConversationData = {
       startRepromptIssued: true,
-      currentTopic: Topic.TECH,
+      currentTopic: Topic.SCIENCE,
     };
     noInputFulfillment(data);
     // tslint:disable-next-line:no-unused-expression
