@@ -28,6 +28,10 @@ const scienceQuestions: Question[] = [
   ),
 ];
 
-const scienceCategory = () => new Category(scienceQuestions);
+const sciencdPodcastTeaser =
+  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/teaser.mp3';
+
+const scienceCategory = () =>
+  new Category(scienceQuestions, sciencdPodcastTeaser);
 
 export { scienceCategory };

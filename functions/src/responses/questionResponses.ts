@@ -1,5 +1,6 @@
 import {
   ConversationData,
+  OptionString,
   Response,
   ResponseType,
   Unknown,
@@ -17,8 +18,11 @@ import {
   combineSSML,
 } from './ssmlResponses';
 
+import { Category } from '../models/categories';
 import { Container } from 'fluent-ssml';
+import { categories } from '../content/categoryContent';
 import { chooseRound } from '../fulfillments/roundFulfillment';
+import { getTopic } from '../fulfillments/questionFulfillment';
 import { unexpectedErrorResponse } from '../utils/logger';
 
 const buildQuestionResponse = (
@@ -56,19 +60,49 @@ const endOfCategory = (
   question: Question,
   answer: string
 ): Response => {
-  removeTopicFromConversationData(data);
-  const feedbackAudio: Container = buildSSMLAudioResponse(
-    getFeedbackAudio(question, answer)
+  const endOfCategoryAudio: Container = getEndOfCategoryAudio(
+    data,
+    question,
+    answer
   );
   const nextRound: Response = chooseRound(data);
+  removeTopicFromConversationData(data);
   return new Response(
     nextRound.responseType,
-    combineSSML(feedbackAudio, nextRound.responseSSML)
+    combineSSML(endOfCategoryAudio, nextRound.responseSSML)
   );
 };
 
 const removeTopicFromConversationData = (data: ConversationData): void => {
   delete data.currentTopic;
+};
+
+const getEndOfCategoryAudio = (
+  data: ConversationData,
+  question: Question,
+  answer: string
+): Container => {
+  const feedback = getFeedbackAudio(question, answer);
+  const teaser = getTeaserAudioForCategory(data);
+  if (teaser instanceof Unknown) {
+    return buildSSMLAudioResponse(feedback);
+  } else {
+    return buildSSMLAndCombineAudioResponses(feedback, teaser);
+  }
+};
+
+const getTeaserAudioForCategory = (data: ConversationData): OptionString => {
+  const topic = getTopic(data);
+  if (topic instanceof Unknown) {
+    return topic;
+  } else {
+    const category = categories.getCategory(topic);
+    if (category instanceof Category) {
+      return category.teaserAudio;
+    } else {
+      return category;
+    }
+  }
 };
 
 const getFeedbackAudio = (question: Question, answer: string): string => {

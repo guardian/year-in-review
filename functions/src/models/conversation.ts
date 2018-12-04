@@ -24,4 +24,6 @@ class Response {
   ) {}
 }
 
-export { ConversationData, Unknown, Response, ResponseType };
+type OptionString = string | Unknown;
+
+export { ConversationData, Unknown, Response, ResponseType, OptionString };

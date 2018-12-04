@@ -29,6 +29,9 @@ const sportsQuestions: Question[] = [
   ),
 ];
 
-const sportsCategory = () => new Category(sportsQuestions);
+const sportsPodcastTeaser =
+  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/teaser.mp3';
+
+const sportsCategory = () => new Category(sportsQuestions, sportsPodcastTeaser);
 
 export { sportsCategory };

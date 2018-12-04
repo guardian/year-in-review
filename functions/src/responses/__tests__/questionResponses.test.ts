@@ -15,7 +15,10 @@ import {
   getTrueFalseFeedback,
 } from '../questionResponses';
 
+import { Category } from '../../models/categories';
 import { Topic } from '../../models/rounds';
+import { categories } from '../../content/categoryContent';
+import { convertSSMLContainerToString } from '../ssmlResponses';
 import { unexpectedErrorResponse } from '../../utils/logger';
 
 describe('Build question response', () => {
@@ -65,6 +68,21 @@ describe('Build question response', () => {
 });
 
 describe('End of category', () => {
+  test('End of category audio is included', () => {
+    const topic = Topic.NEWS;
+    const data: ConversationData = {
+      startRepromptIssued: true,
+      currentTopic: topic,
+    };
+    const question = new TrueFalseQuestion('', false, '', '');
+    const category = categories.getCategory(topic);
+    if (category instanceof Category) {
+      const response = endOfCategory(data, question, 'true');
+      const ssml = convertSSMLContainerToString(response.responseSSML);
+      expect(ssml).toContain(category.teaserAudio);
+    }
+  });
+
   test('Category is removed from ConversationData', () => {
     const data: ConversationData = {
       startRepromptIssued: true,

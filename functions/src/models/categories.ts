@@ -4,7 +4,7 @@ import { Topic } from './rounds';
 import { Unknown } from './conversation';
 
 class Category {
-  constructor(private questions: Question[]) {}
+  constructor(private questions: Question[], public teaserAudio: string) {}
 
   public getQuestion(questionNumber: number): OptionQuestion {
     if (questionNumber > this.questions.length) {
