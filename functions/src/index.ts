@@ -17,9 +17,9 @@ import {
 
 import { convertSSMLContainerToString } from './responses/ssmlResponses';
 import { dialogflow } from 'actions-on-google';
+import { questionFulfillment } from './fulfillments/questionFulfillment';
 import { respondBasedOnResponseType } from './responses/dialogflowResponses';
 import { startCategory } from './fulfillments/categoryFulfillment';
-import { trueFalseFulfullment } from './fulfillments/trueFalseFulfillment';
 
 const app = dialogflow<ConversationData, {}>({
   debug: true,
@@ -92,7 +92,7 @@ app.intent<{ topicChoice: string }>(
 app.intent<{ answer: string }>(
   'News-Sport Round - trueFalse',
   (conv, { answer }) => {
-    const fulfillment = trueFalseFulfullment(answer, conv.data);
+    const fulfillment = questionFulfillment(answer, conv.data);
     const response = convertSSMLContainerToString(fulfillment.responseSSML);
     if (fulfillment.responseType === ResponseType.ASK) {
       conv.ask(response);
@@ -118,7 +118,7 @@ app.intent<{ topicChoice: string }>(
 app.intent<{ answer: string }>(
   'Arts-Science Round - trueFalse',
   (conv, { answer }) => {
-    const fulfillment = trueFalseFulfullment(answer, conv.data);
+    const fulfillment = questionFulfillment(answer, conv.data);
     const response = convertSSMLContainerToString(fulfillment.responseSSML);
     if (fulfillment.responseType === ResponseType.ASK) {
       conv.ask(response);
