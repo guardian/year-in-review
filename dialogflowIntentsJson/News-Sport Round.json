@@ -1,0 +1,187 @@
+{
+  "id": "cc81b9c4-9d9e-4606-8e2d-dc3ea5a888cc",
+  "name": "News-Sport Round",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "News-SportRound-followup",
+          "parameters": {},
+          "lifespan": 100
+        }
+      ],
+      "parameters": [
+        {
+          "id": "e5412222-94e7-470d-b501-f3d3135c2835",
+          "required": true,
+          "dataType": "@News_Sport",
+          "name": "topicChoice",
+          "value": "$topicChoice",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543920416,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "d2472d8e-22a3-4dda-b76b-20bc37c0a0d8",
+      "data": [
+        {
+          "text": "can I have "
+        },
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919309,
+      "isAuto": false
+    },
+    {
+      "id": "2dc17838-0fbf-4d02-855c-0cfafe86d196",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919309,
+      "isAuto": false
+    },
+    {
+      "id": "7dc1042c-5798-4fec-9603-3f13f5f49ea4",
+      "data": [
+        {
+          "text": "I want "
+        },
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919309,
+      "isAuto": false
+    },
+    {
+      "id": "b433fc74-e670-465f-85b1-13aad2f800d1",
+      "data": [
+        {
+          "text": "I'll take "
+        },
+        {
+          "text": "sports",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919309,
+      "isAuto": false
+    },
+    {
+      "id": "3a533134-cbb9-4ba6-9e34-4bcb77bfc7d1",
+      "data": [
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        },
+        {
+          "text": " please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919309,
+      "isAuto": false
+    },
+    {
+      "id": "0e109a99-e804-43ca-aa40-ee8bbe73b483",
+      "data": [
+        {
+          "text": "global news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919309,
+      "isAuto": false
+    },
+    {
+      "id": "bf7220ba-28fe-4771-bc97-0deba20adb5f",
+      "data": [
+        {
+          "text": "sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919309,
+      "isAuto": false
+    },
+    {
+      "id": "a6ac1ce8-9a6a-427d-8243-2ead00900489",
+      "data": [
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919309,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}
