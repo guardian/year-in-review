@@ -56,7 +56,7 @@ describe('questionHelpFulfillment', () => {
   test('If there is a question return question help audio', () => {
     const data: ConversationData = {
       startRepromptIssued: false,
-      currentTopic: Topic.POLITICS,
+      currentTopic: Topic.NEWS,
     };
     const response = questionHelpFulfillment(data);
     expect(response.responseType).toEqual(ResponseType.ASK);

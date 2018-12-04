@@ -77,7 +77,7 @@ app.intent('Fallback', conv => {
 });
 
 app.intent<{ topicChoice: string }>(
-  'News-Sport-Tech Round',
+  'News-Sport Round',
   (conv, { topicChoice }) => {
     const fulfillment = startCategory(topicChoice, conv.data);
     const response = convertSSMLContainerToString(fulfillment.responseSSML);
@@ -90,7 +90,33 @@ app.intent<{ topicChoice: string }>(
 );
 
 app.intent<{ answer: string }>(
-  'News-Sport-Tech Round - trueFalse',
+  'News-Sport Round - trueFalse',
+  (conv, { answer }) => {
+    const fulfillment = trueFalseFulfullment(answer, conv.data);
+    const response = convertSSMLContainerToString(fulfillment.responseSSML);
+    if (fulfillment.responseType === ResponseType.ASK) {
+      conv.ask(response);
+    } else {
+      conv.close(response);
+    }
+  }
+);
+
+app.intent<{ topicChoice: string }>(
+  'Arts-Science Round',
+  (conv, { topicChoice }) => {
+    const fulfillment = startCategory(topicChoice, conv.data);
+    const response = convertSSMLContainerToString(fulfillment.responseSSML);
+    if (fulfillment.responseType === ResponseType.ASK) {
+      conv.ask(response);
+    } else {
+      conv.close(response);
+    }
+  }
+);
+
+app.intent<{ answer: string }>(
+  'Arts-Science Round - trueFalse',
   (conv, { answer }) => {
     const fulfillment = trueFalseFulfullment(answer, conv.data);
     const response = convertSSMLContainerToString(fulfillment.responseSSML);

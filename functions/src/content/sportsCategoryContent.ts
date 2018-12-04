@@ -15,6 +15,13 @@ const sportsQuestions: Question[] = [
     'true',
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Correct.mp3',
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3',
+    QuestionType.MULTIPLECHOICE
+  ),
+  new Question(
+    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2.mp3',
+    'true',
+    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Correct.mp3',
+    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3',
     QuestionType.TRUEFALSE
   ),
 ];
