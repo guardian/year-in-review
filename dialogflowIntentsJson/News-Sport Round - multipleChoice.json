@@ -1,0 +1,179 @@
+{
+  "id": "47cd6063-0b4f-4d65-b18e-dac1db33dd17",
+  "parentId": "cc81b9c4-9d9e-4606-8e2d-dc3ea5a888cc",
+  "rootParentId": "cc81b9c4-9d9e-4606-8e2d-dc3ea5a888cc",
+  "name": "News-Sport Round - multipleChoice",
+  "auto": true,
+  "contexts": [
+    "News-SportRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "News-SportRound.News-SportRound-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "8f241ced-f07c-4528-ac98-a59f0e43e5bc",
+          "required": true,
+          "dataType": "@ABCD",
+          "name": "answer",
+          "value": "$answer",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543919152,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "b40fab7c-8133-4c01-8469-a6cbb4dd7535",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "c",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543918890,
+      "isAuto": false
+    },
+    {
+      "id": "7b3c20dc-9aca-48d4-ae5d-c307c421bde9",
+      "data": [
+        {
+          "text": "d",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        },
+        {
+          "text": " please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543918890,
+      "isAuto": false
+    },
+    {
+      "id": "975ee90f-ccab-4757-9a16-e2976341c23f",
+      "data": [
+        {
+          "text": "I'm going with "
+        },
+        {
+          "text": "d",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543918890,
+      "isAuto": false
+    },
+    {
+      "id": "83641242-3fd1-46be-86e1-dd3895b24828",
+      "data": [
+        {
+          "text": "D",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543918890,
+      "isAuto": false
+    },
+    {
+      "id": "649e8a71-0ec3-4a12-be85-8c0406a5fdcf",
+      "data": [
+        {
+          "text": "C",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543918890,
+      "isAuto": false
+    },
+    {
+      "id": "fbe0c9a3-128f-4478-907b-3934120a2595",
+      "data": [
+        {
+          "text": "B",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543918890,
+      "isAuto": false
+    },
+    {
+      "id": "d3400b10-2f35-4409-9228-005f3ff6e8ce",
+      "data": [
+        {
+          "text": "A",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543918890,
+      "isAuto": false
+    },
+    {
+      "id": "820ee4dd-d430-4948-aa27-4ce4e3e75bce",
+      "data": [
+        {
+          "text": "It's "
+        },
+        {
+          "text": "a",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543918890,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

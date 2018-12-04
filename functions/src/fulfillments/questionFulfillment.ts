@@ -5,7 +5,12 @@ import {
   ResponseType,
   Unknown,
 } from '../models/conversation';
-import { OptionQuestion, Question, QuestionType } from '../models/questions';
+import {
+  MultipleChoiceQuestion,
+  OptionQuestion,
+  Question,
+  TrueFalseQuestion,
+} from '../models/questions';
 import {
   fillInTheBlankHelp,
   multipleChoiceHelp,
@@ -13,14 +18,31 @@ import {
 } from '../content/genericQuestionContent';
 
 import { OptionTopic } from '../models/rounds';
+import { buildQuestionResponse } from '../responses/questionResponses';
 import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { unexpectedErrorResponse } from '../utils/logger';
 
+const questionFulfillment = (
+  answer: string,
+  data: ConversationData
+): Response => {
+  const question: OptionQuestion = getQuestionBasedOnConversationData(data);
+  incrementQuestionNumber(data);
+  const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(data);
+
+  return buildQuestionResponse(data, question, nextQuestion, answer);
+};
+
+const incrementQuestionNumber = (data: ConversationData): void => {
+  const currentQuestion = data.currentQuestion || 0;
+  data.currentQuestion = currentQuestion + 1;
+};
+
 const questionHelpFulfillment = (data: ConversationData) => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof Question) {
-    const helpAudio = getQuestionSpecificHelpAudio(question.questionType);
+    const helpAudio = getQuestionSpecificHelpAudio(question);
     const response = buildSSMLAndCombineAudioResponses(
       helpAudio,
       question.questionAudio
@@ -31,14 +53,14 @@ const questionHelpFulfillment = (data: ConversationData) => {
   }
 };
 
-const getQuestionSpecificHelpAudio = (questionType: QuestionType): string => {
-  switch (questionType) {
-    case QuestionType.TRUEFALSE:
-      return trueFalseHelp;
-    case QuestionType.MULTIPLECHOICE:
-      return multipleChoiceHelp;
-    default:
-      return fillInTheBlankHelp;
+const getQuestionSpecificHelpAudio = (question: Question): string => {
+  if (question instanceof TrueFalseQuestion) {
+    return trueFalseHelp;
+  }
+  if (question instanceof MultipleChoiceQuestion) {
+    return multipleChoiceHelp;
+  } else {
+    return fillInTheBlankHelp;
   }
 };
 
@@ -84,6 +106,7 @@ const getQuestionBasedOnConversationData = (
 };
 
 export {
+  questionFulfillment,
   questionRepromptFulfillment,
   getQuestionBasedOnConversationData,
   getTopic,

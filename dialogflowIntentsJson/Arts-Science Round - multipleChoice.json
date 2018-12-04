@@ -1,0 +1,152 @@
+{
+  "id": "3cec9086-9085-43e0-96af-7ba20ece32ca",
+  "parentId": "b88efddf-92aa-41d4-91d5-71610b513496",
+  "rootParentId": "b88efddf-92aa-41d4-91d5-71610b513496",
+  "name": "Arts-Science Round - multipleChoice",
+  "auto": true,
+  "contexts": [
+    "Arts-ScienceRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "Arts-ScienceRound.Arts-ScienceRound-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "502c7bcc-c5b5-4962-8437-934f3927a1b6",
+          "required": true,
+          "dataType": "@ABCD",
+          "name": "answer",
+          "value": "$answer",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543936842,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "763eb9bf-de82-43c4-82c6-96ac37af0270",
+      "data": [
+        {
+          "text": "b",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        },
+        {
+          "text": " please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543936842,
+      "isAuto": false
+    },
+    {
+      "id": "e9261251-ac15-4be5-aef9-42c0ef6538bd",
+      "data": [
+        {
+          "text": "obviously "
+        },
+        {
+          "text": "d",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543936842,
+      "isAuto": false
+    },
+    {
+      "id": "0392fd14-55d5-49c3-9e1b-002616b56d2d",
+      "data": [
+        {
+          "text": "A",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        },
+        {
+          "text": " final answer"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543936842,
+      "isAuto": false
+    },
+    {
+      "id": "aeec5deb-175a-4a9b-9b09-6a55484b717d",
+      "data": [
+        {
+          "text": "I'm going with "
+        },
+        {
+          "text": "c",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543936842,
+      "isAuto": false
+    },
+    {
+      "id": "91ac3674-9e14-47c6-8930-cc2b0cb42a64",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "b",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543936842,
+      "isAuto": false
+    },
+    {
+      "id": "c4209f7d-5976-4ff3-b1da-062ac844cfd1",
+      "data": [
+        {
+          "text": "a",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543936842,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

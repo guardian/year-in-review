@@ -4,35 +4,24 @@ import {
   ResponseType,
   Unknown,
 } from '../models/conversation';
-import { OptionQuestion, Question, QuestionType } from '../models/questions';
+import {
+  MultipleChoiceOption,
+  MultipleChoiceQuestion,
+  OptionQuestion,
+  Question,
+  TrueFalseQuestion,
+} from '../models/questions';
 import {
   buildSSMLAndCombineAudioResponses,
   buildSSMLAudioResponse,
   combineSSML,
-} from '../responses/ssmlResponses';
+} from './ssmlResponses';
 
 import { Container } from 'fluent-ssml';
-import { chooseRound } from './roundFulfillment';
-import { getQuestionBasedOnConversationData } from './questionFulfillment';
+import { chooseRound } from '../fulfillments/roundFulfillment';
 import { unexpectedErrorResponse } from '../utils/logger';
 
-const trueFalseFulfullment = (
-  answer: string,
-  data: ConversationData
-): Response => {
-  const question: OptionQuestion = getQuestionBasedOnConversationData(data);
-  incrementQuestionNumber(data);
-  const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(data);
-
-  return buildResponse(data, question, nextQuestion, answer);
-};
-
-const incrementQuestionNumber = (data: ConversationData): void => {
-  const currentQuestion = data.currentQuestion || 0;
-  data.currentQuestion = currentQuestion + 1;
-};
-
-const buildResponse = (
+const buildQuestionResponse = (
   data: ConversationData,
   currentQuestion: OptionQuestion,
   nextQuestion: OptionQuestion,
@@ -83,34 +72,53 @@ const removeTopicFromConversationData = (data: ConversationData): void => {
 };
 
 const getFeedbackAudio = (question: Question, answer: string): string => {
-  return isCorrectAnswer(answer, question)
-    ? question.correctAnswerAudio
-    : question.incorrectAnswerAudio;
-};
-
-const isCorrectAnswer = (answer: string, question: Question): boolean => {
-  switch (question.questionType) {
-    case QuestionType.TRUEFALSE:
-      return isTrueFalseCorrect(answer, question);
-    case QuestionType.MULTIPLECHOICE:
-      return true;
-    case QuestionType.FILLINTHEBLANK:
-      return true;
-    default:
-      // tslint:disable-next-line:no-console
-      console.log('Unexpected question type');
-      return false;
+  if (question instanceof TrueFalseQuestion) {
+    return getTrueFalseFeedback(question, answer);
+  }
+  if (question instanceof MultipleChoiceQuestion) {
+    return getMultipleChoiceFeedback(question, answer);
+  } else {
+    // tslint:disable-next-line:no-console
+    console.log('Unexpected question type');
+    return '';
   }
 };
 
-const isTrueFalseCorrect = (answer: string, question: Question): boolean => {
-  return answer === question.answer;
+const getTrueFalseFeedback = (
+  question: TrueFalseQuestion,
+  answer: string
+): string => {
+  if (
+    (answer.toLowerCase() === 'false' && !question.answer) ||
+    (answer.toLowerCase() === 'true' && question.answer)
+  ) {
+    return question.correctAnswerAudio;
+  } else {
+    return question.incorrectAnswerAudio;
+  }
+};
+
+const getMultipleChoiceFeedback = (
+  question: MultipleChoiceQuestion,
+  answer: string
+): string => {
+  const a: MultipleChoiceOption = answer.toLocaleUpperCase() as MultipleChoiceOption;
+  switch (a) {
+    case MultipleChoiceOption.A:
+      return question.AAudio;
+    case MultipleChoiceOption.B:
+      return question.BAudio;
+    case MultipleChoiceOption.C:
+      return question.CAudio;
+    default:
+      return question.DAudio;
+  }
 };
 
 export {
-  trueFalseFulfullment,
-  endOfCategory,
-  isCorrectAnswer,
-  buildResponse,
+  buildQuestionResponse,
   askNextQuestion,
+  endOfCategory,
+  getTrueFalseFeedback,
+  getMultipleChoiceFeedback,
 };

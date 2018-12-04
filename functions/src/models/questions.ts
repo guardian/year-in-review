@@ -1,21 +1,53 @@
 import { Unknown } from './conversation';
 
 class Question {
+  constructor(public questionAudio: string) {}
+}
+
+class TrueFalseQuestion extends Question {
   constructor(
-    public questionAudio: string,
-    public answer: string,
+    questionAudio: string,
+    public answer: boolean,
     public correctAnswerAudio: string,
-    public incorrectAnswerAudio: string,
-    public questionType: QuestionType
-  ) {}
+    public incorrectAnswerAudio: string
+  ) {
+    super(questionAudio);
+  }
+}
+
+class MultipleChoiceQuestion extends Question {
+  constructor(
+    questionAudio: string,
+    public answer: string,
+    public AAudio: string,
+    public BAudio: string,
+    public CAudio: string,
+    public DAudio: string
+  ) {
+    super(questionAudio);
+  }
+}
+
+class FillInTheBlankQuestion extends Question {
+  constructor(questionAudio: string, public answer: string) {
+    super(questionAudio);
+  }
 }
 
 type OptionQuestion = Question | Unknown;
 
-enum QuestionType {
-  TRUEFALSE,
-  MULTIPLECHOICE,
-  FILLINTHEBLANK,
+enum MultipleChoiceOption {
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
 }
 
-export { Question, OptionQuestion, QuestionType };
+export {
+  Question,
+  OptionQuestion,
+  MultipleChoiceOption,
+  TrueFalseQuestion,
+  MultipleChoiceQuestion,
+  FillInTheBlankQuestion,
+};

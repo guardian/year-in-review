@@ -4,6 +4,11 @@ import {
   Unknown,
 } from '../../models/conversation';
 import {
+  FillInTheBlankQuestion,
+  MultipleChoiceQuestion,
+  TrueFalseQuestion,
+} from '../../models/questions';
+import {
   fillInTheBlankHelp,
   multipleChoiceHelp,
   trueFalseHelp,
@@ -11,14 +16,45 @@ import {
 import {
   getQuestionBasedOnConversationData,
   getQuestionSpecificHelpAudio,
+  questionFulfillment,
   questionHelpFulfillment,
   questionRepromptFulfillment,
 } from '../questionFulfillment';
 
-import { QuestionType } from '../../models/questions';
 import { Topic } from '../../models/rounds';
 import { buildSSMLAndCombineAudioResponses } from '../../responses/ssmlResponses';
 import { unexpectedErrorResponse } from '../../utils/logger';
+
+describe('Question Fulfillment', () => {
+  test('If question number is undefined next question number should be 1 as you must currently be asking question 1', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    const expectedData: ConversationData = {
+      startRepromptIssued: false,
+      currentQuestion: 1,
+      currentTopic: Topic.NEWS,
+    };
+    questionFulfillment('', data);
+    expect(data).toEqual(expectedData);
+  });
+
+  test('If question number is 1 new question number should be 2', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentQuestion: 1,
+      currentTopic: Topic.NEWS,
+    };
+    const expectedData: ConversationData = {
+      startRepromptIssued: false,
+      currentQuestion: 2,
+      currentTopic: Topic.NEWS,
+    };
+    questionFulfillment('', data);
+    expect(data).toEqual(expectedData);
+  });
+});
 
 describe('questionRepromptFulfillment', () => {
   test('If reprompt cannot be fulfilled - no topic return Error Response', () => {
@@ -75,17 +111,20 @@ describe('questionHelpFulfillment', () => {
 
 describe('getQuestionSpecificHelpAudio', () => {
   test('True false question gets true false audio', () => {
-    const response = getQuestionSpecificHelpAudio(QuestionType.TRUEFALSE);
+    const question = new TrueFalseQuestion('', '', '', '');
+    const response = getQuestionSpecificHelpAudio(question);
     expect(response).toEqual(trueFalseHelp);
   });
 
   test('multiple choice question gets multiple choice audio', () => {
-    const response = getQuestionSpecificHelpAudio(QuestionType.MULTIPLECHOICE);
+    const question = new MultipleChoiceQuestion('', '', '', '', '', '');
+    const response = getQuestionSpecificHelpAudio(question);
     expect(response).toEqual(multipleChoiceHelp);
   });
 
   test('fill in the blank question gets fill in the blank audio', () => {
-    const response = getQuestionSpecificHelpAudio(QuestionType.FILLINTHEBLANK);
+    const question = new FillInTheBlankQuestion('', '');
+    const response = getQuestionSpecificHelpAudio(question);
     expect(response).toEqual(fillInTheBlankHelp);
   });
 });
