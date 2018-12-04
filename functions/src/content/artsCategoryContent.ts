@@ -1,4 +1,5 @@
 import {
+  FillInTheBlankQuestion,
   MultipleChoiceQuestion,
   Question,
   TrueFalseQuestion,
@@ -7,9 +8,9 @@ import {
 import { Category } from '../models/categories';
 
 const artsQuestions: Question[] = [
-  new TrueFalseQuestion(
+  new FillInTheBlankQuestion(
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techOpener.mp3',
-    false,
+    'false',
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ1Correct.mp3',
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ1Incorrect.mp3'
   ),

@@ -9,23 +9,155 @@ import {
   TrueFalseQuestion,
 } from '../../models/questions';
 import {
+  buildFillInTheBlankQuestionResponse,
+  buildMultipleChoiceQuestionResponse,
+  buildTrueFalseQuestionResponse,
+} from '../../responses/questionResponses';
+import {
   fillInTheBlankHelp,
   multipleChoiceHelp,
   trueFalseHelp,
 } from '../../content/genericQuestionContent';
 import {
+  fillInTheBlankIncorrectFulfillment,
+  fillInTheBlankQuestionFulfillment,
   getQuestionBasedOnConversationData,
   getQuestionSpecificHelpAudio,
-  questionFulfillment,
+  incrementQuestionNumber,
+  multipleChoiceQuestionFulfillment,
   questionHelpFulfillment,
   questionRepromptFulfillment,
+  trueFalseQuestionFulfillment,
 } from '../questionFulfillment';
 
 import { Topic } from '../../models/rounds';
 import { buildSSMLAndCombineAudioResponses } from '../../responses/ssmlResponses';
+import { fallbackFulfillment } from '../helperFulfillments';
 import { unexpectedErrorResponse } from '../../utils/logger';
 
-describe('Question Fulfillment', () => {
+describe('True False Fulfillment', () => {
+  test('If answer cannot be converted to true or false use fallback response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    const answer = 'grapes';
+    trueFalseQuestionFulfillment(answer, data);
+    expect(fallbackFulfillment).toBeCalled;
+  });
+
+  test('If answer can be converted to true build response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    const answer = 'true';
+    trueFalseQuestionFulfillment(answer, data);
+    expect(buildTrueFalseQuestionResponse).toBeCalled;
+  });
+
+  test('If answer can be converted to false build response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    const answer = 'false';
+    trueFalseQuestionFulfillment(answer, data);
+    expect(buildTrueFalseQuestionResponse).toBeCalled;
+  });
+});
+
+describe('Fill in the blank Fulfillment', () => {
+  test('If question could not be retrieved expect error response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+    };
+    fillInTheBlankQuestionFulfillment('', data);
+    expect(fallbackFulfillment).toBeCalled;
+  });
+
+  test('If question can be retrieved build response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    fillInTheBlankQuestionFulfillment('', data);
+    expect(buildFillInTheBlankQuestionResponse).toBeCalled;
+  });
+});
+
+describe('Fill in the blank incorrect answer Fulfillment', () => {
+  test('If question could not be retrieved expect error response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+    };
+    fillInTheBlankIncorrectFulfillment(data);
+    expect(fallbackFulfillment).toBeCalled;
+  });
+
+  test('If question can be retrieved build response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    fillInTheBlankIncorrectFulfillment(data);
+    expect(fillInTheBlankIncorrectFulfillment).toBeCalled;
+  });
+});
+
+describe('Multiple Choice Fulfillment', () => {
+  test('If answer cannot be converted to A,B,C or D use fallback response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    const answer = 'grapes';
+    multipleChoiceQuestionFulfillment(answer, data);
+    expect(fallbackFulfillment).toBeCalled;
+  });
+
+  test('If answer can be converted to A build response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    const answer = 'A';
+    multipleChoiceQuestionFulfillment(answer, data);
+    expect(buildMultipleChoiceQuestionResponse).toBeCalled;
+  });
+
+  test('If answer can be converted to B build response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    const answer = 'B';
+    multipleChoiceQuestionFulfillment(answer, data);
+    expect(buildMultipleChoiceQuestionResponse).toBeCalled;
+  });
+
+  test('If answer can be converted to C build response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    const answer = 'C';
+    multipleChoiceQuestionFulfillment(answer, data);
+    expect(buildMultipleChoiceQuestionResponse).toBeCalled;
+  });
+
+  test('If answer can be converted to D build response', () => {
+    const data: ConversationData = {
+      startRepromptIssued: false,
+      currentTopic: Topic.NEWS,
+    };
+    const answer = 'D';
+    multipleChoiceQuestionFulfillment(answer, data);
+    expect(buildMultipleChoiceQuestionResponse).toBeCalled;
+  });
+});
+
+describe('Increment Question Number', () => {
   test('If question number is undefined next question number should be 1 as you must currently be asking question 1', () => {
     const data: ConversationData = {
       startRepromptIssued: false,
@@ -36,7 +168,7 @@ describe('Question Fulfillment', () => {
       currentQuestion: 1,
       currentTopic: Topic.NEWS,
     };
-    questionFulfillment('', data);
+    incrementQuestionNumber(data);
     expect(data).toEqual(expectedData);
   });
 
@@ -51,7 +183,7 @@ describe('Question Fulfillment', () => {
       currentQuestion: 2,
       currentTopic: Topic.NEWS,
     };
-    questionFulfillment('', data);
+    incrementQuestionNumber(data);
     expect(data).toEqual(expectedData);
   });
 });
@@ -111,7 +243,7 @@ describe('questionHelpFulfillment', () => {
 
 describe('getQuestionSpecificHelpAudio', () => {
   test('True false question gets true false audio', () => {
-    const question = new TrueFalseQuestion('', '', '', '');
+    const question = new TrueFalseQuestion('', true, '', '');
     const response = getQuestionSpecificHelpAudio(question);
     expect(response).toEqual(trueFalseHelp);
   });
@@ -123,7 +255,7 @@ describe('getQuestionSpecificHelpAudio', () => {
   });
 
   test('fill in the blank question gets fill in the blank audio', () => {
-    const question = new FillInTheBlankQuestion('', '');
+    const question = new FillInTheBlankQuestion('', '', '', '');
     const response = getQuestionSpecificHelpAudio(question);
     expect(response).toEqual(fillInTheBlankHelp);
   });

@@ -1,0 +1,16 @@
+{
+  "id": "1b9c4e7b-90ba-4fba-968f-f1a5e0c0a613",
+  "name": "CRISPR",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "CRISPR",
+      "synonyms": [
+        "CRISPR",
+        "crispr"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

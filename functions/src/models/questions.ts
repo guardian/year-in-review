@@ -29,25 +29,33 @@ class MultipleChoiceQuestion extends Question {
 }
 
 class FillInTheBlankQuestion extends Question {
-  constructor(questionAudio: string, public answer: string) {
+  constructor(
+    questionAudio: string,
+    public answer: string,
+    public correctAnswerAudio: string,
+    public incorrectAnswerAudio: string
+  ) {
     super(questionAudio);
   }
 }
 
 type OptionQuestion = Question | Unknown;
 
-enum MultipleChoiceOption {
+enum MultipleChoice {
   A = 'A',
   B = 'B',
   C = 'C',
   D = 'D',
 }
 
+type OptionMultipleChoice = MultipleChoice | Unknown;
+
 export {
   Question,
   OptionQuestion,
-  MultipleChoiceOption,
+  MultipleChoice,
   TrueFalseQuestion,
   MultipleChoiceQuestion,
   FillInTheBlankQuestion,
+  OptionMultipleChoice,
 };
