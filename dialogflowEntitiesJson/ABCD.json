@@ -1,0 +1,37 @@
+{
+  "id": "3ce08ef3-f4f0-4e3a-a8bc-e8a4968c73d9",
+  "name": "ABCD",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "A",
+      "synonyms": [
+        "A",
+        "a"
+      ]
+    },
+    {
+      "value": "B",
+      "synonyms": [
+        "B",
+        "b"
+      ]
+    },
+    {
+      "value": "C",
+      "synonyms": [
+        "C",
+        "c"
+      ]
+    },
+    {
+      "value": "D",
+      "synonyms": [
+        "D",
+        "d"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

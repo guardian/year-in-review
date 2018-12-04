@@ -102,7 +102,7 @@ const getMultipleChoiceFeedback = (
   question: MultipleChoiceQuestion,
   answer: string
 ): string => {
-  const a: MultipleChoiceOption = answer as MultipleChoiceOption;
+  const a: MultipleChoiceOption = answer.toLocaleUpperCase() as MultipleChoiceOption;
   switch (a) {
     case MultipleChoiceOption.A:
       return question.AAudio;

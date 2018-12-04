@@ -120,7 +120,7 @@ describe('End of category', () => {
   });
 });
 
-describe('Get Feedback for True False Question', () => {
+describe('Feedback for True False Question', () => {
   test("If answers match and the answer is true return 'correct' response", () => {
     const question: TrueFalseQuestion = new TrueFalseQuestion(
       '',
@@ -185,5 +185,59 @@ describe('Get Feedback for True False Question', () => {
     );
     const response = getTrueFalseFeedback(question, 'cat');
     expect(response).toEqual(question.incorrectAnswerAudio);
+  });
+});
+
+describe('Feedback for Multiple Choice Question', () => {
+  test('If answer is A get A Audio', () => {
+    const question: MultipleChoiceQuestion = new MultipleChoiceQuestion(
+      '',
+      '',
+      'AAudio',
+      'BAudio',
+      'CAudio',
+      'DAudio'
+    );
+    const response = getMultipleChoiceFeedback(question, 'A');
+    expect(response).toEqual(question.AAudio);
+  });
+
+  test('If answer is B get B Audio', () => {
+    const question: MultipleChoiceQuestion = new MultipleChoiceQuestion(
+      '',
+      '',
+      'AAudio',
+      'BAudio',
+      'CAudio',
+      'DAudio'
+    );
+    const response = getMultipleChoiceFeedback(question, 'B');
+    expect(response).toEqual(question.BAudio);
+  });
+
+  test('If answer is C get C Audio', () => {
+    const question: MultipleChoiceQuestion = new MultipleChoiceQuestion(
+      '',
+      '',
+      'AAudio',
+      'BAudio',
+      'CAudio',
+      'DAudio'
+    );
+    const response = getMultipleChoiceFeedback(question, 'C');
+    expect(response).toEqual(question.CAudio);
+  });
+
+  test('If answer is D get D Audio', () => {
+    const question: MultipleChoiceQuestion = new MultipleChoiceQuestion(
+      '',
+      '',
+      'AAudio',
+      'BAudio',
+      'CAudio',
+      'DAudio'
+    );
+    const response = getMultipleChoiceFeedback(question, 'D');
+    expect(response).toEqual(question.DAudio);
   });
 });

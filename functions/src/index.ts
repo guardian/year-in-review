@@ -102,6 +102,19 @@ app.intent<{ answer: string }>(
   }
 );
 
+app.intent<{ answer: string }>(
+  'News-Sport Round - multipleChoice',
+  (conv, { answer }) => {
+    const fulfillment = questionFulfillment(answer, conv.data);
+    const response = convertSSMLContainerToString(fulfillment.responseSSML);
+    if (fulfillment.responseType === ResponseType.ASK) {
+      conv.ask(response);
+    } else {
+      conv.close(response);
+    }
+  }
+);
+
 app.intent<{ topicChoice: string }>(
   'Arts-Science Round',
   (conv, { topicChoice }) => {
@@ -117,6 +130,19 @@ app.intent<{ topicChoice: string }>(
 
 app.intent<{ answer: string }>(
   'Arts-Science Round - trueFalse',
+  (conv, { answer }) => {
+    const fulfillment = questionFulfillment(answer, conv.data);
+    const response = convertSSMLContainerToString(fulfillment.responseSSML);
+    if (fulfillment.responseType === ResponseType.ASK) {
+      conv.ask(response);
+    } else {
+      conv.close(response);
+    }
+  }
+);
+
+app.intent<{ answer: string }>(
+  'Arts-Science Round - multipleChoice',
   (conv, { answer }) => {
     const fulfillment = questionFulfillment(answer, conv.data);
     const response = convertSSMLContainerToString(fulfillment.responseSSML);
