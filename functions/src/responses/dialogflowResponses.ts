@@ -20,4 +20,18 @@ const respondBasedOnResponseType = (
   }
 };
 
-export { respondBasedOnResponseType };
+const respondToUserInput = (
+  input: string,
+  conv: DialogflowConversation<ConversationData, {}, Contexts>,
+  f: (input: string, data: ConversationData) => Response
+) => {
+  const fulfillment = f(input, conv.data);
+  const response = convertSSMLContainerToString(fulfillment.responseSSML);
+  if (fulfillment.responseType === ResponseType.ASK) {
+    conv.ask(response);
+  } else {
+    conv.close(response);
+  }
+};
+
+export { respondBasedOnResponseType, respondToUserInput };
