@@ -1,16 +1,26 @@
 import { Category, OptionCategory } from '../models/categories';
 import {
   ConversationData,
+  OptionBoolean,
   Response,
   ResponseType,
   Unknown,
 } from '../models/conversation';
 import {
+  FillInTheBlankQuestion,
+  MultipleChoice,
   MultipleChoiceQuestion,
+  OptionMultipleChoice,
   OptionQuestion,
   Question,
   TrueFalseQuestion,
 } from '../models/questions';
+import {
+  buildFillInTheBlankIncorrectResponse,
+  buildFillInTheBlankQuestionResponse,
+  buildMultipleChoiceQuestionResponse,
+  buildTrueFalseQuestionResponse,
+} from '../responses/questionResponses';
 import {
   fillInTheBlankHelp,
   multipleChoiceHelp,
@@ -18,20 +28,123 @@ import {
 } from '../content/genericQuestionContent';
 
 import { OptionTopic } from '../models/rounds';
-import { buildQuestionResponse } from '../responses/questionResponses';
 import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
+import { fallbackFulfillment } from './helperFulfillments';
 import { unexpectedErrorResponse } from '../utils/logger';
 
-const questionFulfillment = (
+const trueFalseQuestionFulfillment = (
   answer: string,
   data: ConversationData
 ): Response => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
-  incrementQuestionNumber(data);
-  const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(data);
+  const typedAnswer: OptionBoolean = convertStringToBoolean(answer);
+  if (
+    question instanceof TrueFalseQuestion &&
+    typeof typedAnswer === 'boolean'
+  ) {
+    incrementQuestionNumber(data);
+    const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(
+      data
+    );
+    return buildTrueFalseQuestionResponse(
+      data,
+      question,
+      nextQuestion,
+      typedAnswer
+    );
+  } else {
+    return fallbackFulfillment(data);
+  }
+};
 
-  return buildQuestionResponse(data, question, nextQuestion, answer);
+const convertStringToBoolean = (s: string): OptionBoolean => {
+  if (s.toLowerCase() === 'true') {
+    return true;
+  }
+  if (s.toLowerCase() === 'false') {
+    return false;
+  } else {
+    return new Unknown('could not convert string to boolean');
+  }
+};
+
+const multipleChoiceQuestionFulfillment = (
+  answer: string,
+  data: ConversationData
+): Response => {
+  const question: OptionQuestion = getQuestionBasedOnConversationData(data);
+  const typedAnswer: OptionMultipleChoice = convertStringToMultipleChoice(
+    answer
+  );
+  if (
+    question instanceof MultipleChoiceQuestion &&
+    !(typedAnswer instanceof Unknown)
+  ) {
+    incrementQuestionNumber(data);
+    const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(
+      data
+    );
+    return buildMultipleChoiceQuestionResponse(
+      data,
+      question,
+      nextQuestion,
+      typedAnswer
+    );
+  } else {
+    return fallbackFulfillment(data);
+  }
+};
+
+const convertStringToMultipleChoice = (s: string): OptionMultipleChoice => {
+  if (s.toUpperCase() === 'A') {
+    return MultipleChoice.A;
+  }
+  if (s.toUpperCase() === 'B') {
+    return MultipleChoice.B;
+  }
+  if (s.toUpperCase() === 'C') {
+    return MultipleChoice.C;
+  }
+  if (s.toUpperCase() === 'D') {
+    return MultipleChoice.D;
+  } else {
+    return new Unknown('Could not convert string to multiple choice');
+  }
+};
+
+const fillInTheBlankQuestionFulfillment = (
+  answer: string,
+  data: ConversationData
+): Response => {
+  const question: OptionQuestion = getQuestionBasedOnConversationData(data);
+  if (question instanceof FillInTheBlankQuestion) {
+    incrementQuestionNumber(data);
+    const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(
+      data
+    );
+    return buildFillInTheBlankQuestionResponse(
+      data,
+      question,
+      nextQuestion,
+      answer
+    );
+  } else {
+    return fallbackFulfillment(data);
+  }
+};
+
+const fillInTheBlankIncorrectFulfillment = (data: ConversationData) => {
+  const question: OptionQuestion = getQuestionBasedOnConversationData(data);
+  if (question instanceof FillInTheBlankQuestion) {
+    incrementQuestionNumber(data);
+    const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(
+      data
+    );
+    return buildFillInTheBlankIncorrectResponse(data, question, nextQuestion);
+  } else {
+    return fallbackFulfillment(data);
+  }
 };
 
 const incrementQuestionNumber = (data: ConversationData): void => {
@@ -106,10 +219,14 @@ const getQuestionBasedOnConversationData = (
 };
 
 export {
-  questionFulfillment,
   questionRepromptFulfillment,
   getQuestionBasedOnConversationData,
   getTopic,
   questionHelpFulfillment,
   getQuestionSpecificHelpAudio,
+  fillInTheBlankIncorrectFulfillment,
+  trueFalseQuestionFulfillment,
+  multipleChoiceQuestionFulfillment,
+  fillInTheBlankQuestionFulfillment,
+  incrementQuestionNumber,
 };

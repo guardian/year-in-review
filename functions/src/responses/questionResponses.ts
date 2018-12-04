@@ -6,7 +6,8 @@ import {
   Unknown,
 } from '../models/conversation';
 import {
-  MultipleChoiceOption,
+  FillInTheBlankQuestion,
+  MultipleChoice,
   MultipleChoiceQuestion,
   OptionQuestion,
   Question,
@@ -23,31 +24,66 @@ import { Container } from 'fluent-ssml';
 import { categories } from '../content/categoryContent';
 import { chooseRound } from '../fulfillments/roundFulfillment';
 import { getTopic } from '../fulfillments/questionFulfillment';
-import { unexpectedErrorResponse } from '../utils/logger';
 
-const buildQuestionResponse = (
+const buildFillInTheBlankQuestionResponse = (
   data: ConversationData,
-  currentQuestion: OptionQuestion,
+  currentQuestion: FillInTheBlankQuestion,
   nextQuestion: OptionQuestion,
   answer: string
 ): Response => {
-  if (currentQuestion instanceof Question && nextQuestion instanceof Question) {
-    return askNextQuestion(currentQuestion, nextQuestion, answer);
+  const feedbackAudio = getFillInTheBlankFeedback(currentQuestion, answer);
+  if (nextQuestion instanceof Question) {
+    return askNextQuestion(nextQuestion, feedbackAudio);
+  } else {
+    return endOfCategory(data, feedbackAudio);
   }
-  if (currentQuestion instanceof Question && nextQuestion instanceof Unknown) {
-    return endOfCategory(data, currentQuestion, answer);
+};
+
+const buildTrueFalseQuestionResponse = (
+  data: ConversationData,
+  currentQuestion: TrueFalseQuestion,
+  nextQuestion: OptionQuestion,
+  answer: boolean
+): Response => {
+  const feedbackAudio = getTrueFalseFeedback(currentQuestion, answer);
+  if (nextQuestion instanceof Question) {
+    return askNextQuestion(nextQuestion, feedbackAudio);
+  } else {
+    return endOfCategory(data, feedbackAudio);
   }
-  return unexpectedErrorResponse(
-    `Unable to build response for current question ${currentQuestion}, next question ${nextQuestion} using conversation data ${data}.`
-  );
+};
+
+const buildMultipleChoiceQuestionResponse = (
+  data: ConversationData,
+  currentQuestion: MultipleChoiceQuestion,
+  nextQuestion: OptionQuestion,
+  answer: MultipleChoice
+): Response => {
+  const feedbackAudio = getMultipleChoiceFeedback(currentQuestion, answer);
+  if (nextQuestion instanceof Question) {
+    return askNextQuestion(nextQuestion, feedbackAudio);
+  } else {
+    return endOfCategory(data, feedbackAudio);
+  }
+};
+
+const buildFillInTheBlankIncorrectResponse = (
+  data: ConversationData,
+  currentQuestion: FillInTheBlankQuestion,
+  nextQuestion: OptionQuestion
+) => {
+  const feedbackAudio = currentQuestion.incorrectAnswerAudio;
+  if (nextQuestion instanceof Question) {
+    return askNextQuestion(nextQuestion, feedbackAudio);
+  } else {
+    return endOfCategory(data, feedbackAudio);
+  }
 };
 
 const askNextQuestion = (
-  currentQuestion: Question,
   nextQuestion: Question,
-  answer: string
+  feedbackAudio: string
 ): Response => {
-  const feedbackAudio = getFeedbackAudio(currentQuestion, answer);
   const nextQuestionAudio = nextQuestion.questionAudio;
   return new Response(
     ResponseType.ASK,
@@ -57,13 +93,11 @@ const askNextQuestion = (
 
 const endOfCategory = (
   data: ConversationData,
-  question: Question,
-  answer: string
+  feedbackAudio: string
 ): Response => {
   const endOfCategoryAudio: Container = getEndOfCategoryAudio(
     data,
-    question,
-    answer
+    feedbackAudio
   );
   const nextRound: Response = chooseRound(data);
   removeTopicFromConversationData(data);
@@ -79,15 +113,13 @@ const removeTopicFromConversationData = (data: ConversationData): void => {
 
 const getEndOfCategoryAudio = (
   data: ConversationData,
-  question: Question,
-  answer: string
+  feedbackAudio: string
 ): Container => {
-  const feedback = getFeedbackAudio(question, answer);
   const teaser = getTeaserAudioForCategory(data);
   if (teaser instanceof Unknown) {
-    return buildSSMLAudioResponse(feedback);
+    return buildSSMLAudioResponse(feedbackAudio);
   } else {
-    return buildSSMLAndCombineAudioResponses(feedback, teaser);
+    return buildSSMLAndCombineAudioResponses(feedbackAudio, teaser);
   }
 };
 
@@ -105,54 +137,47 @@ const getTeaserAudioForCategory = (data: ConversationData): OptionString => {
   }
 };
 
-const getFeedbackAudio = (question: Question, answer: string): string => {
-  if (question instanceof TrueFalseQuestion) {
-    return getTrueFalseFeedback(question, answer);
-  }
-  if (question instanceof MultipleChoiceQuestion) {
-    return getMultipleChoiceFeedback(question, answer);
-  } else {
-    // tslint:disable-next-line:no-console
-    console.log('Unexpected question type');
-    return '';
-  }
-};
-
 const getTrueFalseFeedback = (
   question: TrueFalseQuestion,
-  answer: string
+  answer: boolean
 ): string => {
-  if (
-    (answer.toLowerCase() === 'false' && !question.answer) ||
-    (answer.toLowerCase() === 'true' && question.answer)
-  ) {
-    return question.correctAnswerAudio;
-  } else {
-    return question.incorrectAnswerAudio;
-  }
+  return answer === question.answer
+    ? question.correctAnswerAudio
+    : question.incorrectAnswerAudio;
 };
 
 const getMultipleChoiceFeedback = (
   question: MultipleChoiceQuestion,
-  answer: string
+  answer: MultipleChoice
 ): string => {
-  const a: MultipleChoiceOption = answer.toLocaleUpperCase() as MultipleChoiceOption;
-  switch (a) {
-    case MultipleChoiceOption.A:
+  switch (answer) {
+    case MultipleChoice.A:
       return question.AAudio;
-    case MultipleChoiceOption.B:
+    case MultipleChoice.B:
       return question.BAudio;
-    case MultipleChoiceOption.C:
+    case MultipleChoice.C:
       return question.CAudio;
     default:
       return question.DAudio;
   }
 };
 
+const getFillInTheBlankFeedback = (
+  question: FillInTheBlankQuestion,
+  answer: string
+) => {
+  return answer === question.answer
+    ? question.correctAnswerAudio
+    : question.incorrectAnswerAudio;
+};
+
 export {
-  buildQuestionResponse,
+  buildTrueFalseQuestionResponse,
+  buildMultipleChoiceQuestionResponse,
   askNextQuestion,
   endOfCategory,
   getTrueFalseFeedback,
   getMultipleChoiceFeedback,
+  buildFillInTheBlankQuestionResponse,
+  buildFillInTheBlankIncorrectResponse,
 };

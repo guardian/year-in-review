@@ -1,15 +1,16 @@
+import { ConversationData, Unknown } from '../../models/conversation';
 import {
-  ConversationData,
-  ResponseType,
-  Unknown,
-} from '../../models/conversation';
-import {
+  FillInTheBlankQuestion,
+  MultipleChoice,
   MultipleChoiceQuestion,
   TrueFalseQuestion,
 } from '../../models/questions';
 import {
   askNextQuestion,
-  buildQuestionResponse,
+  buildFillInTheBlankIncorrectResponse,
+  buildFillInTheBlankQuestionResponse,
+  buildMultipleChoiceQuestionResponse,
+  buildTrueFalseQuestionResponse,
   endOfCategory,
   getMultipleChoiceFeedback,
   getTrueFalseFeedback,
@@ -19,42 +20,59 @@ import { Category } from '../../models/categories';
 import { Topic } from '../../models/rounds';
 import { categories } from '../../content/categoryContent';
 import { convertSSMLContainerToString } from '../ssmlResponses';
-import { unexpectedErrorResponse } from '../../utils/logger';
 
-describe('Build question response', () => {
-  test('If there is no current question but a next question return an error response', () => {
+describe('Build fill in the blank question response', () => {
+  test('If there is a current question and a next question askNextQuestion', () => {
     const data = { startRepromptIssued: true };
-    const currentQuestion = new Unknown('error');
-    const nextQuestion = new TrueFalseQuestion('', false, '', '');
-    const response = buildQuestionResponse(
+    const currentQuestion = new FillInTheBlankQuestion('', 'false', '', '');
+    const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    buildFillInTheBlankQuestionResponse(
       data,
       currentQuestion,
       nextQuestion,
       'true'
     );
-    expect(response.responseType).toEqual(ResponseType.CLOSE);
-    expect(unexpectedErrorResponse).toBeCalled;
+    expect(askNextQuestion).toBeCalled;
   });
 
-  test('If there is no current question and no next question return an error', () => {
+  test('If there is a current question and no next question call endOfCategory', () => {
     const data = { startRepromptIssued: true };
-    const currentQuestion = new Unknown('error');
+    const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     const nextQuestion = new Unknown('error');
-    const response = buildQuestionResponse(
+    buildFillInTheBlankQuestionResponse(
       data,
       currentQuestion,
       nextQuestion,
       'true'
     );
-    expect(response.responseType).toEqual(ResponseType.CLOSE);
-    expect(unexpectedErrorResponse).toBeCalled;
+    expect(endOfCategory).toBeCalled;
+  });
+});
+
+describe('Build fill in the blank incorrect question response', () => {
+  test('If there is a current question and a next question askNextQuestion', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new FillInTheBlankQuestion('', 'false', '', '');
+    const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    buildFillInTheBlankIncorrectResponse(data, currentQuestion, nextQuestion);
+    expect(askNextQuestion).toBeCalled;
   });
 
+  test('If there is a current question and no next question call endOfCategory', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    const nextQuestion = new Unknown('error');
+    buildFillInTheBlankIncorrectResponse(data, currentQuestion, nextQuestion);
+    expect(endOfCategory).toBeCalled;
+  });
+});
+
+describe('Build true false question response', () => {
   test('If there is a current question and a next question askNextQuestion', () => {
     const data = { startRepromptIssued: true };
     const currentQuestion = new TrueFalseQuestion('', false, '', '');
-    const nextQuestion = new TrueFalseQuestion('', true, '', '');
-    buildQuestionResponse(data, currentQuestion, nextQuestion, 'true');
+    const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    buildTrueFalseQuestionResponse(data, currentQuestion, nextQuestion, true);
     expect(askNextQuestion).toBeCalled;
   });
 
@@ -62,7 +80,35 @@ describe('Build question response', () => {
     const data = { startRepromptIssued: true };
     const currentQuestion = new TrueFalseQuestion('', true, '', '');
     const nextQuestion = new Unknown('error');
-    buildQuestionResponse(data, currentQuestion, nextQuestion, 'true');
+    buildTrueFalseQuestionResponse(data, currentQuestion, nextQuestion, true);
+    expect(endOfCategory).toBeCalled;
+  });
+});
+
+describe('Build multiple choice question response', () => {
+  test('If there is a current question and a next question askNextQuestion', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new MultipleChoiceQuestion('', '', '', '', '', '');
+    const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    buildMultipleChoiceQuestionResponse(
+      data,
+      currentQuestion,
+      nextQuestion,
+      MultipleChoice.A
+    );
+    expect(askNextQuestion).toBeCalled;
+  });
+
+  test('If there is a current question and no next question call endOfCategory', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new MultipleChoiceQuestion('', '', '', '', '', '');
+    const nextQuestion = new Unknown('error');
+    buildMultipleChoiceQuestionResponse(
+      data,
+      currentQuestion,
+      nextQuestion,
+      MultipleChoice.B
+    );
     expect(endOfCategory).toBeCalled;
   });
 });
@@ -74,10 +120,9 @@ describe('End of category', () => {
       startRepromptIssued: true,
       currentTopic: topic,
     };
-    const question = new TrueFalseQuestion('', false, '', '');
     const category = categories.getCategory(topic);
     if (category instanceof Category) {
-      const response = endOfCategory(data, question, 'true');
+      const response = endOfCategory(data, 'feedbackAudio');
       const ssml = convertSSMLContainerToString(response.responseSSML);
       expect(ssml).toContain(category.teaserAudio);
     }
@@ -88,53 +133,12 @@ describe('End of category', () => {
       startRepromptIssued: true,
       currentTopic: Topic.NEWS,
     };
-    const question: TrueFalseQuestion = new TrueFalseQuestion(
-      '',
-      true,
-      'correctAudio',
-      'incorrectAudio'
-    );
-    const answer = 'false';
-    endOfCategory(data, question, answer);
+    endOfCategory(data, 'feedbackAudio');
     const expectedData: ConversationData = {
       startRepromptIssued: true,
       currentRound: 1,
     };
     expect(data).toEqual(expectedData);
-  });
-
-  test('True False Feedback should be used to check a true false question', () => {
-    const data: ConversationData = {
-      startRepromptIssued: true,
-      currentTopic: Topic.NEWS,
-    };
-    const question: TrueFalseQuestion = new TrueFalseQuestion(
-      '',
-      true,
-      'correctAudio',
-      'incorrectAudio'
-    );
-    const answer = 'false';
-    endOfCategory(data, question, answer);
-    expect(getTrueFalseFeedback).toBeCalled;
-  });
-
-  test('Multiple Choice Feedback should be used to check a Multiple Choice question', () => {
-    const data: ConversationData = {
-      startRepromptIssued: true,
-      currentTopic: Topic.NEWS,
-    };
-    const question: MultipleChoiceQuestion = new MultipleChoiceQuestion(
-      '',
-      'a',
-      'correctAudio',
-      'incorrectAudio',
-      'incorrectAudio',
-      'incorrectAudio'
-    );
-    const answer = 'false';
-    endOfCategory(data, question, answer);
-    expect(getMultipleChoiceFeedback).toBeCalled;
   });
 });
 
@@ -146,7 +150,7 @@ describe('Feedback for True False Question', () => {
       'correct',
       'incorrect'
     );
-    const response = getTrueFalseFeedback(question, 'true');
+    const response = getTrueFalseFeedback(question, true);
     expect(response).toEqual(question.correctAnswerAudio);
   });
 
@@ -157,7 +161,7 @@ describe('Feedback for True False Question', () => {
       'correct',
       'incorrect'
     );
-    const response = getTrueFalseFeedback(question, 'false');
+    const response = getTrueFalseFeedback(question, false);
     expect(response).toEqual(question.correctAnswerAudio);
   });
 
@@ -168,7 +172,7 @@ describe('Feedback for True False Question', () => {
       'correct',
       'incorrect'
     );
-    const response = getTrueFalseFeedback(question, 'true');
+    const response = getTrueFalseFeedback(question, true);
     expect(response).toEqual(question.incorrectAnswerAudio);
   });
 
@@ -179,29 +183,7 @@ describe('Feedback for True False Question', () => {
       'correct',
       'incorrect'
     );
-    const response = getTrueFalseFeedback(question, 'false');
-    expect(response).toEqual(question.incorrectAnswerAudio);
-  });
-
-  test("If answer is an unexpected string and the answer is true return 'incorrect' response", () => {
-    const question: TrueFalseQuestion = new TrueFalseQuestion(
-      '',
-      true,
-      'correct',
-      'incorrect'
-    );
-    const response = getTrueFalseFeedback(question, 'cat');
-    expect(response).toEqual(question.incorrectAnswerAudio);
-  });
-
-  test("If answer is an unexpected string and the answer is false return 'incorrect' response", () => {
-    const question: TrueFalseQuestion = new TrueFalseQuestion(
-      '',
-      false,
-      'correct',
-      'incorrect'
-    );
-    const response = getTrueFalseFeedback(question, 'cat');
+    const response = getTrueFalseFeedback(question, false);
     expect(response).toEqual(question.incorrectAnswerAudio);
   });
 });
@@ -216,7 +198,7 @@ describe('Feedback for Multiple Choice Question', () => {
       'CAudio',
       'DAudio'
     );
-    const response = getMultipleChoiceFeedback(question, 'A');
+    const response = getMultipleChoiceFeedback(question, MultipleChoice.A);
     expect(response).toEqual(question.AAudio);
   });
 
@@ -229,7 +211,7 @@ describe('Feedback for Multiple Choice Question', () => {
       'CAudio',
       'DAudio'
     );
-    const response = getMultipleChoiceFeedback(question, 'B');
+    const response = getMultipleChoiceFeedback(question, MultipleChoice.B);
     expect(response).toEqual(question.BAudio);
   });
 
@@ -242,7 +224,7 @@ describe('Feedback for Multiple Choice Question', () => {
       'CAudio',
       'DAudio'
     );
-    const response = getMultipleChoiceFeedback(question, 'C');
+    const response = getMultipleChoiceFeedback(question, MultipleChoice.C);
     expect(response).toEqual(question.CAudio);
   });
 
@@ -255,7 +237,7 @@ describe('Feedback for Multiple Choice Question', () => {
       'CAudio',
       'DAudio'
     );
-    const response = getMultipleChoiceFeedback(question, 'D');
+    const response = getMultipleChoiceFeedback(question, MultipleChoice.D);
     expect(response).toEqual(question.DAudio);
   });
 });

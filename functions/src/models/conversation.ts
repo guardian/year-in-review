@@ -26,4 +26,13 @@ class Response {
 
 type OptionString = string | Unknown;
 
-export { ConversationData, Unknown, Response, ResponseType, OptionString };
+type OptionBoolean = boolean | unknown;
+
+export {
+  ConversationData,
+  Unknown,
+  Response,
+  ResponseType,
+  OptionString,
+  OptionBoolean,
+};

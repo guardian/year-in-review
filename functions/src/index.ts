@@ -14,6 +14,12 @@ import {
   repeatFulfillment,
 } from './fulfillments/helperFulfillments';
 import {
+  fillInTheBlankIncorrectFulfillment,
+  fillInTheBlankQuestionFulfillment,
+  multipleChoiceQuestionFulfillment,
+  trueFalseQuestionFulfillment,
+} from './fulfillments/questionFulfillment';
+import {
   respondBasedOnResponseType,
   respondToUserInput,
 } from './responses/dialogflowResponses';
@@ -21,7 +27,6 @@ import {
 import { ConversationData } from './models/conversation';
 import { convertSSMLContainerToString } from './responses/ssmlResponses';
 import { dialogflow } from 'actions-on-google';
-import { questionFulfillment } from './fulfillments/questionFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 
 const app = dialogflow<ConversationData, {}>({
@@ -89,14 +94,14 @@ app.intent<{ topicChoice: string }>(
 app.intent<{ answer: string }>(
   'News-Sport Round - trueFalse',
   (conv, { answer }) => {
-    respondToUserInput(answer, conv, questionFulfillment);
+    respondToUserInput(answer, conv, trueFalseQuestionFulfillment);
   }
 );
 
 app.intent<{ answer: string }>(
   'News-Sport Round - multipleChoice',
   (conv, { answer }) => {
-    respondToUserInput(answer, conv, questionFulfillment);
+    respondToUserInput(answer, conv, multipleChoiceQuestionFulfillment);
   }
 );
 
@@ -110,16 +115,27 @@ app.intent<{ topicChoice: string }>(
 app.intent<{ answer: string }>(
   'Arts-Science Round - trueFalse',
   (conv, { answer }) => {
-    respondToUserInput(answer, conv, questionFulfillment);
+    respondToUserInput(answer, conv, trueFalseQuestionFulfillment);
   }
 );
 
 app.intent<{ answer: string }>(
   'Arts-Science Round - multipleChoice',
   (conv, { answer }) => {
-    respondToUserInput(answer, conv, questionFulfillment);
+    respondToUserInput(answer, conv, multipleChoiceQuestionFulfillment);
   }
 );
+
+app.intent<{ crispr: string }>(
+  'Arts-Science Round - CRISPRQuestion',
+  (conv, { crispr }) => {
+    respondToUserInput(crispr, conv, fillInTheBlankQuestionFulfillment);
+  }
+);
+
+app.intent('Arts-Science Round - fallback', conv => {
+  respondBasedOnResponseType(fillInTheBlankIncorrectFulfillment, conv);
+});
 
 app.intent('Quit App', conv => {
   const response = convertSSMLContainerToString(doNotPlayFulfillment());

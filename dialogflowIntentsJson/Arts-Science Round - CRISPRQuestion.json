@@ -1,0 +1,116 @@
+{
+  "id": "4b30d2bb-0f37-4235-a1e0-bd334cc414ea",
+  "parentId": "b88efddf-92aa-41d4-91d5-71610b513496",
+  "rootParentId": "b88efddf-92aa-41d4-91d5-71610b513496",
+  "name": "Arts-Science Round - CRISPRQuestion",
+  "auto": true,
+  "contexts": [
+    "Arts-ScienceRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "Arts-ScienceRound.Arts-ScienceRound-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "c0c13a86-b2eb-4a00-9561-635e33692b9e",
+          "required": true,
+          "dataType": "@CRISPR",
+          "name": "crispr",
+          "value": "$crispr",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1543955276,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "7401773f-7757-4036-a7da-ede72486ef16",
+      "data": [
+        {
+          "text": "the answer is "
+        },
+        {
+          "text": "crispr",
+          "alias": "crispr",
+          "meta": "@CRISPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543955276,
+      "isAuto": false
+    },
+    {
+      "id": "af42b03c-c482-427e-a3c1-942c1ec67071",
+      "data": [
+        {
+          "text": "Wasn't it "
+        },
+        {
+          "text": "crispr",
+          "alias": "crispr",
+          "meta": "@CRISPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543955276,
+      "isAuto": false
+    },
+    {
+      "id": "3314e339-a361-4e9c-8f7a-16e34c304939",
+      "data": [
+        {
+          "text": "It's "
+        },
+        {
+          "text": "crispr",
+          "alias": "crispr",
+          "meta": "@CRISPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543955276,
+      "isAuto": false
+    },
+    {
+      "id": "0ec7abbf-fe62-4ad5-bd6b-8a6767fe4cce",
+      "data": [
+        {
+          "text": "CRISPR",
+          "alias": "crispr",
+          "meta": "@CRISPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 2,
+      "updated": 1543955276,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

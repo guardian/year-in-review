@@ -18,7 +18,9 @@ const scienceQuestions: Question[] = [
   ),
   new FillInTheBlankQuestion(
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2.mp3',
-    'true'
+    'CRISPR',
+    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Correct.mp3',
+    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Incorrect.mp3'
   ),
   new TrueFalseQuestion(
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2.mp3',
