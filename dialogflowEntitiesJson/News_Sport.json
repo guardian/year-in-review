@@ -1,0 +1,23 @@
+{
+  "id": "5ad7fb8e-bad2-4103-9eec-53dcc5791450",
+  "name": "News_Sport",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "news",
+      "synonyms": [
+        "news",
+        "global news"
+      ]
+    },
+    {
+      "value": "sport",
+      "synonyms": [
+        "sport",
+        "sports"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

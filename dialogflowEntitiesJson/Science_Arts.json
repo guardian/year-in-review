@@ -1,0 +1,23 @@
+{
+  "id": "327a0e6e-4900-41f8-83a4-3f58a81ae90e",
+  "name": "Science_Arts",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "science",
+      "synonyms": [
+        "science",
+        "sciences"
+      ]
+    },
+    {
+      "value": "arts",
+      "synonyms": [
+        "arts",
+        "art"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}
