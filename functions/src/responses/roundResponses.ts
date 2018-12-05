@@ -23,7 +23,7 @@ const roundHelperResponse = (
       buildSSMLAudioResponse(getAudio(round))
     );
   } else {
-    return new Response(ResponseType.CLOSE, gameOver());
+    return new Response(ResponseType.CLOSE, gameOver(data));
   }
 };
 
