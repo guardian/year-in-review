@@ -1,8 +1,13 @@
+import { endOfGameAudio, quitAudio } from '../content/endOfGameContent';
+
 import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
-import { endOfGameAudio } from '../content/endOfGameContent';
 
 const gameOver = () => {
   return buildSSMLAudioResponse(endOfGameAudio);
 };
 
-export { gameOver };
+const quit = () => {
+  return buildSSMLAudioResponse(quitAudio);
+};
+
+export { gameOver, quit };

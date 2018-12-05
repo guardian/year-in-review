@@ -27,6 +27,7 @@ import {
 import { ConversationData } from './models/conversation';
 import { convertSSMLContainerToString } from './responses/ssmlResponses';
 import { dialogflow } from 'actions-on-google';
+import { quit } from './fulfillments/endOfGameFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 
 const app = dialogflow<ConversationData, {}>({
@@ -138,7 +139,7 @@ app.intent('Arts-Science Round - fallback', conv => {
 });
 
 app.intent('Quit App', conv => {
-  const response = convertSSMLContainerToString(doNotPlayFulfillment());
+  const response = convertSSMLContainerToString(quit());
   conv.close(response);
 });
 
