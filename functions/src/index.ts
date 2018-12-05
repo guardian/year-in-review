@@ -134,6 +134,13 @@ app.intent<{ crispr: string }>(
   }
 );
 
+app.intent<{ gambino: string }>(
+  'Arts-Science Round - GambinoQuestion',
+  (conv, { gambino }) => {
+    respondToUserInput(gambino, conv, fillInTheBlankQuestionFulfillment);
+  }
+);
+
 app.intent('Arts-Science Round - fallback', conv => {
   respondBasedOnResponseType(fillInTheBlankIncorrectFulfillment, conv);
 });
