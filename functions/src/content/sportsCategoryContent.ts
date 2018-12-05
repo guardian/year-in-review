@@ -1,4 +1,5 @@
 import {
+  MultipleChoice,
   MultipleChoiceQuestion,
   Question,
   TrueFalseQuestion,
@@ -15,11 +16,11 @@ const sportsQuestions: Question[] = [
   ),
   new MultipleChoiceQuestion(
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2.mp3',
-    'true',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Correct.mp3',
+    MultipleChoice.D,
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3',
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3'
+    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3',
+    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Correct.mp3'
   ),
   new TrueFalseQuestion(
     'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2.mp3',
