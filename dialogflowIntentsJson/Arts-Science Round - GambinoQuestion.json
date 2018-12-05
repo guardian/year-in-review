@@ -1,0 +1,116 @@
+{
+  "id": "9253a6b0-da5e-4341-a55c-1f5c8e8faa83",
+  "parentId": "b88efddf-92aa-41d4-91d5-71610b513496",
+  "rootParentId": "b88efddf-92aa-41d4-91d5-71610b513496",
+  "name": "Arts-Science Round - GambinoQuestion",
+  "auto": true,
+  "contexts": [
+    "Arts-ScienceRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "Arts-ScienceRound.Arts-ScienceRound-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "fdbda2b2-651b-4000-ab6d-a36f67326796",
+          "required": true,
+          "dataType": "@GAMBINO",
+          "name": "gambino",
+          "value": "$gambino",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1544022181,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "274b6b8c-5d87-4b37-a982-55b46492b3e6",
+      "data": [
+        {
+          "text": "wasn't it "
+        },
+        {
+          "text": "gambino",
+          "alias": "gambino",
+          "meta": "@GAMBINO",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544021972,
+      "isAuto": false
+    },
+    {
+      "id": "20fba17a-38b2-433d-b6e0-2fa951422a98",
+      "data": [
+        {
+          "text": "childish",
+          "alias": "gambino",
+          "meta": "@GAMBINO",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544021972,
+      "isAuto": false
+    },
+    {
+      "id": "3b629500-f1cb-446e-9d5b-5b146fdce3d7",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "gambino",
+          "alias": "gambino",
+          "meta": "@GAMBINO",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544021972,
+      "isAuto": false
+    },
+    {
+      "id": "d18dc0c0-818c-413d-b709-a9456fcd957c",
+      "data": [
+        {
+          "text": "It's "
+        },
+        {
+          "text": "childish gambino",
+          "alias": "gambino",
+          "meta": "@GAMBINO",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544021972,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}
