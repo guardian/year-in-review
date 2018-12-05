@@ -16,7 +16,7 @@ import {
   TrueFalseQuestion,
 } from '../models/questions';
 import {
-  buildFillInTheBlankIncorrectResponse,
+  buildFillInTheBlankQuestionIncorrectResponse,
   buildFillInTheBlankQuestionResponse,
   buildMultipleChoiceQuestionResponse,
   buildTrueFalseQuestionResponse,
@@ -141,7 +141,11 @@ const fillInTheBlankIncorrectFulfillment = (data: ConversationData) => {
     const nextQuestion: OptionQuestion = getQuestionBasedOnConversationData(
       data
     );
-    return buildFillInTheBlankIncorrectResponse(data, question, nextQuestion);
+    return buildFillInTheBlankQuestionIncorrectResponse(
+      data,
+      question,
+      nextQuestion
+    );
   } else {
     return fallbackFulfillment(data);
   }

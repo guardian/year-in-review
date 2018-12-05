@@ -31,6 +31,7 @@ const buildFillInTheBlankQuestionResponse = (
   nextQuestion: OptionQuestion,
   answer: string
 ): Response => {
+  updateScore(isFillInTheBlankCorrect(currentQuestion, answer), data);
   const feedbackAudio = getFillInTheBlankFeedback(currentQuestion, answer);
   if (nextQuestion instanceof Question) {
     return askNextQuestion(nextQuestion, feedbackAudio);
@@ -45,6 +46,7 @@ const buildTrueFalseQuestionResponse = (
   nextQuestion: OptionQuestion,
   answer: boolean
 ): Response => {
+  updateScore(isTrueFalseCorrect(currentQuestion, answer), data);
   const feedbackAudio = getTrueFalseFeedback(currentQuestion, answer);
   if (nextQuestion instanceof Question) {
     return askNextQuestion(nextQuestion, feedbackAudio);
@@ -59,6 +61,7 @@ const buildMultipleChoiceQuestionResponse = (
   nextQuestion: OptionQuestion,
   answer: MultipleChoice
 ): Response => {
+  updateScore(isMultipleChoiceCorrect(currentQuestion, answer), data);
   const feedbackAudio = getMultipleChoiceFeedback(currentQuestion, answer);
   if (nextQuestion instanceof Question) {
     return askNextQuestion(nextQuestion, feedbackAudio);
@@ -67,11 +70,12 @@ const buildMultipleChoiceQuestionResponse = (
   }
 };
 
-const buildFillInTheBlankIncorrectResponse = (
+const buildFillInTheBlankQuestionIncorrectResponse = (
   data: ConversationData,
   currentQuestion: FillInTheBlankQuestion,
   nextQuestion: OptionQuestion
 ) => {
+  updateScore(false, data);
   const feedbackAudio = currentQuestion.incorrectAnswerAudio;
   if (nextQuestion instanceof Question) {
     return askNextQuestion(nextQuestion, feedbackAudio);
@@ -171,6 +175,36 @@ const getFillInTheBlankFeedback = (
     : question.incorrectAnswerAudio;
 };
 
+const isTrueFalseCorrect = (
+  question: TrueFalseQuestion,
+  answer: boolean
+): boolean => {
+  return answer === question.answer;
+};
+
+const isMultipleChoiceCorrect = (
+  question: MultipleChoiceQuestion,
+  answer: MultipleChoice
+): boolean => {
+  return answer === question.answer;
+};
+
+const isFillInTheBlankCorrect = (
+  question: FillInTheBlankQuestion,
+  answer: string
+): boolean => {
+  return answer === question.answer;
+};
+
+const updateScore = (isCorrect: boolean, data: ConversationData): void => {
+  const tally = data.numberOfQuestionsAnswered || 0;
+  data.numberOfQuestionsAnswered = tally + 1;
+  if (isCorrect) {
+    const score = data.score || 0;
+    data.score = score + 1;
+  }
+};
+
 export {
   buildTrueFalseQuestionResponse,
   buildMultipleChoiceQuestionResponse,
@@ -179,5 +213,5 @@ export {
   getTrueFalseFeedback,
   getMultipleChoiceFeedback,
   buildFillInTheBlankQuestionResponse,
-  buildFillInTheBlankIncorrectResponse,
+  buildFillInTheBlankQuestionIncorrectResponse,
 };

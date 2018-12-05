@@ -18,7 +18,7 @@ class TrueFalseQuestion extends Question {
 class MultipleChoiceQuestion extends Question {
   constructor(
     questionAudio: string,
-    public answer: string,
+    public answer: MultipleChoice,
     public AAudio: string,
     public BAudio: string,
     public CAudio: string,

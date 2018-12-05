@@ -7,7 +7,7 @@ import {
 } from '../../models/questions';
 import {
   askNextQuestion,
-  buildFillInTheBlankIncorrectResponse,
+  buildFillInTheBlankQuestionIncorrectResponse,
   buildFillInTheBlankQuestionResponse,
   buildMultipleChoiceQuestionResponse,
   buildTrueFalseQuestionResponse,
@@ -47,6 +47,41 @@ describe('Build fill in the blank question response', () => {
     );
     expect(endOfCategory).toBeCalled;
   });
+
+  test('If answer is correct increment number of questions asked and score', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    buildFillInTheBlankQuestionResponse(
+      data,
+      currentQuestion,
+      nextQuestion,
+      'true'
+    );
+    const expectedData: ConversationData = {
+      startRepromptIssued: true,
+      numberOfQuestionsAnswered: 1,
+      score: 1,
+    };
+    expect(data).toEqual(expectedData);
+  });
+
+  test('If answer is incorrect increment number of questions asked', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    buildFillInTheBlankQuestionResponse(
+      data,
+      currentQuestion,
+      nextQuestion,
+      'cat'
+    );
+    const expectedData: ConversationData = {
+      startRepromptIssued: true,
+      numberOfQuestionsAnswered: 1,
+    };
+    expect(data).toEqual(expectedData);
+  });
 });
 
 describe('Build fill in the blank incorrect question response', () => {
@@ -54,7 +89,11 @@ describe('Build fill in the blank incorrect question response', () => {
     const data = { startRepromptIssued: true };
     const currentQuestion = new FillInTheBlankQuestion('', 'false', '', '');
     const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
-    buildFillInTheBlankIncorrectResponse(data, currentQuestion, nextQuestion);
+    buildFillInTheBlankQuestionIncorrectResponse(
+      data,
+      currentQuestion,
+      nextQuestion
+    );
     expect(askNextQuestion).toBeCalled;
   });
 
@@ -62,8 +101,28 @@ describe('Build fill in the blank incorrect question response', () => {
     const data = { startRepromptIssued: true };
     const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     const nextQuestion = new Unknown('error');
-    buildFillInTheBlankIncorrectResponse(data, currentQuestion, nextQuestion);
+    buildFillInTheBlankQuestionIncorrectResponse(
+      data,
+      currentQuestion,
+      nextQuestion
+    );
     expect(endOfCategory).toBeCalled;
+  });
+
+  test('Increment number of questions asked', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
+    buildFillInTheBlankQuestionIncorrectResponse(
+      data,
+      currentQuestion,
+      nextQuestion
+    );
+    const expectedData: ConversationData = {
+      startRepromptIssued: true,
+      numberOfQuestionsAnswered: 1,
+    };
+    expect(data).toEqual(expectedData);
   });
 });
 
@@ -83,12 +142,48 @@ describe('Build true false question response', () => {
     buildTrueFalseQuestionResponse(data, currentQuestion, nextQuestion, true);
     expect(endOfCategory).toBeCalled;
   });
+
+  test('If answer is correct increment number of questions asked and score', () => {
+    const data = {
+      startRepromptIssued: true,
+      numberOfQuestionsAnswered: 1,
+      score: 1,
+    };
+    const currentQuestion = new TrueFalseQuestion('', true, '', '');
+    const nextQuestion = new TrueFalseQuestion('', true, '', '');
+    buildTrueFalseQuestionResponse(data, currentQuestion, nextQuestion, true);
+    const expectedData: ConversationData = {
+      startRepromptIssued: true,
+      numberOfQuestionsAnswered: 2,
+      score: 2,
+    };
+    expect(data).toEqual(expectedData);
+  });
+
+  test('If answer is incorrect increment number of questions asked', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new TrueFalseQuestion('', true, '', '');
+    const nextQuestion = new TrueFalseQuestion('', true, '', '');
+    buildTrueFalseQuestionResponse(data, currentQuestion, nextQuestion, false);
+    const expectedData: ConversationData = {
+      startRepromptIssued: true,
+      numberOfQuestionsAnswered: 1,
+    };
+    expect(data).toEqual(expectedData);
+  });
 });
 
 describe('Build multiple choice question response', () => {
   test('If there is a current question and a next question askNextQuestion', () => {
     const data = { startRepromptIssued: true };
-    const currentQuestion = new MultipleChoiceQuestion('', '', '', '', '', '');
+    const currentQuestion = new MultipleChoiceQuestion(
+      '',
+      MultipleChoice.A,
+      '',
+      '',
+      '',
+      ''
+    );
     const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     buildMultipleChoiceQuestionResponse(
       data,
@@ -101,7 +196,14 @@ describe('Build multiple choice question response', () => {
 
   test('If there is a current question and no next question call endOfCategory', () => {
     const data = { startRepromptIssued: true };
-    const currentQuestion = new MultipleChoiceQuestion('', '', '', '', '', '');
+    const currentQuestion = new MultipleChoiceQuestion(
+      '',
+      MultipleChoice.C,
+      '',
+      '',
+      '',
+      ''
+    );
     const nextQuestion = new Unknown('error');
     buildMultipleChoiceQuestionResponse(
       data,
@@ -110,6 +212,58 @@ describe('Build multiple choice question response', () => {
       MultipleChoice.B
     );
     expect(endOfCategory).toBeCalled;
+  });
+
+  test('If answer is correct increment number of questions asked and score', () => {
+    const data = {
+      startRepromptIssued: true,
+      numberOfQuestionsAnswered: 1,
+    };
+    const currentQuestion = new MultipleChoiceQuestion(
+      '',
+      MultipleChoice.A,
+      '',
+      '',
+      '',
+      ''
+    );
+    const nextQuestion = new TrueFalseQuestion('', true, '', '');
+    buildMultipleChoiceQuestionResponse(
+      data,
+      currentQuestion,
+      nextQuestion,
+      MultipleChoice.A
+    );
+    const expectedData: ConversationData = {
+      startRepromptIssued: true,
+      numberOfQuestionsAnswered: 2,
+      score: 1,
+    };
+    expect(data).toEqual(expectedData);
+  });
+
+  test('If answer is incorrect increment number of questions asked', () => {
+    const data = { startRepromptIssued: true };
+    const currentQuestion = new MultipleChoiceQuestion(
+      '',
+      MultipleChoice.A,
+      '',
+      '',
+      '',
+      ''
+    );
+    const nextQuestion = new TrueFalseQuestion('', true, '', '');
+    buildMultipleChoiceQuestionResponse(
+      data,
+      currentQuestion,
+      nextQuestion,
+      MultipleChoice.C
+    );
+    const expectedData: ConversationData = {
+      startRepromptIssued: true,
+      numberOfQuestionsAnswered: 1,
+    };
+    expect(data).toEqual(expectedData);
   });
 });
 
@@ -192,7 +346,7 @@ describe('Feedback for Multiple Choice Question', () => {
   test('If answer is A get A Audio', () => {
     const question: MultipleChoiceQuestion = new MultipleChoiceQuestion(
       '',
-      '',
+      MultipleChoice.A,
       'AAudio',
       'BAudio',
       'CAudio',
@@ -205,7 +359,7 @@ describe('Feedback for Multiple Choice Question', () => {
   test('If answer is B get B Audio', () => {
     const question: MultipleChoiceQuestion = new MultipleChoiceQuestion(
       '',
-      '',
+      MultipleChoice.B,
       'AAudio',
       'BAudio',
       'CAudio',
@@ -218,7 +372,7 @@ describe('Feedback for Multiple Choice Question', () => {
   test('If answer is C get C Audio', () => {
     const question: MultipleChoiceQuestion = new MultipleChoiceQuestion(
       '',
-      '',
+      MultipleChoice.C,
       'AAudio',
       'BAudio',
       'CAudio',
@@ -231,7 +385,7 @@ describe('Feedback for Multiple Choice Question', () => {
   test('If answer is D get D Audio', () => {
     const question: MultipleChoiceQuestion = new MultipleChoiceQuestion(
       '',
-      '',
+      MultipleChoice.C,
       'AAudio',
       'BAudio',
       'CAudio',

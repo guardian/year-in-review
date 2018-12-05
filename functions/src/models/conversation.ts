@@ -6,6 +6,8 @@ interface ConversationData {
   currentTopic?: Topic;
   currentQuestion?: number;
   currentRound?: number;
+  numberOfQuestionsAnswered?: number;
+  score?: number;
 }
 
 class Unknown {
