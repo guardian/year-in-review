@@ -2,7 +2,7 @@ import { Container } from 'fluent-ssml';
 import { Topic } from './rounds';
 
 interface ConversationData {
-  startRepromptIssued: boolean;
+  repromptCount?: number;
   currentTopic?: Topic;
   currentQuestion?: number;
   currentRound?: number;

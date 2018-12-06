@@ -12,7 +12,10 @@ import {
   noInputWelcomeAudio,
 } from '../content/welcomeContent';
 
-import { buildSSMLAudioResponse, buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
+import {
+  buildSSMLAudioResponse,
+  buildSSMLAndCombineAudioResponses,
+} from '../responses/ssmlResponses';
 import { chooseRound } from './roundFulfillment';
 import { Container } from 'fluent-ssml';
 
@@ -21,33 +24,45 @@ const welcomeFulfillment = () => {
 };
 
 const repeatWelcomeFulfillment = (data: ConversationData) => {
-  const response = buildSSMLAndCombineAudioResponses(repeatWelcomeAudio, welcomeAudio)
-  return respondBasedOnRepromptCount(data, response)
-}
+  const response = buildSSMLAndCombineAudioResponses(
+    repeatWelcomeAudio,
+    welcomeAudio
+  );
+  return respondBasedOnRepromptCount(data, response);
+};
 
 const unrecognisedInputWelcomeFulfillment = (data: ConversationData) => {
-  return respondBasedOnRepromptCount(data, buildSSMLAudioResponse(unrecognisedInputWelcomeAudio));
+  return respondBasedOnRepromptCount(
+    data,
+    buildSSMLAudioResponse(unrecognisedInputWelcomeAudio)
+  );
 };
 
 const noInputWelcomeFulfillment = (data: ConversationData) => {
-  return respondBasedOnRepromptCount(data, buildSSMLAudioResponse(noInputWelcomeAudio));
-}
-
-const helpWelcomeFulfillment = (data: ConversationData) => {
-  return respondBasedOnRepromptCount(data, buildSSMLAudioResponse(helpWelcomeAudio));
+  return respondBasedOnRepromptCount(
+    data,
+    buildSSMLAudioResponse(noInputWelcomeAudio)
+  );
 };
 
-const respondBasedOnRepromptCount = (data: ConversationData, ssml: Container) => {
-  if (data.startRepromptIssued === true) {
-    return new Response(ResponseType.CLOSE, doNotPlayFulfillment());
-  } else {
-    setReprompt(data);
-    return new Response(ResponseType.ASK, ssml);
-  }
-}
+const helpWelcomeFulfillment = (data: ConversationData) => {
+  return respondBasedOnRepromptCount(
+    data,
+    buildSSMLAudioResponse(helpWelcomeAudio)
+  );
+};
 
-const setReprompt = (data: ConversationData) => {
-  return (data.startRepromptIssued = true);
+const respondBasedOnRepromptCount = (
+  data: ConversationData,
+  ssml: Container
+) => {
+  const count = data.repromptCount || 0;
+  if (count < 2) {
+    data.repromptCount = count + 1;
+    return new Response(ResponseType.ASK, ssml);
+  } else {
+    return new Response(ResponseType.CLOSE, doNotPlayFulfillment());
+  }
 };
 
 const doNotPlayFulfillment = () => {
@@ -66,5 +81,5 @@ export {
   unrecognisedInputWelcomeFulfillment,
   repeatWelcomeFulfillment,
   noInputWelcomeFulfillment,
-  respondBasedOnRepromptCount
+  respondBasedOnRepromptCount,
 };
