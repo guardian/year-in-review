@@ -26,7 +26,6 @@ import { unexpectedErrorResponse } from '../../utils/logger';
 describe('True False Fulfillment', () => {
   test('If answer cannot be converted to true or false use fallback response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     const answer = 'grapes';
@@ -36,7 +35,6 @@ describe('True False Fulfillment', () => {
 
   test('If answer can be converted to true build response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     const answer = 'true';
@@ -46,7 +44,6 @@ describe('True False Fulfillment', () => {
 
   test('If answer can be converted to false build response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     const answer = 'false';
@@ -57,16 +54,13 @@ describe('True False Fulfillment', () => {
 
 describe('Fill in the blank Fulfillment', () => {
   test('If question could not be retrieved expect error response', () => {
-    const data: ConversationData = {
-      startRepromptIssued: false,
-    };
+    const data: ConversationData = {};
     fillInTheBlankQuestionFulfillment('', data);
     expect(fallbackFulfillment).toBeCalled;
   });
 
   test('If question can be retrieved build response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     fillInTheBlankQuestionFulfillment('', data);
@@ -76,16 +70,13 @@ describe('Fill in the blank Fulfillment', () => {
 
 describe('Fill in the blank incorrect answer Fulfillment', () => {
   test('If question could not be retrieved expect error response', () => {
-    const data: ConversationData = {
-      startRepromptIssued: false,
-    };
+    const data: ConversationData = {};
     fillInTheBlankIncorrectFulfillment(data);
     expect(fallbackFulfillment).toBeCalled;
   });
 
   test('If question can be retrieved build response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     fillInTheBlankIncorrectFulfillment(data);
@@ -96,7 +87,6 @@ describe('Fill in the blank incorrect answer Fulfillment', () => {
 describe('Multiple Choice Fulfillment', () => {
   test('If answer cannot be converted to A,B,C or D use fallback response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     const answer = 'grapes';
@@ -106,7 +96,6 @@ describe('Multiple Choice Fulfillment', () => {
 
   test('If answer can be converted to A build response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     const answer = 'A';
@@ -116,7 +105,6 @@ describe('Multiple Choice Fulfillment', () => {
 
   test('If answer can be converted to B build response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     const answer = 'B';
@@ -126,7 +114,6 @@ describe('Multiple Choice Fulfillment', () => {
 
   test('If answer can be converted to C build response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     const answer = 'C';
@@ -136,7 +123,6 @@ describe('Multiple Choice Fulfillment', () => {
 
   test('If answer can be converted to D build response', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     const answer = 'D';
@@ -148,11 +134,9 @@ describe('Multiple Choice Fulfillment', () => {
 describe('Increment Question Number', () => {
   test('If question number is undefined next question number should be 1 as you must currently be asking question 1', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentTopic: Topic.NEWS,
     };
     const expectedData: ConversationData = {
-      startRepromptIssued: false,
       currentQuestion: 1,
       currentTopic: Topic.NEWS,
     };
@@ -162,12 +146,10 @@ describe('Increment Question Number', () => {
 
   test('If question number is 1 new question number should be 2', () => {
     const data: ConversationData = {
-      startRepromptIssued: false,
       currentQuestion: 1,
       currentTopic: Topic.NEWS,
     };
     const expectedData: ConversationData = {
-      startRepromptIssued: false,
       currentQuestion: 2,
       currentTopic: Topic.NEWS,
     };
@@ -178,7 +160,7 @@ describe('Increment Question Number', () => {
 
 describe('questionRepromptFulfillment', () => {
   test('If reprompt cannot be fulfilled - no topic return Error Response', () => {
-    const data: ConversationData = { startRepromptIssued: true };
+    const data: ConversationData = {};
     const response = questionRepromptFulfillment(data, () => '');
     expect(response.responseType).toEqual(ResponseType.CLOSE);
     // tslint:disable-next-line:no-unused-expression
@@ -187,7 +169,6 @@ describe('questionRepromptFulfillment', () => {
 
   test('If there is a valid question number and topic return ASK response', () => {
     const data: ConversationData = {
-      startRepromptIssued: true,
       currentQuestion: 1,
       currentTopic: Topic.NEWS,
     };
@@ -200,9 +181,7 @@ describe('questionRepromptFulfillment', () => {
 
 describe('getQuestionBasedOnConversationData', () => {
   test('If the topic is not on the ConversationData object return Unknown object', () => {
-    const data = {
-      startRepromptIssued: false,
-    };
+    const data = {};
     const response = getQuestionBasedOnConversationData(data);
     expect(response).toBeInstanceOf(Unknown);
   });

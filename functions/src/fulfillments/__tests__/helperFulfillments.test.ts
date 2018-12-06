@@ -5,7 +5,6 @@ import {
   repeatFulfillment,
 } from '../helperFulfillments';
 import {
-  questionHelpFulfillment,
   questionRepromptFulfillment,
 } from '../questionFulfillment';
 import {
@@ -20,7 +19,7 @@ import { Topic } from '../../models/rounds';
 
 describe('Content specific help', () => {
   test('If there is no topic offer category help', () => {
-    const data: ConversationData = { startRepromptIssued: true };
+    const data: ConversationData = {};
     helpFulfillment(data);
     // tslint:disable-next-line:no-unused-expression
     expect(roundHelpFulfillment).toBeCalled;
@@ -28,18 +27,17 @@ describe('Content specific help', () => {
 
   test('If there is a topic offer question help', () => {
     const data: ConversationData = {
-      startRepromptIssued: true,
       currentTopic: Topic.ARTS,
     };
     helpFulfillment(data);
     // tslint:disable-next-line:no-unused-expression
-    expect(questionHelpFulfillment).toBeCalled;
+    expect(questionRepromptFulfillment).toBeCalled;
   });
 });
 
 describe('Content specific no input', () => {
   test('If there is no topic offer category no input', () => {
-    const data: ConversationData = { startRepromptIssued: true };
+    const data: ConversationData = {};
     noInputFulfillment(data);
     // tslint:disable-next-line:no-unused-expression
     expect(roundNoInputFulfillment).toBeCalled;
@@ -47,7 +45,6 @@ describe('Content specific no input', () => {
 
   test('If there is a topic offer question no input', () => {
     const data: ConversationData = {
-      startRepromptIssued: true,
       currentTopic: Topic.ARTS,
     };
     noInputFulfillment(data);
@@ -58,7 +55,7 @@ describe('Content specific no input', () => {
 
 describe('Content specific unknown input', () => {
   test('If there is no topic offer category unknown input', () => {
-    const data: ConversationData = { startRepromptIssued: true };
+    const data: ConversationData = {};
     fallbackFulfillment(data);
     // tslint:disable-next-line:no-unused-expression
     expect(roundFallbackFulfillment).toBeCalled;
@@ -66,7 +63,6 @@ describe('Content specific unknown input', () => {
 
   test('If there is a topic offer question unknown input', () => {
     const data: ConversationData = {
-      startRepromptIssued: true,
       currentTopic: Topic.SCIENCE,
     };
     fallbackFulfillment(data);
@@ -77,7 +73,7 @@ describe('Content specific unknown input', () => {
 
 describe('Content specific repeat', () => {
   test('If there is no topic offer category repeat', () => {
-    const data: ConversationData = { startRepromptIssued: true };
+    const data: ConversationData = {};
     repeatFulfillment(data);
     // tslint:disable-next-line:no-unused-expression
     expect(roundRepeatFullfillment).toBeCalled;
@@ -85,7 +81,6 @@ describe('Content specific repeat', () => {
 
   test('If there is a topic offer question repeat', () => {
     const data: ConversationData = {
-      startRepromptIssued: true,
       currentTopic: Topic.SCIENCE,
     };
     noInputFulfillment(data);

@@ -20,7 +20,7 @@ import { Topic } from '../../models/rounds';
 
 describe('Build fill in the blank question response', () => {
   test('If there is a current question and a next question askNextQuestion', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new FillInTheBlankQuestion('', 'false', '', '');
     const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     buildFillInTheBlankQuestionResponse(
@@ -33,7 +33,7 @@ describe('Build fill in the blank question response', () => {
   });
 
   test('If there is a current question and no next question call endOfCategory', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     const nextQuestion = new Unknown('error');
     buildFillInTheBlankQuestionResponse(
@@ -46,7 +46,7 @@ describe('Build fill in the blank question response', () => {
   });
 
   test('If answer is correct increment number of questions asked and score', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     buildFillInTheBlankQuestionResponse(
@@ -56,7 +56,6 @@ describe('Build fill in the blank question response', () => {
       'true'
     );
     const expectedData: ConversationData = {
-      startRepromptIssued: true,
       numberOfQuestionsAnswered: 1,
       score: 1,
     };
@@ -64,7 +63,7 @@ describe('Build fill in the blank question response', () => {
   });
 
   test('If answer is incorrect increment number of questions asked', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     buildFillInTheBlankQuestionResponse(
@@ -74,7 +73,6 @@ describe('Build fill in the blank question response', () => {
       'cat'
     );
     const expectedData: ConversationData = {
-      startRepromptIssued: true,
       numberOfQuestionsAnswered: 1,
     };
     expect(data).toEqual(expectedData);
@@ -83,7 +81,7 @@ describe('Build fill in the blank question response', () => {
 
 describe('Build fill in the blank incorrect question response', () => {
   test('If there is a current question and a next question askNextQuestion', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new FillInTheBlankQuestion('', 'false', '', '');
     const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     buildFillInTheBlankQuestionIncorrectResponse(
@@ -95,7 +93,7 @@ describe('Build fill in the blank incorrect question response', () => {
   });
 
   test('If there is a current question and no next question call endOfCategory', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     const nextQuestion = new Unknown('error');
     buildFillInTheBlankQuestionIncorrectResponse(
@@ -107,7 +105,7 @@ describe('Build fill in the blank incorrect question response', () => {
   });
 
   test('Increment number of questions asked', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     buildFillInTheBlankQuestionIncorrectResponse(
@@ -116,7 +114,6 @@ describe('Build fill in the blank incorrect question response', () => {
       nextQuestion
     );
     const expectedData: ConversationData = {
-      startRepromptIssued: true,
       numberOfQuestionsAnswered: 1,
     };
     expect(data).toEqual(expectedData);
@@ -125,7 +122,7 @@ describe('Build fill in the blank incorrect question response', () => {
 
 describe('Build true false question response', () => {
   test('If there is a current question and a next question askNextQuestion', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new TrueFalseQuestion('', false, '', '');
     const nextQuestion = new FillInTheBlankQuestion('', 'true', '', '');
     buildTrueFalseQuestionResponse(data, currentQuestion, nextQuestion, true);
@@ -133,7 +130,7 @@ describe('Build true false question response', () => {
   });
 
   test('If there is a current question and no next question call endOfCategory', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new TrueFalseQuestion('', true, '', '');
     const nextQuestion = new Unknown('error');
     buildTrueFalseQuestionResponse(data, currentQuestion, nextQuestion, true);
@@ -142,7 +139,6 @@ describe('Build true false question response', () => {
 
   test('If answer is correct increment number of questions asked and score', () => {
     const data = {
-      startRepromptIssued: true,
       numberOfQuestionsAnswered: 1,
       score: 1,
     };
@@ -150,7 +146,6 @@ describe('Build true false question response', () => {
     const nextQuestion = new TrueFalseQuestion('', true, '', '');
     buildTrueFalseQuestionResponse(data, currentQuestion, nextQuestion, true);
     const expectedData: ConversationData = {
-      startRepromptIssued: true,
       numberOfQuestionsAnswered: 2,
       score: 2,
     };
@@ -158,12 +153,11 @@ describe('Build true false question response', () => {
   });
 
   test('If answer is incorrect increment number of questions asked', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new TrueFalseQuestion('', true, '', '');
     const nextQuestion = new TrueFalseQuestion('', true, '', '');
     buildTrueFalseQuestionResponse(data, currentQuestion, nextQuestion, false);
     const expectedData: ConversationData = {
-      startRepromptIssued: true,
       numberOfQuestionsAnswered: 1,
     };
     expect(data).toEqual(expectedData);
@@ -172,7 +166,7 @@ describe('Build true false question response', () => {
 
 describe('Build multiple choice question response', () => {
   test('If there is a current question and a next question askNextQuestion', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new MultipleChoiceQuestion(
       '',
       MultipleChoice.A,
@@ -192,7 +186,7 @@ describe('Build multiple choice question response', () => {
   });
 
   test('If there is a current question and no next question call endOfCategory', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new MultipleChoiceQuestion(
       '',
       MultipleChoice.C,
@@ -213,7 +207,6 @@ describe('Build multiple choice question response', () => {
 
   test('If answer is correct increment number of questions asked and score', () => {
     const data = {
-      startRepromptIssued: true,
       numberOfQuestionsAnswered: 1,
     };
     const currentQuestion = new MultipleChoiceQuestion(
@@ -232,7 +225,6 @@ describe('Build multiple choice question response', () => {
       MultipleChoice.A
     );
     const expectedData: ConversationData = {
-      startRepromptIssued: true,
       numberOfQuestionsAnswered: 2,
       score: 1,
     };
@@ -240,7 +232,7 @@ describe('Build multiple choice question response', () => {
   });
 
   test('If answer is incorrect increment number of questions asked', () => {
-    const data = { startRepromptIssued: true };
+    const data = {};
     const currentQuestion = new MultipleChoiceQuestion(
       '',
       MultipleChoice.A,
@@ -257,7 +249,6 @@ describe('Build multiple choice question response', () => {
       MultipleChoice.C
     );
     const expectedData: ConversationData = {
-      startRepromptIssued: true,
       numberOfQuestionsAnswered: 1,
     };
     expect(data).toEqual(expectedData);
@@ -265,15 +256,12 @@ describe('Build multiple choice question response', () => {
 });
 
 describe('End of category', () => {
-
   test('Category is removed from ConversationData', () => {
     const data: ConversationData = {
-      startRepromptIssued: true,
       currentTopic: Topic.NEWS,
     };
     endOfCategory(data, 'feedbackAudio');
     const expectedData: ConversationData = {
-      startRepromptIssued: true,
       currentRound: 1,
     };
     expect(data).toEqual(expectedData);
