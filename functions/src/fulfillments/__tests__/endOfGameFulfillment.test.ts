@@ -6,7 +6,7 @@ import {
 
 import { ConversationData } from '../../models/conversation';
 import { convertSSMLContainerToString } from '../../responses/ssmlResponses';
-import { gameOver } from '../endOfGameFulfillment';
+import { gameOverWithScore } from '../endOfGameFulfillment';
 
 describe('Scoring at the end of the game', () => {
   test("If score is over 75% get 'good' audio", () => {
@@ -15,7 +15,7 @@ describe('Scoring at the end of the game', () => {
       numberOfQuestionsAnswered: 5,
       score: 4,
     };
-    const response = gameOver(data);
+    const response = gameOverWithScore(data);
     expect(convertSSMLContainerToString(response)).toContain(goodScoreAudio);
   });
 
@@ -25,7 +25,7 @@ describe('Scoring at the end of the game', () => {
       numberOfQuestionsAnswered: 5,
       score: 1,
     };
-    const response = gameOver(data);
+    const response = gameOverWithScore(data);
     expect(convertSSMLContainerToString(response)).toContain(badScoreAudio);
   });
 
@@ -35,7 +35,7 @@ describe('Scoring at the end of the game', () => {
       numberOfQuestionsAnswered: 5,
       score: 3,
     };
-    const response = gameOver(data);
+    const response = gameOverWithScore(data);
     expect(convertSSMLContainerToString(response)).toContain(neutralScoreAudio);
   });
 
@@ -44,7 +44,7 @@ describe('Scoring at the end of the game', () => {
       startRepromptIssued: true,
       score: 3,
     };
-    const response = gameOver(data);
+    const response = gameOverWithScore(data);
     expect(convertSSMLContainerToString(response)).toContain(badScoreAudio);
   });
 
@@ -53,7 +53,7 @@ describe('Scoring at the end of the game', () => {
       startRepromptIssued: true,
       numberOfQuestionsAnswered: 5,
     };
-    const response = gameOver(data);
+    const response = gameOverWithScore(data);
     expect(convertSSMLContainerToString(response)).toContain(badScoreAudio);
   });
 });
