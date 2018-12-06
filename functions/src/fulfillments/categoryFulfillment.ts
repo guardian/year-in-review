@@ -7,7 +7,7 @@ import { OptionQuestion, Question } from '../models/questions';
 
 import { Category } from '../models/categories';
 import { Topic } from '../models/rounds';
-import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
+import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { unexpectedErrorResponse } from '../utils/logger';
 
@@ -23,9 +23,10 @@ const startCategory = (
     const maybeQuestion: OptionQuestion = category.getQuestion(1);
 
     if (maybeQuestion instanceof Question) {
+      const response = buildSSMLAndCombineAudioResponses(category.openingAudio, maybeQuestion.questionAudio)
       return new Response(
         ResponseType.ASK,
-        buildSSMLAudioResponse(maybeQuestion.questionAudio)
+        response
       );
     } else {
       return unexpectedErrorResponse(

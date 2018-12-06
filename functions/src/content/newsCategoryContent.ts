@@ -9,24 +9,23 @@ import { Category } from '../models/categories';
 
 const newsQuestions: Question[] = [
   new TrueFalseQuestion(
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techOpener.mp3',
+    'https://storage.googleapis.com/audio-assets/01.1_YiR_Global_q1a.ogg',
     false,
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ1Correct.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ1Incorrect.mp3'
+    'https://storage.googleapis.com/audio-assets/01.1_YiR_Global_q1b_False.ogg',
+    'https://storage.googleapis.com/audio-assets/01.1_YiR_Global_q1b_True.ogg'
   ),
   new MultipleChoiceQuestion(
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2.mp3',
+    'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2a.ogg',
     MultipleChoice.B,
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Incorrect.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Correct.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Incorrect.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Incorrect.mp3'
+    'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2b_A.ogg',
+    'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2b_B.ogg',
+    'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2b_C.ogg',
+    'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2b_D.ogg'
   ),
 ];
 
-const newsPodcastTeaser =
-  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/teaser.mp3';
+const newsOpening = 'https://storage.googleapis.com/audio-assets/01.1_YiR_Global_a.ogg'
 
-const newsCategory = () => new Category(newsQuestions, newsPodcastTeaser);
+const newsCategory = () => new Category(newsQuestions, newsOpening);
 
 export { newsCategory };

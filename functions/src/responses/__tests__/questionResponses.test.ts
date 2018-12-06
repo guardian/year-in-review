@@ -16,10 +16,7 @@ import {
   getTrueFalseFeedback,
 } from '../questionResponses';
 
-import { Category } from '../../models/categories';
 import { Topic } from '../../models/rounds';
-import { categories } from '../../content/categoryContent';
-import { convertSSMLContainerToString } from '../ssmlResponses';
 
 describe('Build fill in the blank question response', () => {
   test('If there is a current question and a next question askNextQuestion', () => {
@@ -268,19 +265,6 @@ describe('Build multiple choice question response', () => {
 });
 
 describe('End of category', () => {
-  test('End of category audio is included', () => {
-    const topic = Topic.NEWS;
-    const data: ConversationData = {
-      startRepromptIssued: true,
-      currentTopic: topic,
-    };
-    const category = categories.getCategory(topic);
-    if (category instanceof Category) {
-      const response = endOfCategory(data, 'feedbackAudio');
-      const ssml = convertSSMLContainerToString(response.responseSSML);
-      expect(ssml).toContain(category.teaserAudio);
-    }
-  });
 
   test('Category is removed from ConversationData', () => {
     const data: ConversationData = {
