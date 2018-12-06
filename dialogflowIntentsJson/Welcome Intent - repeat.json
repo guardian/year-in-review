@@ -1,16 +1,16 @@
 {
-  "id": "8867a4b0-ec4d-4570-bab4-565651910428",
-  "parentId": "6ad175b7-d635-404e-bb16-111ad295e149",
+  "id": "4d251b45-c203-44a0-a5d2-2b4e5260bd08",
+  "parentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
   "rootParentId": "f3d8a639-2492-436e-bbeb-b2a90ad38c0d",
-  "name": "Welcome Intent - help - help",
+  "name": "Welcome Intent - repeat",
   "auto": true,
   "contexts": [
-    "WelcomeIntent-help-followup"
+    "WelcomeIntent-followup"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "WelcomeIntent.WelcomeIntent-custom.WelcomeIntent-help-custom",
+      "action": "WelcomeIntent.WelcomeIntent-custom",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
@@ -26,56 +26,56 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543418376,
+  "lastUpdate": 1544098019,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
     {
-      "id": "86f174b1-e4c2-4758-b747-fe47c0d79fd5",
+      "id": "ef924792-ea03-48d8-ad48-532e2cc0b6aa",
       "data": [
         {
-          "text": "I don't understand"
+          "text": "repeat please"
         }
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543418376,
+      "updated": 1544098019,
       "isAuto": false
     },
     {
-      "id": "5a19e4d6-1cdb-4c40-b69e-90e3a0d1a9ff",
+      "id": "f2d40a39-72fc-489c-acba-8bc45254c19b",
       "data": [
         {
-          "text": "help me"
+          "text": "say that again"
         }
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543418376,
+      "updated": 1544098019,
       "isAuto": false
     },
     {
-      "id": "9bb39e9f-bed3-4e66-bb59-c1c3c6824e0f",
+      "id": "dd918b89-9e55-4c03-9395-2d27c329821d",
       "data": [
         {
-          "text": "I need help"
+          "text": "repeat"
         }
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543418376,
+      "updated": 1544098019,
       "isAuto": false
     },
     {
-      "id": "d7a9a3da-3cec-4ef5-9bec-4814e948b02d",
+      "id": "30bce397-19c9-45f1-a36d-93247bbb4e1b",
       "data": [
         {
-          "text": "help"
+          "text": "what"
         }
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543418376,
+      "updated": 1544098019,
       "isAuto": false
     }
   ],
