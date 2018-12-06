@@ -13,6 +13,10 @@ import {
 import { ConversationData } from '../models/conversation';
 
 const gameOver = (data: ConversationData) => {
+  return buildSSMLAudioResponse(endOfGameAudio);
+};
+
+const gameOverWithScore = (data: ConversationData) => {
   const feedbackAudio = getScoreAudio(data);
   return buildSSMLAndCombineAudioResponses(feedbackAudio, endOfGameAudio);
 };
@@ -46,4 +50,4 @@ const quit = () => {
   return buildSSMLAudioResponse(quitAudio);
 };
 
-export { gameOver, quit };
+export { gameOver, quit, gameOverWithScore };
