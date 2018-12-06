@@ -7,6 +7,7 @@ import {
   FillInTheBlankQuestion,
   MultipleChoiceQuestion,
   TrueFalseQuestion,
+  MultipleChoice,
 } from '../../models/questions';
 import {
   buildFillInTheBlankQuestionResponse,
@@ -249,7 +250,7 @@ describe('getQuestionSpecificHelpAudio', () => {
   });
 
   test('multiple choice question gets multiple choice audio', () => {
-    const question = new MultipleChoiceQuestion('', '', '', '', '', '');
+    const question = new MultipleChoiceQuestion('', MultipleChoice.A, '', '', '', '');
     const response = getQuestionSpecificHelpAudio(question);
     expect(response).toEqual(multipleChoiceHelp);
   });
