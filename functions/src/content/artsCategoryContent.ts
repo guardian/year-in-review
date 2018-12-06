@@ -10,28 +10,28 @@ import { Category } from '../models/categories';
 
 const artsQuestions: Question[] = [
   new FillInTheBlankQuestion(
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techOpener.mp3',
+    'https://storage.googleapis.com/audio-assets/04.1_YiR_Arts_Q1.ogg',
     'GAMBINO',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ1Correct.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ1Incorrect.mp3'
+    'https://storage.googleapis.com/audio-assets/04.1_YiR_Arts_Q1_Correct.ogg',
+    'https://storage.googleapis.com/audio-assets/04.1_YiR_Arts_Q1_Wrong.ogg'
   ),
   new TrueFalseQuestion(
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2.mp3',
-    true,
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Correct.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Incorrect.mp3'
+    'https://storage.googleapis.com/audio-assets/04.2_YiR_Arts_Q2.ogg',
+    false,
+    'https://storage.googleapis.com/audio-assets/04.2_YiR_Arts_Q2_False.ogg',
+    'https://storage.googleapis.com/audio-assets/04.2_YiR_Arts_Q2_True.ogg'
   ),
   new MultipleChoiceQuestion(
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2.mp3',
-    MultipleChoice.A,
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Correct.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Incorrect.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Incorrect.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/techQ2Incorrect.mp3'
+    'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q3.ogg',
+    MultipleChoice.D,
+    'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q3A.ogg',
+    'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q3B.ogg',
+    'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q3C.ogg',
+    'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q3D.ogg'
   ),
 ];
 
-const artsOpening = ''
+const artsOpening = 'https://storage.googleapis.com/audio-assets/04.0_YiR_Arts_a.ogg'
 
 const artsCategory = () => new Category(artsQuestions, artsOpening);
 

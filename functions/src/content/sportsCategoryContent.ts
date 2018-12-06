@@ -9,28 +9,28 @@ import { Category } from '../models/categories';
 
 const sportsQuestions: Question[] = [
   new TrueFalseQuestion(
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsOpener.mp3',
-    true,
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ1Correct.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ1Incorrect.mp3'
+    'https://storage.googleapis.com/audio-assets/02.1_YiR_Sport_Q1a.ogg',
+    false,
+    'https://storage.googleapis.com/audio-assets/02.1_YiR_Sport_Q1b_False.ogg',
+    'https://storage.googleapis.com/audio-assets/02.1_YiR_Sport_Q1b_True.ogg'
   ),
   new MultipleChoiceQuestion(
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2.mp3',
-    MultipleChoice.D,
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Correct.mp3'
+    'https://storage.googleapis.com/audio-assets/02.2_YiR_Sport_Q2b.ogg',
+    MultipleChoice.C,
+    'https://storage.googleapis.com/audio-assets/02.3_YiR_Sport_2A.ogg',
+    'https://storage.googleapis.com/audio-assets/02.3_YiR_Sport_2B.ogg',
+    'https://storage.googleapis.com/audio-assets/02.3_YiR_Sport_2C.ogg',
+    'https://storage.googleapis.com/audio-assets/02.3_YiR_Sport_2D.ogg'
   ),
   new TrueFalseQuestion(
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2.mp3',
-    true,
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Correct.mp3',
-    'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/sportsQ2Incorrect.mp3'
+    'https://storage.googleapis.com/audio-assets/02.3_YiR_Sport_3b.ogg',
+    false,
+    'https://storage.googleapis.com/audio-assets/02.4_YiR_Sport_Q3False.ogg',
+    'https://storage.googleapis.com/audio-assets/02.4_YiR_Sport_Q3True.ogg'
   ),
 ];
 
-const sportsOpening = ''
+const sportsOpening = 'https://storage.googleapis.com/audio-assets/02.1_YiR_Sport_a.ogg'
 
 const sportsCategory = () => new Category(sportsQuestions, sportsOpening);
 
