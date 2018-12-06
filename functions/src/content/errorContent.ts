@@ -1,4 +1,4 @@
 const unexpectedErrorAudio =
-  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/unexpectedError.mp3';
+  'https://storage.googleapis.com/audio-assets/07.0_Fail_whale_L.ogg';
 
 export { unexpectedErrorAudio };
