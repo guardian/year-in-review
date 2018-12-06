@@ -31,9 +31,8 @@ const artsQuestions: Question[] = [
   ),
 ];
 
-const artsPodcastTeaser =
-  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/teaser.mp3';
+const artsOpening = ''
 
-const artsCategory = () => new Category(artsQuestions, artsPodcastTeaser);
+const artsCategory = () => new Category(artsQuestions, artsOpening);
 
 export { artsCategory };
