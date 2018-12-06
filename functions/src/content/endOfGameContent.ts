@@ -1,8 +1,8 @@
 const endOfGameAudio =
-  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/end.mp3';
+  'https://storage.googleapis.com/audio-assets/08.2_Finish_A.ogg';
 
 const quitAudio =
-  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/doNotPlay.mp3';
+  'https://storage.googleapis.com/audio-assets/08.0_They_Quit_A.ogg';
 
 const goodScoreAudio =
   'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/goodScore.mp3';
