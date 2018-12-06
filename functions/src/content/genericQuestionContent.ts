@@ -25,12 +25,8 @@ const multipleChoiceHelp =
 const fillInTheBlankHelp =
   'https://storage.googleapis.com/audio-assets/06.2_Blank_Help_L.ogg';
 
-const trueFalseRepeat =
-  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/questionRepeat.mp3';
-const multipleChoiceRepeat =
-  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/questionRepeat.mp3';
-const fillInTheBlankRepeat =
-  'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/questionRepeat.mp3';
+const repeat =
+  'https://storage.googleapis.com/audio-assets/01.2_Welcome_New_-_Sure_no_problem_A.ogg';
 
 export {
   trueFalseUnknownInput,
@@ -42,7 +38,5 @@ export {
   trueFalseHelp,
   multipleChoiceHelp,
   fillInTheBlankHelp,
-  trueFalseRepeat,
-  multipleChoiceRepeat,
-  fillInTheBlankRepeat,
+  repeat
 };

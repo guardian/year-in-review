@@ -13,9 +13,7 @@ import {
   trueFalseNoInput,
   multipleChoiceNoInput,
   fillInTheBlankNoInput,
-  multipleChoiceRepeat,
-  trueFalseRepeat,
-  fillInTheBlankRepeat,
+  repeat
 } from '../content/genericQuestionContent';
 import {
   roundFallbackFulfillment,
@@ -57,7 +55,7 @@ const repeatFulfillment = (data: ConversationData): Response => {
   if (topic instanceof Unknown) {
     return roundRepeatFullfillment(data);
   } else {
-    return questionRepromptFulfillment(data, getQuestionSpecificRepeatAudio);
+    return questionRepromptFulfillment(data, () => repeat);
   }
 };
 
@@ -91,17 +89,6 @@ const getQuestionSpecificNoInputAudio = (question: Question): string => {
     return multipleChoiceNoInput;
   } else {
     return fillInTheBlankNoInput;
-  }
-};
-
-const getQuestionSpecificRepeatAudio = (question: Question): string => {
-  if (question instanceof TrueFalseQuestion) {
-    return trueFalseRepeat;
-  }
-  if (question instanceof MultipleChoiceQuestion) {
-    return multipleChoiceRepeat;
-  } else {
-    return fillInTheBlankRepeat;
   }
 };
 
