@@ -24,6 +24,10 @@ import {
   respondBasedOnResponseType,
   respondToUserInput,
 } from './responses/dialogflowResponses';
+import {
+  unsuportedDeviceWelcome,
+  unsupportedDeviceCard,
+} from './content/welcomeContent';
 
 import { ConversationData } from './models/conversation';
 import { convertSSMLContainerToString } from './responses/ssmlResponses';
@@ -39,20 +43,17 @@ app.intent('Welcome Intent', conv => {
     const response = convertSSMLContainerToString(welcomeFulfillment());
     conv.ask(response);
   } else {
-    conv.ask('Welcome to The Year In Review');
+    conv.ask(unsuportedDeviceWelcome);
     conv.close(
       new BasicCard({
-        text:
-          'Unfortunately, the Year In Review is not available on this device. Please try again on a smart speaker like Google Home. If you want to listen to any Guardian podcasts in the meantime, just ask for the show by name. For example, "Hey Google, play Today in Focus."',
+        text: unsupportedDeviceCard.text,
         buttons: new Button({
-          title: 'Learn More',
-          url:
-            'https://www.theguardian.com/info/2018/nov/06/guardian-voice-lab-introduction',
+          title: unsupportedDeviceCard.button.title,
+          url: unsupportedDeviceCard.button.url,
         }),
         image: new Image({
-          url:
-            'https://s3.eu-west-2.amazonaws.com/year-in-focus-audio/VisualAssets/Card_Not_Supported.png',
-          alt: 'Unsupported device image',
+          url: unsupportedDeviceCard.image.url,
+          alt: unsupportedDeviceCard.image.altText,
         }),
       })
     );
