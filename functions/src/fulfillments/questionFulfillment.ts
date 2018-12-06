@@ -21,11 +21,6 @@ import {
   buildMultipleChoiceQuestionResponse,
   buildTrueFalseQuestionResponse,
 } from '../responses/questionResponses';
-import {
-  fillInTheBlankHelp,
-  multipleChoiceHelp,
-  trueFalseHelp,
-} from '../content/genericQuestionContent';
 
 import { OptionTopic } from '../models/rounds';
 import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
@@ -156,39 +151,12 @@ const incrementQuestionNumber = (data: ConversationData): void => {
   data.currentQuestion = currentQuestion + 1;
 };
 
-const questionHelpFulfillment = (data: ConversationData) => {
+const questionRepromptFulfillment = (data: ConversationData, getReprompt: (question: Question) => string) => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof Question) {
-    const helpAudio = getQuestionSpecificHelpAudio(question);
+    const helpAudio = getReprompt(question);
     const response = buildSSMLAndCombineAudioResponses(
       helpAudio,
-      question.questionAudio
-    );
-    return new Response(ResponseType.ASK, response);
-  } else {
-    return unexpectedErrorResponse(question.error);
-  }
-};
-
-const getQuestionSpecificHelpAudio = (question: Question): string => {
-  if (question instanceof TrueFalseQuestion) {
-    return trueFalseHelp;
-  }
-  if (question instanceof MultipleChoiceQuestion) {
-    return multipleChoiceHelp;
-  } else {
-    return fillInTheBlankHelp;
-  }
-};
-
-const questionRepromptFulfillment = (
-  data: ConversationData,
-  repromptAudio: string
-): Response => {
-  const question: OptionQuestion = getQuestionBasedOnConversationData(data);
-  if (question instanceof Question) {
-    const response = buildSSMLAndCombineAudioResponses(
-      repromptAudio,
       question.questionAudio
     );
     return new Response(ResponseType.ASK, response);
@@ -223,14 +191,12 @@ const getQuestionBasedOnConversationData = (
 };
 
 export {
-  questionRepromptFulfillment,
   getQuestionBasedOnConversationData,
   getTopic,
-  questionHelpFulfillment,
-  getQuestionSpecificHelpAudio,
   fillInTheBlankIncorrectFulfillment,
   trueFalseQuestionFulfillment,
   multipleChoiceQuestionFulfillment,
   fillInTheBlankQuestionFulfillment,
   incrementQuestionNumber,
+  questionRepromptFulfillment
 };
