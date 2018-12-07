@@ -57,7 +57,7 @@ const respondBasedOnRepromptCount = (
   ssml: Container
 ) => {
   const count = data.repromptCount || 0;
-  if (count < 2) {
+  if (count < 3) {
     data.repromptCount = count + 1;
     return new Response(ResponseType.ASK, ssml);
   } else {
