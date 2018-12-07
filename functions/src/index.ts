@@ -31,7 +31,7 @@ import {
 } from './content/welcomeContent';
 
 import { ConversationData } from './models/conversation';
-import { convertSSMLContainerToString} from './responses/ssmlResponses';
+import { convertSSMLContainerToString } from './responses/ssmlResponses';
 import { quit } from './fulfillments/endOfGameFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 
@@ -65,12 +65,13 @@ app.intent('Welcome Intent - ready', conv => {
   // Removing the welcome intent contexts
   conv.contexts.set('welcomeintent-followup', 0);
   conv.contexts.set('welcomeintent-help-followup', 0);
+  conv.data.finishedWelcomeIntent = true;
   respondBasedOnResponseType(startYearInReviewFulfillment, conv);
 });
 
 app.intent('Welcome Intent - repeat', conv => {
   respondBasedOnResponseType(repeatWelcomeFulfillment, conv);
-})
+});
 
 app.intent('Welcome Intent - fallback', conv => {
   respondBasedOnResponseType(unrecognisedInputWelcomeFulfillment, conv);
@@ -100,6 +101,14 @@ app.intent('Fallback', conv => {
   respondBasedOnResponseType(fallbackFulfillment, conv);
 });
 
+app.intent<{ answer: string }>('True False', (conv, { answer }) => {
+  respondToUserInput(answer, conv, trueFalseQuestionFulfillment);
+});
+
+app.intent<{ answer: string }>('Multiple Choice', (conv, { answer }) => {
+  respondToUserInput(answer, conv, multipleChoiceQuestionFulfillment);
+});
+
 app.intent<{ topicChoice: string }>(
   'News-Sport Round',
   (conv, { topicChoice }) => {
@@ -107,38 +116,10 @@ app.intent<{ topicChoice: string }>(
   }
 );
 
-app.intent<{ answer: string }>(
-  'News-Sport Round - trueFalse',
-  (conv, { answer }) => {
-    respondToUserInput(answer, conv, trueFalseQuestionFulfillment);
-  }
-);
-
-app.intent<{ answer: string }>(
-  'News-Sport Round - multipleChoice',
-  (conv, { answer }) => {
-    respondToUserInput(answer, conv, multipleChoiceQuestionFulfillment);
-  }
-);
-
 app.intent<{ topicChoice: string }>(
   'Arts-Science Round',
   (conv, { topicChoice }) => {
     respondToUserInput(topicChoice, conv, startCategory);
-  }
-);
-
-app.intent<{ answer: string }>(
-  'Arts-Science Round - trueFalse',
-  (conv, { answer }) => {
-    respondToUserInput(answer, conv, trueFalseQuestionFulfillment);
-  }
-);
-
-app.intent<{ answer: string }>(
-  'Arts-Science Round - multipleChoice',
-  (conv, { answer }) => {
-    respondToUserInput(answer, conv, multipleChoiceQuestionFulfillment);
   }
 );
 

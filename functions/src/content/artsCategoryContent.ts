@@ -31,8 +31,9 @@ const artsQuestions: Question[] = [
   ),
 ];
 
-const artsOpening = 'https://storage.googleapis.com/audio-assets/04.0_YiR_Arts_a.ogg'
+const artsOpening =
+  'https://storage.googleapis.com/audio-assets/04.0_YiR_Arts_a.ogg';
 
-const artsCategory = () => new Category(artsQuestions, artsOpening);
+const artsCategory = new Category(artsQuestions, artsOpening);
 
 export { artsCategory };

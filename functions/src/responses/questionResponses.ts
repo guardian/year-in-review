@@ -93,8 +93,8 @@ const endOfCategory = (
   data: ConversationData,
   feedbackAudio: string
 ): Response => {
-  const nextRound: Response = chooseRound(data);
   removeTopicFromConversationData(data);
+  const nextRound: Response = chooseRound(data);
   return new Response(
     nextRound.responseType,
     combineSSML(buildSSMLAudioResponse(feedbackAudio), nextRound.responseSSML)

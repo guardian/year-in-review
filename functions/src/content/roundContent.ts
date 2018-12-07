@@ -1,4 +1,5 @@
 import { RoundCollection, Rounds, Topic } from '../models/rounds';
+import { unexpectedErrorAudio } from './errorContent';
 
 const roundCollections: RoundCollection[] = [
   new RoundCollection(
@@ -16,6 +17,15 @@ const roundCollections: RoundCollection[] = [
     'https://storage.googleapis.com/audio-assets/03.1_Category_Time_Out_-_Science_Art_A.ogg',
     'https://storage.googleapis.com/audio-assets/03.2_Category_Unrecognized_-_Science_Art_A.ogg',
     new Set([Topic.SCIENCE, Topic.ARTS])
+  ),
+  // No choice so currently no round selection audio
+  new RoundCollection(
+    unexpectedErrorAudio,
+    unexpectedErrorAudio,
+    unexpectedErrorAudio,
+    unexpectedErrorAudio,
+    unexpectedErrorAudio,
+    new Set([Topic.POLITICS])
   ),
 ];
 
