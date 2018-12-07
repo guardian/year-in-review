@@ -14,21 +14,30 @@
       "value": "B",
       "synonyms": [
         "B",
-        "b"
+        "b",
+        "be",
+        "Be",
+        "bee",
+        "Bee"
       ]
     },
     {
       "value": "C",
       "synonyms": [
         "C",
-        "c"
+        "c",
+        "see",
+        "See",
+        "sea"
       ]
     },
     {
       "value": "D",
       "synonyms": [
         "D",
-        "d"
+        "d",
+        "Dee",
+        "dee"
       ]
     }
   ],
