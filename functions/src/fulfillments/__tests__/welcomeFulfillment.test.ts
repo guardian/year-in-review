@@ -13,7 +13,7 @@ describe('Unknown Input Welcome Fulfillment', () => {
     expect(data).toEqual(expectedData);
   });
 
-  test('reprompt count is less than 2 Response Type should be ask and reprompt count should be incremented', () => {
+  test('reprompt count is less than 3 Response Type should be ask and reprompt count should be incremented', () => {
     const data: ConversationData = { repromptCount: 1 };
     const ssml: Container = buildSSMLAudioResponse('');
     const response = respondBasedOnRepromptCount(data, ssml);
@@ -22,8 +22,8 @@ describe('Unknown Input Welcome Fulfillment', () => {
     expect(data).toEqual(expectedData);
   });
 
-  test('if user has been repromted 2 or more times Response Type should be close', () => {
-    const data: ConversationData = { repromptCount: 2 };
+  test('if user has been repromted 3 or more times Response Type should be close', () => {
+    const data: ConversationData = { repromptCount: 3 };
     const ssml: Container = buildSSMLAudioResponse('');
     const response = respondBasedOnRepromptCount(data, ssml);
     expect(response.responseType).toEqual(ResponseType.CLOSE);
