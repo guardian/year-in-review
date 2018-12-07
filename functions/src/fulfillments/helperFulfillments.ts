@@ -1,8 +1,5 @@
 import { ConversationData, Response, Unknown } from '../models/conversation';
-import {
-  getTopic,
-  questionRepromptFulfillment,
-} from './questionFulfillment';
+import { getTopic, questionRepromptFulfillment } from './questionFulfillment';
 import {
   trueFalseHelp,
   multipleChoiceHelp,
@@ -13,7 +10,7 @@ import {
   trueFalseNoInput,
   multipleChoiceNoInput,
   fillInTheBlankNoInput,
-  repeat
+  repeat,
 } from '../content/genericQuestionContent';
 import {
   roundFallbackFulfillment,
@@ -21,7 +18,12 @@ import {
   roundNoInputFulfillment,
   roundRepeatFullfillment,
 } from './roundFulfillment';
-import { Question, TrueFalseQuestion, MultipleChoiceQuestion } from '../models/questions';
+import {
+  Question,
+  TrueFalseQuestion,
+  MultipleChoiceQuestion,
+} from '../models/questions';
+import { unrecognisedInputWelcomeFulfillment } from './welcomeFulfillment';
 
 const helpFulfillment = (data: ConversationData): Response => {
   const topic = getTopic(data);
@@ -43,10 +45,16 @@ const noInputFulfillment = (data: ConversationData): Response => {
 
 const fallbackFulfillment = (data: ConversationData): Response => {
   const topic = getTopic(data);
+  if (!data.finishedWelcomeIntent) {
+    return unrecognisedInputWelcomeFulfillment(data);
+  }
   if (topic instanceof Unknown) {
     return roundFallbackFulfillment(data);
   } else {
-    return questionRepromptFulfillment(data, getQuestionSpecificUnknownInputAudio);
+    return questionRepromptFulfillment(
+      data,
+      getQuestionSpecificUnknownInputAudio
+    );
   }
 };
 

@@ -1,22 +1,17 @@
 {
-  "id": "3cec9086-9085-43e0-96af-7ba20ece32ca",
-  "parentId": "b88efddf-92aa-41d4-91d5-71610b513496",
-  "rootParentId": "b88efddf-92aa-41d4-91d5-71610b513496",
-  "name": "Arts-Science Round - multipleChoice",
+  "id": "0a280568-46b6-460d-a915-179ae5246073",
+  "name": "True False",
   "auto": true,
-  "contexts": [
-    "Arts-ScienceRound-followup"
-  ],
+  "contexts": [],
   "responses": [
     {
       "resetContexts": false,
-      "action": "Arts-ScienceRound.Arts-ScienceRound-custom",
       "affectedContexts": [],
       "parameters": [
         {
-          "id": "502c7bcc-c5b5-4962-8437-934f3927a1b6",
+          "id": "efa9946e-dbb7-4355-9e32-10b5c62159ed",
           "required": true,
-          "dataType": "@ABCD",
+          "dataType": "@True_or_False",
           "name": "answer",
           "value": "$answer",
           "isList": false
@@ -33,115 +28,127 @@
     }
   ],
   "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543936842,
+  "lastUpdate": 1544195412,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
     {
-      "id": "763eb9bf-de82-43c4-82c6-96ac37af0270",
+      "id": "fa7f57ce-5955-4290-add5-6c829366568a",
       "data": [
         {
-          "text": "b",
-          "alias": "answer",
-          "meta": "@ABCD",
-          "userDefined": false
+          "text": "I'm going "
         },
         {
-          "text": " please"
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543936842,
-      "isAuto": false
-    },
-    {
-      "id": "e9261251-ac15-4be5-aef9-42c0ef6538bd",
-      "data": [
-        {
-          "text": "obviously "
-        },
-        {
-          "text": "d",
+          "text": "false",
           "alias": "answer",
-          "meta": "@ABCD",
+          "meta": "@True_or_False",
           "userDefined": false
         }
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543936842,
+      "updated": 1544195412,
       "isAuto": false
     },
     {
-      "id": "0392fd14-55d5-49c3-9e1b-002616b56d2d",
+      "id": "6bfcde5d-0f93-4ffb-9632-a2294f11b916",
       "data": [
         {
-          "text": "A",
+          "text": "true",
           "alias": "answer",
-          "meta": "@ABCD",
-          "userDefined": false
-        },
-        {
-          "text": " final answer"
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543936842,
-      "isAuto": false
-    },
-    {
-      "id": "aeec5deb-175a-4a9b-9b09-6a55484b717d",
-      "data": [
-        {
-          "text": "I'm going with "
-        },
-        {
-          "text": "c",
-          "alias": "answer",
-          "meta": "@ABCD",
+          "meta": "@True_or_False",
           "userDefined": false
         }
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543936842,
+      "updated": 1544195412,
       "isAuto": false
     },
     {
-      "id": "91ac3674-9e14-47c6-8930-cc2b0cb42a64",
+      "id": "c22a2e9c-8ec9-45c5-bece-bbdb749c73e8",
+      "data": [
+        {
+          "text": "got to "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544195412,
+      "isAuto": false
+    },
+    {
+      "id": "809e627b-e95b-4f10-97f9-29ed71189073",
+      "data": [
+        {
+          "text": "um maybe "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544195412,
+      "isAuto": false
+    },
+    {
+      "id": "0911c254-4ddc-4b19-b0a5-2a362394b472",
       "data": [
         {
           "text": "I think "
         },
         {
-          "text": "b",
+          "text": "false",
           "alias": "answer",
-          "meta": "@ABCD",
+          "meta": "@True_or_False",
           "userDefined": false
         }
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543936842,
+      "updated": 1544195412,
       "isAuto": false
     },
     {
-      "id": "c4209f7d-5976-4ff3-b1da-062ac844cfd1",
+      "id": "433478be-dbf2-4b92-b367-9fb9412ff006",
       "data": [
         {
-          "text": "a",
+          "text": "that's "
+        },
+        {
+          "text": "true",
           "alias": "answer",
-          "meta": "@ABCD",
+          "meta": "@True_or_False",
           "userDefined": false
         }
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543936842,
+      "updated": 1544195412,
       "isAuto": false
     }
   ],

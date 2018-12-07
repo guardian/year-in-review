@@ -1,0 +1,141 @@
+{
+  "id": "f22a6bc2-e21b-4e38-9a00-0bdb19cf09b0",
+  "name": "Multiple Choice",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "95a320d0-2837-4c73-9698-1a9b1b16740b",
+          "required": true,
+          "dataType": "@ABCD",
+          "name": "answer",
+          "value": "$answer",
+          "isList": false
+        },
+        {
+          "id": "60624bac-7ed2-488b-a10c-78cfd9d9441d",
+          "required": false,
+          "dataType": "@ABCD",
+          "name": "ABCD",
+          "value": "$ABCD",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1544199956,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "a557ff16-5dc7-494c-bb0e-fc39c4941865",
+      "data": [
+        {
+          "text": "It's "
+        },
+        {
+          "text": "a",
+          "alias": "ABCD",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544199956,
+      "isAuto": false
+    },
+    {
+      "id": "0df2646a-ed36-42ff-a2af-0af6185d30f5",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "D",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544195583,
+      "isAuto": false
+    },
+    {
+      "id": "225c3f4e-df96-44b9-ade3-954658341a37",
+      "data": [
+        {
+          "text": "I'm going for "
+        },
+        {
+          "text": "c",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544195583,
+      "isAuto": false
+    },
+    {
+      "id": "8066084d-2292-43db-837b-69fb670e9f19",
+      "data": [
+        {
+          "text": "B",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544195583,
+      "isAuto": false
+    },
+    {
+      "id": "e15a3174-9b12-4c99-ba3c-74155fa56e78",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "A",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544195583,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}
