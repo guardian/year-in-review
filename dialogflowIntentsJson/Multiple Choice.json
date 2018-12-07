@@ -14,15 +14,7 @@
           "dataType": "@ABCD",
           "name": "answer",
           "value": "$answer",
-          "isList": false
-        },
-        {
-          "id": "60624bac-7ed2-488b-a10c-78cfd9d9441d",
-          "required": false,
-          "dataType": "@ABCD",
-          "name": "ABCD",
-          "value": "$ABCD",
-          "isList": false
+          "isList": true
         }
       ],
       "messages": [
@@ -42,10 +34,238 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1544199956,
+  "lastUpdate": 1544201923,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
+    {
+      "id": "7b30e312-4fa0-4208-8583-10f016e4c2a2",
+      "data": [
+        {
+          "text": "C",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        },
+        {
+          "text": " probably"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "8c24a2b0-2993-416a-8b03-d74b1dafa678",
+      "data": [
+        {
+          "text": "might "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "A",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "1530271e-c4d9-4779-897f-86bf456afc95",
+      "data": [
+        {
+          "text": "Could "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "B",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "12efafc4-5a19-4de2-93cd-858dabf0c1f1",
+      "data": [
+        {
+          "text": "I'd say "
+        },
+        {
+          "text": "D",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "6a2837c5-6293-46f7-8c50-f577df698c7e",
+      "data": [
+        {
+          "text": "A",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        },
+        {
+          "text": " I don't know"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "2854e0dc-4005-4c45-8887-074e048eef09",
+      "data": [
+        {
+          "text": "I don't know maybe "
+        },
+        {
+          "text": "c",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "05e52982-ecb1-491e-ac30-71c44b43764c",
+      "data": [
+        {
+          "text": "I'll guess "
+        },
+        {
+          "text": "b",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "62884f6f-7e46-4ca6-bb34-10debbcee041",
+      "data": [
+        {
+          "text": "perhaps "
+        },
+        {
+          "text": "a",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "f69ba069-bcd6-40d0-98a3-1e3237c20821",
+      "data": [
+        {
+          "text": "Maybe "
+        },
+        {
+          "text": "D",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "eef17fcb-4a19-4251-8c4f-483eff6119a8",
+      "data": [
+        {
+          "text": "C",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        },
+        {
+          "text": " definitely "
+        },
+        {
+          "text": "C",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
+    {
+      "id": "7f115bc6-d4ca-4f55-b3b1-46a79ba8277d",
+      "data": [
+        {
+          "text": "gotta "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "c",
+          "alias": "answer",
+          "meta": "@ABCD",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201923,
+      "isAuto": false
+    },
     {
       "id": "a557ff16-5dc7-494c-bb0e-fc39c4941865",
       "data": [
@@ -54,7 +274,7 @@
         },
         {
           "text": "a",
-          "alias": "ABCD",
+          "alias": "answer",
           "meta": "@ABCD",
           "userDefined": true
         }

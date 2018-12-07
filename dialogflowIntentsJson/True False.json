@@ -34,10 +34,152 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1544195412,
+  "lastUpdate": 1544201484,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
+    {
+      "id": "b6ecb558-85cc-4184-bafb-5b7422ca07b1",
+      "data": [
+        {
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        },
+        {
+          "text": " surely"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201484,
+      "isAuto": false
+    },
+    {
+      "id": "ad652cff-c90b-42ab-a80a-f31b71885a61",
+      "data": [
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        },
+        {
+          "text": " for sure"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201484,
+      "isAuto": false
+    },
+    {
+      "id": "235ad2d0-2729-4799-b3e1-e6f871bbc34d",
+      "data": [
+        {
+          "text": "must "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201484,
+      "isAuto": false
+    },
+    {
+      "id": "45e6a5cc-d53f-4a98-af20-c5928eccccd2",
+      "data": [
+        {
+          "text": "has to "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201484,
+      "isAuto": false
+    },
+    {
+      "id": "c58ccfa0-ed90-4983-bf0a-a9f7334eb229",
+      "data": [
+        {
+          "text": "definitely "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201484,
+      "isAuto": false
+    },
+    {
+      "id": "647fb76e-257a-4c1a-81e4-37736832c6e5",
+      "data": [
+        {
+          "text": "Probably "
+        },
+        {
+          "text": "false",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201484,
+      "isAuto": false
+    },
+    {
+      "id": "27c60e09-3979-4a25-8877-941850bbcf5a",
+      "data": [
+        {
+          "text": "Probably "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201484,
+      "isAuto": false
+    },
     {
       "id": "fa7f57ce-5955-4290-add5-6c829366568a",
       "data": [

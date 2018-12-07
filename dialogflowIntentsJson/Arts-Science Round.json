@@ -40,10 +40,190 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543920425,
+  "lastUpdate": 1544200923,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
+    {
+      "id": "238d06c3-53c0-4e60-84fc-0b65dac29e44",
+      "data": [
+        {
+          "text": "Definitely "
+        },
+        {
+          "text": "arts",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
+    {
+      "id": "8e183127-ddb8-4053-a84a-51d31e0c9e91",
+      "data": [
+        {
+          "text": "Definitely "
+        },
+        {
+          "text": "science",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
+    {
+      "id": "364b6acb-2201-4de7-abcd-beb037ebbafe",
+      "data": [
+        {
+          "text": "Maybe "
+        },
+        {
+          "text": "arts",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
+    {
+      "id": "5eba703d-ddb1-47f3-a410-b986f23cd6d3",
+      "data": [
+        {
+          "text": "Maybe "
+        },
+        {
+          "text": "science",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
+    {
+      "id": "4a9be0cd-a29e-419d-ac2f-f0885ed36f57",
+      "data": [
+        {
+          "text": "how about "
+        },
+        {
+          "text": "science",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
+    {
+      "id": "ee865b1f-55f5-4f8e-afd1-f42cea056a98",
+      "data": [
+        {
+          "text": "how about "
+        },
+        {
+          "text": "arts",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
+    {
+      "id": "07388b51-5fde-444d-b0d3-13ce5b5859b4",
+      "data": [
+        {
+          "text": "arts",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        },
+        {
+          "text": " sounds good"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
+    {
+      "id": "882daf99-de9a-45c8-b875-cf319f14063b",
+      "data": [
+        {
+          "text": "science",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        },
+        {
+          "text": " sounds good"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
+    {
+      "id": "d24805eb-3649-42a2-bb0d-cef7d37817e6",
+      "data": [
+        {
+          "text": "Let's go with "
+        },
+        {
+          "text": "arts",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
+    {
+      "id": "9539ce46-5876-4f1e-bcf2-29294d6d7ca6",
+      "data": [
+        {
+          "text": "Let's go with "
+        },
+        {
+          "text": "science",
+          "alias": "topicChoice",
+          "meta": "@Science_Arts",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544200923,
+      "isAuto": false
+    },
     {
       "id": "eb70bc54-61a3-4926-b5e3-9cb9cdc06a4d",
       "data": [

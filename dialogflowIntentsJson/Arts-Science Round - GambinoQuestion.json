@@ -19,7 +19,7 @@
           "dataType": "@GAMBINO",
           "name": "gambino",
           "value": "$gambino",
-          "isList": false
+          "isList": true
         }
       ],
       "messages": [
@@ -35,10 +35,78 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1544022181,
+  "lastUpdate": 1544202652,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
+    {
+      "id": "d6cac2a6-a5ff-40b5-8897-b44e4de28b77",
+      "data": [
+        {
+          "text": "could "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "childish gambino",
+          "alias": "gambino",
+          "meta": "@GAMBINO",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544202652,
+      "isAuto": false
+    },
+    {
+      "id": "798c36d0-8f00-40f2-9a29-3fec6c4dd54a",
+      "data": [
+        {
+          "text": "gambino",
+          "alias": "gambino",
+          "meta": "@GAMBINO",
+          "userDefined": false
+        },
+        {
+          "text": " something "
+        },
+        {
+          "text": "childish gambino",
+          "alias": "gambino",
+          "meta": "@GAMBINO",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544202652,
+      "isAuto": false
+    },
+    {
+      "id": "74e91cc0-8963-40ef-b929-a6b373ae28fc",
+      "data": [
+        {
+          "text": "childish gambino",
+          "alias": "gambino",
+          "meta": "@GAMBINO",
+          "userDefined": false
+        },
+        {
+          "text": " or something like that"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544202652,
+      "isAuto": false
+    },
     {
       "id": "274b6b8c-5d87-4b37-a982-55b46492b3e6",
       "data": [

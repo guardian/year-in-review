@@ -40,10 +40,169 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543920416,
+  "lastUpdate": 1544201018,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
+    {
+      "id": "c3413fe7-b560-4941-858a-207266923fb5",
+      "data": [
+        {
+          "text": "Sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        },
+        {
+          "text": " please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201018,
+      "isAuto": false
+    },
+    {
+      "id": "3a533134-cbb9-4ba6-9e34-4bcb77bfc7d1",
+      "data": [
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        },
+        {
+          "text": " please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1543919309,
+      "isAuto": false
+    },
+    {
+      "id": "be489964-f932-4112-964b-f4e0dd77ab56",
+      "data": [
+        {
+          "text": "Let's do "
+        },
+        {
+          "text": "sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201018,
+      "isAuto": false
+    },
+    {
+      "id": "f7933b11-2afd-45d8-9947-4ba2a4cd25a5",
+      "data": [
+        {
+          "text": "Let's do "
+        },
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201018,
+      "isAuto": false
+    },
+    {
+      "id": "89ab2a24-b023-48f8-b3a1-293324ed3d52",
+      "data": [
+        {
+          "text": "Let's try "
+        },
+        {
+          "text": "sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201018,
+      "isAuto": false
+    },
+    {
+      "id": "787b5424-d63a-4750-a20c-2898fb7eb467",
+      "data": [
+        {
+          "text": "Let's try "
+        },
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201018,
+      "isAuto": false
+    },
+    {
+      "id": "1ea4115b-babe-4863-a7e6-ffc0b6de16ec",
+      "data": [
+        {
+          "text": "I'll have a go at "
+        },
+        {
+          "text": "news",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201018,
+      "isAuto": false
+    },
+    {
+      "id": "20d44e88-1561-4764-8e2a-dc4ef36e1e9e",
+      "data": [
+        {
+          "text": "I'll have a go at "
+        },
+        {
+          "text": "sport",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201018,
+      "isAuto": false
+    },
+    {
+      "id": "abe57a6b-0f76-4513-82cb-254452a826dd",
+      "data": [
+        {
+          "text": "sports",
+          "alias": "topicChoice",
+          "meta": "@News_Sport",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544201018,
+      "isAuto": false
+    },
     {
       "id": "d2472d8e-22a3-4dda-b76b-20bc37c0a0d8",
       "data": [
@@ -112,25 +271,7 @@
         }
       ],
       "isTemplate": false,
-      "count": 0,
-      "updated": 1543919309,
-      "isAuto": false
-    },
-    {
-      "id": "3a533134-cbb9-4ba6-9e34-4bcb77bfc7d1",
-      "data": [
-        {
-          "text": "news",
-          "alias": "topicChoice",
-          "meta": "@News_Sport",
-          "userDefined": false
-        },
-        {
-          "text": " please"
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
+      "count": 1,
       "updated": 1543919309,
       "isAuto": false
     },
