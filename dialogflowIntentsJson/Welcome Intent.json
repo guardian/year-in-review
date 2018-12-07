@@ -31,7 +31,7 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543417124,
+  "lastUpdate": 1544096948,
   "fallbackIntent": false,
   "events": [
     {

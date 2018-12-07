@@ -7,14 +7,16 @@
       "value": "science",
       "synonyms": [
         "science",
-        "sciences"
+        "sciences",
+        "the sciences"
       ]
     },
     {
       "value": "arts",
       "synonyms": [
         "arts",
-        "art"
+        "art",
+        "the arts"
       ]
     }
   ],
