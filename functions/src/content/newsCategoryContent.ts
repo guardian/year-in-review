@@ -24,8 +24,9 @@ const newsQuestions: Question[] = [
   ),
 ];
 
-const newsOpening = 'https://storage.googleapis.com/audio-assets/01.1_YiR_Global_a.ogg'
+const newsOpening =
+  'https://storage.googleapis.com/audio-assets/01.1_YiR_Global_a.ogg';
 
-const newsCategory = () => new Category(newsQuestions, newsOpening);
+const newsCategory = new Category(newsQuestions, newsOpening);
 
 export { newsCategory };

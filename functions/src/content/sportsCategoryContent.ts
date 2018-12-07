@@ -30,8 +30,9 @@ const sportsQuestions: Question[] = [
   ),
 ];
 
-const sportsOpening = 'https://storage.googleapis.com/audio-assets/02.1_YiR_Sport_a.ogg'
+const sportsOpening =
+  'https://storage.googleapis.com/audio-assets/02.1_YiR_Sport_a.ogg';
 
-const sportsCategory = () => new Category(sportsQuestions, sportsOpening);
+const sportsCategory = new Category(sportsQuestions, sportsOpening);
 
 export { sportsCategory };

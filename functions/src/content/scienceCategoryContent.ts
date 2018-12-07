@@ -31,9 +31,9 @@ const scienceQuestions: Question[] = [
   ),
 ];
 
-const scienceOpening = 'https://storage.googleapis.com/audio-assets/03.0_YiR_Science_a.ogg'
+const scienceOpening =
+  'https://storage.googleapis.com/audio-assets/03.0_YiR_Science_a.ogg';
 
-const scienceCategory = () =>
-  new Category(scienceQuestions, scienceOpening);
+const scienceCategory = new Category(scienceQuestions, scienceOpening);
 
 export { scienceCategory };
