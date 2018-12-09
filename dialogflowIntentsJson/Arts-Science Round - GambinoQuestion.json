@@ -19,7 +19,7 @@
           "dataType": "@GAMBINO",
           "name": "gambino",
           "value": "$gambino",
-          "isList": true
+          "isList": false
         }
       ],
       "messages": [
@@ -35,7 +35,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1544202652,
+  "lastUpdate": 1544362101,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
