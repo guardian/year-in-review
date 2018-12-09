@@ -6,7 +6,8 @@
     "serve": "yarn run build && firebase serve --only functions",
     "shell": "yarn run build && firebase functions:shell",
     "start": "yarn run shell",
-    "deploy": "firebase deploy --only functions",
+    "deploy": "firebase use year-in-review-138f5 && firebase deploy --only functions",
+    "code-deploy": "firebase use year-in-review-code-bb96e && firebase deploy --only functions",
     "logs": "firebase functions:log",
     "test": "yarn jest",
     "valid": "yarn run lint && yarn run build && yarn run test"
