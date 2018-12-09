@@ -14,7 +14,7 @@
           "dataType": "@ABCD",
           "name": "answer",
           "value": "$answer",
-          "isList": true
+          "isList": false
         }
       ],
       "messages": [
@@ -34,7 +34,7 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1544201923,
+  "lastUpdate": 1544362032,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
