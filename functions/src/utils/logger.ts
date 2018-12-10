@@ -5,7 +5,7 @@ import { unexpectedErrorAudio } from '../content/errorContent';
 
 const unexpectedErrorResponse = (logMessage: string): Response => {
   // tslint:disable-next-line:no-console
-  console.log(logMessage);
+  console.error(logMessage);
   return new Response(
     ResponseType.CLOSE,
     buildSSMLAudioResponse(unexpectedErrorAudio)
