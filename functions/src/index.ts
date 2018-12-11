@@ -178,8 +178,14 @@ app.intent<{ queen: string }>('QueenQuestion', (conv, { queen }) => {
 });
 
 app.intent('Quit App', conv => {
-  const response = convertSSMLContainerToString(quit());
-  conv.close(response);
+  const response = quit();
+  const ssml = convertSSMLContainerToString(response.responseSSML);
+  const textReponse = response.responseText;
+  const r = new SimpleResponse({
+    speech: ssml,
+    text: textReponse,
+  });
+  conv.close(r);
 });
 
 exports.yearInReviewFulfillment = functions

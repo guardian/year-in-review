@@ -3,6 +3,7 @@ import {
   goodScoreAudio,
   neutralScoreAudio,
   quitAudio,
+  quitText,
 } from '../content/endOfGameContent';
 import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 
@@ -46,7 +47,7 @@ const quit = () => {
   return new Response(
     ResponseType.CLOSE,
     buildSSMLAudioResponse(quitAudio),
-    ''
+    quitText
   );
 };
 
