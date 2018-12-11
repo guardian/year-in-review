@@ -6,7 +6,11 @@ import {
 } from '../content/endOfGameContent';
 import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 
-import { ConversationData } from '../models/conversation';
+import {
+  ConversationData,
+  Response,
+  ResponseType,
+} from '../models/conversation';
 
 const gameOver = (data: ConversationData) => {
   const feedbackAudio = getScoreAudio(data);
@@ -39,7 +43,11 @@ const calculatePercentScore = (
 };
 
 const quit = () => {
-  return buildSSMLAudioResponse(quitAudio);
+  return new Response(
+    ResponseType.CLOSE,
+    buildSSMLAudioResponse(quitAudio),
+    ''
+  );
 };
 
 export { gameOver, quit };

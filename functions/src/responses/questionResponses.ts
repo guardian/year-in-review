@@ -85,7 +85,8 @@ const askNextQuestion = (
   const nextQuestionAudio = nextQuestion.questionAudio;
   return new Response(
     ResponseType.ASK,
-    buildSSMLAndCombineAudioResponses(feedbackAudio, nextQuestionAudio)
+    buildSSMLAndCombineAudioResponses(feedbackAudio, nextQuestionAudio),
+    ''
   );
 };
 
@@ -97,7 +98,8 @@ const endOfCategory = (
   const nextRound: Response = chooseRound(data);
   return new Response(
     nextRound.responseType,
-    combineSSML(buildSSMLAudioResponse(feedbackAudio), nextRound.responseSSML)
+    combineSSML(buildSSMLAudioResponse(feedbackAudio), nextRound.responseSSML),
+    ''
   );
 };
 

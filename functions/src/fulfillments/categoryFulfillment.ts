@@ -23,11 +23,11 @@ const startCategory = (
     const maybeQuestion: OptionQuestion = category.getQuestion(1);
 
     if (maybeQuestion instanceof Question) {
-      const response = buildSSMLAndCombineAudioResponses(category.openingAudio, maybeQuestion.questionAudio)
-      return new Response(
-        ResponseType.ASK,
-        response
+      const response = buildSSMLAndCombineAudioResponses(
+        category.openingAudio,
+        maybeQuestion.questionAudio
       );
+      return new Response(ResponseType.ASK, response, '');
     } else {
       return unexpectedErrorResponse(
         `No first question found for category ${category}`

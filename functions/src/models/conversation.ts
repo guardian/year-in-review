@@ -23,7 +23,8 @@ enum ResponseType {
 class Response {
   constructor(
     public responseType: ResponseType,
-    public responseSSML: Container
+    public responseSSML: Container,
+    public responseText: string
   ) {}
 }
 

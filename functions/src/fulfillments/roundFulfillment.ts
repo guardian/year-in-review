@@ -39,7 +39,7 @@ const chooseRound = (data: ConversationData): Response => {
   if (round instanceof RoundCollection) {
     return chooseRoundResponse(round, data);
   } else {
-    return new Response(ResponseType.CLOSE, gameOver(data));
+    return new Response(ResponseType.CLOSE, gameOver(data), '');
   }
 };
 

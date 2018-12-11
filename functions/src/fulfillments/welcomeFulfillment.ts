@@ -59,9 +59,9 @@ const respondBasedOnRepromptCount = (
   const count = data.repromptCount || 0;
   if (count < 3) {
     data.repromptCount = count + 1;
-    return new Response(ResponseType.ASK, ssml);
+    return new Response(ResponseType.ASK, ssml, '');
   } else {
-    return new Response(ResponseType.CLOSE, doNotPlayFulfillment());
+    return new Response(ResponseType.CLOSE, doNotPlayFulfillment(), '');
   }
 };
 

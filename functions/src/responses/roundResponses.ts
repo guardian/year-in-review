@@ -20,10 +20,11 @@ const roundHelperResponse = (
   if (round instanceof RoundCollection) {
     return new Response(
       ResponseType.ASK,
-      buildSSMLAudioResponse(getAudio(round))
+      buildSSMLAudioResponse(getAudio(round)),
+      ''
     );
   } else {
-    return new Response(ResponseType.CLOSE, gameOver(data));
+    return new Response(ResponseType.CLOSE, gameOver(data), '');
   }
 };
 
@@ -34,14 +35,16 @@ const chooseRoundResponse = (
   if (round.getTopics().size === 1) {
     let response: Response = new Response(
       ResponseType.CLOSE,
-      buildSSMLAudioResponse(unexpectedErrorAudio)
+      buildSSMLAudioResponse(unexpectedErrorAudio),
+      ''
     );
     round.getTopics().forEach(topic => (response = startCategory(topic, data)));
     return response;
   } else {
     return new Response(
       ResponseType.ASK,
-      buildSSMLAudioResponse(round.introductionAudio)
+      buildSSMLAudioResponse(round.introductionAudio),
+      ''
     );
   }
 };

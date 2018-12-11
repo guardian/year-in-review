@@ -8,7 +8,8 @@ const unexpectedErrorResponse = (logMessage: string): Response => {
   console.error(logMessage);
   return new Response(
     ResponseType.CLOSE,
-    buildSSMLAudioResponse(unexpectedErrorAudio)
+    buildSSMLAudioResponse(unexpectedErrorAudio),
+    ''
   );
 };
 
