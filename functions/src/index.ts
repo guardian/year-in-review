@@ -1,6 +1,12 @@
 import * as functions from 'firebase-functions';
 
-import { BasicCard, Button, Image, dialogflow } from 'actions-on-google';
+import {
+  BasicCard,
+  Button,
+  Image,
+  dialogflow,
+  SimpleResponse,
+} from 'actions-on-google';
 import {
   helpWelcomeFulfillment,
   startYearInReviewFulfillment,
@@ -15,8 +21,8 @@ import {
   repeatFulfillment,
 } from './fulfillments/helperFulfillments';
 import {
-  fillInTheBlankIncorrectFulfillment,
-  fillInTheBlankQuestionFulfillment,
+  fillInTheBlankQuestionIncorrectFulfillment,
+  fillInTheBlankQuestionCorrectFulfillment,
   multipleChoiceQuestionFulfillment,
   trueFalseQuestionFulfillment,
 } from './fulfillments/questionFulfillment';
@@ -99,7 +105,7 @@ app.intent('No Input', conv => {
 
 app.intent('Fallback', conv => {
   // Fallback might be due to a fill in the blank conversation being answered incorrectly
-  respondBasedOnResponseType(fillInTheBlankIncorrectFulfillment, conv);
+  respondBasedOnResponseType(fillInTheBlankQuestionIncorrectFulfillment, conv);
 });
 
 app.intent<{ answer: string }>('True False', (conv, { answer }) => {
@@ -120,14 +126,14 @@ app.intent<{ topicChoice: string }>(
 app.intent<{ saudi: string }>(
   'News-Sport Round - SaudiArabiaQuestion',
   (conv, { saudi }) => {
-    respondToUserInput(saudi, conv, fillInTheBlankQuestionFulfillment);
+    respondToUserInput(saudi, conv, fillInTheBlankQuestionCorrectFulfillment);
   }
 );
 
 app.intent<{ kane: string }>(
   'News-Sport Round - HarryKaneQuestion',
   (conv, { kane }) => {
-    respondToUserInput(kane, conv, fillInTheBlankQuestionFulfillment);
+    respondToUserInput(kane, conv, fillInTheBlankQuestionCorrectFulfillment);
   }
 );
 
@@ -141,14 +147,14 @@ app.intent<{ topicChoice: string }>(
 app.intent<{ crispr: string }>(
   'Arts-Science Round - CRISPRQuestion',
   (conv, { crispr }) => {
-    respondToUserInput(crispr, conv, fillInTheBlankQuestionFulfillment);
+    respondToUserInput(crispr, conv, fillInTheBlankQuestionCorrectFulfillment);
   }
 );
 
 app.intent<{ gambino: string }>(
   'Arts-Science Round - GambinoQuestion',
   (conv, { gambino }) => {
-    respondToUserInput(gambino, conv, fillInTheBlankQuestionFulfillment);
+    respondToUserInput(gambino, conv, fillInTheBlankQuestionCorrectFulfillment);
   }
 );
 
@@ -162,19 +168,19 @@ app.intent<{ topicChoice: string }>(
 app.intent<{ gdpr: string }>(
   'Tech-Politics Round - GDPRQuestion',
   (conv, { gdpr }) => {
-    respondToUserInput(gdpr, conv, fillInTheBlankQuestionFulfillment);
+    respondToUserInput(gdpr, conv, fillInTheBlankQuestionCorrectFulfillment);
   }
 );
 
 app.intent<{ credit: string }>(
   'Tech-Politics Round - UniversalCreditQuestion',
   (conv, { credit }) => {
-    respondToUserInput(credit, conv, fillInTheBlankQuestionFulfillment);
+    respondToUserInput(credit, conv, fillInTheBlankQuestionCorrectFulfillment);
   }
 );
 
 app.intent<{ queen: string }>('QueenQuestion', (conv, { queen }) => {
-  respondToUserInput(queen, conv, fillInTheBlankQuestionFulfillment);
+  respondToUserInput(queen, conv, fillInTheBlankQuestionCorrectFulfillment);
 });
 
 app.intent('Quit App', conv => {

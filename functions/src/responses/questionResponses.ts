@@ -10,6 +10,7 @@ import {
   OptionQuestion,
   Question,
   TrueFalseQuestion,
+  QuestionFeedback,
 } from '../models/questions';
 import {
   buildSSMLAndCombineAudioResponses,
@@ -18,6 +19,7 @@ import {
 } from './ssmlResponses';
 
 import { chooseRound } from '../fulfillments/roundFulfillment';
+import { combineTextResponses } from '../responses/textResponses';
 
 const buildFillInTheBlankQuestionResponse = (
   data: ConversationData,
@@ -26,11 +28,14 @@ const buildFillInTheBlankQuestionResponse = (
   answer: string
 ): Response => {
   updateScore(isFillInTheBlankCorrect(currentQuestion, answer), data);
-  const feedbackAudio = getFillInTheBlankFeedback(currentQuestion, answer);
+  const feedback: QuestionFeedback = getFillInTheBlankFeedback(
+    currentQuestion,
+    answer
+  );
   if (nextQuestion instanceof Question) {
-    return askNextQuestion(nextQuestion, feedbackAudio);
+    return askNextQuestion(nextQuestion, feedback);
   } else {
-    return endOfCategory(data, feedbackAudio);
+    return endOfCategory(data, feedback);
   }
 };
 
@@ -41,11 +46,14 @@ const buildTrueFalseQuestionResponse = (
   answer: boolean
 ): Response => {
   updateScore(isTrueFalseCorrect(currentQuestion, answer), data);
-  const feedbackAudio = getTrueFalseFeedback(currentQuestion, answer);
+  const feedback: QuestionFeedback = getTrueFalseFeedback(
+    currentQuestion,
+    answer
+  );
   if (nextQuestion instanceof Question) {
-    return askNextQuestion(nextQuestion, feedbackAudio);
+    return askNextQuestion(nextQuestion, feedback);
   } else {
-    return endOfCategory(data, feedbackAudio);
+    return endOfCategory(data, feedback);
   }
 };
 
@@ -56,11 +64,14 @@ const buildMultipleChoiceQuestionResponse = (
   answer: MultipleChoice
 ): Response => {
   updateScore(isMultipleChoiceCorrect(currentQuestion, answer), data);
-  const feedbackAudio = getMultipleChoiceFeedback(currentQuestion, answer);
+  const feedback: QuestionFeedback = getMultipleChoiceFeedback(
+    currentQuestion,
+    answer
+  );
   if (nextQuestion instanceof Question) {
-    return askNextQuestion(nextQuestion, feedbackAudio);
+    return askNextQuestion(nextQuestion, feedback);
   } else {
-    return endOfCategory(data, feedbackAudio);
+    return endOfCategory(data, feedback);
   }
 };
 
@@ -68,38 +79,43 @@ const buildFillInTheBlankQuestionIncorrectResponse = (
   data: ConversationData,
   currentQuestion: FillInTheBlankQuestion,
   nextQuestion: OptionQuestion
-) => {
+): Response => {
   updateScore(false, data);
-  const feedbackAudio = currentQuestion.incorrectAnswerAudio;
+  const feedback: QuestionFeedback = new QuestionFeedback(
+    currentQuestion.incorrectAnswerAudio,
+    currentQuestion.incorrectAnswerText
+  );
   if (nextQuestion instanceof Question) {
-    return askNextQuestion(nextQuestion, feedbackAudio);
+    return askNextQuestion(nextQuestion, feedback);
   } else {
-    return endOfCategory(data, feedbackAudio);
+    return endOfCategory(data, feedback);
   }
 };
 
 const askNextQuestion = (
   nextQuestion: Question,
-  feedbackAudio: string
+  feedback: QuestionFeedback
 ): Response => {
-  const nextQuestionAudio = nextQuestion.questionAudio;
   return new Response(
     ResponseType.ASK,
-    buildSSMLAndCombineAudioResponses(feedbackAudio, nextQuestionAudio),
-    ''
+    buildSSMLAndCombineAudioResponses(
+      feedback.audio,
+      nextQuestion.questionAudio
+    ),
+    combineTextResponses(feedback.text, nextQuestion.questionText)
   );
 };
 
 const endOfCategory = (
   data: ConversationData,
-  feedbackAudio: string
+  feedback: QuestionFeedback
 ): Response => {
   removeTopicFromConversationData(data);
   const nextRound: Response = chooseRound(data);
   return new Response(
     nextRound.responseType,
-    combineSSML(buildSSMLAudioResponse(feedbackAudio), nextRound.responseSSML),
-    ''
+    combineSSML(buildSSMLAudioResponse(feedback.audio), nextRound.responseSSML),
+    combineTextResponses(feedback.text, nextRound.responseText)
   );
 };
 
@@ -110,35 +126,47 @@ const removeTopicFromConversationData = (data: ConversationData): void => {
 const getTrueFalseFeedback = (
   question: TrueFalseQuestion,
   answer: boolean
-): string => {
+): QuestionFeedback => {
   return answer === question.answer
-    ? question.correctAnswerAudio
-    : question.incorrectAnswerAudio;
+    ? new QuestionFeedback(
+        question.correctAnswerAudio,
+        question.correctAnswerText
+      )
+    : new QuestionFeedback(
+        question.incorrectAnswerAudio,
+        question.incorrectAnswerText
+      );
 };
 
 const getMultipleChoiceFeedback = (
   question: MultipleChoiceQuestion,
   answer: MultipleChoice
-): string => {
+): QuestionFeedback => {
   switch (answer) {
     case MultipleChoice.A:
-      return question.AAudio;
+      return new QuestionFeedback(question.AAudio, question.AText);
     case MultipleChoice.B:
-      return question.BAudio;
+      return new QuestionFeedback(question.BAudio, question.BText);
     case MultipleChoice.C:
-      return question.CAudio;
+      return new QuestionFeedback(question.CAudio, question.CText);
     default:
-      return question.DAudio;
+      return new QuestionFeedback(question.DAudio, question.DText);
   }
 };
 
 const getFillInTheBlankFeedback = (
   question: FillInTheBlankQuestion,
   answer: string
-) => {
+): QuestionFeedback => {
   return answer === question.answer
-    ? question.correctAnswerAudio
-    : question.incorrectAnswerAudio;
+    ? new QuestionFeedback(
+        question.correctAnswerAudio,
+        question.correctAnswerText
+      )
+    : new QuestionFeedback(
+        question.incorrectAnswerAudio,
+        question.incorrectAnswerText
+      );
 };
 
 const isTrueFalseCorrect = (

@@ -1,41 +1,52 @@
 import { Unknown } from './conversation';
 
 class Question {
-  constructor(public questionAudio: string) {}
+  constructor(public questionAudio: string, public questionText: string) {}
 }
 
 class TrueFalseQuestion extends Question {
   constructor(
     questionAudio: string,
+    questionText: string,
     public answer: boolean,
     public correctAnswerAudio: string,
-    public incorrectAnswerAudio: string
+    public correctAnswerText: string,
+    public incorrectAnswerAudio: string,
+    public incorrectAnswerText: string
   ) {
-    super(questionAudio);
+    super(questionAudio, questionText);
   }
 }
 
 class MultipleChoiceQuestion extends Question {
   constructor(
     questionAudio: string,
+    questionText: string,
     public answer: MultipleChoice,
     public AAudio: string,
+    public AText: string,
     public BAudio: string,
+    public BText: string,
     public CAudio: string,
-    public DAudio: string
+    public CText: string,
+    public DAudio: string,
+    public DText: string
   ) {
-    super(questionAudio);
+    super(questionAudio, questionText);
   }
 }
 
 class FillInTheBlankQuestion extends Question {
   constructor(
     questionAudio: string,
+    questionText: string,
     public answer: string,
     public correctAnswerAudio: string,
-    public incorrectAnswerAudio: string
+    public correctAnswerText: string,
+    public incorrectAnswerAudio: string,
+    public incorrectAnswerText: string
   ) {
-    super(questionAudio);
+    super(questionAudio, questionText);
   }
 }
 
@@ -50,6 +61,10 @@ enum MultipleChoice {
 
 type OptionMultipleChoice = MultipleChoice | Unknown;
 
+class QuestionFeedback {
+  constructor(public audio: string, public text: string) {}
+}
+
 export {
   Question,
   OptionQuestion,
@@ -58,4 +73,5 @@ export {
   MultipleChoiceQuestion,
   FillInTheBlankQuestion,
   OptionMultipleChoice,
+  QuestionFeedback,
 };

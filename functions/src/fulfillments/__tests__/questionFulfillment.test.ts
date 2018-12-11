@@ -9,8 +9,8 @@ import {
   buildTrueFalseQuestionResponse,
 } from '../../responses/questionResponses';
 import {
-  fillInTheBlankIncorrectFulfillment,
-  fillInTheBlankQuestionFulfillment,
+  fillInTheBlankQuestionIncorrectFulfillment,
+  fillInTheBlankQuestionCorrectFulfillment,
   getQuestionBasedOnConversationData,
   incrementQuestionNumber,
   multipleChoiceQuestionFulfillment,
@@ -55,7 +55,7 @@ describe('True False Fulfillment', () => {
 describe('Fill in the blank Fulfillment', () => {
   test('If question could not be retrieved expect error response', () => {
     const data: ConversationData = {};
-    fillInTheBlankQuestionFulfillment('', data);
+    fillInTheBlankQuestionCorrectFulfillment('', data);
     expect(fallbackFulfillment).toBeCalled;
   });
 
@@ -63,7 +63,7 @@ describe('Fill in the blank Fulfillment', () => {
     const data: ConversationData = {
       currentTopic: Topic.NEWS,
     };
-    fillInTheBlankQuestionFulfillment('', data);
+    fillInTheBlankQuestionCorrectFulfillment('', data);
     expect(buildFillInTheBlankQuestionResponse).toBeCalled;
   });
 });
@@ -71,7 +71,7 @@ describe('Fill in the blank Fulfillment', () => {
 describe('Fill in the blank incorrect answer Fulfillment', () => {
   test('If question could not be retrieved expect error response', () => {
     const data: ConversationData = {};
-    fillInTheBlankIncorrectFulfillment(data);
+    fillInTheBlankQuestionIncorrectFulfillment(data);
     expect(fallbackFulfillment).toBeCalled;
   });
 
@@ -79,8 +79,8 @@ describe('Fill in the blank incorrect answer Fulfillment', () => {
     const data: ConversationData = {
       currentTopic: Topic.NEWS,
     };
-    fillInTheBlankIncorrectFulfillment(data);
-    expect(fillInTheBlankIncorrectFulfillment).toBeCalled;
+    fillInTheBlankQuestionIncorrectFulfillment(data);
+    expect(fillInTheBlankQuestionIncorrectFulfillment).toBeCalled;
   });
 });
 

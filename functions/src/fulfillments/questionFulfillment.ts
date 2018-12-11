@@ -108,7 +108,7 @@ const convertStringToMultipleChoice = (s: string): OptionMultipleChoice => {
   }
 };
 
-const fillInTheBlankQuestionFulfillment = (
+const fillInTheBlankQuestionCorrectFulfillment = (
   answer: string,
   data: ConversationData
 ): Response => {
@@ -129,7 +129,7 @@ const fillInTheBlankQuestionFulfillment = (
   }
 };
 
-const fillInTheBlankIncorrectFulfillment = (data: ConversationData) => {
+const fillInTheBlankQuestionIncorrectFulfillment = (data: ConversationData) => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof FillInTheBlankQuestion) {
     incrementQuestionNumber(data);
@@ -196,10 +196,10 @@ const getQuestionBasedOnConversationData = (
 export {
   getQuestionBasedOnConversationData,
   getTopic,
-  fillInTheBlankIncorrectFulfillment,
+  fillInTheBlankQuestionIncorrectFulfillment,
   trueFalseQuestionFulfillment,
   multipleChoiceQuestionFulfillment,
-  fillInTheBlankQuestionFulfillment,
+  fillInTheBlankQuestionCorrectFulfillment,
   incrementQuestionNumber,
   questionRepromptFulfillment,
 };

@@ -1,4 +1,8 @@
-import { Contexts, DialogflowConversation } from 'actions-on-google';
+import {
+  Contexts,
+  DialogflowConversation,
+  SimpleResponse,
+} from 'actions-on-google';
 import {
   ConversationData,
   Response,
@@ -26,7 +30,10 @@ const respondToUserInput = (
   f: (input: string, data: ConversationData) => Response
 ) => {
   const fulfillment = f(input, conv.data);
-  const response = convertSSMLContainerToString(fulfillment.responseSSML);
+  const response = new SimpleResponse({
+    speech: convertSSMLContainerToString(fulfillment.responseSSML),
+    text: fulfillment.responseText,
+  });
   if (fulfillment.responseType === ResponseType.ASK) {
     conv.ask(response);
   } else {
