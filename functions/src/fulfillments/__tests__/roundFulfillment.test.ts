@@ -13,10 +13,10 @@ describe('Select Round', () => {
 
   test('Update round correctly if round exists on ConversationData', () => {
     const data: ConversationData = {
-      currentRound: 3,
+      currentRound: 10,
     };
     const expectedData: ConversationData = {
-      currentRound: 4,
+      currentRound: 11,
     };
     chooseRound(data);
     expect(data).toEqual(expectedData);

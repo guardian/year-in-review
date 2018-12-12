@@ -1,0 +1,271 @@
+{
+  "id": "3da0fbe5-8843-4f9f-bf3f-80e6e1e2c249",
+  "name": "QueenQuestion",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "5cb4b6e6-d610-4e54-8426-d4c7331dd9df",
+          "required": true,
+          "dataType": "@QUEEN",
+          "name": "queen",
+          "value": "$queen",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1544628341,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "403b8bcd-f6a3-41ab-b6a5-a28de0c0dc1d",
+      "data": [
+        {
+          "text": "wasn't it "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "21b60268-0b85-4bc1-87be-d564a5e5c953",
+      "data": [
+        {
+          "text": "the answer is "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "b2a61def-1cf4-43ca-870e-96bf9c1304a5",
+      "data": [
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        },
+        {
+          "text": " wasn't it"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "00855657-3d7b-4ed5-b875-5bb48de6a4e6",
+      "data": [
+        {
+          "text": "I think it's "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "e5fe0c0c-216b-4462-a4f2-679dca2d3a7d",
+      "data": [
+        {
+          "text": "I'm not sure but I think it could "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "984b555d-3a6b-48bc-9771-e3df432f356c",
+      "data": [
+        {
+          "text": "was",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " it "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "47b8732a-6002-4110-9488-a26bafc52886",
+      "data": [
+        {
+          "text": "it is "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "92a0f8bf-f07f-4b29-9a3f-e39e9f375bc1",
+      "data": [
+        {
+          "text": "might "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        },
+        {
+          "text": " but I don't know"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "e8a451a5-a6c2-4d30-9364-890d7fe88e24",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "f02cd637-44e3-426c-a2fd-b156a067049b",
+      "data": [
+        {
+          "text": "let's say "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    },
+    {
+      "id": "61bd0be6-7ddd-4804-8bcf-a93d9078493b",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "queen",
+          "alias": "queen",
+          "meta": "@QUEEN",
+          "userDefined": false
+        },
+        {
+          "text": " but I'm not sure"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544628341,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

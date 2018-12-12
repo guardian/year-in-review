@@ -10,7 +10,6 @@ import {
   noInputWelcomeFulfillment,
 } from './fulfillments/welcomeFulfillment';
 import {
-  fallbackFulfillment,
   helpFulfillment,
   noInputFulfillment,
   repeatFulfillment,
@@ -99,7 +98,8 @@ app.intent('No Input', conv => {
 });
 
 app.intent('Fallback', conv => {
-  respondBasedOnResponseType(fallbackFulfillment, conv);
+  // Fallback might be due to a fill in the blank conversation being answered incorrectly
+  respondBasedOnResponseType(fillInTheBlankIncorrectFulfillment, conv);
 });
 
 app.intent<{ answer: string }>('True False', (conv, { answer }) => {
@@ -114,6 +114,20 @@ app.intent<{ topicChoice: string }>(
   'News-Sport Round',
   (conv, { topicChoice }) => {
     respondToUserInput(topicChoice, conv, startCategory);
+  }
+);
+
+app.intent<{ saudi: string }>(
+  'News-Sport Round - SaudiArabiaQuestion',
+  (conv, { saudi }) => {
+    respondToUserInput(saudi, conv, fillInTheBlankQuestionFulfillment);
+  }
+);
+
+app.intent<{ kane: string }>(
+  'News-Sport Round - HarryKaneQuestion',
+  (conv, { kane }) => {
+    respondToUserInput(kane, conv, fillInTheBlankQuestionFulfillment);
   }
 );
 
@@ -138,8 +152,29 @@ app.intent<{ gambino: string }>(
   }
 );
 
-app.intent('Arts-Science Round - fallback', conv => {
-  respondBasedOnResponseType(fillInTheBlankIncorrectFulfillment, conv);
+app.intent<{ topicChoice: string }>(
+  'Tech-Politics Round',
+  (conv, { topicChoice }) => {
+    respondToUserInput(topicChoice, conv, startCategory);
+  }
+);
+
+app.intent<{ gdpr: string }>(
+  'Tech-Politics Round - GDPRQuestion',
+  (conv, { gdpr }) => {
+    respondToUserInput(gdpr, conv, fillInTheBlankQuestionFulfillment);
+  }
+);
+
+app.intent<{ credit: string }>(
+  'Tech-Politics Round - UniversalCreditQuestion',
+  (conv, { credit }) => {
+    respondToUserInput(credit, conv, fillInTheBlankQuestionFulfillment);
+  }
+);
+
+app.intent<{ queen: string }>('QueenQuestion', (conv, { queen }) => {
+  respondToUserInput(queen, conv, fillInTheBlankQuestionFulfillment);
 });
 
 app.intent('Quit App', conv => {

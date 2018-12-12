@@ -1,0 +1,287 @@
+{
+  "id": "744dab68-3072-4c0a-b507-9783a7160f8d",
+  "parentId": "cc81b9c4-9d9e-4606-8e2d-dc3ea5a888cc",
+  "rootParentId": "cc81b9c4-9d9e-4606-8e2d-dc3ea5a888cc",
+  "name": "News-Sport Round - SaudiArabiaQuestion",
+  "auto": true,
+  "contexts": [
+    "News-SportRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "News-SportRound.News-SportRound-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "6a4fef2e-820a-4505-84b0-ba7800005858",
+          "required": true,
+          "dataType": "@SAUDI_ARABIA",
+          "name": "saudi",
+          "value": "$saudi",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1544623164,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "3ce6d1b4-007a-4f3b-af25-744fc7928176",
+      "data": [
+        {
+          "text": "saudi arabia",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "bea9a32e-8401-43f8-ab83-c78002743a6b",
+      "data": [
+        {
+          "text": "wasn't it "
+        },
+        {
+          "text": "saudi",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "f20afc1f-6b7a-454e-97a0-98500a1b66f2",
+      "data": [
+        {
+          "text": "the answer is "
+        },
+        {
+          "text": "saudi arabia",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "ff010605-fff5-420f-801d-ddb60d6af2ca",
+      "data": [
+        {
+          "text": "saudi arabia",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        },
+        {
+          "text": " wasn't it"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "02690cc0-c3d6-4c34-acb2-6086474b7ea1",
+      "data": [
+        {
+          "text": "I think it's "
+        },
+        {
+          "text": "saudi",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "5e3b5242-ccbf-4539-a8d1-586cbc5b46d8",
+      "data": [
+        {
+          "text": "I'm not sure but I think it could "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "saudi arabia",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "c1c0f690-ba98-4654-ac34-87e234ac6534",
+      "data": [
+        {
+          "text": "was",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " it "
+        },
+        {
+          "text": "saudi arabia",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "11660034-f8d2-4f33-8273-51d0ac956bc4",
+      "data": [
+        {
+          "text": "it is "
+        },
+        {
+          "text": "saudi",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "6344f767-86a5-4023-b2f4-80c7db52a2c5",
+      "data": [
+        {
+          "text": "might "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "saudi arabia",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        },
+        {
+          "text": " but I'm not sure"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "ec47c525-dd11-460a-9da1-92dfae2521ad",
+      "data": [
+        {
+          "text": "Lets say "
+        },
+        {
+          "text": "saudi arabia",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "f98b7192-c7f5-4e84-9148-fa4cc2b82769",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "saudi arabia",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": true
+        },
+        {
+          "text": " but I don't know"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    },
+    {
+      "id": "afe9458f-31e0-4408-ae87-9a1ee12ea1aa",
+      "data": [
+        {
+          "text": "it's "
+        },
+        {
+          "text": "saudi",
+          "alias": "saudi",
+          "meta": "@SAUDI_ARABIA",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544623164,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

@@ -1,4 +1,5 @@
 import {
+  FillInTheBlankQuestion,
   MultipleChoice,
   MultipleChoiceQuestion,
   Question,
@@ -22,11 +23,11 @@ const sportsQuestions: Question[] = [
     'https://storage.googleapis.com/audio-assets/02.3_YiR_Sport_2C.ogg',
     'https://storage.googleapis.com/audio-assets/02.3_YiR_Sport_2D.ogg'
   ),
-  new TrueFalseQuestion(
-    'https://storage.googleapis.com/audio-assets/02.3_YiR_Sport_3b.ogg',
-    false,
-    'https://storage.googleapis.com/audio-assets/02.4_YiR_Sport_Q3False.ogg',
-    'https://storage.googleapis.com/audio-assets/02.4_YiR_Sport_Q3True.ogg'
+  new FillInTheBlankQuestion(
+    'https://storage.googleapis.com/audio-assets/02.4_YiR_Sport_Q3.ogg',
+    'HARRY KANE',
+    'https://storage.googleapis.com/audio-assets/02.4_YiR_Sport_Q3_Kane.ogg',
+    'https://storage.googleapis.com/audio-assets/02.4_YiR_Sport_Q3_Not_Kane.ogg'
   ),
 ];
 

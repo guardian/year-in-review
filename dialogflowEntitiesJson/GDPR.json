@@ -1,0 +1,16 @@
+{
+  "id": "dee2528e-7db9-415f-a8db-ed1783c11d3b",
+  "name": "GDPR",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "GDPR",
+      "synonyms": [
+        "GDPR",
+        "General Data Protection Regulation"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}
