@@ -22,8 +22,9 @@ const repeatWelcomeAudio =
 const unsuportedDeviceWelcome = 'Welcome to The Year In Review';
 
 const unsupportedDeviceCard = {
+  title: "Unfortunately, the Year In Review isn't available on this device.",
   text:
-    'Unfortunately, the Year In Review is not available on this device. Please try again on a smart speaker like Google Home. If you want to listen to any Guardian podcasts in the meantime, just ask for the show by name. For example, "Hey Google, play Today in Focus."',
+    'Please try again on a smart speaker like Google Home. If you want to listen to any Guardian podcasts in the meantime, just ask for the show by name. For example, **"Hey Google, play Today in Focus."**',
   button: {
     title: 'Learn More',
     url:
