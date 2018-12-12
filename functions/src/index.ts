@@ -47,6 +47,7 @@ app.intent('Welcome Intent', conv => {
     conv.ask(unsuportedDeviceWelcome);
     conv.close(
       new BasicCard({
+        title: unsupportedDeviceCard.title,
         text: unsupportedDeviceCard.text,
         buttons: new Button({
           title: unsupportedDeviceCard.button.title,
