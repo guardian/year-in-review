@@ -1,24 +1,16 @@
 import {
   badScoreAudio,
-  endOfGameAudio,
   goodScoreAudio,
   neutralScoreAudio,
   quitAudio,
 } from '../content/endOfGameContent';
-import {
-  buildSSMLAndCombineAudioResponses,
-  buildSSMLAudioResponse,
-} from '../responses/ssmlResponses';
+import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 
 import { ConversationData } from '../models/conversation';
 
 const gameOver = (data: ConversationData) => {
-  return buildSSMLAudioResponse(endOfGameAudio);
-};
-
-const gameOverWithScore = (data: ConversationData) => {
   const feedbackAudio = getScoreAudio(data);
-  return buildSSMLAndCombineAudioResponses(feedbackAudio, endOfGameAudio);
+  return buildSSMLAudioResponse(feedbackAudio);
 };
 
 const getScoreAudio = (data: ConversationData) => {
@@ -50,4 +42,4 @@ const quit = () => {
   return buildSSMLAudioResponse(quitAudio);
 };
 
-export { gameOver, quit, gameOverWithScore };
+export { gameOver, quit };
