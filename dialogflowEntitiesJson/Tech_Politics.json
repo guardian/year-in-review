@@ -1,0 +1,22 @@
+{
+  "id": "958247e7-3235-44d3-993e-ef2e35024f31",
+  "name": "Tech_Politics",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "tech",
+      "synonyms": [
+        "tech",
+        "technology"
+      ]
+    },
+    {
+      "value": "politics",
+      "synonyms": [
+        "politics"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

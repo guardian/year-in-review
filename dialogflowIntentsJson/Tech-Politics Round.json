@@ -1,0 +1,175 @@
+{
+  "id": "34793a83-f0cc-44cc-a9ea-42e278768026",
+  "name": "Tech-Politics Round",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "Tech-PoliticsRound-followup",
+          "parameters": {},
+          "lifespan": 100
+        }
+      ],
+      "parameters": [
+        {
+          "id": "d851c33c-072b-4b1e-a5e6-6561ae83b013",
+          "required": true,
+          "dataType": "@Tech_Politics",
+          "name": "topicChoice",
+          "value": "$topicChoice",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1544623183,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "0e98f95d-030c-434d-bbfa-d89362e766aa",
+      "data": [
+        {
+          "text": "Can I have "
+        },
+        {
+          "text": "politics",
+          "alias": "topicChoice",
+          "meta": "@Tech_Politics",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613137,
+      "isAuto": false
+    },
+    {
+      "id": "eb0d9ef6-f820-4746-a2f7-292cdf99a3b7",
+      "data": [
+        {
+          "text": "tech",
+          "alias": "topicChoice",
+          "meta": "@Tech_Politics",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613137,
+      "isAuto": false
+    },
+    {
+      "id": "ea1e3e63-0b92-4340-8666-3a01e5b875cf",
+      "data": [
+        {
+          "text": "I'll have a go at "
+        },
+        {
+          "text": "tech",
+          "alias": "topicChoice",
+          "meta": "@Tech_Politics",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613137,
+      "isAuto": false
+    },
+    {
+      "id": "f04181bc-f67e-401c-b4aa-bee08ac271e1",
+      "data": [
+        {
+          "text": "lets try "
+        },
+        {
+          "text": "politics",
+          "alias": "topicChoice",
+          "meta": "@Tech_Politics",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613137,
+      "isAuto": false
+    },
+    {
+      "id": "d37d8e1c-1e07-4648-95ee-51219f2a99d2",
+      "data": [
+        {
+          "text": "Let's do "
+        },
+        {
+          "text": "tech",
+          "alias": "topicChoice",
+          "meta": "@Tech_Politics",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613137,
+      "isAuto": false
+    },
+    {
+      "id": "470e89da-91dc-452d-bf2f-551ff77d8508",
+      "data": [
+        {
+          "text": "politics",
+          "alias": "topicChoice",
+          "meta": "@Tech_Politics",
+          "userDefined": false
+        },
+        {
+          "text": " please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613137,
+      "isAuto": false
+    },
+    {
+      "id": "4a5d565a-10ea-4466-8229-1d32b8f2abfc",
+      "data": [
+        {
+          "text": "I want "
+        },
+        {
+          "text": "tech",
+          "alias": "topicChoice",
+          "meta": "@Tech_Politics",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613137,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

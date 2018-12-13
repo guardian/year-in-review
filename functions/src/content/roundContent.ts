@@ -20,12 +20,21 @@ const roundCollections: RoundCollection[] = [
   ),
   // No choice so currently no round selection audio
   new RoundCollection(
+    'https://storage.googleapis.com/audio-assets/04.4_YiR_Politics_or_Technology.ogg',
+    'https://storage.googleapis.com/audio-assets/03.0_Category_Help_-_Politics_Tech_A.ogg',
+    'https://storage.googleapis.com/audio-assets/03.3_Category_Repeat_-_Politics_Tech_A.ogg',
+    'https://storage.googleapis.com/audio-assets/03.1_Category_Time_Out_-_Politics_Tech_A.ogg',
+    'https://storage.googleapis.com/audio-assets/03.2_Category_Unrecognized_-_Politics_Tech_A.ogg',
+    new Set([Topic.POLITICS, Topic.TECHNOLOGY])
+  ),
+  // No choice so currently no round selection audio
+  new RoundCollection(
     unexpectedErrorAudio,
     unexpectedErrorAudio,
     unexpectedErrorAudio,
     unexpectedErrorAudio,
     unexpectedErrorAudio,
-    new Set([Topic.POLITICS])
+    new Set([Topic.LUCKYDIP])
   ),
 ];
 

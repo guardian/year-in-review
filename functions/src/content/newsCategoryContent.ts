@@ -1,4 +1,5 @@
 import {
+  FillInTheBlankQuestion,
   MultipleChoice,
   MultipleChoiceQuestion,
   Question,
@@ -21,6 +22,12 @@ const newsQuestions: Question[] = [
     'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2b_B.ogg',
     'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2b_C.ogg',
     'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2b_D.ogg'
+  ),
+  new FillInTheBlankQuestion(
+    'https://storage.googleapis.com/audio-assets/01.3_YiR_Global_q3.ogg',
+    'SAUDI ARABIA',
+    'https://storage.googleapis.com/audio-assets/01.3_YiR_Global_q3_Saudi.ogg',
+    'https://storage.googleapis.com/audio-assets/01.3_YiR_Global_q3_Not_Saudi.ogg'
   ),
 ];
 

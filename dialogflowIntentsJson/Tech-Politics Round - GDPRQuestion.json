@@ -1,0 +1,254 @@
+{
+  "id": "5b104dea-02f4-4d0f-99fd-44df82c0bae6",
+  "parentId": "34793a83-f0cc-44cc-a9ea-42e278768026",
+  "rootParentId": "34793a83-f0cc-44cc-a9ea-42e278768026",
+  "name": "Tech-Politics Round - GDPRQuestion",
+  "auto": true,
+  "contexts": [
+    "Tech-PoliticsRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "Tech-PoliticsRound.Tech-PoliticsRound-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "474f899d-3e7c-4f0f-8f01-2adabad8cef6",
+          "required": true,
+          "dataType": "@GDPR",
+          "name": "gdpr",
+          "value": "$gdpr",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1544613890,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "0cb001ac-19ac-4178-848c-4eda0495e56e",
+      "data": [
+        {
+          "text": "Wasn't it "
+        },
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    },
+    {
+      "id": "6c54d34b-1ef7-4edb-a359-68407348b19d",
+      "data": [
+        {
+          "text": "the answer is "
+        },
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    },
+    {
+      "id": "3e3314c6-d30f-48f0-a283-971844fba4ae",
+      "data": [
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        },
+        {
+          "text": " wasn't it?"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    },
+    {
+      "id": "2ee5d6ff-b77c-4d16-b780-f451838a83fd",
+      "data": [
+        {
+          "text": "I think it's "
+        },
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    },
+    {
+      "id": "bcd14bea-6bc1-4576-a056-6de3be9d1244",
+      "data": [
+        {
+          "text": "I'm not sure but I think it should "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    },
+    {
+      "id": "2cfc75ce-7ff7-4630-b733-1e8407226157",
+      "data": [
+        {
+          "text": "was",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " it "
+        },
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    },
+    {
+      "id": "f33ac1f7-e387-4701-a578-fdd2dc7ed251",
+      "data": [
+        {
+          "text": "it is "
+        },
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    },
+    {
+      "id": "5dfb7a75-56aa-4483-80a3-874f142d690d",
+      "data": [
+        {
+          "text": "Might "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        },
+        {
+          "text": " but I'm not sure"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    },
+    {
+      "id": "1a8b1394-cf90-424e-a9ac-ac802ac87b1d",
+      "data": [
+        {
+          "text": "Iet's say "
+        },
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    },
+    {
+      "id": "8dc089d0-6629-4042-a0f6-4c8e529bf786",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "GDPR",
+          "alias": "gdpr",
+          "meta": "@GDPR",
+          "userDefined": false
+        },
+        {
+          "text": " but I don't know"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544613890,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

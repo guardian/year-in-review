@@ -1,0 +1,15 @@
+{
+  "id": "a8c5057d-1b52-4a0e-b870-7092941277a2",
+  "name": "Universal_Credit",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "Universal Credit",
+      "synonyms": [
+        "Universal Credit"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

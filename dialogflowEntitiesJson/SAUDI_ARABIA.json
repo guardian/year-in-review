@@ -1,0 +1,16 @@
+{
+  "id": "a7e7543d-c79e-4b9a-b3d2-58c63aadbd63",
+  "name": "SAUDI_ARABIA",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "SAUDI ARABIA",
+      "synonyms": [
+        "SAUDI ARABIA",
+        "SAUDI"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

@@ -1,0 +1,15 @@
+{
+  "id": "ab528e51-1d74-45ae-af76-7932df13df4d",
+  "name": "QUEEN",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "QUEEN",
+      "synonyms": [
+        "QUEEN"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

@@ -1,0 +1,269 @@
+{
+  "id": "1c5d9efa-9d3c-4c2d-bf01-9589522df6f6",
+  "parentId": "cc81b9c4-9d9e-4606-8e2d-dc3ea5a888cc",
+  "rootParentId": "cc81b9c4-9d9e-4606-8e2d-dc3ea5a888cc",
+  "name": "News-Sport Round - HarryKaneQuestion",
+  "auto": true,
+  "contexts": [
+    "News-SportRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "News-SportRound.News-SportRound-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "2d9a2817-ccee-4cf4-b1c4-d152c6329b84",
+          "required": true,
+          "dataType": "@Harry_Kane",
+          "name": "kane",
+          "value": "$kane",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1544626071,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "7a39b391-1745-482c-b572-16ad86296240",
+      "data": [
+        {
+          "text": "kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "6dd9058d-5f19-43b3-b3e4-6d54bae2a104",
+      "data": [
+        {
+          "text": "wasn't it "
+        },
+        {
+          "text": "harry kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "b03e43d4-0fd5-4018-aceb-efda788cf4a4",
+      "data": [
+        {
+          "text": "the answer is "
+        },
+        {
+          "text": "harry kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "9422a7f7-5a2c-432f-ab8f-2c2caf7eee86",
+      "data": [
+        {
+          "text": "harry kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        },
+        {
+          "text": " wasn't it"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "81c16a42-27d5-473f-80a3-d4784847dce5",
+      "data": [
+        {
+          "text": "I think it's "
+        },
+        {
+          "text": "harry kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "498179fc-ed52-42cf-a74a-b47d9a06b3f7",
+      "data": [
+        {
+          "text": "I'm not sure, but I think it could "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "e577a4ea-1382-4ec9-a16f-100cc75e6e8e",
+      "data": [
+        {
+          "text": "was",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " it "
+        },
+        {
+          "text": "harry kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "42239244-9706-4074-ae71-b055723af4ca",
+      "data": [
+        {
+          "text": "it is "
+        },
+        {
+          "text": "kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "10623e10-43ed-4647-808a-92d19ef8559c",
+      "data": [
+        {
+          "text": "might "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "harry kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        },
+        {
+          "text": " but I'm not sure"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "2286a095-77b1-4c13-8789-b1a1c46748f4",
+      "data": [
+        {
+          "text": "let's say "
+        },
+        {
+          "text": "harry kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    },
+    {
+      "id": "b5c176bc-c9c3-4e22-898b-3023e66d5b5c",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "Harry Kane",
+          "alias": "kane",
+          "meta": "@Harry_Kane",
+          "userDefined": false
+        },
+        {
+          "text": " but I don't know"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544626071,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}

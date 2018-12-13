@@ -1,0 +1,287 @@
+{
+  "id": "0233c3f6-7550-4979-aa41-6758e9444075",
+  "parentId": "34793a83-f0cc-44cc-a9ea-42e278768026",
+  "rootParentId": "34793a83-f0cc-44cc-a9ea-42e278768026",
+  "name": "Tech-Politics Round - UniversalCreditQuestion",
+  "auto": true,
+  "contexts": [
+    "Tech-PoliticsRound-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "Tech-PoliticsRound.Tech-PoliticsRound-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "393591a7-fdfe-423e-8d4a-4d4f6f87d870",
+          "required": true,
+          "dataType": "@Universal_Credit",
+          "name": "credit",
+          "value": "$credit",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1544627809,
+  "fallbackIntent": false,
+  "events": [],
+  "userSays": [
+    {
+      "id": "eb455b8a-b871-4569-9bea-68e28027b539",
+      "data": [
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "687a5f28-b6e3-4bd4-8eac-9f7b1acc4ac9",
+      "data": [
+        {
+          "text": "wasn't it "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "b088bf22-1f74-4e20-96ef-571a97c8e718",
+      "data": [
+        {
+          "text": "the answer is "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "8186bf1e-a4c3-4e66-a421-c653c4c3679e",
+      "data": [
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        },
+        {
+          "text": " wasn't it"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "392270ad-50b1-48be-b6ef-70b2c7eb0555",
+      "data": [
+        {
+          "text": "I think it's "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "fe966bfc-317a-4b57-8870-45c7abd34feb",
+      "data": [
+        {
+          "text": "I'm not sure but I think it could "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "f5aedfaf-f7ca-414c-b9ab-dc83c6ca759c",
+      "data": [
+        {
+          "text": "was",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " it "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "0f21f5be-fbe0-46d5-ae0d-c51dd0ebb8ac",
+      "data": [
+        {
+          "text": "it is "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "6f91ba0e-6b71-4870-971d-dd6eb557f41b",
+      "data": [
+        {
+          "text": "night "
+        },
+        {
+          "text": "be",
+          "meta": "@sys.ignore",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        },
+        {
+          "text": " but I'm not sure"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "b55d2f35-3241-410b-9e84-e98cfe36abb5",
+      "data": [
+        {
+          "text": "Let's say "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "75376c13-0cc7-4d56-8dd3-39021cb650b5",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        },
+        {
+          "text": " but I don't know"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    },
+    {
+      "id": "fb28de92-e7d6-42b2-a893-ef101c52cf83",
+      "data": [
+        {
+          "text": "I think "
+        },
+        {
+          "text": "universal credit",
+          "alias": "credit",
+          "meta": "@Universal_Credit",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544627809,
+      "isAuto": false
+    }
+  ],
+  "followUpIntents": [],
+  "liveAgentHandoff": false,
+  "endInteraction": false,
+  "templates": []
+}
