@@ -20,8 +20,8 @@ const scienceQuestions: Question[] = [
   new FillInTheBlankQuestion(
     'https://storage.googleapis.com/audio-assets/03.2_YiR_Science_Q2a.ogg',
     'CRISPR',
-    'https://storage.googleapis.com/audio-assets/03.2_YiR_Science_Q2b_True.ogg',
-    'https://storage.googleapis.com/audio-assets/03.2_YiR_Science_Q2b_False.ogg'
+    'https://storage.googleapis.com/audio-assets/03.2_YiR_Science_Q2b_CRISPR.ogg',
+    'https://storage.googleapis.com/audio-assets/03.2_YiR_Science_Q2b_not_CRISPR.ogg'
   ),
   new TrueFalseQuestion(
     'https://storage.googleapis.com/audio-assets/03.3_YiR_Science_Q3.ogg',
