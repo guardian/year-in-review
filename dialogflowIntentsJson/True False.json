@@ -34,12 +34,30 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1544201484,
+  "lastUpdate": 1544795691,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
     {
-      "id": "b6ecb558-85cc-4184-bafb-5b7422ca07b1",
+      "id": "73d82f25-61d4-4c4e-a089-1e9f619052f0",
+      "data": [
+        {
+          "text": "but that's probably "
+        },
+        {
+          "text": "true",
+          "alias": "answer",
+          "meta": "@True_or_False",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 1,
+      "updated": 1544795691,
+      "isAuto": false
+    },
+    {
+      "id": "92c72694-ce8f-4c33-b496-3df32688adc2",
       "data": [
         {
           "text": "false",
@@ -57,7 +75,7 @@
       "isAuto": false
     },
     {
-      "id": "ad652cff-c90b-42ab-a80a-f31b71885a61",
+      "id": "7ad77e48-0e25-4aeb-bafb-b474ef099a50",
       "data": [
         {
           "text": "true",
@@ -75,7 +93,7 @@
       "isAuto": false
     },
     {
-      "id": "235ad2d0-2729-4799-b3e1-e6f871bbc34d",
+      "id": "78f7cec8-ffd5-4fa2-bf6c-747761dc2c3e",
       "data": [
         {
           "text": "must "
@@ -101,7 +119,7 @@
       "isAuto": false
     },
     {
-      "id": "45e6a5cc-d53f-4a98-af20-c5928eccccd2",
+      "id": "48b183a7-45bc-4754-867e-af5fc31445f3",
       "data": [
         {
           "text": "has to "
@@ -127,7 +145,7 @@
       "isAuto": false
     },
     {
-      "id": "c58ccfa0-ed90-4983-bf0a-a9f7334eb229",
+      "id": "6928cc6e-8490-49ca-b1fe-2247f9d1666b",
       "data": [
         {
           "text": "definitely "
@@ -145,7 +163,7 @@
       "isAuto": false
     },
     {
-      "id": "647fb76e-257a-4c1a-81e4-37736832c6e5",
+      "id": "00f20af5-11fa-45c3-ac0e-0d2f69029bf0",
       "data": [
         {
           "text": "Probably "
@@ -163,7 +181,7 @@
       "isAuto": false
     },
     {
-      "id": "27c60e09-3979-4a25-8877-941850bbcf5a",
+      "id": "3b7ede5d-eaab-4c3c-a4e8-112b766547aa",
       "data": [
         {
           "text": "Probably "
@@ -181,7 +199,7 @@
       "isAuto": false
     },
     {
-      "id": "fa7f57ce-5955-4290-add5-6c829366568a",
+      "id": "d98feaa3-0827-44bb-8b7a-2b9cb3f24913",
       "data": [
         {
           "text": "I'm going "
@@ -199,7 +217,7 @@
       "isAuto": false
     },
     {
-      "id": "6bfcde5d-0f93-4ffb-9632-a2294f11b916",
+      "id": "b14a15dd-0f1a-4785-ad92-348244a94266",
       "data": [
         {
           "text": "true",
@@ -214,10 +232,11 @@
       "isAuto": false
     },
     {
-      "id": "c22a2e9c-8ec9-45c5-bece-bbdb749c73e8",
+      "id": "8e9dfe23-0b24-4f55-95cf-c8582e2ac419",
       "data": [
         {
-          "text": "got to "
+          "text": "got to ",
+          "userDefined": false
         },
         {
           "text": "be",
@@ -225,7 +244,8 @@
           "userDefined": false
         },
         {
-          "text": " "
+          "text": " ",
+          "userDefined": false
         },
         {
           "text": "false",
@@ -240,10 +260,11 @@
       "isAuto": false
     },
     {
-      "id": "809e627b-e95b-4f10-97f9-29ed71189073",
+      "id": "a230507c-d893-401a-bf1e-c7358370761d",
       "data": [
         {
-          "text": "um maybe "
+          "text": "um maybe ",
+          "userDefined": false
         },
         {
           "text": "true",
@@ -258,10 +279,11 @@
       "isAuto": false
     },
     {
-      "id": "0911c254-4ddc-4b19-b0a5-2a362394b472",
+      "id": "1cfaf5ab-c7fc-461c-8860-7aaffd91b29d",
       "data": [
         {
-          "text": "I think "
+          "text": "I think ",
+          "userDefined": false
         },
         {
           "text": "false",
@@ -276,10 +298,11 @@
       "isAuto": false
     },
     {
-      "id": "433478be-dbf2-4b92-b367-9fb9412ff006",
+      "id": "a1f321c8-d2be-4cb9-b639-371551270415",
       "data": [
         {
-          "text": "that's "
+          "text": "that's ",
+          "userDefined": false
         },
         {
           "text": "true",
