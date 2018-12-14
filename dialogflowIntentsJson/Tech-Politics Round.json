@@ -34,18 +34,29 @@
     }
   ],
   "priority": 500000,
-  "cortanaCommand": {
-    "navigateOrService": "NAVIGATE",
-    "target": ""
-  },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1544623183,
+  "lastUpdate": 1544794012,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
     {
-      "id": "0e98f95d-030c-434d-bbfa-d89362e766aa",
+      "id": "23bbe1bf-72ee-455b-a8e5-dc0fc8093ff8",
+      "data": [
+        {
+          "text": "technology",
+          "alias": "topicChoice",
+          "meta": "@Tech_Politics",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1544794012,
+      "isAuto": false
+    },
+    {
+      "id": "ff913743-e312-405e-8f89-a181a84ebdec",
       "data": [
         {
           "text": "Can I have "
@@ -59,11 +70,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1544613137,
+      "updated": 1544794012,
       "isAuto": false
     },
     {
-      "id": "eb0d9ef6-f820-4746-a2f7-292cdf99a3b7",
+      "id": "61000df6-e9ab-4e4c-9cc1-b05d9c75d6c7",
       "data": [
         {
           "text": "tech",
@@ -78,7 +89,7 @@
       "isAuto": false
     },
     {
-      "id": "ea1e3e63-0b92-4340-8666-3a01e5b875cf",
+      "id": "4379bf20-287f-42da-921c-164bad4d35aa",
       "data": [
         {
           "text": "I'll have a go at "
@@ -92,11 +103,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1544613137,
+      "updated": 1544794012,
       "isAuto": false
     },
     {
-      "id": "f04181bc-f67e-401c-b4aa-bee08ac271e1",
+      "id": "98e05674-68a4-47da-adee-7b92fc797d9e",
       "data": [
         {
           "text": "lets try "
@@ -110,11 +121,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1544613137,
+      "updated": 1544794012,
       "isAuto": false
     },
     {
-      "id": "d37d8e1c-1e07-4648-95ee-51219f2a99d2",
+      "id": "33739bd4-68fb-4a95-aa64-de42cd6a2336",
       "data": [
         {
           "text": "Let's do "
@@ -128,11 +139,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1544613137,
+      "updated": 1544794012,
       "isAuto": false
     },
     {
-      "id": "470e89da-91dc-452d-bf2f-551ff77d8508",
+      "id": "7d4273e3-7d86-40bb-b5a3-ba3f17b590f8",
       "data": [
         {
           "text": "politics",
@@ -146,14 +157,15 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1544613137,
+      "updated": 1544794012,
       "isAuto": false
     },
     {
-      "id": "4a5d565a-10ea-4466-8229-1d32b8f2abfc",
+      "id": "c3e13930-d57d-4535-a39f-94722a070d51",
       "data": [
         {
-          "text": "I want "
+          "text": "I want ",
+          "userDefined": false
         },
         {
           "text": "tech",
