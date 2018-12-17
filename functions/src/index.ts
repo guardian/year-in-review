@@ -1,12 +1,6 @@
 import * as functions from 'firebase-functions';
 
-import {
-  BasicCard,
-  Button,
-  Image,
-  dialogflow,
-  SimpleResponse,
-} from 'actions-on-google';
+import { dialogflow, SimpleResponse } from 'actions-on-google';
 import {
   helpWelcomeFulfillment,
   startYearInReviewFulfillment,
@@ -30,10 +24,6 @@ import {
   respondBasedOnResponseType,
   respondToUserInput,
 } from './responses/dialogflowResponses';
-import {
-  unsuportedDeviceWelcome,
-  unsupportedDeviceCard,
-} from './content/welcomeContent';
 
 import { ConversationData } from './models/conversation';
 import { convertSSMLContainerToString } from './responses/ssmlResponses';
@@ -45,26 +35,7 @@ const app = dialogflow<ConversationData, {}>({
 });
 
 app.intent('Welcome Intent', conv => {
-  if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-    const response = convertSSMLContainerToString(welcomeFulfillment());
-    conv.ask(response);
-  } else {
-    conv.ask(unsuportedDeviceWelcome);
-    conv.close(
-      new BasicCard({
-        title: unsupportedDeviceCard.title,
-        text: unsupportedDeviceCard.text,
-        buttons: new Button({
-          title: unsupportedDeviceCard.button.title,
-          url: unsupportedDeviceCard.button.url,
-        }),
-        image: new Image({
-          url: unsupportedDeviceCard.image.url,
-          alt: unsupportedDeviceCard.image.altText,
-        }),
-      })
-    );
-  }
+  respondBasedOnResponseType(welcomeFulfillment, conv);
 });
 
 app.intent('Welcome Intent - ready', conv => {

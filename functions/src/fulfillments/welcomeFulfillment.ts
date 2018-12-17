@@ -2,6 +2,7 @@ import {
   ConversationData,
   Response,
   ResponseType,
+  DoNotPlayFeedback,
 } from '../models/conversation';
 import {
   unrecognisedInputWelcomeAudio,
@@ -10,6 +11,11 @@ import {
   welcomeAudio,
   repeatWelcomeAudio,
   noInputWelcomeAudio,
+  welcomeText,
+  unrecognisedInputWelcomeText,
+  noInputWelcomeText,
+  helpWelcomeText,
+  doNotPlayText,
 } from '../content/welcomeContent';
 
 import {
@@ -20,53 +26,67 @@ import { chooseRound } from './roundFulfillment';
 import { Container } from 'fluent-ssml';
 
 const welcomeFulfillment = () => {
-  return buildSSMLAudioResponse(welcomeAudio);
+  return new Response(
+    ResponseType.ASK,
+    buildSSMLAudioResponse(welcomeAudio),
+    welcomeText
+  );
 };
 
-const repeatWelcomeFulfillment = (data: ConversationData) => {
-  const response = buildSSMLAndCombineAudioResponses(
+const repeatWelcomeFulfillment = (data: ConversationData): Response => {
+  const audioResponse = buildSSMLAndCombineAudioResponses(
     repeatWelcomeAudio,
     welcomeAudio
   );
-  return respondBasedOnRepromptCount(data, response);
+  return respondBasedOnRepromptCount(data, audioResponse, welcomeText);
 };
 
-const unrecognisedInputWelcomeFulfillment = (data: ConversationData) => {
+const unrecognisedInputWelcomeFulfillment = (
+  data: ConversationData
+): Response => {
   return respondBasedOnRepromptCount(
     data,
-    buildSSMLAudioResponse(unrecognisedInputWelcomeAudio)
+    buildSSMLAudioResponse(unrecognisedInputWelcomeAudio),
+    unrecognisedInputWelcomeText
   );
 };
 
-const noInputWelcomeFulfillment = (data: ConversationData) => {
+const noInputWelcomeFulfillment = (data: ConversationData): Response => {
   return respondBasedOnRepromptCount(
     data,
-    buildSSMLAudioResponse(noInputWelcomeAudio)
+    buildSSMLAudioResponse(noInputWelcomeAudio),
+    noInputWelcomeText
   );
 };
 
-const helpWelcomeFulfillment = (data: ConversationData) => {
+const helpWelcomeFulfillment = (data: ConversationData): Response => {
   return respondBasedOnRepromptCount(
     data,
-    buildSSMLAudioResponse(helpWelcomeAudio)
+    buildSSMLAudioResponse(helpWelcomeAudio),
+    helpWelcomeText
   );
 };
 
 const respondBasedOnRepromptCount = (
   data: ConversationData,
-  ssml: Container
-) => {
+  ssml: Container,
+  text: string
+): Response => {
   const count = data.repromptCount || 0;
   if (count < 3) {
     data.repromptCount = count + 1;
-    return new Response(ResponseType.ASK, ssml, '');
+    return new Response(ResponseType.ASK, ssml, text);
   } else {
-    return new Response(ResponseType.CLOSE, doNotPlayFulfillment(), '');
+    const feedback = doNotPlayFulfillment();
+    return new Response(ResponseType.CLOSE, feedback.audio, feedback.text);
   }
 };
 
-const doNotPlayFulfillment = () => {
-  return buildSSMLAudioResponse(doNotPlayAudio);
+const doNotPlayFulfillment = (): DoNotPlayFeedback => {
+  return new DoNotPlayFeedback(
+    buildSSMLAudioResponse(doNotPlayAudio),
+    doNotPlayText
+  );
 };
 
 const startYearInReviewFulfillment = (data: ConversationData): Response => {

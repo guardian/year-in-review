@@ -36,6 +36,10 @@ class EndOfGameFeedback {
   constructor(public audio: Container, public text: string) {}
 }
 
+class DoNotPlayFeedback {
+  constructor(public audio: Container, public text: string) {}
+}
+
 export {
   ConversationData,
   Unknown,
@@ -44,4 +48,5 @@ export {
   OptionString,
   OptionBoolean,
   EndOfGameFeedback,
+  DoNotPlayFeedback,
 };
