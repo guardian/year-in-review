@@ -2,6 +2,7 @@ import {
   ConversationData,
   DialogflowResponseType,
   Unknown,
+  MultimediaResponse,
 } from '../../models/conversation';
 import {
   buildFillInTheBlankQuestionResponse,
@@ -161,7 +162,10 @@ describe('Increment Question Number', () => {
 describe('questionRepromptFulfillment', () => {
   test('If reprompt cannot be fulfilled - no topic return Error Response', () => {
     const data: ConversationData = {};
-    const response = questionRepromptFulfillment(data, () => '');
+    const response = questionRepromptFulfillment(
+      data,
+      () => new MultimediaResponse('', '')
+    );
     expect(response.responseType).toEqual(DialogflowResponseType.CLOSE);
     // tslint:disable-next-line:no-unused-expression
     expect(unexpectedErrorResponse).toBeCalled;
@@ -172,7 +176,10 @@ describe('questionRepromptFulfillment', () => {
       currentQuestion: 1,
       currentTopic: Topic.NEWS,
     };
-    const response = questionRepromptFulfillment(data, () => '');
+    const response = questionRepromptFulfillment(
+      data,
+      () => new MultimediaResponse('', '')
+    );
     expect(response.responseType).toEqual(DialogflowResponseType.ASK);
     // tslint:disable-next-line:no-unused-expression
     expect(buildSSMLAndCombineAudioResponses).toBeCalled;

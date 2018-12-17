@@ -6,13 +6,13 @@ import { Unknown } from '../conversation';
 
 describe('Category', () => {
   test('return an Unknown object if question number is out of range', () => {
-    const category = new Category([], '');
+    const category = new Category([], '', '');
     expect(category.getQuestion(1)).toBeInstanceOf(Unknown);
   });
 
   test('return an Question object if question number is in range', () => {
-    const question = new TrueFalseQuestion('', true, '', '');
-    const category = new Category([question], '');
+    const question = new TrueFalseQuestion('', '', true, '', '', '', '');
+    const category = new Category([question], '', '');
     expect(category.getQuestion(1)).toBeInstanceOf(Question);
   });
 });
@@ -24,7 +24,9 @@ describe('Category Collection', () => {
   });
 
   test('return Unknown object if Category not defined for the topic', () => {
-    const categoryCollection: CategoryCollection = { news: new Category([], '') };
+    const categoryCollection: CategoryCollection = {
+      news: new Category([], '', ''),
+    };
     const category: Categories = new Categories(categoryCollection);
     expect(category.getCategory(Topic.NEWS)).toBeInstanceOf(Category);
   });

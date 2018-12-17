@@ -1,6 +1,6 @@
 import { Container } from 'fluent-ssml';
 import { Topic } from './rounds';
-import { buildSSMLAudioResponse } from '../Responses/ssmlResponses';
+import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 
 interface ConversationData {
   finishedWelcomeIntent?: boolean;

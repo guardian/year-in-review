@@ -5,6 +5,7 @@ import {
   DialogflowResponse,
   DialogflowResponseType,
   Unknown,
+  MultimediaResponse,
 } from '../models/conversation';
 import {
   FillInTheBlankQuestion,
@@ -23,10 +24,14 @@ import {
 } from '../responses/questionResponses';
 
 import { OptionTopic } from '../models/rounds';
-import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
+import {
+  combineSSML,
+  buildSSMLAudioResponse,
+} from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { fallbackFulfillment } from './helperFulfillments';
 import { unexpectedErrorResponse } from '../utils/logger';
+import { combineTextResponses } from '../responses/textResponses';
 
 const trueFalseQuestionFulfillment = (
   answer: string,
@@ -153,16 +158,24 @@ const incrementQuestionNumber = (data: ConversationData): void => {
 
 const questionRepromptFulfillment = (
   data: ConversationData,
-  getReprompt: (question: Question) => string
+  getReprompt: (question: Question) => MultimediaResponse
 ) => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof Question) {
-    const helpAudio = getReprompt(question);
-    const response = buildSSMLAndCombineAudioResponses(
-      helpAudio,
-      question.questionAudio
+    const reprompt = getReprompt(question);
+    const audioResponse = combineSSML(
+      reprompt.audio,
+      buildSSMLAudioResponse(question.questionAudio)
     );
-    return new DialogflowResponse(DialogflowResponseType.ASK, response, '');
+    const textResponse = combineTextResponses(
+      reprompt.text,
+      question.questionText
+    );
+    return new DialogflowResponse(
+      DialogflowResponseType.ASK,
+      audioResponse,
+      textResponse
+    );
   } else {
     return unexpectedErrorResponse(question.error);
   }
