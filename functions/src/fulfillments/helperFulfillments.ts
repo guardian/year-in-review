@@ -1,4 +1,8 @@
-import { ConversationData, Response, Unknown } from '../models/conversation';
+import {
+  ConversationData,
+  DialogflowResponse,
+  Unknown,
+} from '../models/conversation';
 import { getTopic, questionRepromptFulfillment } from './questionFulfillment';
 import {
   trueFalseHelp,
@@ -25,7 +29,7 @@ import {
 } from '../models/questions';
 import { unrecognisedInputWelcomeFulfillment } from './welcomeFulfillment';
 
-const helpFulfillment = (data: ConversationData): Response => {
+const helpFulfillment = (data: ConversationData): DialogflowResponse => {
   const topic = getTopic(data);
   if (topic instanceof Unknown) {
     return roundHelpFulfillment(data);
@@ -34,7 +38,7 @@ const helpFulfillment = (data: ConversationData): Response => {
   }
 };
 
-const noInputFulfillment = (data: ConversationData): Response => {
+const noInputFulfillment = (data: ConversationData): DialogflowResponse => {
   const topic = getTopic(data);
   if (topic instanceof Unknown) {
     return roundNoInputFulfillment(data);
@@ -43,7 +47,7 @@ const noInputFulfillment = (data: ConversationData): Response => {
   }
 };
 
-const fallbackFulfillment = (data: ConversationData): Response => {
+const fallbackFulfillment = (data: ConversationData): DialogflowResponse => {
   const topic = getTopic(data);
   if (!data.finishedWelcomeIntent) {
     return unrecognisedInputWelcomeFulfillment(data);
@@ -58,7 +62,7 @@ const fallbackFulfillment = (data: ConversationData): Response => {
   }
 };
 
-const repeatFulfillment = (data: ConversationData): Response => {
+const repeatFulfillment = (data: ConversationData): DialogflowResponse => {
   const topic = getTopic(data);
   if (topic instanceof Unknown) {
     return roundRepeatFullfillment(data);

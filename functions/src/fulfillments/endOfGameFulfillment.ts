@@ -12,28 +12,28 @@ import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 
 import {
   ConversationData,
-  Response,
-  ResponseType,
-  EndOfGameFeedback,
+  DialogflowResponse,
+  DialogflowResponseType,
+  MultimediaResponse,
 } from '../models/conversation';
 
-const gameOver = (data: ConversationData): EndOfGameFeedback => {
+const gameOver = (data: ConversationData): MultimediaResponse => {
   const questionsAnswered = data.numberOfQuestionsAnswered || 0;
   const score = data.score || 0;
   const percentScore = calculatePercentScore(questionsAnswered, score);
   if (percentScore > 75) {
-    return new EndOfGameFeedback(
+    return new MultimediaResponse(
       buildSSMLAudioResponse(goodScoreAudio),
       goodScoreText
     );
   }
   if (percentScore < 25) {
-    return new EndOfGameFeedback(
+    return new MultimediaResponse(
       buildSSMLAudioResponse(badScoreAudio),
       badScoreText
     );
   } else {
-    return new EndOfGameFeedback(
+    return new MultimediaResponse(
       buildSSMLAudioResponse(neutralScoreAudio),
       neutralScoreText
     );
@@ -52,8 +52,8 @@ const calculatePercentScore = (
 };
 
 const quit = () => {
-  return new Response(
-    ResponseType.CLOSE,
+  return new DialogflowResponse(
+    DialogflowResponseType.CLOSE,
     buildSSMLAudioResponse(quitAudio),
     quitText
   );

@@ -61,10 +61,6 @@ enum MultipleChoice {
 
 type OptionMultipleChoice = MultipleChoice | Unknown;
 
-class QuestionFeedback {
-  constructor(public audio: string, public text: string) {}
-}
-
 export {
   Question,
   OptionQuestion,
@@ -73,5 +69,4 @@ export {
   MultipleChoiceQuestion,
   FillInTheBlankQuestion,
   OptionMultipleChoice,
-  QuestionFeedback,
 };

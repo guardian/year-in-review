@@ -1,7 +1,7 @@
 import {
   ConversationData,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
 } from '../models/conversation';
 import { OptionQuestion, Question } from '../models/questions';
 
@@ -15,7 +15,7 @@ import { combineTextResponses } from '../responses/textResponses';
 const startCategory = (
   topicChoice: string | Topic,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   const topic: Topic = topicChoice as Topic;
   const category = categories.getCategory(topic);
   if (category instanceof Category) {
@@ -32,7 +32,11 @@ const startCategory = (
         category.openingText,
         maybeQuestion.questionText
       );
-      return new Response(ResponseType.ASK, audioResponse, textResponse);
+      return new DialogflowResponse(
+        DialogflowResponseType.ASK,
+        audioResponse,
+        textResponse
+      );
     } else {
       return unexpectedErrorResponse(
         `No first question found for category ${category}`

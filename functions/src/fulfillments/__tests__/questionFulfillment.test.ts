@@ -1,6 +1,6 @@
 import {
   ConversationData,
-  ResponseType,
+  DialogflowResponseType,
   Unknown,
 } from '../../models/conversation';
 import {
@@ -162,7 +162,7 @@ describe('questionRepromptFulfillment', () => {
   test('If reprompt cannot be fulfilled - no topic return Error Response', () => {
     const data: ConversationData = {};
     const response = questionRepromptFulfillment(data, () => '');
-    expect(response.responseType).toEqual(ResponseType.CLOSE);
+    expect(response.responseType).toEqual(DialogflowResponseType.CLOSE);
     // tslint:disable-next-line:no-unused-expression
     expect(unexpectedErrorResponse).toBeCalled;
   });
@@ -173,7 +173,7 @@ describe('questionRepromptFulfillment', () => {
       currentTopic: Topic.NEWS,
     };
     const response = questionRepromptFulfillment(data, () => '');
-    expect(response.responseType).toEqual(ResponseType.ASK);
+    expect(response.responseType).toEqual(DialogflowResponseType.ASK);
     // tslint:disable-next-line:no-unused-expression
     expect(buildSSMLAndCombineAudioResponses).toBeCalled;
   });

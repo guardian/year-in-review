@@ -1,4 +1,7 @@
-import { Response, ResponseType } from '../models/conversation';
+import {
+  DialogflowResponse,
+  DialogflowResponseType,
+} from '../models/conversation';
 
 import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 import {
@@ -6,11 +9,11 @@ import {
   unexpectedErrorText,
 } from '../content/errorContent';
 
-const unexpectedErrorResponse = (logMessage: string): Response => {
+const unexpectedErrorResponse = (logMessage: string): DialogflowResponse => {
   // tslint:disable-next-line:no-console
   console.error(logMessage);
-  return new Response(
-    ResponseType.CLOSE,
+  return new DialogflowResponse(
+    DialogflowResponseType.CLOSE,
     buildSSMLAudioResponse(unexpectedErrorAudio),
     unexpectedErrorText
   );

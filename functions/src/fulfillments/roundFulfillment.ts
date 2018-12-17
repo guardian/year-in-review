@@ -1,7 +1,8 @@
 import {
   ConversationData,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
+  MultimediaResponse,
 } from '../models/conversation';
 import {
   chooseRoundResponse,
@@ -12,27 +13,37 @@ import { RoundCollection } from '../models/rounds';
 import { gameOver } from './endOfGameFulfillment';
 import { rounds } from '../content/roundContent';
 
-const roundHelpFulfillment = (data: ConversationData): Response => {
-  const getHelpAudio = (round: RoundCollection) => round.helpAudio;
-  return roundHelperResponse(data, getHelpAudio);
+const roundHelpFulfillment = (data: ConversationData): DialogflowResponse => {
+  const getHelpFeedback = (round: RoundCollection) =>
+    new MultimediaResponse(round.helpAudio, round.helpText);
+  return roundHelperResponse(data, getHelpFeedback);
 };
 
-const roundRepeatFullfillment = (data: ConversationData): Response => {
-  const getRepeatAudio = (round: RoundCollection) => round.repeatAudio;
-  return roundHelperResponse(data, getRepeatAudio);
+const roundRepeatFullfillment = (
+  data: ConversationData
+): DialogflowResponse => {
+  const getRepeatFeedback = (round: RoundCollection) =>
+    new MultimediaResponse(round.repeatAudio, round.repeatText);
+  return roundHelperResponse(data, getRepeatFeedback);
 };
 
-const roundNoInputFulfillment = (data: ConversationData): Response => {
-  const getNoInputAudio = (round: RoundCollection) => round.noInputAudio;
-  return roundHelperResponse(data, getNoInputAudio);
+const roundNoInputFulfillment = (
+  data: ConversationData
+): DialogflowResponse => {
+  const getNoInputFeedback = (round: RoundCollection) =>
+    new MultimediaResponse(round.noInputAudio, round.noInputText);
+  return roundHelperResponse(data, getNoInputFeedback);
 };
 
-const roundFallbackFulfillment = (data: ConversationData): Response => {
-  const getFallbackAudio = (round: RoundCollection) => round.fallbackAudio;
-  return roundHelperResponse(data, getFallbackAudio);
+const roundFallbackFulfillment = (
+  data: ConversationData
+): DialogflowResponse => {
+  const getFallbackFeedback = (round: RoundCollection) =>
+    new MultimediaResponse(round.fallbackAudio, round.fallbackText);
+  return roundHelperResponse(data, getFallbackFeedback);
 };
 
-const chooseRound = (data: ConversationData): Response => {
+const chooseRound = (data: ConversationData): DialogflowResponse => {
   incrementRoundNumber(data);
   const roundNumber = data.currentRound || 1;
   const round = rounds.getRoundCollection(roundNumber);
@@ -40,7 +51,11 @@ const chooseRound = (data: ConversationData): Response => {
     return chooseRoundResponse(round, data);
   } else {
     const feedback = gameOver(data);
-    return new Response(ResponseType.CLOSE, feedback.audio, feedback.text);
+    return new DialogflowResponse(
+      DialogflowResponseType.CLOSE,
+      feedback.audio,
+      feedback.text
+    );
   }
 };
 

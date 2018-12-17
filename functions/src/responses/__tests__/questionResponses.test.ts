@@ -1,10 +1,13 @@
-import { ConversationData, Unknown } from '../../models/conversation';
+import {
+  ConversationData,
+  Unknown,
+  MultimediaResponse,
+} from '../../models/conversation';
 import {
   FillInTheBlankQuestion,
   MultipleChoice,
   MultipleChoiceQuestion,
   TrueFalseQuestion,
-  QuestionFeedback,
 } from '../../models/questions';
 import {
   askNextQuestion,
@@ -401,7 +404,7 @@ describe('End of category', () => {
     const data: ConversationData = {
       currentTopic: Topic.NEWS,
     };
-    const feedback = new QuestionFeedback('audio', 'text');
+    const feedback = new MultimediaResponse('audio', 'text');
     endOfCategory(data, feedback);
     const expectedData: ConversationData = {
       currentRound: 1,
@@ -422,7 +425,7 @@ describe('Feedback for True False Question', () => {
       'incorrect'
     );
     const response = getTrueFalseFeedback(question, true);
-    const expectedResponse = new QuestionFeedback(
+    const expectedResponse = new MultimediaResponse(
       question.correctAnswerAudio,
       question.correctAnswerText
     );
@@ -440,7 +443,7 @@ describe('Feedback for True False Question', () => {
       'incorrect'
     );
     const response = getTrueFalseFeedback(question, false);
-    const expectedResponse = new QuestionFeedback(
+    const expectedResponse = new MultimediaResponse(
       question.correctAnswerAudio,
       question.correctAnswerText
     );
@@ -458,7 +461,7 @@ describe('Feedback for True False Question', () => {
       'incorrect'
     );
     const response = getTrueFalseFeedback(question, true);
-    const expectedResponse = new QuestionFeedback(
+    const expectedResponse = new MultimediaResponse(
       question.incorrectAnswerAudio,
       question.incorrectAnswerText
     );
@@ -476,7 +479,7 @@ describe('Feedback for True False Question', () => {
       'incorrect'
     );
     const response = getTrueFalseFeedback(question, false);
-    const expectedResponse = new QuestionFeedback(
+    const expectedResponse = new MultimediaResponse(
       question.incorrectAnswerAudio,
       question.incorrectAnswerText
     );
@@ -500,7 +503,7 @@ describe('Feedback for Multiple Choice Question', () => {
       'DText'
     );
     const response = getMultipleChoiceFeedback(question, MultipleChoice.A);
-    const expectedResponse = new QuestionFeedback(
+    const expectedResponse = new MultimediaResponse(
       question.AAudio,
       question.AText
     );
@@ -522,7 +525,7 @@ describe('Feedback for Multiple Choice Question', () => {
       'DText'
     );
     const response = getMultipleChoiceFeedback(question, MultipleChoice.B);
-    const expectedResponse = new QuestionFeedback(
+    const expectedResponse = new MultimediaResponse(
       question.BAudio,
       question.BText
     );
@@ -544,7 +547,7 @@ describe('Feedback for Multiple Choice Question', () => {
       'DText'
     );
     const response = getMultipleChoiceFeedback(question, MultipleChoice.C);
-    const expectedResponse = new QuestionFeedback(
+    const expectedResponse = new MultimediaResponse(
       question.CAudio,
       question.CText
     );
@@ -566,7 +569,7 @@ describe('Feedback for Multiple Choice Question', () => {
       'DText'
     );
     const response = getMultipleChoiceFeedback(question, MultipleChoice.D);
-    const expectedResponse = new QuestionFeedback(
+    const expectedResponse = new MultimediaResponse(
       question.DAudio,
       question.DText
     );

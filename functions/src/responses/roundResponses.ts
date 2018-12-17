@@ -1,7 +1,8 @@
 import {
   ConversationData,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
+  MultimediaResponse,
 } from '../models/conversation';
 
 import { RoundCollection } from '../models/rounds';
@@ -16,37 +17,42 @@ import {
 
 const roundHelperResponse = (
   data: ConversationData,
-  getAudio: (r: RoundCollection) => string
-): Response => {
+  getFeedback: (r: RoundCollection) => MultimediaResponse
+): DialogflowResponse => {
   const roundNumber = data.currentRound || 1;
   const round = rounds.getRoundCollection(roundNumber);
   if (round instanceof RoundCollection) {
-    return new Response(
-      ResponseType.ASK,
-      buildSSMLAudioResponse(getAudio(round)),
-      ''
+    const roundFeedback = getFeedback(round);
+    return new DialogflowResponse(
+      DialogflowResponseType.ASK,
+      roundFeedback.audio,
+      roundFeedback.text
     );
   } else {
     const feedback = gameOver(data);
-    return new Response(ResponseType.CLOSE, feedback.audio, feedback.text);
+    return new DialogflowResponse(
+      DialogflowResponseType.CLOSE,
+      feedback.audio,
+      feedback.text
+    );
   }
 };
 
 const chooseRoundResponse = (
   round: RoundCollection,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   if (round.getTopics().size === 1) {
-    let response: Response = new Response(
-      ResponseType.CLOSE,
+    let Response: DialogflowResponse = new DialogflowResponse(
+      DialogflowResponseType.CLOSE,
       buildSSMLAudioResponse(unexpectedErrorAudio),
       unexpectedErrorText
     );
-    round.getTopics().forEach(topic => (response = startCategory(topic, data)));
-    return response;
+    round.getTopics().forEach(topic => (Response = startCategory(topic, data)));
+    return Response;
   } else {
-    return new Response(
-      ResponseType.ASK,
+    return new DialogflowResponse(
+      DialogflowResponseType.ASK,
       buildSSMLAudioResponse(round.introductionAudio),
       round.introductionText
     );

@@ -1,5 +1,6 @@
 import { Container } from 'fluent-ssml';
 import { Topic } from './rounds';
+import { buildSSMLAudioResponse } from '../Responses/ssmlResponses';
 
 interface ConversationData {
   finishedWelcomeIntent?: boolean;
@@ -15,14 +16,14 @@ class Unknown {
   constructor(public error: string) {}
 }
 
-enum ResponseType {
+enum DialogflowResponseType {
   ASK,
   CLOSE,
 }
 
-class Response {
+class DialogflowResponse {
   constructor(
-    public responseType: ResponseType,
+    public responseType: DialogflowResponseType,
     public responseSSML: Container,
     public responseText: string
   ) {}
@@ -32,21 +33,24 @@ type OptionString = string | Unknown;
 
 type OptionBoolean = boolean | unknown;
 
-class EndOfGameFeedback {
-  constructor(public audio: Container, public text: string) {}
-}
+class MultimediaResponse {
+  public audio: Container;
 
-class DoNotPlayFeedback {
-  constructor(public audio: Container, public text: string) {}
+  constructor(audio: Container | string, public text: string) {
+    if (typeof audio === 'string') {
+      this.audio = buildSSMLAudioResponse(audio);
+    } else {
+      this.audio = audio;
+    }
+  }
 }
 
 export {
   ConversationData,
   Unknown,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
   OptionString,
   OptionBoolean,
-  EndOfGameFeedback,
-  DoNotPlayFeedback,
+  MultimediaResponse,
 };

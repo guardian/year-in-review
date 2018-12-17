@@ -1,7 +1,8 @@
 import {
   ConversationData,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
+  MultimediaResponse,
 } from '../models/conversation';
 import {
   FillInTheBlankQuestion,
@@ -10,13 +11,8 @@ import {
   OptionQuestion,
   Question,
   TrueFalseQuestion,
-  QuestionFeedback,
 } from '../models/questions';
-import {
-  buildSSMLAndCombineAudioResponses,
-  buildSSMLAudioResponse,
-  combineSSML,
-} from './ssmlResponses';
+import { buildSSMLAudioResponse, combineSSML } from './ssmlResponses';
 
 import { chooseRound } from '../fulfillments/roundFulfillment';
 import { combineTextResponses } from '../responses/textResponses';
@@ -26,9 +22,9 @@ const buildFillInTheBlankQuestionResponse = (
   currentQuestion: FillInTheBlankQuestion,
   nextQuestion: OptionQuestion,
   answer: string
-): Response => {
+): DialogflowResponse => {
   updateScore(isFillInTheBlankCorrect(currentQuestion, answer), data);
-  const feedback: QuestionFeedback = getFillInTheBlankFeedback(
+  const feedback: MultimediaResponse = getFillInTheBlankFeedback(
     currentQuestion,
     answer
   );
@@ -44,9 +40,9 @@ const buildTrueFalseQuestionResponse = (
   currentQuestion: TrueFalseQuestion,
   nextQuestion: OptionQuestion,
   answer: boolean
-): Response => {
+): DialogflowResponse => {
   updateScore(isTrueFalseCorrect(currentQuestion, answer), data);
-  const feedback: QuestionFeedback = getTrueFalseFeedback(
+  const feedback: MultimediaResponse = getTrueFalseFeedback(
     currentQuestion,
     answer
   );
@@ -62,9 +58,9 @@ const buildMultipleChoiceQuestionResponse = (
   currentQuestion: MultipleChoiceQuestion,
   nextQuestion: OptionQuestion,
   answer: MultipleChoice
-): Response => {
+): DialogflowResponse => {
   updateScore(isMultipleChoiceCorrect(currentQuestion, answer), data);
-  const feedback: QuestionFeedback = getMultipleChoiceFeedback(
+  const feedback: MultimediaResponse = getMultipleChoiceFeedback(
     currentQuestion,
     answer
   );
@@ -79,9 +75,9 @@ const buildFillInTheBlankQuestionIncorrectResponse = (
   data: ConversationData,
   currentQuestion: FillInTheBlankQuestion,
   nextQuestion: OptionQuestion
-): Response => {
+): DialogflowResponse => {
   updateScore(false, data);
-  const feedback: QuestionFeedback = new QuestionFeedback(
+  const feedback: MultimediaResponse = new MultimediaResponse(
     currentQuestion.incorrectAnswerAudio,
     currentQuestion.incorrectAnswerText
   );
@@ -94,13 +90,13 @@ const buildFillInTheBlankQuestionIncorrectResponse = (
 
 const askNextQuestion = (
   nextQuestion: Question,
-  feedback: QuestionFeedback
-): Response => {
-  return new Response(
-    ResponseType.ASK,
-    buildSSMLAndCombineAudioResponses(
+  feedback: MultimediaResponse
+): DialogflowResponse => {
+  return new DialogflowResponse(
+    DialogflowResponseType.ASK,
+    combineSSML(
       feedback.audio,
-      nextQuestion.questionAudio
+      buildSSMLAudioResponse(nextQuestion.questionAudio)
     ),
     combineTextResponses(feedback.text, nextQuestion.questionText)
   );
@@ -108,13 +104,13 @@ const askNextQuestion = (
 
 const endOfCategory = (
   data: ConversationData,
-  feedback: QuestionFeedback
-): Response => {
+  feedback: MultimediaResponse
+): DialogflowResponse => {
   removeTopicFromConversationData(data);
-  const nextRound: Response = chooseRound(data);
-  return new Response(
+  const nextRound: DialogflowResponse = chooseRound(data);
+  return new DialogflowResponse(
     nextRound.responseType,
-    combineSSML(buildSSMLAudioResponse(feedback.audio), nextRound.responseSSML),
+    combineSSML(feedback.audio, nextRound.responseSSML),
     combineTextResponses(feedback.text, nextRound.responseText)
   );
 };
@@ -126,13 +122,13 @@ const removeTopicFromConversationData = (data: ConversationData): void => {
 const getTrueFalseFeedback = (
   question: TrueFalseQuestion,
   answer: boolean
-): QuestionFeedback => {
+): MultimediaResponse => {
   return answer === question.answer
-    ? new QuestionFeedback(
+    ? new MultimediaResponse(
         question.correctAnswerAudio,
         question.correctAnswerText
       )
-    : new QuestionFeedback(
+    : new MultimediaResponse(
         question.incorrectAnswerAudio,
         question.incorrectAnswerText
       );
@@ -141,29 +137,29 @@ const getTrueFalseFeedback = (
 const getMultipleChoiceFeedback = (
   question: MultipleChoiceQuestion,
   answer: MultipleChoice
-): QuestionFeedback => {
+): MultimediaResponse => {
   switch (answer) {
     case MultipleChoice.A:
-      return new QuestionFeedback(question.AAudio, question.AText);
+      return new MultimediaResponse(question.AAudio, question.AText);
     case MultipleChoice.B:
-      return new QuestionFeedback(question.BAudio, question.BText);
+      return new MultimediaResponse(question.BAudio, question.BText);
     case MultipleChoice.C:
-      return new QuestionFeedback(question.CAudio, question.CText);
+      return new MultimediaResponse(question.CAudio, question.CText);
     default:
-      return new QuestionFeedback(question.DAudio, question.DText);
+      return new MultimediaResponse(question.DAudio, question.DText);
   }
 };
 
 const getFillInTheBlankFeedback = (
   question: FillInTheBlankQuestion,
   answer: string
-): QuestionFeedback => {
+): MultimediaResponse => {
   return answer === question.answer
-    ? new QuestionFeedback(
+    ? new MultimediaResponse(
         question.correctAnswerAudio,
         question.correctAnswerText
       )
-    : new QuestionFeedback(
+    : new MultimediaResponse(
         question.incorrectAnswerAudio,
         question.incorrectAnswerText
       );

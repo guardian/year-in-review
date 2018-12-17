@@ -7,7 +7,10 @@ import {
   neutralScoreText,
 } from '../../content/endOfGameContent';
 
-import { ConversationData, EndOfGameFeedback } from '../../models/conversation';
+import {
+  ConversationData,
+  MultimediaResponse,
+} from '../../models/conversation';
 import { gameOver } from '../endOfGameFulfillment';
 import { buildSSMLAudioResponse } from '../../responses/ssmlResponses';
 
@@ -18,7 +21,7 @@ describe('Scoring at the end of the game', () => {
       score: 4,
     };
     const response = gameOver(data);
-    const expectedResponse = new EndOfGameFeedback(
+    const expectedResponse = new MultimediaResponse(
       buildSSMLAudioResponse(goodScoreAudio),
       goodScoreText
     );
@@ -31,7 +34,7 @@ describe('Scoring at the end of the game', () => {
       score: 1,
     };
     const response = gameOver(data);
-    const expectedResponse = new EndOfGameFeedback(
+    const expectedResponse = new MultimediaResponse(
       buildSSMLAudioResponse(badScoreAudio),
       badScoreText
     );
@@ -44,7 +47,7 @@ describe('Scoring at the end of the game', () => {
       score: 3,
     };
     const response = gameOver(data);
-    const expectedResponse = new EndOfGameFeedback(
+    const expectedResponse = new MultimediaResponse(
       buildSSMLAudioResponse(neutralScoreAudio),
       neutralScoreText
     );
@@ -56,7 +59,7 @@ describe('Scoring at the end of the game', () => {
       score: 3,
     };
     const response = gameOver(data);
-    const expectedResponse = new EndOfGameFeedback(
+    const expectedResponse = new MultimediaResponse(
       buildSSMLAudioResponse(badScoreAudio),
       badScoreText
     );
@@ -68,7 +71,7 @@ describe('Scoring at the end of the game', () => {
       numberOfQuestionsAnswered: 5,
     };
     const response = gameOver(data);
-    const expectedResponse = new EndOfGameFeedback(
+    const expectedResponse = new MultimediaResponse(
       buildSSMLAudioResponse(badScoreAudio),
       badScoreText
     );

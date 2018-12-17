@@ -2,8 +2,8 @@ import { Category, OptionCategory } from '../models/categories';
 import {
   ConversationData,
   OptionBoolean,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
   Unknown,
 } from '../models/conversation';
 import {
@@ -31,7 +31,7 @@ import { unexpectedErrorResponse } from '../utils/logger';
 const trueFalseQuestionFulfillment = (
   answer: string,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   const typedAnswer: OptionBoolean = convertStringToBoolean(answer);
   if (
@@ -67,7 +67,7 @@ const convertStringToBoolean = (s: string): OptionBoolean => {
 const multipleChoiceQuestionFulfillment = (
   answer: string,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   const typedAnswer: OptionMultipleChoice = convertStringToMultipleChoice(
     answer
@@ -111,7 +111,7 @@ const convertStringToMultipleChoice = (s: string): OptionMultipleChoice => {
 const fillInTheBlankQuestionCorrectFulfillment = (
   answer: string,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof FillInTheBlankQuestion) {
     incrementQuestionNumber(data);
@@ -162,7 +162,7 @@ const questionRepromptFulfillment = (
       helpAudio,
       question.questionAudio
     );
-    return new Response(ResponseType.ASK, response, '');
+    return new DialogflowResponse(DialogflowResponseType.ASK, response, '');
   } else {
     return unexpectedErrorResponse(question.error);
   }
