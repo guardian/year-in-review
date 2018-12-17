@@ -32,6 +32,10 @@ type OptionString = string | Unknown;
 
 type OptionBoolean = boolean | unknown;
 
+class EndOfGameFeedback {
+  constructor(public audio: Container, public text: string) {}
+}
+
 export {
   ConversationData,
   Unknown,
@@ -39,4 +43,5 @@ export {
   ResponseType,
   OptionString,
   OptionBoolean,
+  EndOfGameFeedback,
 };

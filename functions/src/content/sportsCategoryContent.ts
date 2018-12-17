@@ -42,9 +42,15 @@ const sportsQuestions: Question[] = [
   ),
 ];
 
-const sportsOpening =
+const sportsAudioOpening =
   'https://storage.googleapis.com/audio-assets/02.1_YiR_Sport_a.ogg';
 
-const sportsCategory = new Category(sportsQuestions, sportsOpening);
+const sportsTextOpening = 'Welcome to Sports';
+
+const sportsCategory = new Category(
+  sportsQuestions,
+  sportsAudioOpening,
+  sportsTextOpening
+);
 
 export { sportsCategory };

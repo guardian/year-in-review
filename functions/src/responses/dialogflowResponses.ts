@@ -16,7 +16,10 @@ const respondBasedOnResponseType = (
   conv: DialogflowConversation<ConversationData, {}, Contexts>
 ) => {
   const fulfillment = f(conv.data);
-  const response = convertSSMLContainerToString(fulfillment.responseSSML);
+  const response = new SimpleResponse({
+    speech: convertSSMLContainerToString(fulfillment.responseSSML),
+    text: fulfillment.responseText,
+  });
   if (fulfillment.responseType === ResponseType.ASK) {
     conv.ask(response);
   } else {

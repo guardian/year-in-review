@@ -17,6 +17,7 @@ class Rounds {
 class RoundCollection {
   constructor(
     public introductionAudio: string,
+    public introductionText: string,
     public helpAudio: string,
     public repeatAudio: string,
     public noInputAudio: string,

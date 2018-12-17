@@ -2,11 +2,14 @@ import {
   badScoreAudio,
   goodScoreAudio,
   neutralScoreAudio,
+  goodScoreText,
+  badScoreText,
+  neutralScoreText,
 } from '../../content/endOfGameContent';
 
-import { ConversationData } from '../../models/conversation';
-import { convertSSMLContainerToString } from '../../responses/ssmlResponses';
+import { ConversationData, EndOfGameFeedback } from '../../models/conversation';
 import { gameOver } from '../endOfGameFulfillment';
+import { buildSSMLAudioResponse } from '../../responses/ssmlResponses';
 
 describe('Scoring at the end of the game', () => {
   test("If score is over 75% get 'good' audio", () => {
@@ -15,7 +18,11 @@ describe('Scoring at the end of the game', () => {
       score: 4,
     };
     const response = gameOver(data);
-    expect(convertSSMLContainerToString(response)).toContain(goodScoreAudio);
+    const expectedResponse = new EndOfGameFeedback(
+      buildSSMLAudioResponse(goodScoreAudio),
+      goodScoreText
+    );
+    expect(response).toEqual(expectedResponse);
   });
 
   test("If score is less than 25% get 'bad' audio", () => {
@@ -24,7 +31,11 @@ describe('Scoring at the end of the game', () => {
       score: 1,
     };
     const response = gameOver(data);
-    expect(convertSSMLContainerToString(response)).toContain(badScoreAudio);
+    const expectedResponse = new EndOfGameFeedback(
+      buildSSMLAudioResponse(badScoreAudio),
+      badScoreText
+    );
+    expect(response).toEqual(expectedResponse);
   });
 
   test("If score is between 25-75% get 'neutral' audio", () => {
@@ -33,7 +44,11 @@ describe('Scoring at the end of the game', () => {
       score: 3,
     };
     const response = gameOver(data);
-    expect(convertSSMLContainerToString(response)).toContain(neutralScoreAudio);
+    const expectedResponse = new EndOfGameFeedback(
+      buildSSMLAudioResponse(neutralScoreAudio),
+      neutralScoreText
+    );
+    expect(response).toEqual(expectedResponse);
   });
 
   test("If no 'numberOfQuestionsAnswered' get 'bad' audio", () => {
@@ -41,7 +56,11 @@ describe('Scoring at the end of the game', () => {
       score: 3,
     };
     const response = gameOver(data);
-    expect(convertSSMLContainerToString(response)).toContain(badScoreAudio);
+    const expectedResponse = new EndOfGameFeedback(
+      buildSSMLAudioResponse(badScoreAudio),
+      badScoreText
+    );
+    expect(response).toEqual(expectedResponse);
   });
 
   test("If no 'score' get 'bad' audio", () => {
@@ -49,6 +68,10 @@ describe('Scoring at the end of the game', () => {
       numberOfQuestionsAnswered: 5,
     };
     const response = gameOver(data);
-    expect(convertSSMLContainerToString(response)).toContain(badScoreAudio);
+    const expectedResponse = new EndOfGameFeedback(
+      buildSSMLAudioResponse(badScoreAudio),
+      badScoreText
+    );
+    expect(response).toEqual(expectedResponse);
   });
 });

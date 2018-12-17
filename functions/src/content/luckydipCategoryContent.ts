@@ -42,9 +42,15 @@ const luckydipQuestions: Question[] = [
   ),
 ];
 
-const luckydipOpening =
+const luckydipAudioOpening =
   'https://storage.googleapis.com/audio-assets/07.0_YiR_Lucky.ogg';
 
-const luckydipCategory = new Category(luckydipQuestions, luckydipOpening);
+const luckyDipTextOpening = 'Welcome to lucky dip';
+
+const luckydipCategory = new Category(
+  luckydipQuestions,
+  luckydipAudioOpening,
+  luckyDipTextOpening
+);
 
 export { luckydipCategory };

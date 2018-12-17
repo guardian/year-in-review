@@ -43,9 +43,15 @@ const politicsQuestions: Question[] = [
   ),
 ];
 
-const politicsOpening =
+const politicsAudioOpening =
   'https://storage.googleapis.com/audio-assets/05.0_YiR_Politics.ogg';
 
-const politicsCategory = new Category(politicsQuestions, politicsOpening);
+const politicsTextOpening = 'Welcome to politics';
+
+const politicsCategory = new Category(
+  politicsQuestions,
+  politicsAudioOpening,
+  politicsTextOpening
+);
 
 export { politicsCategory };

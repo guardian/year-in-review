@@ -1,9 +1,10 @@
 import { RoundCollection, Rounds, Topic } from '../models/rounds';
-import { unexpectedErrorAudio } from './errorContent';
+import { unexpectedErrorAudio, unexpectedErrorText } from './errorContent';
 
 const roundCollections: RoundCollection[] = [
   new RoundCollection(
     'https://storage.googleapis.com/audio-assets/00.1_YiR_Global_or_Sport.ogg',
+    'Sport or news',
     'https://storage.googleapis.com/audio-assets/03.0_Category_Help_-_News_Sport_L.ogg',
     'https://storage.googleapis.com/audio-assets/03.3_Category_Repeat_-_News_Sport_L.ogg',
     'https://storage.googleapis.com/audio-assets/03.1_Category_Time_Out_-_News_Sport_L.ogg',
@@ -12,6 +13,7 @@ const roundCollections: RoundCollection[] = [
   ),
   new RoundCollection(
     'https://storage.googleapis.com/audio-assets/02.5_YiR_Science_or_Art.ogg',
+    'Science or Arts',
     'https://storage.googleapis.com/audio-assets/03.0_Category_Help_-_Science_Art_A.ogg',
     'https://storage.googleapis.com/audio-assets/03.3_Category_Repeat_-_Science_or_Art_A.ogg',
     'https://storage.googleapis.com/audio-assets/03.1_Category_Time_Out_-_Science_Art_A.ogg',
@@ -21,6 +23,7 @@ const roundCollections: RoundCollection[] = [
   // No choice so currently no round selection audio
   new RoundCollection(
     'https://storage.googleapis.com/audio-assets/04.4_YiR_Politics_or_Technology.ogg',
+    'Politics or Technology?',
     'https://storage.googleapis.com/audio-assets/03.0_Category_Help_-_Politics_Tech_A.ogg',
     'https://storage.googleapis.com/audio-assets/03.3_Category_Repeat_-_Politics_Tech_A.ogg',
     'https://storage.googleapis.com/audio-assets/03.1_Category_Time_Out_-_Politics_Tech_A.ogg',
@@ -30,6 +33,7 @@ const roundCollections: RoundCollection[] = [
   // No choice so currently no round selection audio
   new RoundCollection(
     unexpectedErrorAudio,
+    unexpectedErrorText,
     unexpectedErrorAudio,
     unexpectedErrorAudio,
     unexpectedErrorAudio,

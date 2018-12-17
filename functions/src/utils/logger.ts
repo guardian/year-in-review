@@ -1,7 +1,10 @@
 import { Response, ResponseType } from '../models/conversation';
 
 import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
-import { unexpectedErrorAudio } from '../content/errorContent';
+import {
+  unexpectedErrorAudio,
+  unexpectedErrorText,
+} from '../content/errorContent';
 
 const unexpectedErrorResponse = (logMessage: string): Response => {
   // tslint:disable-next-line:no-console
@@ -9,7 +12,7 @@ const unexpectedErrorResponse = (logMessage: string): Response => {
   return new Response(
     ResponseType.CLOSE,
     buildSSMLAudioResponse(unexpectedErrorAudio),
-    ''
+    unexpectedErrorText
   );
 };
 

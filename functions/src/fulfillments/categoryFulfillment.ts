@@ -10,6 +10,7 @@ import { Topic } from '../models/rounds';
 import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { unexpectedErrorResponse } from '../utils/logger';
+import { combineTextResponses } from '../responses/textResponses';
 
 const startCategory = (
   topicChoice: string | Topic,
@@ -23,11 +24,15 @@ const startCategory = (
     const maybeQuestion: OptionQuestion = category.getQuestion(1);
 
     if (maybeQuestion instanceof Question) {
-      const response = buildSSMLAndCombineAudioResponses(
+      const audioResponse = buildSSMLAndCombineAudioResponses(
         category.openingAudio,
         maybeQuestion.questionAudio
       );
-      return new Response(ResponseType.ASK, response, '');
+      const textResponse = combineTextResponses(
+        category.openingText,
+        maybeQuestion.questionText
+      );
+      return new Response(ResponseType.ASK, audioResponse, textResponse);
     } else {
       return unexpectedErrorResponse(
         `No first question found for category ${category}`

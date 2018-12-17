@@ -9,7 +9,10 @@ import { buildSSMLAudioResponse } from './ssmlResponses';
 import { gameOver } from '../fulfillments/endOfGameFulfillment';
 import { rounds } from '../content/roundContent';
 import { startCategory } from '../fulfillments/categoryFulfillment';
-import { unexpectedErrorAudio } from '../content/errorContent';
+import {
+  unexpectedErrorAudio,
+  unexpectedErrorText,
+} from '../content/errorContent';
 
 const roundHelperResponse = (
   data: ConversationData,
@@ -24,7 +27,8 @@ const roundHelperResponse = (
       ''
     );
   } else {
-    return new Response(ResponseType.CLOSE, gameOver(data), '');
+    const feedback = gameOver(data);
+    return new Response(ResponseType.CLOSE, feedback.audio, feedback.text);
   }
 };
 
@@ -36,7 +40,7 @@ const chooseRoundResponse = (
     let response: Response = new Response(
       ResponseType.CLOSE,
       buildSSMLAudioResponse(unexpectedErrorAudio),
-      ''
+      unexpectedErrorText
     );
     round.getTopics().forEach(topic => (response = startCategory(topic, data)));
     return response;
@@ -44,7 +48,7 @@ const chooseRoundResponse = (
     return new Response(
       ResponseType.ASK,
       buildSSMLAudioResponse(round.introductionAudio),
-      ''
+      round.introductionText
     );
   }
 };

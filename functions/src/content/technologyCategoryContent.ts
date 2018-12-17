@@ -42,9 +42,15 @@ const technologyQuestions: Question[] = [
   ),
 ];
 
-const technologyOpening =
+const technologyAudioOpening =
   'https://storage.googleapis.com/audio-assets/06.0_YiR_Technology.ogg';
 
-const technologyCategory = new Category(technologyQuestions, technologyOpening);
+const technologyTextOpening = 'Welcome to Technology';
+
+const technologyCategory = new Category(
+  technologyQuestions,
+  technologyAudioOpening,
+  technologyTextOpening
+);
 
 export { technologyCategory };

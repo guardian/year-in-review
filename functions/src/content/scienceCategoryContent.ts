@@ -42,9 +42,15 @@ const scienceQuestions: Question[] = [
   ),
 ];
 
-const scienceOpening =
+const scienceAudioOpening =
   'https://storage.googleapis.com/audio-assets/03.0_YiR_Science_a.ogg';
 
-const scienceCategory = new Category(scienceQuestions, scienceOpening);
+const scienceTextOpening = 'Welcome to Science';
+
+const scienceCategory = new Category(
+  scienceQuestions,
+  scienceAudioOpening,
+  scienceTextOpening
+);
 
 export { scienceCategory };
