@@ -6,13 +6,16 @@
     {
       "value": "true",
       "synonyms": [
-        "true"
+        "true",
+        "two",
+        "2"
       ]
     },
     {
       "value": "false",
       "synonyms": [
-        "false"
+        "false",
+        "pulse"
       ]
     }
   ],
