@@ -54,7 +54,8 @@ const chooseRound = (data: ConversationData): DialogflowResponse => {
     return new DialogflowResponse(
       DialogflowResponseType.CLOSE,
       feedback.audio,
-      feedback.text
+      feedback.text,
+      []
     );
   }
 };

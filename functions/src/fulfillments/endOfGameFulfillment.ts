@@ -55,7 +55,8 @@ const quit = () => {
   return new DialogflowResponse(
     DialogflowResponseType.CLOSE,
     buildSSMLAudioResponse(quitAudio),
-    quitText
+    quitText,
+    []
   );
 };
 

@@ -26,6 +26,7 @@ class RoundCollection {
     public noInputText: string,
     public fallbackAudio: string,
     public fallbackText: string,
+    public suggestionChips: string[],
     private topics: Set<Topic>
   ) {}
 

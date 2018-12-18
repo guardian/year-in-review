@@ -29,7 +29,8 @@ const welcomeFulfillment = () => {
   return new DialogflowResponse(
     DialogflowResponseType.ASK,
     buildSSMLAudioResponse(welcomeAudio),
-    welcomeText
+    welcomeText,
+    ['Ready', 'Help']
   );
 };
 
@@ -79,13 +80,17 @@ const respondBasedOnRepromptCount = (
   const count = data.repromptCount || 0;
   if (count < 3) {
     data.repromptCount = count + 1;
-    return new DialogflowResponse(DialogflowResponseType.ASK, ssml, text);
+    return new DialogflowResponse(DialogflowResponseType.ASK, ssml, text, [
+      'Ready',
+      'Help',
+    ]);
   } else {
     const feedback = doNotPlayFulfillment();
     return new DialogflowResponse(
       DialogflowResponseType.CLOSE,
       feedback.audio,
-      feedback.text
+      feedback.text,
+      []
     );
   }
 };

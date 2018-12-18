@@ -98,7 +98,8 @@ const askNextQuestion = (
       feedback.audio,
       buildSSMLAudioResponse(nextQuestion.questionAudio)
     ),
-    combineTextResponses(feedback.text, nextQuestion.questionText)
+    combineTextResponses(feedback.text, nextQuestion.questionText),
+    nextQuestion.suggestionChips
   );
 };
 
@@ -111,7 +112,8 @@ const endOfCategory = (
   return new DialogflowResponse(
     nextRound.responseType,
     combineSSML(feedback.audio, nextRound.responseSSML),
-    combineTextResponses(feedback.text, nextRound.responseText)
+    combineTextResponses(feedback.text, nextRound.responseText),
+    nextRound.suggestionChips
   );
 };
 

@@ -174,7 +174,8 @@ const questionRepromptFulfillment = (
     return new DialogflowResponse(
       DialogflowResponseType.ASK,
       audioResponse,
-      textResponse
+      textResponse,
+      question.suggestionChips
     );
   } else {
     return unexpectedErrorResponse(question.error);

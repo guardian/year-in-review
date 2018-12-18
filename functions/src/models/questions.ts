@@ -1,7 +1,11 @@
 import { Unknown } from './conversation';
 
 class Question {
-  constructor(public questionAudio: string, public questionText: string) {}
+  constructor(
+    public questionAudio: string,
+    public questionText: string,
+    public suggestionChips: string[]
+  ) {}
 }
 
 class TrueFalseQuestion extends Question {
@@ -14,7 +18,7 @@ class TrueFalseQuestion extends Question {
     public incorrectAnswerAudio: string,
     public incorrectAnswerText: string
   ) {
-    super(questionAudio, questionText);
+    super(questionAudio, questionText, ['True', 'False']);
   }
 }
 
@@ -32,7 +36,7 @@ class MultipleChoiceQuestion extends Question {
     public DAudio: string,
     public DText: string
   ) {
-    super(questionAudio, questionText);
+    super(questionAudio, questionText, ['A', 'B', 'C', 'D']);
   }
 }
 
@@ -46,7 +50,7 @@ class FillInTheBlankQuestion extends Question {
     public incorrectAnswerAudio: string,
     public incorrectAnswerText: string
   ) {
-    super(questionAudio, questionText);
+    super(questionAudio, questionText, ["I don't know"]);
   }
 }
 

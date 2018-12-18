@@ -13,6 +13,7 @@ const roundCollections: RoundCollection[] = [
     'Time out',
     'https://storage.googleapis.com/audio-assets/03.2_Category_Unrecognized_-_News_Sport_L.ogg',
     'Unrecognised',
+    ['Global news', 'Sport'],
     new Set([Topic.SPORT, Topic.NEWS])
   ),
   new RoundCollection(
@@ -26,6 +27,7 @@ const roundCollections: RoundCollection[] = [
     'Time out',
     'https://storage.googleapis.com/audio-assets/03.2_Category_Unrecognized_-_Science_Art_A.ogg',
     'Unrecognised',
+    ['Sciences', 'Arts'],
     new Set([Topic.SCIENCE, Topic.ARTS])
   ),
   // No choice so currently no round selection audio
@@ -40,6 +42,7 @@ const roundCollections: RoundCollection[] = [
     'Time out',
     'https://storage.googleapis.com/audio-assets/03.2_Category_Unrecognized_-_Politics_Tech_A.ogg',
     'Unrecognised',
+    ['Politics', 'Technology'],
     new Set([Topic.POLITICS, Topic.TECHNOLOGY])
   ),
   // No choice so currently no round selection audio
@@ -54,6 +57,7 @@ const roundCollections: RoundCollection[] = [
     unexpectedErrorText,
     unexpectedErrorAudio,
     unexpectedErrorText,
+    [],
     new Set([Topic.LUCKYDIP])
   ),
 ];

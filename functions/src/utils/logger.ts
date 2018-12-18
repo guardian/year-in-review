@@ -15,7 +15,8 @@ const unexpectedErrorResponse = (logMessage: string): DialogflowResponse => {
   return new DialogflowResponse(
     DialogflowResponseType.CLOSE,
     buildSSMLAudioResponse(unexpectedErrorAudio),
-    unexpectedErrorText
+    unexpectedErrorText,
+    []
   );
 };
 

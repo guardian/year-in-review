@@ -26,14 +26,16 @@ const roundHelperResponse = (
     return new DialogflowResponse(
       DialogflowResponseType.ASK,
       roundFeedback.audio,
-      roundFeedback.text
+      roundFeedback.text,
+      round.suggestionChips
     );
   } else {
     const feedback = gameOver(data);
     return new DialogflowResponse(
       DialogflowResponseType.CLOSE,
       feedback.audio,
-      feedback.text
+      feedback.text,
+      []
     );
   }
 };
@@ -46,7 +48,8 @@ const chooseRoundResponse = (
     let Response: DialogflowResponse = new DialogflowResponse(
       DialogflowResponseType.CLOSE,
       buildSSMLAudioResponse(unexpectedErrorAudio),
-      unexpectedErrorText
+      unexpectedErrorText,
+      []
     );
     round.getTopics().forEach(topic => (Response = startCategory(topic, data)));
     return Response;
@@ -54,7 +57,8 @@ const chooseRoundResponse = (
     return new DialogflowResponse(
       DialogflowResponseType.ASK,
       buildSSMLAudioResponse(round.introductionAudio),
-      round.introductionText
+      round.introductionText,
+      round.suggestionChips
     );
   }
 };

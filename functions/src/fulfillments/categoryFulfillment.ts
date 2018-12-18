@@ -35,7 +35,8 @@ const startCategory = (
       return new DialogflowResponse(
         DialogflowResponseType.ASK,
         audioResponse,
-        textResponse
+        textResponse,
+        maybeQuestion.suggestionChips
       );
     } else {
       return unexpectedErrorResponse(

@@ -25,7 +25,8 @@ class DialogflowResponse {
   constructor(
     public responseType: DialogflowResponseType,
     public responseSSML: Container,
-    public responseText: string
+    public responseText: string,
+    public suggestionChips: string[]
   ) {}
 }
 
