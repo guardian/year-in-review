@@ -11,41 +11,42 @@ import { Category } from '../models/categories';
 const technologyQuestions: Question[] = [
   new TrueFalseQuestion(
     'https://storage.googleapis.com/audio-assets/06.1_YiR_Technology_q1.ogg',
-    'true or false',
+    'True or false: this year Apple became the first company in history to be valued at a trillion dollars.',
     true,
     'https://storage.googleapis.com/audio-assets/06.1_YiR_Technology_q1_True.ogg',
-    'correct',
+    "It is indeed true! Well done! It means Apple’s stock market value is more than a third the size of the UK economy and larger than the economies of Turkey and Switzerland.\nNext question.\nIn March, The Observer newspaper reported that Cambridge Analytica had used the personal data harvested from millions of people's Facebook profiles without their consent, in one of the tech giant’s biggest ever data breaches. Listen to this clip from Carole Cadwalladr’s interview with a whistleblower who went public.",
     'https://storage.googleapis.com/audio-assets/06.1_YiR_Technology_q1_False.ogg',
-    'incorrect'
+    "Ooof. You’re wrong! It is actually true! In August, Apple did reach a $1trillion dollar valuation. It means Apple’s stock market value is more than a third the size of the UK economy and larger than the economies of Turkey and Switzerland.\nNext question.\nIn March, The Observer newspaper reported that Cambridge Analytica had used the personal data harvested from millions of people's Facebook profiles without their consent, in one of the tech giant’s biggest ever data breaches. Listen to this clip from Carole Cadwalladr’s interview with a whistleblower who went public."
   ),
   new MultipleChoiceQuestion(
     'https://storage.googleapis.com/audio-assets/06.2_YiR_Technology_q2.ogg',
-    'multiple choice',
+    'The question is, who was that Canadian data scientist turned whistleblower?\nA - Alexander Nix\nB - Christopher Wylie\nC - Shahmir Sanni\nD - Robert Mercer',
     MultipleChoice.B,
     'https://storage.googleapis.com/audio-assets/06.2_YiR_Technology_q2A.ogg',
-    'A',
+    'It was B, Christopher Wylie who was the Canadian whistleblower behind the Cambridge Analytica revelations, It was Wylie who, whilst studying for a PhD in fashion trend forecasting, came up with the idea to bring big data and social media to an established military methodology called “information operations”.\nCambridge Analytica deny any wrongdoing. Amid mounting legal feels and negative coverage, they announced in May that they were "closing and starting insolvency proceedings".So, next clip. Do you remember the slew of emails we all received back in May due to the introduction of an EU law on data protection and privacy?',
     'https://storage.googleapis.com/audio-assets/06.2_YiR_Technology_q2B.ogg',
-    'B',
+    'It was B, Christopher Wylie who was the Canadian whistleblower behind the Cambridge Analytica revelations, It was Wylie who, whilst studying for a PhD in fashion trend forecasting, came up with the idea to bring big data and social media to an established military methodology called “information operations”.\nCambridge Analytica deny any wrongdoing. Amid mounting legal feels and negative coverage, they announced in May that they were "closing and starting insolvency proceedings".\nSo, next clip. Do you remember the slew of emails we all received back in May due to the introduction of an EU law on data protection and privacy?',
     'https://storage.googleapis.com/audio-assets/06.2_YiR_Technology_q2C.ogg',
-    'C',
+    'It was B, Christopher Wylie who was the Canadian whistleblower behind the Cambridge Analytica revelations, It was Wylie who, whilst studying for a PhD in fashion trend forecasting, came up with the idea to bring big data and social media to an established military methodology called “information operations”.\nCambridge Analytica deny any wrongdoing. Amid mounting legal feels and negative coverage, they announced in May that they were "closing and starting insolvency proceedings".\nSo, next clip. Do you remember the slew of emails we all received back in May due to the introduction of an EU law on data protection and privacy?',
     'https://storage.googleapis.com/audio-assets/06.2_YiR_Technology_q2D.ogg',
-    'D'
+    'It was B, Christopher Wylie who was the Canadian whistleblower behind the Cambridge Analytica revelations, It was Wylie who, whilst studying for a PhD in fashion trend forecasting, came up with the idea to bring big data and social media to an established military methodology called “information operations”.\nCambridge Analytica deny any wrongdoing. Amid mounting legal feels and negative coverage, they announced in May that they were "closing and starting insolvency proceedings".\nSo, next clip. Do you remember the slew of emails we all received back in May due to the introduction of an EU law on data protection and privacy?'
   ),
   new FillInTheBlankQuestion(
     'https://storage.googleapis.com/audio-assets/06.3_YiR_Technology_q3.ogg',
-    'fill in the blank',
+    'What is the abbreviated name for the EU regulation that caused everyone to receive all those concerned emails from businesses?',
     'GDPR',
     'https://storage.googleapis.com/audio-assets/06.3_YiR_Technology_q3_GDPR.ogg',
-    'correct',
+    'That’s correct! GDPR, which stands for General Data Protection Regulation, is an EU law which was seven years in the making, replacing the 1995 Data Protection Directive which, until May, had set the minimum standards for processing data in the EU.\nYou might be interested to know that these and other Tech topics are explored in our Techology podcast, Chips with Everything. You can subscribe, where ever you listen to your podcasts.',
     'https://storage.googleapis.com/audio-assets/06.3_YiR_Technology_q3_Not_GDPR.ogg',
-    'incorrect'
+    'Wrong answer! GDPR, which stands for General Data Protection Regulation, is an EU law which was seven years in the making, replacing the 1995 Data Protection Directive which, until May, had set the minimum standards for processing data in the EU.\nYou might be interested to know that these and other Tech topics are explored in our Techology podcast, Chips with Everything. You can subscribe, where ever you listen to your podcasts.'
   ),
 ];
 
 const technologyAudioOpening =
   'https://storage.googleapis.com/audio-assets/06.0_YiR_Technology.ogg';
 
-const technologyTextOpening = 'Welcome to Technology';
+const technologyTextOpening =
+  'You chose to answer questions on technology.\nListen to this clip from Apple CEO Tim Cook’s Keynote speech at their annual September event where they traditionally announce a new range of products.';
 
 const technologyCategory = new Category(
   technologyQuestions,
