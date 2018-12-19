@@ -17,10 +17,16 @@ class Rounds {
 class RoundCollection {
   constructor(
     public introductionAudio: string,
+    public introductionText: string,
     public helpAudio: string,
+    public helpText: string,
     public repeatAudio: string,
+    public repeatText: string,
     public noInputAudio: string,
+    public noInputText: string,
     public fallbackAudio: string,
+    public fallbackText: string,
+    public suggestionChips: string[],
     private topics: Set<Topic>
   ) {}
 

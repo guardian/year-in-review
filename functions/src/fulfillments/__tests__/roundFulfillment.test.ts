@@ -1,4 +1,7 @@
-import { ConversationData, ResponseType } from '../../models/conversation';
+import {
+  ConversationData,
+  DialogflowResponseType,
+} from '../../models/conversation';
 import { chooseRound, roundHelpFulfillment } from '../roundFulfillment';
 
 describe('Select Round', () => {
@@ -27,7 +30,7 @@ describe('Help with round selection', () => {
   test('round help audio is not an empty string', () => {
     const data = {};
     const response = roundHelpFulfillment(data);
-    expect(response.responseType).toEqual(ResponseType.ASK);
+    expect(response.responseType).toEqual(DialogflowResponseType.ASK);
     expect(response.responseSSML).not.toEqual('');
   });
 });

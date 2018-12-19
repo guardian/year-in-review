@@ -2,9 +2,10 @@ import { Category, OptionCategory } from '../models/categories';
 import {
   ConversationData,
   OptionBoolean,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
   Unknown,
+  MultimediaResponse,
 } from '../models/conversation';
 import {
   FillInTheBlankQuestion,
@@ -23,15 +24,19 @@ import {
 } from '../responses/questionResponses';
 
 import { OptionTopic } from '../models/rounds';
-import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
+import {
+  combineSSML,
+  buildSSMLAudioResponse,
+} from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { fallbackFulfillment } from './helperFulfillments';
 import { unexpectedErrorResponse } from '../utils/logger';
+import { combineTextResponses } from '../responses/textResponses';
 
 const trueFalseQuestionFulfillment = (
   answer: string,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   const typedAnswer: OptionBoolean = convertStringToBoolean(answer);
   if (
@@ -67,7 +72,7 @@ const convertStringToBoolean = (s: string): OptionBoolean => {
 const multipleChoiceQuestionFulfillment = (
   answer: string,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   const typedAnswer: OptionMultipleChoice = convertStringToMultipleChoice(
     answer
@@ -108,10 +113,10 @@ const convertStringToMultipleChoice = (s: string): OptionMultipleChoice => {
   }
 };
 
-const fillInTheBlankQuestionFulfillment = (
+const fillInTheBlankQuestionCorrectFulfillment = (
   answer: string,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof FillInTheBlankQuestion) {
     incrementQuestionNumber(data);
@@ -129,7 +134,7 @@ const fillInTheBlankQuestionFulfillment = (
   }
 };
 
-const fillInTheBlankIncorrectFulfillment = (data: ConversationData) => {
+const fillInTheBlankQuestionIncorrectFulfillment = (data: ConversationData) => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof FillInTheBlankQuestion) {
     incrementQuestionNumber(data);
@@ -151,15 +156,27 @@ const incrementQuestionNumber = (data: ConversationData): void => {
   data.currentQuestion = currentQuestion + 1;
 };
 
-const questionRepromptFulfillment = (data: ConversationData, getReprompt: (question: Question) => string) => {
+const questionRepromptFulfillment = (
+  data: ConversationData,
+  getReprompt: (question: Question) => MultimediaResponse
+) => {
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof Question) {
-    const helpAudio = getReprompt(question);
-    const response = buildSSMLAndCombineAudioResponses(
-      helpAudio,
-      question.questionAudio
+    const reprompt = getReprompt(question);
+    const audioResponse = combineSSML(
+      reprompt.audio,
+      buildSSMLAudioResponse(question.questionAudio)
     );
-    return new Response(ResponseType.ASK, response);
+    const textResponse = combineTextResponses(
+      reprompt.text,
+      question.questionText
+    );
+    return new DialogflowResponse(
+      DialogflowResponseType.ASK,
+      audioResponse,
+      textResponse,
+      question.suggestionChips
+    );
   } else {
     return unexpectedErrorResponse(question.error);
   }
@@ -193,10 +210,10 @@ const getQuestionBasedOnConversationData = (
 export {
   getQuestionBasedOnConversationData,
   getTopic,
-  fillInTheBlankIncorrectFulfillment,
+  fillInTheBlankQuestionIncorrectFulfillment,
   trueFalseQuestionFulfillment,
   multipleChoiceQuestionFulfillment,
-  fillInTheBlankQuestionFulfillment,
+  fillInTheBlankQuestionCorrectFulfillment,
   incrementQuestionNumber,
-  questionRepromptFulfillment
+  questionRepromptFulfillment,
 };

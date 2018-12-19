@@ -1,7 +1,8 @@
 import {
   ConversationData,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
+  MultimediaResponse,
 } from '../models/conversation';
 import {
   FillInTheBlankQuestion,
@@ -11,26 +12,26 @@ import {
   Question,
   TrueFalseQuestion,
 } from '../models/questions';
-import {
-  buildSSMLAndCombineAudioResponses,
-  buildSSMLAudioResponse,
-  combineSSML,
-} from './ssmlResponses';
+import { buildSSMLAudioResponse, combineSSML } from './ssmlResponses';
 
 import { chooseRound } from '../fulfillments/roundFulfillment';
+import { combineTextResponses } from '../responses/textResponses';
 
 const buildFillInTheBlankQuestionResponse = (
   data: ConversationData,
   currentQuestion: FillInTheBlankQuestion,
   nextQuestion: OptionQuestion,
   answer: string
-): Response => {
+): DialogflowResponse => {
   updateScore(isFillInTheBlankCorrect(currentQuestion, answer), data);
-  const feedbackAudio = getFillInTheBlankFeedback(currentQuestion, answer);
+  const feedback: MultimediaResponse = getFillInTheBlankFeedback(
+    currentQuestion,
+    answer
+  );
   if (nextQuestion instanceof Question) {
-    return askNextQuestion(nextQuestion, feedbackAudio);
+    return askNextQuestion(nextQuestion, feedback);
   } else {
-    return endOfCategory(data, feedbackAudio);
+    return endOfCategory(data, feedback);
   }
 };
 
@@ -39,13 +40,16 @@ const buildTrueFalseQuestionResponse = (
   currentQuestion: TrueFalseQuestion,
   nextQuestion: OptionQuestion,
   answer: boolean
-): Response => {
+): DialogflowResponse => {
   updateScore(isTrueFalseCorrect(currentQuestion, answer), data);
-  const feedbackAudio = getTrueFalseFeedback(currentQuestion, answer);
+  const feedback: MultimediaResponse = getTrueFalseFeedback(
+    currentQuestion,
+    answer
+  );
   if (nextQuestion instanceof Question) {
-    return askNextQuestion(nextQuestion, feedbackAudio);
+    return askNextQuestion(nextQuestion, feedback);
   } else {
-    return endOfCategory(data, feedbackAudio);
+    return endOfCategory(data, feedback);
   }
 };
 
@@ -54,13 +58,16 @@ const buildMultipleChoiceQuestionResponse = (
   currentQuestion: MultipleChoiceQuestion,
   nextQuestion: OptionQuestion,
   answer: MultipleChoice
-): Response => {
+): DialogflowResponse => {
   updateScore(isMultipleChoiceCorrect(currentQuestion, answer), data);
-  const feedbackAudio = getMultipleChoiceFeedback(currentQuestion, answer);
+  const feedback: MultimediaResponse = getMultipleChoiceFeedback(
+    currentQuestion,
+    answer
+  );
   if (nextQuestion instanceof Question) {
-    return askNextQuestion(nextQuestion, feedbackAudio);
+    return askNextQuestion(nextQuestion, feedback);
   } else {
-    return endOfCategory(data, feedbackAudio);
+    return endOfCategory(data, feedback);
   }
 };
 
@@ -68,36 +75,45 @@ const buildFillInTheBlankQuestionIncorrectResponse = (
   data: ConversationData,
   currentQuestion: FillInTheBlankQuestion,
   nextQuestion: OptionQuestion
-) => {
+): DialogflowResponse => {
   updateScore(false, data);
-  const feedbackAudio = currentQuestion.incorrectAnswerAudio;
+  const feedback: MultimediaResponse = new MultimediaResponse(
+    currentQuestion.incorrectAnswerAudio,
+    currentQuestion.incorrectAnswerText
+  );
   if (nextQuestion instanceof Question) {
-    return askNextQuestion(nextQuestion, feedbackAudio);
+    return askNextQuestion(nextQuestion, feedback);
   } else {
-    return endOfCategory(data, feedbackAudio);
+    return endOfCategory(data, feedback);
   }
 };
 
 const askNextQuestion = (
   nextQuestion: Question,
-  feedbackAudio: string
-): Response => {
-  const nextQuestionAudio = nextQuestion.questionAudio;
-  return new Response(
-    ResponseType.ASK,
-    buildSSMLAndCombineAudioResponses(feedbackAudio, nextQuestionAudio)
+  feedback: MultimediaResponse
+): DialogflowResponse => {
+  return new DialogflowResponse(
+    DialogflowResponseType.ASK,
+    combineSSML(
+      feedback.audio,
+      buildSSMLAudioResponse(nextQuestion.questionAudio)
+    ),
+    combineTextResponses(feedback.text, nextQuestion.questionText),
+    nextQuestion.suggestionChips
   );
 };
 
 const endOfCategory = (
   data: ConversationData,
-  feedbackAudio: string
-): Response => {
+  feedback: MultimediaResponse
+): DialogflowResponse => {
   removeTopicFromConversationData(data);
-  const nextRound: Response = chooseRound(data);
-  return new Response(
+  const nextRound: DialogflowResponse = chooseRound(data);
+  return new DialogflowResponse(
     nextRound.responseType,
-    combineSSML(buildSSMLAudioResponse(feedbackAudio), nextRound.responseSSML)
+    combineSSML(feedback.audio, nextRound.responseSSML),
+    combineTextResponses(feedback.text, nextRound.responseText),
+    nextRound.suggestionChips
   );
 };
 
@@ -108,35 +124,47 @@ const removeTopicFromConversationData = (data: ConversationData): void => {
 const getTrueFalseFeedback = (
   question: TrueFalseQuestion,
   answer: boolean
-): string => {
+): MultimediaResponse => {
   return answer === question.answer
-    ? question.correctAnswerAudio
-    : question.incorrectAnswerAudio;
+    ? new MultimediaResponse(
+        question.correctAnswerAudio,
+        question.correctAnswerText
+      )
+    : new MultimediaResponse(
+        question.incorrectAnswerAudio,
+        question.incorrectAnswerText
+      );
 };
 
 const getMultipleChoiceFeedback = (
   question: MultipleChoiceQuestion,
   answer: MultipleChoice
-): string => {
+): MultimediaResponse => {
   switch (answer) {
     case MultipleChoice.A:
-      return question.AAudio;
+      return new MultimediaResponse(question.AAudio, question.AText);
     case MultipleChoice.B:
-      return question.BAudio;
+      return new MultimediaResponse(question.BAudio, question.BText);
     case MultipleChoice.C:
-      return question.CAudio;
+      return new MultimediaResponse(question.CAudio, question.CText);
     default:
-      return question.DAudio;
+      return new MultimediaResponse(question.DAudio, question.DText);
   }
 };
 
 const getFillInTheBlankFeedback = (
   question: FillInTheBlankQuestion,
   answer: string
-) => {
+): MultimediaResponse => {
   return answer === question.answer
-    ? question.correctAnswerAudio
-    : question.incorrectAnswerAudio;
+    ? new MultimediaResponse(
+        question.correctAnswerAudio,
+        question.correctAnswerText
+      )
+    : new MultimediaResponse(
+        question.incorrectAnswerAudio,
+        question.incorrectAnswerText
+      );
 };
 
 const isTrueFalseCorrect = (

@@ -1,14 +1,22 @@
-import { Response, ResponseType } from '../models/conversation';
+import {
+  DialogflowResponse,
+  DialogflowResponseType,
+} from '../models/conversation';
 
 import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
-import { unexpectedErrorAudio } from '../content/errorContent';
+import {
+  unexpectedErrorAudio,
+  unexpectedErrorText,
+} from '../content/errorContent';
 
-const unexpectedErrorResponse = (logMessage: string): Response => {
+const unexpectedErrorResponse = (logMessage: string): DialogflowResponse => {
   // tslint:disable-next-line:no-console
   console.error(logMessage);
-  return new Response(
-    ResponseType.CLOSE,
-    buildSSMLAudioResponse(unexpectedErrorAudio)
+  return new DialogflowResponse(
+    DialogflowResponseType.CLOSE,
+    buildSSMLAudioResponse(unexpectedErrorAudio),
+    unexpectedErrorText,
+    []
   );
 };
 

@@ -1,7 +1,7 @@
 import {
   ConversationData,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
 } from '../models/conversation';
 import { OptionQuestion, Question } from '../models/questions';
 
@@ -10,11 +10,12 @@ import { Topic } from '../models/rounds';
 import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { unexpectedErrorResponse } from '../utils/logger';
+import { combineTextResponses } from '../responses/textResponses';
 
 const startCategory = (
   topicChoice: string | Topic,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   const topic: Topic = topicChoice as Topic;
   const category = categories.getCategory(topic);
   if (category instanceof Category) {
@@ -23,10 +24,19 @@ const startCategory = (
     const maybeQuestion: OptionQuestion = category.getQuestion(1);
 
     if (maybeQuestion instanceof Question) {
-      const response = buildSSMLAndCombineAudioResponses(category.openingAudio, maybeQuestion.questionAudio)
-      return new Response(
-        ResponseType.ASK,
-        response
+      const audioResponse = buildSSMLAndCombineAudioResponses(
+        category.openingAudio,
+        maybeQuestion.questionAudio
+      );
+      const textResponse = combineTextResponses(
+        category.openingText,
+        maybeQuestion.questionText
+      );
+      return new DialogflowResponse(
+        DialogflowResponseType.ASK,
+        audioResponse,
+        textResponse,
+        maybeQuestion.suggestionChips
       );
     } else {
       return unexpectedErrorResponse(

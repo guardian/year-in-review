@@ -1,7 +1,8 @@
 import {
   ConversationData,
-  Response,
-  ResponseType,
+  DialogflowResponse,
+  DialogflowResponseType,
+  MultimediaResponse,
 } from '../models/conversation';
 
 import { RoundCollection } from '../models/rounds';
@@ -9,39 +10,55 @@ import { buildSSMLAudioResponse } from './ssmlResponses';
 import { gameOver } from '../fulfillments/endOfGameFulfillment';
 import { rounds } from '../content/roundContent';
 import { startCategory } from '../fulfillments/categoryFulfillment';
-import { unexpectedErrorAudio } from '../content/errorContent';
+import {
+  unexpectedErrorAudio,
+  unexpectedErrorText,
+} from '../content/errorContent';
 
 const roundHelperResponse = (
   data: ConversationData,
-  getAudio: (r: RoundCollection) => string
-): Response => {
+  getFeedback: (r: RoundCollection) => MultimediaResponse
+): DialogflowResponse => {
   const roundNumber = data.currentRound || 1;
   const round = rounds.getRoundCollection(roundNumber);
   if (round instanceof RoundCollection) {
-    return new Response(
-      ResponseType.ASK,
-      buildSSMLAudioResponse(getAudio(round))
+    const roundFeedback = getFeedback(round);
+    return new DialogflowResponse(
+      DialogflowResponseType.ASK,
+      roundFeedback.audio,
+      roundFeedback.text,
+      round.suggestionChips
     );
   } else {
-    return new Response(ResponseType.CLOSE, gameOver(data));
+    const feedback = gameOver(data);
+    return new DialogflowResponse(
+      DialogflowResponseType.CLOSE,
+      feedback.audio,
+      feedback.text,
+      []
+    );
   }
 };
 
 const chooseRoundResponse = (
   round: RoundCollection,
   data: ConversationData
-): Response => {
+): DialogflowResponse => {
   if (round.getTopics().size === 1) {
-    let response: Response = new Response(
-      ResponseType.CLOSE,
-      buildSSMLAudioResponse(unexpectedErrorAudio)
+    let Response: DialogflowResponse = new DialogflowResponse(
+      DialogflowResponseType.CLOSE,
+      buildSSMLAudioResponse(unexpectedErrorAudio),
+      unexpectedErrorText,
+      []
     );
-    round.getTopics().forEach(topic => (response = startCategory(topic, data)));
-    return response;
+    round.getTopics().forEach(topic => (Response = startCategory(topic, data)));
+    return Response;
   } else {
-    return new Response(
-      ResponseType.ASK,
-      buildSSMLAudioResponse(round.introductionAudio)
+    return new DialogflowResponse(
+      DialogflowResponseType.ASK,
+      buildSSMLAudioResponse(round.introductionAudio),
+      round.introductionText,
+      round.suggestionChips
     );
   }
 };

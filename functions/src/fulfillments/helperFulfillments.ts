@@ -1,16 +1,30 @@
-import { ConversationData, Response, Unknown } from '../models/conversation';
+import {
+  ConversationData,
+  DialogflowResponse,
+  Unknown,
+  MultimediaResponse,
+} from '../models/conversation';
 import { getTopic, questionRepromptFulfillment } from './questionFulfillment';
 import {
-  trueFalseHelp,
-  multipleChoiceHelp,
-  fillInTheBlankHelp,
-  trueFalseUnknownInput,
-  multipleChoiceUnknownInput,
-  fillInTheBlankUnknownInput,
-  trueFalseNoInput,
-  multipleChoiceNoInput,
-  fillInTheBlankNoInput,
-  repeat,
+  trueFalseHelpAudio,
+  multipleChoiceHelpAudio,
+  fillInTheBlankHelpAudio,
+  trueFalseUnknownInputAudio,
+  multipleChoiceUnknownInputAudio,
+  fillInTheBlankUnknownInputAudio,
+  trueFalseNoInputAudio,
+  multipleChoiceNoInputAudio,
+  fillInTheBlankNoInputAudio,
+  trueFalseHelpText,
+  multipleChoiceHelpText,
+  fillInTheBlankHelpText,
+  trueFalseUnknownInputText,
+  multipleChoiceUnknownInputText,
+  fillInTheBlankUnknownInputText,
+  multipleChoiceNoInputText,
+  fillInTheBlankNoInputText,
+  repeatAudio,
+  repeatText,
 } from '../content/genericQuestionContent';
 import {
   roundFallbackFulfillment,
@@ -25,7 +39,7 @@ import {
 } from '../models/questions';
 import { unrecognisedInputWelcomeFulfillment } from './welcomeFulfillment';
 
-const helpFulfillment = (data: ConversationData): Response => {
+const helpFulfillment = (data: ConversationData): DialogflowResponse => {
   const topic = getTopic(data);
   if (topic instanceof Unknown) {
     return roundHelpFulfillment(data);
@@ -34,7 +48,7 @@ const helpFulfillment = (data: ConversationData): Response => {
   }
 };
 
-const noInputFulfillment = (data: ConversationData): Response => {
+const noInputFulfillment = (data: ConversationData): DialogflowResponse => {
   const topic = getTopic(data);
   if (topic instanceof Unknown) {
     return roundNoInputFulfillment(data);
@@ -43,7 +57,7 @@ const noInputFulfillment = (data: ConversationData): Response => {
   }
 };
 
-const fallbackFulfillment = (data: ConversationData): Response => {
+const fallbackFulfillment = (data: ConversationData): DialogflowResponse => {
   const topic = getTopic(data);
   if (!data.finishedWelcomeIntent) {
     return unrecognisedInputWelcomeFulfillment(data);
@@ -58,45 +72,78 @@ const fallbackFulfillment = (data: ConversationData): Response => {
   }
 };
 
-const repeatFulfillment = (data: ConversationData): Response => {
+const repeatFulfillment = (data: ConversationData): DialogflowResponse => {
   const topic = getTopic(data);
   if (topic instanceof Unknown) {
     return roundRepeatFullfillment(data);
   } else {
-    return questionRepromptFulfillment(data, () => repeat);
+    return questionRepromptFulfillment(
+      data,
+      () => new MultimediaResponse(repeatAudio, repeatText)
+    );
   }
 };
 
-const getQuestionSpecificHelpAudio = (question: Question): string => {
+const getQuestionSpecificHelpAudio = (
+  question: Question
+): MultimediaResponse => {
   if (question instanceof TrueFalseQuestion) {
-    return trueFalseHelp;
+    return new MultimediaResponse(trueFalseHelpAudio, trueFalseHelpText);
   }
   if (question instanceof MultipleChoiceQuestion) {
-    return multipleChoiceHelp;
+    return new MultimediaResponse(
+      multipleChoiceHelpAudio,
+      multipleChoiceHelpText
+    );
   } else {
-    return fillInTheBlankHelp;
+    return new MultimediaResponse(
+      fillInTheBlankHelpAudio,
+      fillInTheBlankHelpText
+    );
   }
 };
 
-const getQuestionSpecificUnknownInputAudio = (question: Question): string => {
+const getQuestionSpecificUnknownInputAudio = (
+  question: Question
+): MultimediaResponse => {
   if (question instanceof TrueFalseQuestion) {
-    return trueFalseUnknownInput;
+    return new MultimediaResponse(
+      trueFalseUnknownInputAudio,
+      trueFalseUnknownInputText
+    );
   }
   if (question instanceof MultipleChoiceQuestion) {
-    return multipleChoiceUnknownInput;
+    return new MultimediaResponse(
+      multipleChoiceUnknownInputAudio,
+      multipleChoiceUnknownInputText
+    );
   } else {
-    return fillInTheBlankUnknownInput;
+    return new MultimediaResponse(
+      fillInTheBlankUnknownInputAudio,
+      fillInTheBlankUnknownInputText
+    );
   }
 };
 
-const getQuestionSpecificNoInputAudio = (question: Question): string => {
+const getQuestionSpecificNoInputAudio = (
+  question: Question
+): MultimediaResponse => {
   if (question instanceof TrueFalseQuestion) {
-    return trueFalseNoInput;
+    return new MultimediaResponse(
+      trueFalseNoInputAudio,
+      trueFalseUnknownInputText
+    );
   }
   if (question instanceof MultipleChoiceQuestion) {
-    return multipleChoiceNoInput;
+    return new MultimediaResponse(
+      multipleChoiceNoInputAudio,
+      multipleChoiceNoInputText
+    );
   } else {
-    return fillInTheBlankNoInput;
+    return new MultimediaResponse(
+      fillInTheBlankNoInputAudio,
+      fillInTheBlankNoInputText
+    );
   }
 };
 

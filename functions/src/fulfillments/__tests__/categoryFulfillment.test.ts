@@ -1,4 +1,7 @@
-import { ConversationData, ResponseType } from '../../models/conversation';
+import {
+  ConversationData,
+  DialogflowResponseType,
+} from '../../models/conversation';
 
 import { Topic } from '../../models/rounds';
 import { startCategory } from '../categoryFulfillment';
@@ -33,13 +36,13 @@ describe('Start Category', () => {
     const topicChoice = 'cats';
     const data: ConversationData = {};
     const response = startCategory(topicChoice, data);
-    expect(response.responseType).toEqual(ResponseType.CLOSE);
+    expect(response.responseType).toEqual(DialogflowResponseType.CLOSE);
   });
 
   test('If valid topic return ResponseType of ASK', () => {
     const topicChoice = 'news';
     const data: ConversationData = {};
     const response = startCategory(topicChoice, data);
-    expect(response.responseType).toEqual(ResponseType.ASK);
+    expect(response.responseType).toEqual(DialogflowResponseType.ASK);
   });
 });
