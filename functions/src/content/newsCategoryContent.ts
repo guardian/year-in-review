@@ -20,7 +20,7 @@ const newsQuestions: Question[] = [
   ),
   new MultipleChoiceQuestion(
     'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2a.ogg',
-    'Question two: Despite Trump’s attempts to discredit the author, who wrote the biggest selling White House expose of 2018?\n A - Michael Woolf\nB - Bob Woodward\nC - Omarosa Manigault Newman\nD - James Comey',
+    'Question two: Despite Trump’s attempts to discredit the author, who wrote the biggest selling White House expose of 2018?\nA - Michael Woolf\nB - Bob Woodward\nC - Omarosa Manigault Newman\nD - James Comey',
     MultipleChoice.B,
     'https://storage.googleapis.com/audio-assets/01.2_YiR_Global_q2b_A.ogg',
     'Nope, that’s wrong. It was B, Bob Woodward’s Fear, that sold the most copies.\n\nListen to this interview with a woman who was allowed to drive in the country of her birth for the first time in her life.',

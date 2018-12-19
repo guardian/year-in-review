@@ -20,7 +20,7 @@ const artsQuestions: Question[] = [
   ),
   new TrueFalseQuestion(
     'https://storage.googleapis.com/audio-assets/04.2_YiR_Arts_Q2.ogg',
-    'True or false: This fee made Banksy the most highly valued living artist ever',
+    'True or false: This fee made Banksy the most highly valued living artist ever.',
     false,
     'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q2_False.ogg',
     'Yup it’s false! David Hockney’s Portrait of an Artist (Pool with Two Figures) sold for a staggering $90m at a New York auction.\n\nFinal question in this round is on books.\n\nTake a listen to this clip from The Guardian’s Books Podcast, discussing the announcement of the 2018 Booker Prize winner Anna Burns for her book, Milkman.',

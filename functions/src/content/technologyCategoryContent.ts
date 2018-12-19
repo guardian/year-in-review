@@ -11,7 +11,7 @@ import { Category } from '../models/categories';
 const technologyQuestions: Question[] = [
   new TrueFalseQuestion(
     'https://storage.googleapis.com/audio-assets/06.1_YiR_Technology_q1.ogg',
-    'True or false: this year Apple became the first company in history to be valued at a trillion dollars.',
+    'True or false: This year Apple became the first company in history to be valued at a trillion dollars.',
     true,
     'https://storage.googleapis.com/audio-assets/06.1_YiR_Technology_q1_True.ogg',
     "It is indeed true! Well done! It means Apple’s stock market value is more than a third the size of the UK economy and larger than the economies of Turkey and Switzerland.\n\nNext question.\n\nIn March, The Observer newspaper reported that Cambridge Analytica had used the personal data harvested from millions of people's Facebook profiles without their consent, in one of the tech giant’s biggest ever data breaches. Listen to this clip from Carole Cadwalladr’s interview with a whistleblower who went public.",
