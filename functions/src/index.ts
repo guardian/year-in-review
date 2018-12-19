@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 
-import { dialogflow, SimpleResponse } from 'actions-on-google';
+import { dialogflow } from 'actions-on-google';
 import {
   helpWelcomeFulfillment,
   startYearInReviewFulfillment,
@@ -26,7 +26,6 @@ import {
 } from './responses/dialogflowResponses';
 
 import { ConversationData } from './models/conversation';
-import { convertSSMLContainerToString } from './responses/ssmlResponses';
 import { quit } from './fulfillments/endOfGameFulfillment';
 import { startCategory } from './fulfillments/categoryFulfillment';
 
@@ -183,14 +182,7 @@ app.intent<{ queen: string }>('QueenQuestion', (conv, { queen }) => {
 });
 
 app.intent('Quit App', conv => {
-  const response = quit();
-  const ssml = convertSSMLContainerToString(response.responseSSML);
-  const textResponse = response.responseText;
-  const r = new SimpleResponse({
-    speech: ssml,
-    text: textResponse[0],
-  });
-  conv.close(r);
+  respondBasedOnResponseType(quit, conv);
 });
 
 exports.yearInReviewFulfillment = functions
