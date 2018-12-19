@@ -18,7 +18,7 @@ class TrueFalseQuestion extends Question {
     public incorrectAnswerAudio: string,
     public incorrectAnswerText: string
   ) {
-    super(questionAudio, questionText, ['True', 'False']);
+    super(questionAudio, questionText, ['True', 'False', 'Repeat']);
   }
 }
 
@@ -36,7 +36,7 @@ class MultipleChoiceQuestion extends Question {
     public DAudio: string,
     public DText: string
   ) {
-    super(questionAudio, questionText, ['A', 'B', 'C', 'D']);
+    super(questionAudio, questionText, ['A', 'B', 'C', 'D', 'Repeat']);
   }
 }
 
@@ -50,7 +50,7 @@ class FillInTheBlankQuestion extends Question {
     public incorrectAnswerAudio: string,
     public incorrectAnswerText: string
   ) {
-    super(questionAudio, questionText, ['Pass']);
+    super(questionAudio, questionText, ['Pass', 'Repeat']);
   }
 }
 
