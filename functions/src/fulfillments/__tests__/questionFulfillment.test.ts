@@ -76,15 +76,6 @@ describe('Fill in the blank incorrect answer Fulfillment', () => {
     expect(fallbackFulfillment).toBeCalled;
   });
 
-  test('If question can be retrieved build response', () => {
-    const data: ConversationData = {
-      currentTopic: Topic.NEWS,
-    };
-    fillInTheBlankQuestionIncorrectFulfillment(data);
-    expect(fillInTheBlankQuestionIncorrectFulfillment).toBeCalled;
-  });
-});
-
 describe('Multiple Choice Fulfillment', () => {
   test('If answer cannot be converted to A,B,C or D use fallback response', () => {
     const data: ConversationData = {
