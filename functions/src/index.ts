@@ -167,4 +167,5 @@ app.intent('Quit App', conv => {
 
 exports.yearInReviewFulfillment = functions
   .region('europe-west1')
+  .runWith({ timeoutSeconds: 540 })
   .https.onRequest(app);
