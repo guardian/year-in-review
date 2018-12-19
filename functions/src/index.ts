@@ -22,7 +22,7 @@ import {
 } from './fulfillments/questionFulfillment';
 import {
   respondBasedOnResponseType,
-  respondToUserInput,
+  respondBasedOnUserInput,
 } from './responses/dialogflowResponses';
 
 import { ConversationData } from './models/conversation';
@@ -80,87 +80,115 @@ app.intent('Fallback', conv => {
 });
 
 app.intent<{ answer: string }>('True False', (conv, { answer }) => {
-  respondToUserInput(answer, conv, trueFalseQuestionFulfillment);
+  respondBasedOnUserInput(answer, conv, trueFalseQuestionFulfillment);
 });
 
 app.intent<{ answer: string }>('Multiple Choice', (conv, { answer }) => {
-  respondToUserInput(answer, conv, multipleChoiceQuestionFulfillment);
+  respondBasedOnUserInput(answer, conv, multipleChoiceQuestionFulfillment);
 });
 
 app.intent<{ topicChoice: string }>(
   'News-Sport Round',
   (conv, { topicChoice }) => {
-    respondToUserInput(topicChoice, conv, startCategory);
+    respondBasedOnUserInput(topicChoice, conv, startCategory);
   }
 );
 
 app.intent<{ saudi: string }>(
   'News-Sport Round - SaudiArabiaQuestion',
   (conv, { saudi }) => {
-    respondToUserInput(saudi, conv, fillInTheBlankQuestionCorrectFulfillment);
+    respondBasedOnUserInput(
+      saudi,
+      conv,
+      fillInTheBlankQuestionCorrectFulfillment
+    );
   }
 );
 
 app.intent<{ kane: string }>(
   'News-Sport Round - HarryKaneQuestion',
   (conv, { kane }) => {
-    respondToUserInput(kane, conv, fillInTheBlankQuestionCorrectFulfillment);
+    respondBasedOnUserInput(
+      kane,
+      conv,
+      fillInTheBlankQuestionCorrectFulfillment
+    );
   }
 );
 
 app.intent<{ topicChoice: string }>(
   'Arts-Science Round',
   (conv, { topicChoice }) => {
-    respondToUserInput(topicChoice, conv, startCategory);
+    respondBasedOnUserInput(topicChoice, conv, startCategory);
   }
 );
 
 app.intent<{ crispr: string }>(
   'Arts-Science Round - CRISPRQuestion',
   (conv, { crispr }) => {
-    respondToUserInput(crispr, conv, fillInTheBlankQuestionCorrectFulfillment);
+    respondBasedOnUserInput(
+      crispr,
+      conv,
+      fillInTheBlankQuestionCorrectFulfillment
+    );
   }
 );
 
 app.intent<{ gambino: string }>(
   'Arts-Science Round - GambinoQuestion',
   (conv, { gambino }) => {
-    respondToUserInput(gambino, conv, fillInTheBlankQuestionCorrectFulfillment);
+    respondBasedOnUserInput(
+      gambino,
+      conv,
+      fillInTheBlankQuestionCorrectFulfillment
+    );
   }
 );
 
 app.intent<{ topicChoice: string }>(
   'Tech-Politics Round',
   (conv, { topicChoice }) => {
-    respondToUserInput(topicChoice, conv, startCategory);
+    respondBasedOnUserInput(topicChoice, conv, startCategory);
   }
 );
 
 app.intent<{ gdpr: string }>(
   'Tech-Politics Round - GDPRQuestion',
   (conv, { gdpr }) => {
-    respondToUserInput(gdpr, conv, fillInTheBlankQuestionCorrectFulfillment);
+    respondBasedOnUserInput(
+      gdpr,
+      conv,
+      fillInTheBlankQuestionCorrectFulfillment
+    );
   }
 );
 
 app.intent<{ credit: string }>(
   'Tech-Politics Round - UniversalCreditQuestion',
   (conv, { credit }) => {
-    respondToUserInput(credit, conv, fillInTheBlankQuestionCorrectFulfillment);
+    respondBasedOnUserInput(
+      credit,
+      conv,
+      fillInTheBlankQuestionCorrectFulfillment
+    );
   }
 );
 
 app.intent<{ queen: string }>('QueenQuestion', (conv, { queen }) => {
-  respondToUserInput(queen, conv, fillInTheBlankQuestionCorrectFulfillment);
+  respondBasedOnUserInput(
+    queen,
+    conv,
+    fillInTheBlankQuestionCorrectFulfillment
+  );
 });
 
 app.intent('Quit App', conv => {
   const response = quit();
   const ssml = convertSSMLContainerToString(response.responseSSML);
-  const textReponse = response.responseText;
+  const textResponse = response.responseText;
   const r = new SimpleResponse({
     speech: ssml,
-    text: textReponse,
+    text: textResponse[0],
   });
   conv.close(r);
 });

@@ -11,46 +11,94 @@ import {
 } from '../models/conversation';
 
 import { convertSSMLContainerToString } from './ssmlResponses';
+import { Container } from 'fluent-ssml';
 
 const respondBasedOnResponseType = (
   f: (data: ConversationData) => DialogflowResponse,
   conv: DialogflowConversation<ConversationData, {}, Contexts>
-) => {
-  const fulfillment = f(conv.data);
-  const response = new SimpleResponse({
-    speech: convertSSMLContainerToString(fulfillment.responseSSML),
-    text: fulfillment.responseText,
-  });
-  if (fulfillment.responseType === DialogflowResponseType.ASK) {
-    conv.ask(response);
-    if (fulfillment.suggestionChips.length > 0) {
-      const chips = new Suggestions(fulfillment.suggestionChips);
-      conv.ask(chips);
-    }
-  } else {
-    conv.close(response);
-  }
+): void => {
+  const response = f(conv.data);
+  respondToUser(response, conv);
 };
 
-const respondToUserInput = (
+const respondBasedOnUserInput = (
   input: string,
   conv: DialogflowConversation<ConversationData, {}, Contexts>,
   f: (input: string, data: ConversationData) => DialogflowResponse
+): void => {
+  const response = f(input, conv.data);
+  respondToUser(response, conv);
+};
+
+const respondToUser = (
+  response: DialogflowResponse,
+  conv: DialogflowConversation<ConversationData, {}, Contexts>
+): void => {
+  if (typeof response.responseText === 'string') {
+    singleBubbleResponse(
+      conv,
+      response.responseSSML,
+      response.responseText,
+      response.suggestionChips,
+      response.responseType
+    );
+  } else {
+    twoBubbleResponse(
+      conv,
+      response.responseSSML,
+      response.responseText,
+      response.suggestionChips,
+      response.responseType
+    );
+  }
+};
+
+const singleBubbleResponse = (
+  conv: DialogflowConversation<ConversationData, {}, Contexts>,
+  ssml: Container,
+  textSupport: string,
+  suggestionChips: string[],
+  responseType: DialogflowResponseType
 ) => {
-  const fulfillment = f(input, conv.data);
   const response = new SimpleResponse({
-    speech: convertSSMLContainerToString(fulfillment.responseSSML),
-    text: fulfillment.responseText,
+    speech: convertSSMLContainerToString(ssml),
+    text: textSupport,
   });
-  if (fulfillment.responseType === DialogflowResponseType.ASK) {
+  if (responseType === DialogflowResponseType.ASK) {
     conv.ask(response);
-    if (fulfillment.suggestionChips.length > 0) {
-      const chips = new Suggestions(fulfillment.suggestionChips);
-      conv.ask(chips);
+    if (suggestionChips.length > 0) {
+      conv.ask(new Suggestions(suggestionChips));
     }
   } else {
     conv.close(response);
   }
 };
 
-export { respondBasedOnResponseType, respondToUserInput };
+const twoBubbleResponse = (
+  conv: DialogflowConversation<ConversationData, {}, Contexts>,
+  ssml: Container,
+  text: [string, string],
+  suggestionChips: string[],
+  responseType: DialogflowResponseType
+) => {
+  const part1 = new SimpleResponse({
+    speech: convertSSMLContainerToString(ssml),
+    text: text[0],
+  });
+  // An empty ssml response is sent to stop the Google Assistant reading out the text in part 2
+  const part2 = new SimpleResponse({
+    speech: '<speak></speak>',
+    text: text[1],
+  });
+  conv.ask(part1);
+  if (responseType === DialogflowResponseType.ASK) {
+    conv.ask(part2);
+    if (suggestionChips.length > 0) {
+      conv.ask(new Suggestions(suggestionChips));
+    }
+  } else {
+    conv.close(part2);
+  }
+};
+
+export { respondBasedOnResponseType, respondBasedOnUserInput };
