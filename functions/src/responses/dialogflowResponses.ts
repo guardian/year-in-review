@@ -81,13 +81,13 @@ const twoBubbleResponse = (
   suggestionChips: string[],
   responseType: DialogflowResponseType
 ) => {
+  // An empty ssml response is sent to stop the Google Assistant reading out the text in part 1
   const part1 = new SimpleResponse({
-    speech: convertSSMLContainerToString(ssml),
+    speech: '<speak></speak>',
     text: text[0],
   });
-  // An empty ssml response is sent to stop the Google Assistant reading out the text in part 2
   const part2 = new SimpleResponse({
-    speech: '<speak></speak>',
+    speech: convertSSMLContainerToString(ssml),
     text: text[1],
   });
   conv.ask(part1);
