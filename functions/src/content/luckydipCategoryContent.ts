@@ -29,7 +29,7 @@ const luckydipQuestions: Question[] = [
     'https://storage.googleapis.com/audio-assets/07.2_YiR_Lucky_Q2_True.ogg',
     "It is true! Following an escalation in tensions between Assange and his hosts, an October memo implored Assange and his guests to keep the bathroom clean, and to take charge of the “well-being, food, hygiene and proper care” of his pet cat.\n\nAnd on to the final question of the round. Here's a clip from one of The Guardian’s recent audio long read podcasts, exploring the world of background music, and the role it plays in the music industry and our own lives.",
     'https://storage.googleapis.com/audio-assets/07.2_YiR_Lucky_Q2_False.ogg',
-    "I’m afraid you’re wrong. It is true! Following an escalation in tensions between Assange and his hosts, an October memo implored Assange and his guests to keep the bathroom clean, and to take charge of the “well-being, food, hygiene and proper care” of his pet cat.\n\nAnd on to the final question of the round. Here's a clip from one of The Guardian’s recent audio long read podcasts, exploring the world of background music, and the role it plays in the music industry and our own lives."
+    "I’m afraid you’re wrong. It is true! Following an escalation in tensions between Assange and his hosts, an October memo implored Assange and his guests to keep the bathroom clean, and to take charge of the “well-being, food, hygiene and proper care” of his pet cat.\n\nAnd on to the final question of the round. Here's a clip from one of The Guardian’s recent Audio Long Reads podcasts, exploring the world of background music, and the role it plays in the music industry and our own lives."
   ),
   new FillInTheBlankQuestion(
     'https://storage.googleapis.com/audio-assets/07.3_YiR_Lucky_Q3.ogg',

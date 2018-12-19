@@ -2,19 +2,19 @@ const welcomeAudio =
   'https://storage.googleapis.com/audio-assets/00.0_YiR_Intro.ogg';
 
 const welcomeText =
-  "Welcome to the Guardian's Year In Review. Test your knowledge of some of the biggest and oddest headlines from 2018.";
+  "Welcome to The Guardian's Year In Review. Test your knowledge of some of the biggest and oddest headlines from 2018.";
 
 const unrecognisedInputWelcomeAudio =
   'https://storage.googleapis.com/audio-assets/01.4_Welcome_New_-_Unrecognized_1st_A.ogg';
 
 const unrecognisedInputWelcomeText =
-  'We didn\'t quite catch that. If you\'d like a bit more of an explanation, just ask for "Help" or if you\'re ready to begin, just say "Ready"';
+  'We didn\'t quite catch that. If you\'d like a bit more of an explanation, just ask for "Help" or if you\'re ready to begin, just say "Ready".';
 
 const noInputWelcomeAudio =
   'https://storage.googleapis.com/audio-assets/01.6_Welcome_New_-_TimeOut_A.ogg';
 
 const noInputWelcomeText =
-  'Try saying, "ready" to start the game or "help" if you\'d like some more instructions';
+  'Try saying, "ready" to start the game or "help" if you\'d like some more instructions.';
 
 const doNotPlayAudio =
   'https://storage.googleapis.com/audio-assets/01.5_Welcome_New_-_Unrecognized_2nd_A.ogg';

@@ -5,7 +5,7 @@ const quitText =
   'Thanks for playing. Play again anytime by saying "hey Google, talk to the year in review". Bye for now.';
 
 const buildEndOfGameText = (feedback: string): string => {
-  return `Well, that’s it! You’ve come to the end of the Year In Review!\n\n${feedback}\n\nThanks for playing The Guardian’s Year in review.\n\nIf you’d like to play the other rounds you missed, you can at any time, by saying “Hey Google, talk to Year In Review.\n\nAnd If you enjoyed it, why not tell a friend? Or share some feedback with us at voicelab@guardian.co.uk.\n\nBye for now!`;
+  return `Well, that’s it! You’ve come to the end of the Year In Review!\n\n${feedback}\n\nThanks for playing The Guardian’s Year in review.\n\nIf you’d like to play the other rounds you missed, you can at any time, by saying “Hey Google, talk to Year In Review.\n\nAnd If you enjoyed it, why not tell a friend? Or share some feedback with us at voicelab@theguardian.com.\n\nBye for now!`;
 };
 
 const goodScoreAudio =

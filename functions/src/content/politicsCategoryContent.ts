@@ -16,7 +16,7 @@ const politicsQuestions: Question[] = [
     'https://storage.googleapis.com/audio-assets/05.1_YiR_Politics_Q1_Universal.ogg',
     'That’s right. It’s universal credit. Alston said the government’s ambitious programme to simplify the benefits system was a good idea in principle but was “fast falling into universal discredit” and should be overhauled.\n\nNext, have a listen to Labour MP David Lammy speaking back in April, challenging the government on its management of the Windrush Scandal.',
     'https://storage.googleapis.com/audio-assets/05.1_YiR_Politics_Q1_Not_Universal.ogg',
-    'The correct answer is Universal Credit. Alston said the government’s ambitious programme to simplify the benefits system was a good idea in principle but was “fast falling into universal discredit” and should be overhauled.\n\nNext, have a listen to Labour MP David Lammy speaking back in April, challenging the government on its management of the Windrush Scandal.'
+    'The correct answer is universal credit. Alston said the government’s ambitious programme to simplify the benefits system was a good idea in principle but was “fast falling into universal discredit” and should be overhauled.\n\nNext, have a listen to Labour MP David Lammy speaking back in April, challenging the government on its management of the Windrush Scandal.'
   ),
   new MultipleChoiceQuestion(
     'https://storage.googleapis.com/audio-assets/05.2_YiR_Politics_Q2.ogg',
