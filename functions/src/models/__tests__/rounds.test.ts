@@ -20,6 +20,7 @@ describe('Rounds', () => {
       '',
       '',
       '',
+      [],
       new Set()
     );
     const rounds = new Rounds([roundCollection]);
