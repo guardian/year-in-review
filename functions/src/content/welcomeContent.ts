@@ -34,6 +34,8 @@ const repeatWelcomeAudio =
 const startYearInReviewAudio =
   "https://storage.googleapis.com/audio-assets/01.0_Welcome_New_-_Great._Let's_get_started_A.ogg";
 
+const welcomeSuggestionChips = ['Ready', 'Help', 'Repeat'];
+
 export {
   welcomeAudio,
   welcomeText,
@@ -47,4 +49,5 @@ export {
   repeatWelcomeAudio,
   noInputWelcomeAudio,
   noInputWelcomeText,
+  welcomeSuggestionChips,
 };

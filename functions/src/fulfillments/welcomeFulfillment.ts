@@ -16,6 +16,7 @@ import {
   noInputWelcomeText,
   helpWelcomeText,
   doNotPlayText,
+  welcomeSuggestionChips,
 } from '../content/welcomeContent';
 
 import {
@@ -30,7 +31,7 @@ const welcomeFulfillment = () => {
     DialogflowResponseType.ASK,
     buildSSMLAudioResponse(welcomeAudio),
     welcomeText,
-    ['Ready', 'Help']
+    welcomeSuggestionChips
   );
 };
 
@@ -80,10 +81,12 @@ const respondBasedOnRepromptCount = (
   const count = data.repromptCount || 0;
   if (count < 3) {
     data.repromptCount = count + 1;
-    return new DialogflowResponse(DialogflowResponseType.ASK, ssml, text, [
-      'Ready',
-      'Help',
-    ]);
+    return new DialogflowResponse(
+      DialogflowResponseType.ASK,
+      ssml,
+      text,
+      welcomeSuggestionChips
+    );
   } else {
     const feedback = doNotPlayFulfillment();
     return new DialogflowResponse(

@@ -13,7 +13,7 @@ const roundCollections: RoundCollection[] = [
     'Need a second? Pick from any of the categories to hear a round of questions by saying the name of the category. Here are your options again. Global news or sport?',
     'https://storage.googleapis.com/audio-assets/03.2_Category_Unrecognized_-_News_Sport_L.ogg',
     "We didn't catch that. Pick from any of the categories to hear a round of questions by saying the name of the category. Here are your options again. Global news or sport?",
-    ['Global news', 'Sport'],
+    ['Global news', 'Sport', 'Repeat'],
     new Set([Topic.SPORT, Topic.NEWS])
   ),
   new RoundCollection(
@@ -27,7 +27,7 @@ const roundCollections: RoundCollection[] = [
     'Need a second? Pick from any of the categories to hear a round of questions by saying the name of the category. Here are your options again. Science or Arts?',
     'https://storage.googleapis.com/audio-assets/03.2_Category_Unrecognized_-_Science_Art_A.ogg',
     "We didn't catch that. Pick from any of the categories to hear a round of questions by saying the name of the category. Here are your options again. Science or Arts?",
-    ['Science', 'Arts'],
+    ['Science', 'Arts', 'Repeat'],
     new Set([Topic.SCIENCE, Topic.ARTS])
   ),
   // No choice so currently no round selection audio
@@ -42,7 +42,7 @@ const roundCollections: RoundCollection[] = [
     'Need a second? Pick from any of the categories to hear a round of questions by saying the name of the category. Here are your options again. Politics or Technology?',
     'https://storage.googleapis.com/audio-assets/03.2_Category_Unrecognized_-_Politics_Tech_A.ogg',
     "We didn't catch that. Pick from any of the categories to hear a round of questions by saying the name of the category. Here are your options again. Politics or Technology?",
-    ['Politics', 'Technology'],
+    ['Politics', 'Technology', 'Repeat'],
     new Set([Topic.POLITICS, Topic.TECHNOLOGY])
   ),
   // No choice so currently no round selection audio
