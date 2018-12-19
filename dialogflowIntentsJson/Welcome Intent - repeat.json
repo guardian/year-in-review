@@ -26,12 +26,24 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1544098019,
+  "lastUpdate": 1545229004,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
     {
-      "id": "ef924792-ea03-48d8-ad48-532e2cc0b6aa",
+      "id": "7936798d-cffa-4d73-9a5e-abcd9e89f158",
+      "data": [
+        {
+          "text": "I don't know"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1545229004,
+      "isAuto": false
+    },
+    {
+      "id": "fb95cba9-f6ee-46eb-b79d-9e8c6142fd31",
       "data": [
         {
           "text": "repeat please"
@@ -39,11 +51,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1544098019,
+      "updated": 1545229004,
       "isAuto": false
     },
     {
-      "id": "f2d40a39-72fc-489c-acba-8bc45254c19b",
+      "id": "986eee88-9355-44e5-8d08-1955884c4c4a",
       "data": [
         {
           "text": "say that again"
@@ -51,11 +63,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1544098019,
+      "updated": 1545229004,
       "isAuto": false
     },
     {
-      "id": "dd918b89-9e55-4c03-9395-2d27c329821d",
+      "id": "d39770ed-4d80-4e35-91d4-da6a04fa2e4b",
       "data": [
         {
           "text": "repeat"
@@ -63,14 +75,15 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1544098019,
+      "updated": 1545229004,
       "isAuto": false
     },
     {
-      "id": "30bce397-19c9-45f1-a36d-93247bbb4e1b",
+      "id": "99fc657d-1c7c-49d7-90be-17e495746536",
       "data": [
         {
-          "text": "what"
+          "text": "what",
+          "userDefined": false
         }
       ],
       "isTemplate": false,

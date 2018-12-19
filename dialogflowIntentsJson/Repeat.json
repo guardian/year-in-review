@@ -25,36 +25,12 @@
   },
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1543855180,
+  "lastUpdate": 1545229022,
   "fallbackIntent": false,
   "events": [],
   "userSays": [
     {
-      "id": "7c6c5a74-e8cd-4019-844a-3ad176683170",
-      "data": [
-        {
-          "text": "say that again"
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543583676,
-      "isAuto": false
-    },
-    {
-      "id": "a8661a6e-1768-426e-b4c5-f8aafb7e8b0e",
-      "data": [
-        {
-          "text": "repeat please"
-        }
-      ],
-      "isTemplate": false,
-      "count": 0,
-      "updated": 1543583676,
-      "isAuto": false
-    },
-    {
-      "id": "124d8d1b-188e-4f8b-8b61-c8f578bbd8d7",
+      "id": "5b22a76a-1d43-4d9d-b260-fd8b6fb10356",
       "data": [
         {
           "text": "I don't know"
@@ -62,11 +38,35 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543583676,
+      "updated": 1545229022,
       "isAuto": false
     },
     {
-      "id": "afb08be7-3dd4-4011-a48c-0d9f24d33dfa",
+      "id": "06b34bc1-e7cf-4d83-b03f-a7d7462e296c",
+      "data": [
+        {
+          "text": "say that again"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1545219447,
+      "isAuto": false
+    },
+    {
+      "id": "1bf42fbd-e4d7-429c-8e84-be9717ed986a",
+      "data": [
+        {
+          "text": "repeat please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0,
+      "updated": 1545219447,
+      "isAuto": false
+    },
+    {
+      "id": "fed6d91a-93a2-4fda-aa52-6c8e8da6ebc5",
       "data": [
         {
           "text": "what"
@@ -74,11 +74,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543583676,
+      "updated": 1545219447,
       "isAuto": false
     },
     {
-      "id": "0cfa1be0-1e95-42e6-9682-5255b949885e",
+      "id": "1dee8617-b167-45df-a6e8-7dce006d7dc2",
       "data": [
         {
           "text": "can you repeat that"
@@ -86,11 +86,11 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543583676,
+      "updated": 1545219447,
       "isAuto": false
     },
     {
-      "id": "1d8c8e47-beed-40a0-b910-390d7485f96d",
+      "id": "40af87cf-e44c-4ea7-9fdf-2580cc8029c9",
       "data": [
         {
           "text": "repeat"
@@ -98,7 +98,7 @@
       ],
       "isTemplate": false,
       "count": 0,
-      "updated": 1543583676,
+      "updated": 1545219447,
       "isAuto": false
     }
   ],

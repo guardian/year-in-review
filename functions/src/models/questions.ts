@@ -50,7 +50,7 @@ class FillInTheBlankQuestion extends Question {
     public incorrectAnswerAudio: string,
     public incorrectAnswerText: string
   ) {
-    super(questionAudio, questionText, ["I don't know"]);
+    super(questionAudio, questionText, ['Pass']);
   }
 }
 
