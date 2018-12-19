@@ -75,6 +75,7 @@ describe('Fill in the blank incorrect answer Fulfillment', () => {
     fillInTheBlankQuestionIncorrectFulfillment(data);
     expect(fallbackFulfillment).toBeCalled;
   });
+});
 
 describe('Multiple Choice Fulfillment', () => {
   test('If answer cannot be converted to A,B,C or D use fallback response', () => {
