@@ -45,14 +45,14 @@ const chooseRoundResponse = (
   data: ConversationData
 ): DialogflowResponse => {
   if (round.getTopics().size === 1) {
-    let Response: DialogflowResponse = new DialogflowResponse(
+    let response: DialogflowResponse = new DialogflowResponse(
       DialogflowResponseType.CLOSE,
       buildSSMLAudioResponse(unexpectedErrorAudio),
       unexpectedErrorText,
       []
     );
-    round.getTopics().forEach(topic => (Response = startCategory(topic, data)));
-    return Response;
+    round.getTopics().forEach(topic => (response = startCategory(topic, data)));
+    return response;
   } else {
     return new DialogflowResponse(
       DialogflowResponseType.ASK,

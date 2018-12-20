@@ -23,7 +23,7 @@ const combineTextResponses = (
 };
 
 const combineStrings = (strings: [string, string]): string => {
-  return `${strings[0]}\n\n${strings[0]}`;
+  return `${strings[0]}\n\n${strings[1]}`;
 };
 
 export { combineTextResponses };
