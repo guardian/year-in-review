@@ -11,6 +11,7 @@ import { buildSSMLAndCombineAudioResponses } from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { unexpectedErrorResponse } from '../utils/logger';
 import { combineTextResponses } from '../responses/textResponses';
+import { Container } from 'fluent-ssml';
 
 const startCategory = (
   topicChoice: string | Topic,
@@ -24,7 +25,10 @@ const startCategory = (
     const maybeQuestion: OptionQuestion = category.getQuestion(1);
 
     if (maybeQuestion instanceof Question) {
-      const audioResponse = buildSSMLAndCombineAudioResponses(
+      const audioResponse: [
+        Container,
+        Container
+      ] = buildSSMLAndCombineAudioResponses(
         category.openingAudio,
         maybeQuestion.questionAudio
       );
