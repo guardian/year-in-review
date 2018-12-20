@@ -46,7 +46,7 @@ const technologyAudioOpening =
   'https://storage.googleapis.com/audio-assets/06.0_YiR_Technology.ogg';
 
 const technologyTextOpening =
-  'You chose to answer questions on technology.\n\nListen to this clip from Apple CEO Tim Cook’s Keynote speech at their annual September event where they traditionally announce a new range of products.';
+  'You chose to answer questions on technology.\n\nListen to this clip from Apple CEO Tim Cook’s keynote speech at their annual September event where they traditionally announce a new range of products.';
 
 const technologyCategory = new Category(
   technologyQuestions,
