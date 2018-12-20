@@ -14,7 +14,7 @@ const noInputWelcomeAudio =
   'https://storage.googleapis.com/audio-assets/01.6_Welcome_New_-_TimeOut_A.ogg';
 
 const noInputWelcomeText =
-  'Try saying, "ready" to start the game or "help" if you\'d like some more instructions.';
+  'Try saying, "Ready" to start the game or "Help" if you\'d like some more instructions.';
 
 const doNotPlayAudio =
   'https://storage.googleapis.com/audio-assets/01.5_Welcome_New_-_Unrecognized_2nd_A.ogg';
@@ -26,7 +26,7 @@ const helpWelcomeAudio =
   'https://storage.googleapis.com/audio-assets/01.3_Welcome_New_-_Help_A.ogg';
 
 const helpWelcomeText =
-  'Okay, let\'s explain a bit more. Year in Review is a game from the Guardian. We\'ll ask you a number of questions about events that happened this year. Listen to the questions and try to answer them as best you can. Even though the news is often serious, this is just for fun, so don\'t worry if you don\t know the answer. Just give it a guess. If you need to hear the question again, say "repeat". Now, if you\'re ready to get started, say "ready".';
+  'Okay, let\'s explain a bit more. Year in Review is a game from The Guardian. We\'ll ask you a number of questions about events that happened this year. Listen to the questions and try to answer them as best you can. Even though the news is often serious, this is just for fun, so don\'t worry if you don\t know the answer. Just give it a guess. If you need to hear the question again, say "Repeat". Now, if you\'re ready to get started, say "Ready".';
 
 const repeatWelcomeAudio =
   'https://storage.googleapis.com/audio-assets/01.2_Welcome_New_-_Sure_no_problem_A.ogg';

@@ -14,7 +14,7 @@ const sportsQuestions: Question[] = [
     'True or false: The appeal was successful, allowing all three players to return to international duty.',
     false,
     'https://storage.googleapis.com/audio-assets/02.1_YiR_Sport_Q1b_False.ogg',
-    'You’re correct! It is indeed false. The Australian Players Union did submit an appeal but it was unsuccessful, dismissed by Cricket Australia.\n\nNext we turn to tennis. Listen to this clip of Serena Williams accusing the umpire of the final of the US Open of sexism. Williams ended up losing the match to 20 year old Naomi Osaka.',
+    'You’re correct! It is indeed false. The Australian Players Union did submit an appeal but it was unsuccessful and dismissed by Cricket Australia.\n\nNext we turn to tennis. Listen to this clip of Serena Williams accusing the umpire of the final of the US Open of sexism. Williams ended up losing the match to 20 year old Naomi Osaka.',
     'https://storage.googleapis.com/audio-assets/02.1_YiR_Sport_Q1b_True.ogg',
     'No, it’s false. The Australian Players Union did indeed submit an appeal, but it was unsuccessful and dismissed by Cricket Australia.\n\nNext we turn to tennis. Listen to this clip of Serena Williams during the final of the US Open. Williams ended up losing the match to 20 year old Naomi Osaka.'
   ),
@@ -36,9 +36,9 @@ const sportsQuestions: Question[] = [
     'Ok, final clip in the sports round. Who is that, speaking just after England’s 2-1 defeat to Croatia, in the semi-finals of the world cup?',
     'HARRY KANE',
     'https://storage.googleapis.com/audio-assets/02.4_YiR_Sport_Q3_Kane.ogg',
-    'Yes! It was indeed Harry Kane.\n\nIf you’re into sports, or football in particular, you might be interested to know that we have a podcast dedicated to all things football, called Football Weekly.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Football Weekly on Google Podcasts.” Or you can subscribe, where ever you listen to podcasts.',
+    'Yes! It was indeed Harry Kane.\n\nIf you’re into sports, or football in particular, you might be interested to know that we have a podcast dedicated to all things football, called Football Weekly.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Football Weekly on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.',
     'https://storage.googleapis.com/audio-assets/02.4_YiR_Sport_Q3_Not_Kane.ogg',
-    'It was actually Harry Kane.\n\nIf you’re into sports, or football in particular, you might be interested to know that we have a podcast dedicated to all things football, called Football Weekly.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Football Weekly on Google Podcasts.” Or you can subscribe, where ever you listen to podcasts.'
+    'It was actually Harry Kane.\n\nIf you’re into sports, or football in particular, you might be interested to know that we have a podcast dedicated to all things football, called Football Weekly.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Football Weekly on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.'
   ),
 ];
 
