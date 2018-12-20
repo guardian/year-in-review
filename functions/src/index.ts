@@ -8,6 +8,7 @@ import {
   unrecognisedInputWelcomeFulfillment,
   repeatWelcomeFulfillment,
   noInputWelcomeFulfillment,
+  welcomeFulfillmentWithTypingWarning,
 } from './fulfillments/welcomeFulfillment';
 import {
   helpFulfillment,
@@ -34,7 +35,11 @@ const app = dialogflow<ConversationData, {}>({
 });
 
 app.intent('Welcome Intent', conv => {
-  respondBasedOnResponseType(welcomeFulfillment, conv);
+  if (conv.input.type === 'KEYBOARD') {
+    respondBasedOnResponseType(welcomeFulfillmentWithTypingWarning, conv);
+  } else {
+    respondBasedOnResponseType(welcomeFulfillment, conv);
+  }
 });
 
 app.intent('Welcome Intent - ready', conv => {

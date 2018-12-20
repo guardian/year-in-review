@@ -17,6 +17,7 @@ import {
   helpWelcomeText,
   doNotPlayText,
   welcomeSuggestionChips,
+  userTypingWarning,
 } from '../content/welcomeContent';
 
 import {
@@ -27,10 +28,18 @@ import { chooseRound } from './roundFulfillment';
 import { Container } from 'fluent-ssml';
 
 const welcomeFulfillment = () => {
+  return buildWelcome(welcomeText);
+};
+
+const welcomeFulfillmentWithTypingWarning = () => {
+  return buildWelcome([userTypingWarning, welcomeText]);
+};
+
+const buildWelcome = (text: string | [string, string]) => {
   return new DialogflowResponse(
     DialogflowResponseType.ASK,
     buildSSMLAudioResponse(welcomeAudio),
-    welcomeText,
+    text,
     welcomeSuggestionChips
   );
 };
@@ -113,6 +122,7 @@ const startYearInReviewFulfillment = (
 
 export {
   welcomeFulfillment,
+  welcomeFulfillmentWithTypingWarning,
   startYearInReviewFulfillment,
   doNotPlayFulfillment,
   helpWelcomeFulfillment,

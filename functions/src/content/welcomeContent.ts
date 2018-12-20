@@ -4,6 +4,9 @@ const welcomeAudio =
 const welcomeText =
   "Welcome to The Guardian's Year In Review. Test your knowledge of some of the biggest and oddest headlines from 2018.";
 
+const userTypingWarning =
+  "Year in Review is best as an audio experience. You'll want to hear clips from the headlines so that you can answer questions correctly. Tap the microphone on your screen and say 'repeat' to hear everything from the beginning.";
+
 const unrecognisedInputWelcomeAudio =
   'https://storage.googleapis.com/audio-assets/01.4_Welcome_New_-_Unrecognized_1st_A.ogg';
 
@@ -39,6 +42,7 @@ const welcomeSuggestionChips = ['Ready', 'Help', 'Repeat'];
 export {
   welcomeAudio,
   welcomeText,
+  userTypingWarning,
   unrecognisedInputWelcomeAudio,
   unrecognisedInputWelcomeText,
   startYearInReviewAudio,
