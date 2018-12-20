@@ -33,7 +33,7 @@ const luckydipQuestions: Question[] = [
   ),
   new FillInTheBlankQuestion(
     'https://storage.googleapis.com/audio-assets/07.3_YiR_Lucky_Q3.ogg',
-    'Following the release of a biopic about them earlier this year, what British rock band, was named in December as the most streamed song of the 20th Century?\n\nHere’s a clue; the song that earned this band the top spot, first got to number one in 1975, and again in 1991.',
+    'Following the release of a biopic about them earlier this year, what British rock band, was named in December as the most streamed song of the 20th century?\n\nHere’s a clue; the song that earned this band the top spot, first got to number one in 1975, and again in 1991.',
     'QUEEN',
     'https://storage.googleapis.com/audio-assets/07.3_YiR_Lucky_Q3_Queen.ogg',
     "Well done! Yep, that’s right, it was Queen. The band's Bohemian Rhapsody has been named the most streamed song from the 20th century, with 1.6bn streams, overtaking Smells Like Teen Spirit by Nirvana!\n\nYou might be interested to know that the music industry, alongside many other varied and fascinating topics, are explored in our Audio Long Reads podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Guardian Long Reads on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.",

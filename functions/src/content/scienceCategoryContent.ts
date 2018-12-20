@@ -46,7 +46,7 @@ const scienceAudioOpening =
   'https://storage.googleapis.com/audio-assets/03.0_YiR_Science_a.ogg';
 
 const scienceTextOpening =
-  'You chose to answer questions on science.\n\nListen to former Vice President, Al Gore, speaking about the UN Climate Report findings in October.';
+  'You chose to answer questions on science.\n\nListen to former Vice President, Al Gore, speaking about the UN climate report findings in October.';
 
 const scienceCategory = new Category(
   scienceQuestions,
