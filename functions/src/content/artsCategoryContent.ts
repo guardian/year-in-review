@@ -32,13 +32,13 @@ const artsQuestions: Question[] = [
     'In which country is Milkman set?\nA - England\nB - Scotland\nC - Wales\nD - Northern Ireland',
     MultipleChoice.D,
     'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q3A.ogg',
-    'Nope. That’s wrong I’m afraid. Milkman offers an unnerving reminder of recent Northern Irish history.\n\nIf you’re an avid reader, you’ll love The Guardian Books Podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play The Guardian Books Podcast on Google Podcasts.” Or you can subscribe, where ever you listen to podcasts.',
+    'Nope. That’s wrong I’m afraid. Milkman offers an unnerving reminder of recent Northern Irish history.\n\nIf you’re an avid reader, you’ll love The Guardian Books Podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play The Guardian Books Podcast on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.',
     'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q3B.ogg',
-    'Nope. That’s wrong I’m afraid. Milkman offers an unnerving reminder of recent Northern Irish history.\n\nIf you’re an avid reader, you’ll love The Guardian Books Podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play The Guardian Books Podcast on Google Podcasts.” Or you can subscribe, where ever you listen to podcasts.',
+    'Nope. That’s wrong I’m afraid. Milkman offers an unnerving reminder of recent Northern Irish history.\n\nIf you’re an avid reader, you’ll love The Guardian Books Podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play The Guardian Books Podcast on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.',
     'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q3C.ogg',
-    'Nope. That’s wrong I’m afraid. Milkman offers an unnerving reminder of recent Northern Irish history.\n\nIf you’re an avid reader, you’ll love The Guardian Books Podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play The Guardian Books Podcast on Google Podcasts.” Or you can subscribe, where ever you listen to podcasts.',
+    'Nope. That’s wrong I’m afraid. Milkman offers an unnerving reminder of recent Northern Irish history.\n\nIf you’re an avid reader, you’ll love The Guardian Books Podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play The Guardian Books Podcast on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.',
     'https://storage.googleapis.com/audio-assets/04.3_YiR_Arts_Q3D.ogg',
-    'Correct! Milkman is set in Burns’ native Northern Ireland.\n\nIf you’re an avid reader, you’ll love The Guardian Books Podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play The Guardian Books Podcast on Google Podcasts.” Or you can subscribe, where ever you listen to podcasts.'
+    'Correct! Milkman is set in Burns’ native Northern Ireland.\n\nIf you’re an avid reader, you’ll love The Guardian Books Podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play The Guardian Books Podcast on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.'
   ),
 ];
 

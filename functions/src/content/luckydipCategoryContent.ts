@@ -24,10 +24,10 @@ const luckydipQuestions: Question[] = [
   ),
   new TrueFalseQuestion(
     'https://storage.googleapis.com/audio-assets/07.2_YiR_Lucky_Q2.ogg',
-    'True or False: This year Ecuador have established a new set of house rules for Julian Assange, which require him to clean his bathroom and take better care of his cat.',
+    'True or false: This year Ecuador have established a new set of house rules for Julian Assange, which require him to clean his bathroom and take better care of his cat.',
     true,
     'https://storage.googleapis.com/audio-assets/07.2_YiR_Lucky_Q2_True.ogg',
-    "It is true! Following an escalation in tensions between Assange and his hosts, an October memo implored Assange and his guests to keep the bathroom clean, and to take charge of the “well-being, food, hygiene and proper care” of his pet cat.\n\nAnd on to the final question of the round. Here's a clip from one of The Guardian’s recent audio long read podcasts, exploring the world of background music, and the role it plays in the music industry and our own lives.",
+    "It is true! Following an escalation in tensions between Assange and his hosts, an October memo implored Assange and his guests to keep the bathroom clean, and to take charge of the “well-being, food, hygiene and proper care” of his pet cat.\n\nAnd on to the final question of the round. Here's a clip from one of The Guardian’s recent Audio Long Reads podcasts, exploring the world of background music, and the role it plays in the music industry and our own lives.",
     'https://storage.googleapis.com/audio-assets/07.2_YiR_Lucky_Q2_False.ogg',
     "I’m afraid you’re wrong. It is true! Following an escalation in tensions between Assange and his hosts, an October memo implored Assange and his guests to keep the bathroom clean, and to take charge of the “well-being, food, hygiene and proper care” of his pet cat.\n\nAnd on to the final question of the round. Here's a clip from one of The Guardian’s recent Audio Long Reads podcasts, exploring the world of background music, and the role it plays in the music industry and our own lives."
   ),
@@ -36,9 +36,9 @@ const luckydipQuestions: Question[] = [
     'Following the release of a biopic about them earlier this year, what British rock band, was named in December as the most streamed song of the 20th Century?\n\nHere’s a clue; the song that earned this band the top spot, first got to number one in 1975, and again in 1991.',
     'QUEEN',
     'https://storage.googleapis.com/audio-assets/07.3_YiR_Lucky_Q3_Queen.ogg',
-    "Well done! Yep, that’s right, it was Queen. The band's Bohemian Rhapsody has been named the most streamed song from the 20th century, with 1.6bn streams, overtaking Smells Like Teen Spirit by Nirvana!\n\nYou might be interested to know that the music industry, alongside many other varied and fascinating topics, are explored in our Audio Long Reads podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Guardian Long Reads on Google Podcasts.” Or you can subscribe, where ever you listen to podcasts.",
+    "Well done! Yep, that’s right, it was Queen. The band's Bohemian Rhapsody has been named the most streamed song from the 20th century, with 1.6bn streams, overtaking Smells Like Teen Spirit by Nirvana!\n\nYou might be interested to know that the music industry, alongside many other varied and fascinating topics, are explored in our Audio Long Reads podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Guardian Long Reads on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.",
     'https://storage.googleapis.com/audio-assets/07.3_YiR_Lucky_Q3_Not_Queen.ogg',
-    "Nope, the right answer was Queen. The band's Bohemian Rhapsody has been named the most streamed song from the 20th century, with 1.6bn streams, overtaking Smells Like Teen Spirit by Nirvana!\n\nYou might be interested to know that the music industry, alongside many other varied and fascinating topics, are explored in our Audio Long Reads podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Guardian Long Reads on Google Podcasts.” Or you can subscribe, where ever you listen to podcasts."
+    "Nope, the right answer was Queen. The band's Bohemian Rhapsody has been named the most streamed song from the 20th century, with 1.6bn streams, overtaking Smells Like Teen Spirit by Nirvana!\n\nYou might be interested to know that the music industry, alongside many other varied and fascinating topics, are explored in our Audio Long Reads podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Guardian Long Reads on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts."
   ),
 ];
 

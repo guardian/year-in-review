@@ -33,12 +33,12 @@ const scienceQuestions: Question[] = [
   ),
   new TrueFalseQuestion(
     'https://storage.googleapis.com/audio-assets/03.3_YiR_Science_Q3.ogg',
-    'True or False: Musk included a $100,000 cherry red Tesla Roadster on the rocket’s cargo. The car is currently traveling through space and headed for Mars.',
+    'True or false: Musk included a $100,000 cherry red Tesla Roadster on the rocket’s cargo. The car is currently traveling through space and headed for Mars.',
     true,
     'https://storage.googleapis.com/audio-assets/03.3_YiR_Science_Q3b_True.ogg',
-    'Bizarrely it is true.\n\nA cherry red Tesla Roadster was indeed included on the rocket’s cargo, with a dummy test driver called Starman in the driver’s seat, and David Bowie’s Space Oddity playing on the stereo.',
+    'Bizarrely it is true.\n\nA cherry red Tesla Roadster was indeed included on the rocket’s cargo, with a dummy test driver called Starman in the driver’s seat, and David Bowie’s Space Oddity playing on the stereo.\n\nThat’s it for the science round. These topics and many others are explored in our Science Weekly podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Science Weekly on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.',
     'https://storage.googleapis.com/audio-assets/03.3_YiR_Science_Q3b_False.ogg',
-    'Bizarrely it is true.\n\nA cherry red Tesla Roadster was indeed included on the rocket’s cargo, with a dummy test driver called Starman in the driver’s seat, and David Bowie’s Space Oddity playing on the stereo.'
+    'Bizarrely it is true.\n\nA cherry red Tesla Roadster was indeed included on the rocket’s cargo, with a dummy test driver called Starman in the driver’s seat, and David Bowie’s Space Oddity playing on the stereo.\n\nThat’s it for the science round. These topics and many others are explored in our Science Weekly podcast.\n\nIf you want to listen, you can, at anytime, by saying: “Hey Google, play Science Weekly on Google Podcasts.” Or you can subscribe, wherever you listen to podcasts.'
   ),
 ];
 
