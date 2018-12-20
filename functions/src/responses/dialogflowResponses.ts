@@ -10,8 +10,15 @@ import {
   DialogflowResponseType,
 } from '../models/conversation';
 
-import { convertSSMLContainerToString } from './ssmlResponses';
+import {
+  convertSSMLContainerToString,
+  buildSSMLAudioResponse,
+} from './ssmlResponses';
 import { Container } from 'fluent-ssml';
+import {
+  unexpectedErrorAudio,
+  unexpectedErrorText,
+} from '../content/errorContent';
 
 const respondBasedOnResponseType = (
   f: (data: ConversationData) => DialogflowResponse,
@@ -34,7 +41,10 @@ const respondToUser = (
   response: DialogflowResponse,
   conv: DialogflowConversation<ConversationData, {}, Contexts>
 ): void => {
-  if (typeof response.responseText === 'string') {
+  if (
+    typeof response.responseText === 'string' &&
+    response.responseSSML instanceof Container
+  ) {
     singleBubbleResponse(
       conv,
       response.responseSSML,
@@ -43,13 +53,32 @@ const respondToUser = (
       response.responseType
     );
   } else {
-    twoBubbleResponse(
-      conv,
-      response.responseSSML,
-      response.responseText,
-      response.suggestionChips,
-      response.responseType
-    );
+    if (
+      response.responseText instanceof Array &&
+      response.responseSSML instanceof Array
+    ) {
+      twoBubbleResponse(
+        conv,
+        response.responseSSML,
+        response.responseText,
+        response.suggestionChips,
+        response.responseType
+      );
+    } else {
+      // tslint:disable-next-line:no-console
+      console.error(
+        `Number of audio and text responses didn't match up for Dialogflow response ${response} and conversation data ${
+          conv.data
+        }`
+      );
+      singleBubbleResponse(
+        conv,
+        buildSSMLAudioResponse(unexpectedErrorAudio),
+        unexpectedErrorText,
+        [],
+        DialogflowResponseType.CLOSE
+      );
+    }
   }
 };
 
@@ -76,18 +105,17 @@ const singleBubbleResponse = (
 
 const twoBubbleResponse = (
   conv: DialogflowConversation<ConversationData, {}, Contexts>,
-  ssml: Container,
+  ssml: [Container, Container],
   text: [string, string],
   suggestionChips: string[],
   responseType: DialogflowResponseType
 ) => {
-  // An empty ssml response is sent to stop the Google Assistant reading out the text in part 1
   const part1 = new SimpleResponse({
-    speech: '<speak></speak>',
+    speech: convertSSMLContainerToString(ssml[0]),
     text: text[0],
   });
   const part2 = new SimpleResponse({
-    speech: convertSSMLContainerToString(ssml),
+    speech: convertSSMLContainerToString(ssml[1]),
     text: text[1],
   });
   conv.ask(part1);

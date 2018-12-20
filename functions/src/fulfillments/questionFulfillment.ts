@@ -24,14 +24,12 @@ import {
 } from '../responses/questionResponses';
 
 import { OptionTopic } from '../models/rounds';
-import {
-  combineSSML,
-  buildSSMLAudioResponse,
-} from '../responses/ssmlResponses';
+import { buildSSMLAudioResponse } from '../responses/ssmlResponses';
 import { categories } from '../content/categoryContent';
 import { fallbackFulfillment } from './helperFulfillments';
 import { unexpectedErrorResponse } from '../utils/logger';
 import { combineTextResponses } from '../responses/textResponses';
+import { Container } from 'fluent-ssml';
 
 const trueFalseQuestionFulfillment = (
   answer: string,
@@ -163,10 +161,10 @@ const questionRepromptFulfillment = (
   const question: OptionQuestion = getQuestionBasedOnConversationData(data);
   if (question instanceof Question) {
     const reprompt = getReprompt(question);
-    const audioResponse = combineSSML(
+    const audioResponse: [Container, Container] = [
       reprompt.audio,
-      buildSSMLAudioResponse(question.questionAudio)
-    );
+      buildSSMLAudioResponse(question.questionAudio),
+    ];
     const textResponse = combineTextResponses(
       reprompt.text,
       question.questionText

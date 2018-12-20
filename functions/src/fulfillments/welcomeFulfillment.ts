@@ -47,10 +47,10 @@ const buildWelcome = (text: string | [string, string]) => {
 const repeatWelcomeFulfillment = (
   data: ConversationData
 ): DialogflowResponse => {
-  const audioResponse = buildSSMLAndCombineAudioResponses(
-    repeatWelcomeAudio,
-    welcomeAudio
-  );
+  const audioResponse: [
+    Container,
+    Container
+  ] = buildSSMLAndCombineAudioResponses(repeatWelcomeAudio, welcomeAudio);
   return respondBasedOnRepromptCount(data, audioResponse, welcomeText);
 };
 
@@ -84,7 +84,7 @@ const helpWelcomeFulfillment = (data: ConversationData): DialogflowResponse => {
 
 const respondBasedOnRepromptCount = (
   data: ConversationData,
-  ssml: Container,
+  ssml: [Container, Container] | Container,
   text: string
 ): DialogflowResponse => {
   const count = data.repromptCount || 0;

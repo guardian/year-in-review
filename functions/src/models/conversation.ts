@@ -24,7 +24,7 @@ enum DialogflowResponseType {
 class DialogflowResponse {
   constructor(
     public responseType: DialogflowResponseType,
-    public responseSSML: Container,
+    public responseSSML: [Container, Container] | Container,
     public responseText: [string, string] | string,
     public suggestionChips: string[]
   ) {}
