@@ -1,6 +1,6 @@
 # Year in Review
 
-Google Assistant Action. The [Year in Review](https://assistant.google.com/services/a/uid/0000005b08e20dd7?hl=en_uk) is an interactive Quiz where each round is linked to one of the Guardian's podcasts. This repo contains the firebase function that provides the Action's back end in the [functions](./functions) directory and JSON representation of the Dialogflow [intents](./dialogflowIntentsJson) and [entities](./dialogflowEntitiesJson) and a [zip file](Year-In-Review.zip) for restoring the Dialogflow part of the Action
+Google Assistant Action. The [Year in Review](https://assistant.google.com/services/a/uid/0000005b08e20dd7?hl=en_uk) is an interactive Quiz where each round is linked to one of the Guardian's podcasts. This repo contains the firebase function that provides the Action's back end in the [functions](./functions) directory and JSON representation of the Dialogflow [intents](./dialogflowIntentsJson) and [entities](./dialogflowEntitiesJson) and a [zip file](Year-In-Review.zip) for restoring the Dialogflow part of the Action. [Blog post](https://www.theguardian.com/info/2018/dec/21/year-in-review-podcast-discovery-gamification) announcing the project.
 
 ## Set up
 
