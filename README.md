@@ -21,6 +21,10 @@ The deploy steps are outlined in the [firebase.json](./firebase.json) file and t
 
 ## Running Locally
 
+`yarn valid` will run the TypeScipt build step, the linter and all tests.
+
+`yarn test` will run all tests.
+
 You will need to construct some JSON to pass to the function. The shape of this JSON is documented [here](https://developers.google.com/actions/build/json/dialogflow-webhook-json). You can also get an example of some JSON by going to the [simulator](https://console.actions.google.com/project/year-in-review-138f5/simulator) then going to the 'Request' tab.
 
 ```
@@ -42,4 +46,4 @@ Will run the firebase function locally at [http://localhost:5000/year-in-review-
 
 ## Guardian Specific Information
 
-Guardian specific information about the project is available [here](https://github.com/guardian/voicelab-platform).
+Guardian specific information about the project is available [here](https://github.com/guardian/voicelab-platform) in a private repo.
