@@ -24,7 +24,7 @@ The deploy steps are outlined in the [firebase.json](./firebase.json) file and t
 You will need to construct some JSON to pass to the function. The shape of this JSON is documented [here](https://developers.google.com/actions/build/json/dialogflow-webhook-json). You can also get an example of some JSON by going to the [simulator](https://console.actions.google.com/project/year-in-review-138f5/simulator) then going to the 'Request' tab.
 
 ```
-# This assumes a file called data.json where the json is the correct  dialogflow
+# This assumes a file called data.json where the json is the correct shape.
 yarn shell
 const data = require('./data.json')
 yearInReviewFulfillment.post().form(data)
@@ -38,8 +38,8 @@ yarn serve
 
 Will run the firebase function locally at [http://localhost:5000/year-in-review-138f5/us-central1/yearInReviewFulfillment](http://localhost:5000/year-in-review-138f5/us-central1/yearInReviewFulfillment) and the endpoint can be posted to directly.
 
-[Blog post](https://www.theguardian.com/info/2019/jan/31/hey-google-help-me-use-cloud-functions) on firebase functions locally
+[Blog post](https://www.theguardian.com/info/2019/jan/31/hey-google-help-me-use-cloud-functions) on firebase functions locally.
 
 ## Guardian Specific Information
 
-Guardian specific information about the project is available [here](https://github.com/guardian/voicelab-platform)
+Guardian specific information about the project is available [here](https://github.com/guardian/voicelab-platform).
